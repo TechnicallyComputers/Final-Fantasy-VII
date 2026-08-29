@@ -32,6 +32,23 @@ fi
 if [[ -f "${ROOT}/framework_pins.txt" ]]; then
   EXTRA_PROJECT+=(--project-file framework_pins.txt)
 fi
+# Optional in-game options defaults (titles that POST_BUILD-copy this file).
+if [[ -f "${ROOT}/game_options.toml" ]]; then
+  EXTRA_PROJECT+=(--project-file game_options.toml)
+fi
+# Game-owned C that CMakeLists.txt compiles into the runtime — mod activation
+# plugins live here (CODEGEN_SETUP_SOURCES "src/ff7_mods.c"). Leaving this out
+# ships a CMakeLists that references a file the zip does not contain, so the
+# build dies at configure with "Cannot find source file".
+if [[ -d "${ROOT}/src" ]]; then
+  EXTRA_PROJECT+=(--project-dir src)
+fi
+# Preloaded mod packages (mods/preloaded/packages/<id>). The activation plugin
+# above is compiled in, but selects itself through these packages; without them
+# the mod is built and never enabled.
+if [[ -d "${ROOT}/mods" ]]; then
+  EXTRA_PROJECT+=(--project-dir mods)
+fi
 
 cd "${ROOT}"
 exec bash "${PACKAGER}" \
