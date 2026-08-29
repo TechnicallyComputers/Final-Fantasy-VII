@@ -1,0 +1,62 @@
+# Game-owned enhancement catalog for Final Fantasy VII.
+# Implementations are statically linked (src/ff7_mods.c); this archive carries
+# no native code. See psxrecomp/docs/MOD_PACKAGES.md.
+format_version = 5
+id = "ff7.enhancements"
+version = "1.0.0"
+name = "Final Fantasy VII Enhancements"
+author = "Final Fantasy VII Recompiled project"
+description = "Optional presentation enhancements, each independently toggleable and off by default."
+save_compatibility = "shared"
+
+# The runtime matches this against game.toml [game] id, which is the BOOT
+# disc's serial and does not change with the selected disc — so one entry
+# covers all three discs of the set.
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "widescreen"
+name = "Widescreen"
+description = "Renders a wider field of view instead of stretching the 4:3 image. EXPERIMENTAL and unvalidated on this title: FF7's field screens are pre-rendered 2D backdrops, so a wider view there can only reveal what the backdrop bitmap happens to contain. Fully 3D scenes (battles, the world map) are where this is expected to hold up. FMV and the BIOS boot stay 4:3."
+group = "Graphics"
+default_enabled = false
+
+[[option]]
+feature = "widescreen"
+id = "mode"
+label = "Aspect"
+description = "Fixed opens and stays at 16:9. Adaptive follows the window as you resize it, clamped between 4:3 and 16:9; the initial window is 16:9 either way."
+group = "Graphics"
+type = "choice"
+default = "fixed-16-9"
+
+[[option.choice]]
+value = "fixed-16-9"
+label = "16:9"
+
+[[option.choice]]
+value = "adaptive"
+label = "Adaptive (follows the window)"
+
+[[plugin]]
+feature = "widescreen"
+id = "ff7.widescreen"
+
+# Developer instrument, not a presentation change. symbols.toml carries ~580
+# function names imported from the ff7-decomp symbol map, all tagged
+# status = "contextual" — evidence-backed but unverified by us, and per
+# recomp-ai-rules/LICENSING.md §5 a contextual name may never be cited as
+# evidence. This feature is how a name gets promoted to "confirmed": arm it, do
+# the thing the name claims to describe, and watch whether the call fires.
+# Read-only — it writes no guest memory and changes no game behaviour.
+[[feature]]
+id = "hook-trace"
+name = "Hook Trace (developer)"
+description = "Logs entry into the named functions listed in game.toml [recompiler] mod_function_entry_funcs, capped per function. Verifies imported symbol names against what the game actually calls. Console output only; no effect on the game."
+group = "Developer"
+default_enabled = false
+
+[[plugin]]
+feature = "hook-trace"
+id = "ff7.hook-trace"

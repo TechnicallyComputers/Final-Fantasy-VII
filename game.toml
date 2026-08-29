@@ -86,6 +86,22 @@ memcard_dir = "saves"
 renderer = "opengl"
 aspect_ratio = "4:3"
 
+# Widescreen is MOD-OWNED on PSX: the runtime hardcodes ws_offered = false and
+# clamps the display aspect to 4:3 after every config source, so `offer` and
+# `adaptive_view` here would do nothing. The aspect is selected by the trusted
+# activation plugin in src/ff7_mods.c, gated by the "Widescreen" feature of
+# mods/preloaded/packages/ff7.enhancements. This block carries only the
+# BEHAVIOURAL knobs the framework reads once that plugin has engaged.
+[widescreen]
+# FF7 has no sprite-tag helper configured, so without a gameplay detector
+# ws_game_mode() is never true and gpu_ws_present_native_43() pillarboxes
+# EVERY frame at 4:3 — the widescreen is engaged but never presented. The
+# GTE-activity detector stamps a frame as gameplay once enough vertices go
+# through RTPS/RTPT, which covers FF7's 3D scenes and the 3D character models
+# on field maps, while genuine full-2D screens (menus, save) still pillarbox.
+# Runtime-only; no regen.
+gte_game_mode = true
+
 [controller]
 default_mode = "digital"
 lock_mode = true
