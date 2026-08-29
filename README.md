@@ -1,9 +1,9 @@
 # Final Fantasy 7
 
 <!-- retcomm-readme-metrics -->
-[![GitHub downloads (all assets, all releases)](https://img.shields.io/github/downloads/TechnicallyComputers/Final-Fantasy-7/total)](https://github.com/TechnicallyComputers/Final-Fantasy-7/releases)
-[![GitHub downloads (latest release)](https://img.shields.io/github/downloads/TechnicallyComputers/Final-Fantasy-7/latest/total)](https://github.com/TechnicallyComputers/Final-Fantasy-7/releases/latest)
-[![GitHub release](https://img.shields.io/github/v/release/TechnicallyComputers/Final-Fantasy-7)](https://github.com/TechnicallyComputers/Final-Fantasy-7/releases/latest)
+[![GitHub downloads (all assets, all releases)](https://img.shields.io/github/downloads/TechnicallyComputers/Final-Fantasy-VII/total)](https://github.com/TechnicallyComputers/Final-Fantasy-VII/releases)
+[![GitHub downloads (latest release)](https://img.shields.io/github/downloads/TechnicallyComputers/Final-Fantasy-VII/latest/total)](https://github.com/TechnicallyComputers/Final-Fantasy-VII/releases/latest)
+[![GitHub release](https://img.shields.io/github/v/release/TechnicallyComputers/Final-Fantasy-VII)](https://github.com/TechnicallyComputers/Final-Fantasy-VII/releases/latest)
 <!-- /retcomm-readme-metrics -->
 
 <!-- retcomm-readme-boxart -->
