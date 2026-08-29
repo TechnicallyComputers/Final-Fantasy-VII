@@ -15,14 +15,17 @@
 /* contextual: entry of the game's own main(); proves the seam fires at the earliest guest code [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_main 0x80011C1Cu
 #define func_80011C1C main  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: decompression entry; fires on asset unpack [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_Unzip 0x80017108u
 #define func_80017108 Unzip  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: controller init; should fire once at input setup [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_SetupGamepad 0x8001C434u
 #define func_8001C434 SetupGamepad  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: ff7-decomp 24a46a990dcc (main) */
 #define PSX_FN_SystemMenuDrawDialog 0x8001F1BCu
@@ -31,6 +34,7 @@
 /* contextual: party level snapshot [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_SnapshotPartyLevels 0x80025040u
 #define func_80025040 SnapshotPartyLevels  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: ff7-decomp 24a46a990dcc (main) */
 #define PSX_FN_GetPartySlotArmorMateriaSlots 0x80025668u
@@ -43,6 +47,7 @@
 /* contextual: character name lookup; fires from menus [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_GetCharacterName 0x800257CCu
 #define func_800257CC GetCharacterName  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: ff7-decomp 24a46a990dcc (main) */
 #define PSX_FN_SystemMenuAddHpByPartyId 0x800258BCu
@@ -55,10 +60,12 @@
 /* contextual: gil spend; easy to trigger deliberately [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_SystemMenuRemovePartyGold 0x80025B10u
 #define func_80025B10 SystemMenuRemovePartyGold  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: gil gain; easy to trigger deliberately [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_SystemMenuAddPartyGold 0x80025B48u
 #define func_80025B48 SystemMenuAddPartyGold  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: ff7-decomp 24a46a990dcc (main) */
 #define PSX_FN_SystemMenuGetPartyGold 0x80025B7Cu
@@ -2338,5 +2345,12 @@
  *       psx_mod_register_function_entry_plugin("id", addr, cb);
  *   PSX_FN_HOOK_LIST(REG)
  */
-#define PSX_FN_HOOK_COUNT 0
-#define PSX_FN_HOOK_LIST(X) /* none */
+#define PSX_FN_HOOK_COUNT 7
+#define PSX_FN_HOOK_LIST(X) \
+    X(main, 0x80011C1Cu) \
+    X(Unzip, 0x80017108u) \
+    X(SetupGamepad, 0x8001C434u) \
+    X(SnapshotPartyLevels, 0x80025040u) \
+    X(GetCharacterName, 0x800257CCu) \
+    X(SystemMenuRemovePartyGold, 0x80025B10u) \
+    X(SystemMenuAddPartyGold, 0x80025B48u)

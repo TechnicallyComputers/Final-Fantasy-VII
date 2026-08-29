@@ -30,6 +30,7 @@ note = "SYSTEM.CNF / EXE entry PC (probe seed)"
 pc = 0x80011C1C
 name = "main"
 emit = false
+hook = true
 status = "contextual"
 note = "entry of the game's own main(); proves the seam fires at the earliest guest code [ff7-decomp 24a46a990dcc]"
 
@@ -37,6 +38,7 @@ note = "entry of the game's own main(); proves the seam fires at the earliest gu
 pc = 0x80017108
 name = "Unzip"
 emit = false
+hook = true
 status = "contextual"
 note = "decompression entry; fires on asset unpack [ff7-decomp 24a46a990dcc]"
 
@@ -44,6 +46,7 @@ note = "decompression entry; fires on asset unpack [ff7-decomp 24a46a990dcc]"
 pc = 0x8001C434
 name = "SetupGamepad"
 emit = false
+hook = true
 status = "contextual"
 note = "controller init; should fire once at input setup [ff7-decomp 24a46a990dcc]"
 
@@ -51,6 +54,7 @@ note = "controller init; should fire once at input setup [ff7-decomp 24a46a990dc
 pc = 0x80025040
 name = "SnapshotPartyLevels"
 emit = false
+hook = true
 status = "contextual"
 note = "party level snapshot [ff7-decomp 24a46a990dcc]"
 
@@ -58,6 +62,7 @@ note = "party level snapshot [ff7-decomp 24a46a990dcc]"
 pc = 0x800257CC
 name = "GetCharacterName"
 emit = false
+hook = true
 status = "contextual"
 note = "character name lookup; fires from menus [ff7-decomp 24a46a990dcc]"
 
@@ -65,6 +70,7 @@ note = "character name lookup; fires from menus [ff7-decomp 24a46a990dcc]"
 pc = 0x80025B10
 name = "SystemMenuRemovePartyGold"
 emit = false
+hook = true
 status = "contextual"
 note = "gil spend; easy to trigger deliberately [ff7-decomp 24a46a990dcc]"
 
@@ -72,6 +78,7 @@ note = "gil spend; easy to trigger deliberately [ff7-decomp 24a46a990dcc]"
 pc = 0x80025B48
 name = "SystemMenuAddPartyGold"
 emit = false
+hook = true
 status = "contextual"
 note = "gil gain; easy to trigger deliberately [ff7-decomp 24a46a990dcc]"
 
