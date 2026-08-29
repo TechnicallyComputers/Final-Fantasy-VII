@@ -1,0 +1,38 @@
+{
+  "disc_count": 3,
+  "verdict": "data-only",
+  "differing_program_fields": [],
+  "warnings": [],
+  "discs": [
+    {
+      "index": 1,
+      "cue_name": "Final Fantasy VII (USA) (Disc 1).cue",
+      "cue_path": "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 1)/Final Fantasy VII (USA) (Disc 1).cue",
+      "serial": "SCUS-94163",
+      "boot_exe": "SCUS_941.63",
+      "entry_pc": "0x800110C0",
+      "track_count": 1,
+      "required_disc_fp": "23f1f7ab6a5327016a16783978fe49f94fb67814f4689f3c187612ece77418a3"
+    },
+    {
+      "index": 2,
+      "cue_name": "Final Fantasy VII (USA) (Disc 2).cue",
+      "cue_path": "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 2)/Final Fantasy VII (USA) (Disc 2).cue",
+      "serial": "SCUS-94164",
+      "boot_exe": "SCUS_941.64",
+      "entry_pc": "0x800110C0",
+      "track_count": 1,
+      "required_disc_fp": "d1972bb6d776f89bbe543c3edf34fc4fa82b206fb90fb7dcd2c59c526324e616"
+    },
+    {
+      "index": 3,
+      "cue_name": "Final Fantasy VII (USA) (Disc 3).cue",
+      "cue_path": "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 3)/Final Fantasy VII (USA) (Disc 3).cue",
+      "serial": "SCUS-94165",
+      "boot_exe": "SCUS_941.65",
+      "entry_pc": "0x800110C0",
+      "track_count": 1,
+      "required_disc_fp": "bdcefd0d9329b13097d29b004d51e893815e8923c975c4365a8509fc2b3a4ab9"
+    }
+  ]
+}

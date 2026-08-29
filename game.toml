@@ -1,0 +1,60 @@
+# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
+# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+
+[game]
+name = "Final Fantasy 7"
+id = "SCUS-94163"
+players = 1
+exe = "disc/SCUS_941.63"
+# Verified as one program on N images (verify_disc_set.py).
+# Disc 1 boots; the rest are data. The runtime mounts the boot
+# disc today — docs/MULTI_DISC.md P1 + P3 add the rest.
+discs = [
+    "disc/Final Fantasy VII (USA) (Disc 1).cue",
+    "disc/Final Fantasy VII (USA) (Disc 2).cue",
+    "disc/Final Fantasy VII (USA) (Disc 3).cue",
+]
+load_address = "0x80010000"
+entry_pc = "0x800110C0"
+text_size = "0x00060800"
+stack_base = "0x801FFFF0"
+
+# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
+[prepare_disc]
+out_dir = "disc"
+bin_name = "Final Fantasy VII (USA) (Disc 1).bin"
+cue_name = "Final Fantasy VII (USA) (Disc 1).cue"
+boot_exe = "SCUS_941.63"
+known_sizes = [747435024]
+known_md5 = [
+  "cce4e76d020b47847fe8e2f81ff613db",
+]
+known_sha1 = [
+  "1f890164ac4daeba07def64bb5b636bfaa1d3ab9",
+]
+known_crc32 = [
+  "1459cbef",
+]
+
+[recompiler]
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+window_title = "Final Fantasy 7 Recompiled"
+memcard_dir = "saves"
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+# Online mount gate: digests + track count + optional TOC fingerprint
+# (see docs/NETPLAY.md).
+[netplay]
+require_cue = true
+required_tracks = 1
+required_disc_fp = "23f1f7ab6a5327016a16783978fe49f94fb67814f4689f3c187612ece77418a3"
