@@ -53,6 +53,34 @@ shares the portable toolchain used by per-title launchers, and automates
 BIOS/ROM/save plumbing so you are not stuck repeating each game’s wizard by hand.
 <!-- /retcomm-readme-launcher -->
 
+## Symbols and source-level modding
+
+The recompiled C is generated from the disc, so out of the box every function
+is named `func_800257CC`. `symbols.toml` and `symbols_overlays.toml` put names
+back on ~1,100 of them, imported from the
+[ff7-decomp](https://github.com/Xeeynamo/ff7-decomp) symbol map by Xeeynamo and
+contributors — see `THIRD_PARTY_ATTRIBUTION.md` for provenance, licence status,
+and what may and may not be taken from that project. **Their source is not used
+here and must not be merged**; only the address tables were read.
+
+```sh
+python3 tools/import_decomp_symbols.py                    # refresh from the pinned commit
+python3 tools/import_decomp_symbols.py --verify-generated  # corroborate against our own codegen
+python3 tools/sync_symbols.py                             # maps -> psx_symbols.h
+python3 tools/sync_symbols.py --check-hooks               # game.toml agrees with the map
+```
+
+Host and mod code addresses functions by name — `PSX_FN_SetupGamepad`, not a
+hex literal. Setting `hook = true` on an entry makes the recompiler emit a
+`psx_mod_function_entry()` call at that function; `src/ff7_mods.c` registers
+trusted plugin callbacks against them, and `game.toml`'s address list is
+derived from the map rather than hand-maintained.
+
+Imported names are `status = "contextual"` — evidence-backed but **not verified
+by us**. The default-off *Hook Trace (developer)* feature in the Mods list is
+how you promote one: arm it, do the thing the name claims to describe, and see
+whether the call fires.
+
 ## Legal
 
 You must own the original game. Disc images under `disc/` are gitignored and

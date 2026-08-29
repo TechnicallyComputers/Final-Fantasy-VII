@@ -4,6 +4,2339 @@
  */
 #pragma once
 
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN___main 0x800110B8u
+#define func_800110B8 __main  /* alias */
+
 /* guessed: SYSTEM.CNF / EXE entry PC (probe seed) */
 #define PSX_FN_BootEntry 0x800110C0u
 #define func_800110C0 BootEntry  /* alias */
+
+/* contextual: entry of the game's own main(); proves the seam fires at the earliest guest code [ff7-decomp 24a46a990dcc] */
+#define PSX_FN_main 0x80011C1Cu
+#define func_80011C1C main  /* alias */
+
+/* contextual: decompression entry; fires on asset unpack [ff7-decomp 24a46a990dcc] */
+#define PSX_FN_Unzip 0x80017108u
+#define func_80017108 Unzip  /* alias */
+
+/* contextual: controller init; should fire once at input setup [ff7-decomp 24a46a990dcc] */
+#define PSX_FN_SetupGamepad 0x8001C434u
+#define func_8001C434 SetupGamepad  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemMenuDrawDialog 0x8001F1BCu
+#define func_8001F1BC SystemMenuDrawDialog  /* alias */
+
+/* contextual: party level snapshot [ff7-decomp 24a46a990dcc] */
+#define PSX_FN_SnapshotPartyLevels 0x80025040u
+#define func_80025040 SnapshotPartyLevels  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetPartySlotArmorMateriaSlots 0x80025668u
+#define func_80025668 GetPartySlotArmorMateriaSlots  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetPartySlotWeaponMateriaSlots 0x800256DCu
+#define func_800256DC GetPartySlotWeaponMateriaSlots  /* alias */
+
+/* contextual: character name lookup; fires from menus [ff7-decomp 24a46a990dcc] */
+#define PSX_FN_GetCharacterName 0x800257CCu
+#define func_800257CC GetCharacterName  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemMenuAddHpByPartyId 0x800258BCu
+#define func_800258BC SystemMenuAddHpByPartyId  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemMenuAddMpByPartyId 0x80025A44u
+#define func_80025A44 SystemMenuAddMpByPartyId  /* alias */
+
+/* contextual: gil spend; easy to trigger deliberately [ff7-decomp 24a46a990dcc] */
+#define PSX_FN_SystemMenuRemovePartyGold 0x80025B10u
+#define func_80025B10 SystemMenuRemovePartyGold  /* alias */
+
+/* contextual: gil gain; easy to trigger deliberately [ff7-decomp 24a46a990dcc] */
+#define PSX_FN_SystemMenuAddPartyGold 0x80025B48u
+#define func_80025B48 SystemMenuAddPartyGold  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemMenuGetPartyGold 0x80025B7Cu
+#define func_80025B7C SystemMenuGetPartyGold  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetReverbMode 0x80029AF0u
+#define func_80029AF0 SetReverbMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SoundChannelInit 0x80029BACu
+#define func_80029BAC SoundChannelInit  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC0VolumeSet 0x8002BA5Cu
+#define func_8002BA5C AkaoC0VolumeSet  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC1VolumeSlideFromCurrent 0x8002BA98u
+#define func_8002BA98 AkaoC1VolumeSlideFromCurrent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC2VolumeSlideBetweenTargets 0x8002BB20u
+#define func_8002BB20 AkaoC2VolumeSlideBetweenTargets  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC9CdVolumeSlideFromCurrent 0x8002BBECu
+#define func_8002BBEC AkaoC9CdVolumeSlideFromCurrent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoCACdVolumeSlideBetweenTargets 0x8002BC58u
+#define func_8002BC58 AkaoCACdVolumeSlideBetweenTargets  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoD1TempoSlideFromCurrent 0x8002C5C8u
+#define func_8002C5C8 AkaoD1TempoSlideFromCurrent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoD2TempoSlideBetweenTargets 0x8002C634u
+#define func_8002C634 AkaoD2TempoSlideBetweenTargets  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoD5PitchSlideFromCurrent 0x8002C6C8u
+#define func_8002C6C8 AkaoD5PitchSlideFromCurrent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoD6PitchSlideBetweenTargets 0x8002C734u
+#define func_8002C734 AkaoD6PitchSlideBetweenTargets  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Akao81SetMonoMode 0x8002C850u
+#define func_8002C850 Akao81SetMonoMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Akao9BApplyPendingMusicUpdates 0x8002C8DCu
+#define func_8002C8DC Akao9BApplyPendingMusicUpdates  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Akao9AFlushPendingMusicUpdates 0x8002C9E4u
+#define func_8002C9E4 Akao9AFlushPendingMusicUpdates  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Akao9DApplyPendingSoundUpdates 0x8002CA84u
+#define func_8002CA84 Akao9DApplyPendingSoundUpdates  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Akao9CFlushPendingSoundUpdates 0x8002CB78u
+#define func_8002CB78 Akao9CFlushPendingSoundUpdates  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoE0SetReverbPan 0x8002CC18u
+#define func_8002CC18 AkaoE0SetReverbPan  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoE4SetReverbMul 0x8002CC44u
+#define func_8002CC44 AkaoE4SetReverbMul  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoF8StreamReverbMaskClear 0x8002CEC0u
+#define func_8002CEC0 AkaoF8StreamReverbMaskClear  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoF9StreamReverbMaskRestore 0x8002CF1Cu
+#define func_8002CF1C AkaoF9StreamReverbMaskRestore  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoStreamVoiceAttrMono 0x8002D1E4u
+#define func_8002D1E4 AkaoStreamVoiceAttrMono  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoStreamTransferCallbackMono 0x8002D410u
+#define func_8002D410 AkaoStreamTransferCallbackMono  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoStreamTransferCallbackSplit 0x8002D4A0u
+#define func_8002D4A0 AkaoStreamTransferCallbackSplit  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemAkaoExecute 0x8002DA7Cu
+#define func_8002DA7C SystemAkaoExecute  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoUpdateCdVolume 0x8002E428u
+#define func_8002E428 AkaoUpdateCdVolume  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoDETremoloDepthSlideFromCurrent 0x800328F8u
+#define func_800328F8 AkaoDETremoloDepthSlideFromCurrent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoBCSetPanLfo 0x8003298Cu
+#define func_8003298C AkaoBCSetPanLfo  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoDFPanLfoDepthSlideFromCurrent 0x80032A28u
+#define func_80032A28 AkaoDFPanLfoDepthSlideFromCurrent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC4NoiseOn 0x80032ABCu
+#define func_80032ABC AkaoC4NoiseOn  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC5NoiseOff 0x80032B30u
+#define func_80032B30 AkaoC5NoiseOff  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC6PitchLfoOn 0x80032BB4u
+#define func_80032BB4 AkaoC6PitchLfoOn  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC7PitchLfoOff 0x80032C20u
+#define func_80032C20 AkaoC7PitchLfoOff  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC2ReverbOn 0x80032C8Cu
+#define func_80032C8C AkaoC2ReverbOn  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AkaoC3ReverbOff 0x80032CE8u
+#define func_80032CE8 AkaoC3ReverbOff  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemLoadFileBySector 0x80033E34u
+#define func_80033E34 SystemLoadFileBySector  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DS_read 0x80033E74u
+#define func_80033E74 DS_read  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemCdromAbortLoading 0x8003408Cu
+#define func_8003408C SystemCdromAbortLoading  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemCdromReadChain 0x80034B44u
+#define func_80034B44 SystemCdromReadChain  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemLzsDecompress 0x80034BB0u
+#define func_80034BB0 SystemLzsDecompress  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ChangeClearSIO 0x80034CE8u
+#define func_80034CE8 ChangeClearSIO  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__SpuInit 0x800362B8u
+#define func_800362B8 _SpuInit  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuStart 0x800363B0u
+#define func_800363B0 SpuStart  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_init 0x8003642Cu
+#define func_8003642C _spu_init  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_writeByIO 0x800366C0u
+#define func_800366C0 _spu_writeByIO  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FiDMA 0x8003688Cu
+#define func_8003688C _spu_FiDMA  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_r_ 0x8003695Cu
+#define func_8003695C _spu_r_  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_t 0x80036A18u
+#define func_80036A18 _spu_t  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_write 0x80036CA8u
+#define func_80036CA8 _spu_write  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_read 0x80036D30u
+#define func_80036D30 _spu_read  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FsetRXX 0x80036D98u
+#define func_80036D98 _spu_FsetRXX  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FsetRXXa 0x80036DE0u
+#define func_80036DE0 _spu_FsetRXXa  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FgetRXXa 0x80036E84u
+#define func_80036E84 _spu_FgetRXXa  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FsetPCR 0x80036EC0u
+#define func_80036EC0 _spu_FsetPCR  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FsetDelayW 0x80036F20u
+#define func_80036F20 _spu_FsetDelayW  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FsetDelayR 0x80036F4Cu
+#define func_80036F4C _spu_FsetDelayR  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_FwaitFs 0x80036F78u
+#define func_80036F78 _spu_FwaitFs  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__SpuDataCallback 0x80036FD8u
+#define func_80036FD8 _SpuDataCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuInitMalloc 0x80036FFCu
+#define func_80036FFC SpuInitMalloc  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__SpuMallocSeparateTo3 0x80037050u
+#define func_80037050 _SpuMallocSeparateTo3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuMallocWithStartAddr 0x800373ACu
+#define func_800373AC SpuMallocWithStartAddr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_gcSPU 0x80037664u
+#define func_80037664 _spu_gcSPU  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetNoiseVoice 0x80037964u
+#define func_80037964 SpuSetNoiseVoice  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__SpuSetAnyVoice 0x80037988u
+#define func_80037988 _SpuSetAnyVoice  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetNoiseClock 0x80037B90u
+#define func_80037B90 SpuSetNoiseClock  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuRead 0x80037BE0u
+#define func_80037BE0 SpuRead  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetReverb 0x80037C40u
+#define func_80037C40 SpuSetReverb  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__SpuIsInAllocateArea 0x80037D10u
+#define func_80037D10 _SpuIsInAllocateArea  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__SpuIsInAllocateArea_ 0x80037D90u
+#define func_80037D90 _SpuIsInAllocateArea_  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetReverbModeParam 0x80037E1Cu
+#define func_80037E1C SpuSetReverbModeParam  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__spu_setReverbAttr 0x8003832Cu
+#define func_8003832C _spu_setReverbAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuGetReverbModeParam 0x800387FCu
+#define func_800387FC SpuGetReverbModeParam  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetReverbDepth 0x8003884Cu
+#define func_8003884C SpuSetReverbDepth  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetReverbVoice 0x800388C4u
+#define func_800388C4 SpuSetReverbVoice  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuClearReverbWorkArea 0x800388E8u
+#define func_800388E8 SpuClearReverbWorkArea  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetIRQ 0x80038A84u
+#define func_80038A84 SpuSetIRQ  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetIRQAddr 0x80038BC4u
+#define func_80038BC4 SpuSetIRQAddr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetIRQCallback 0x80038C04u
+#define func_80038C04 SpuSetIRQCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__SpuCallback 0x80038C48u
+#define func_80038C48 _SpuCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetKey 0x80038C6Cu
+#define func_80038C6C SpuSetKey  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuGetKeyStatus 0x80038E70u
+#define func_80038E70 SpuGetKeyStatus  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetTransferStartAddr 0x80038F64u
+#define func_80038F64 SpuSetTransferStartAddr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetTransferMode 0x80038FB8u
+#define func_80038FB8 SpuSetTransferMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetTransferCallback 0x80038FECu
+#define func_80038FEC SpuSetTransferCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetPitchLFOVoice 0x80039010u
+#define func_80039010 SpuSetPitchLFOVoice  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetCommonAttr 0x80039034u
+#define func_80039034 SpuSetCommonAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceVolume 0x800393C8u
+#define func_800393C8 SpuSetVoiceVolume  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceVolumeAttr 0x80039450u
+#define func_80039450 SpuSetVoiceVolumeAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoicePitch 0x800395C8u
+#define func_800395C8 SpuSetVoicePitch  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceStartAddr 0x80039644u
+#define func_80039644 SpuSetVoiceStartAddr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceLoopStartAddr 0x800396C0u
+#define func_800396C0 SpuSetVoiceLoopStartAddr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceDR 0x8003973Cu
+#define func_8003973C SpuSetVoiceDR  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceSL 0x800397C8u
+#define func_800397C8 SpuSetVoiceSL  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceARAttr 0x80039850u
+#define func_80039850 SpuSetVoiceARAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceSRAttr 0x800398ECu
+#define func_800398EC SpuSetVoiceSRAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SpuSetVoiceRRAttr 0x800399D0u
+#define func_800399D0 SpuSetVoiceRRAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_rsin 0x80039A74u
+#define func_80039A74 rsin  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_sin_1 0x80039AB0u
+#define func_80039AB0 sin_1  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_rcos 0x80039B40u
+#define func_80039B40 rcos  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetFogNearFar 0x80039BE0u
+#define func_80039BE0 SetFogNearFar  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_csqrt_1 0x80039CECu
+#define func_80039CEC csqrt_1  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_csqrt 0x80039E40u
+#define func_80039E40 csqrt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_InitGeom 0x80039EDCu
+#define func_80039EDC InitGeom  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SquareRoot0 0x80039F5Cu
+#define func_80039F5C SquareRoot0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_InvSquareRoot 0x80039FECu
+#define func_80039FEC InvSquareRoot  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_VectorNormalS 0x8003A078u
+#define func_8003A078 VectorNormalS  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_VectorNormal 0x8003A08Cu
+#define func_8003A08C VectorNormal  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_VectorNormalSS 0x8003A0B8u
+#define func_8003A0B8 VectorNormalSS  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MatrixNormal 0x8003A1A4u
+#define func_8003A1A4 MatrixNormal  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_gteMIMefunc 0x8003A28Cu
+#define func_8003A28C gteMIMefunc  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadAverage12 0x8003A30Cu
+#define func_8003A30C LoadAverage12  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadAverage0 0x8003A35Cu
+#define func_8003A35C LoadAverage0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadAverageShort12 0x8003A3ACu
+#define func_8003A3AC LoadAverageShort12  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadAverageShort0 0x8003A434u
+#define func_8003A434 LoadAverageShort0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadAverageByte 0x8003A4BCu
+#define func_8003A4BC LoadAverageByte  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadAverageCol 0x8003A51Cu
+#define func_8003A51C LoadAverageCol  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SquareRoot12 0x8003A59Cu
+#define func_8003A59C SquareRoot12  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CompMatrix 0x8003A63Cu
+#define func_8003A63C CompMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MulMatrix0 0x8003A79Cu
+#define func_8003A79C MulMatrix0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MulRotMatrix0 0x8003A8A8u
+#define func_8003A8A8 MulRotMatrix0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MulRotMatrix 0x8003A98Cu
+#define func_8003A98C MulRotMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetMulMatrix 0x8003AA74u
+#define func_8003AA74 SetMulMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ApplyMatrixLV 0x8003AB84u
+#define func_8003AB84 ApplyMatrixLV  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ApplyRotMatrix 0x8003ACE4u
+#define func_8003ACE4 ApplyRotMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ScaleMatrixL 0x8003AD14u
+#define func_8003AD14 ScaleMatrixL  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PushMatrix 0x8003AE38u
+#define func_8003AE38 PushMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PopMatrix 0x8003AED8u
+#define func_8003AED8 PopMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadRotMatrix 0x8003AF78u
+#define func_8003AF78 ReadRotMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadLightMatrix 0x8003AFC0u
+#define func_8003AFC0 ReadLightMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadColorMatrix 0x8003B008u
+#define func_8003B008 ReadColorMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MulMatrix 0x8003B05Cu
+#define func_8003B05C MulMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MulMatrix2 0x8003B16Cu
+#define func_8003B16C MulMatrix2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ApplyMatrix 0x8003B27Cu
+#define func_8003B27C ApplyMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ApplyMatrixSV 0x8003B2CCu
+#define func_8003B2CC ApplyMatrixSV  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_TransMatrix 0x8003B32Cu
+#define func_8003B32C TransMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ScaleMatrix 0x8003B35Cu
+#define func_8003B35C ScaleMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetRotMatrix 0x8003B48Cu
+#define func_8003B48C SetRotMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetLightMatrix 0x8003B4BCu
+#define func_8003B4BC SetLightMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetColorMatrix 0x8003B4ECu
+#define func_8003B4EC SetColorMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetTransMatrix 0x8003B51Cu
+#define func_8003B51C SetTransMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetVertex0 0x8003B53Cu
+#define func_8003B53C SetVertex0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetVertex1 0x8003B54Cu
+#define func_8003B54C SetVertex1  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetVertex2 0x8003B55Cu
+#define func_8003B55C SetVertex2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetVertexTri 0x8003B56Cu
+#define func_8003B56C SetVertexTri  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetRGBfifo 0x8003B58Cu
+#define func_8003B58C SetRGBfifo  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetIR123 0x8003B5A0u
+#define func_8003B5A0 SetIR123  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetIR0 0x8003B5B4u
+#define func_8003B5B4 SetIR0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSZfifo3 0x8003B5C0u
+#define func_8003B5C0 SetSZfifo3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSZfifo4 0x8003B5D4u
+#define func_8003B5D4 SetSZfifo4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSXSYfifo 0x8003B5ECu
+#define func_8003B5EC SetSXSYfifo  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetRii 0x8003B600u
+#define func_8003B600 SetRii  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetMAC123 0x8003B614u
+#define func_8003B614 SetMAC123  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetData32 0x8003B628u
+#define func_8003B628 SetData32  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDQA 0x8003B634u
+#define func_8003B634 SetDQA  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDQB 0x8003B640u
+#define func_8003B640 SetDQB  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadGeomOffset 0x8003B64Cu
+#define func_8003B64C ReadGeomOffset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadGeomScreen 0x8003B66Cu
+#define func_8003B66C ReadGeomScreen  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetBackColor 0x8003B67Cu
+#define func_8003B67C SetBackColor  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetFarColor 0x8003B69Cu
+#define func_8003B69C SetFarColor  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetGeomOffset 0x8003B6BCu
+#define func_8003B6BC SetGeomOffset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetGeomScreen 0x8003B6DCu
+#define func_8003B6DC SetGeomScreen  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LocalLight 0x8003B6ECu
+#define func_8003B6EC LocalLight  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DpqColor 0x8003B710u
+#define func_8003B710 DpqColor  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_NormalColor 0x8003B72Cu
+#define func_8003B72C NormalColor  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_NormalColor3 0x8003B748u
+#define func_8003B748 NormalColor3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_NormalColorDpq 0x8003B784u
+#define func_8003B784 NormalColorDpq  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_NormalColorDpq3 0x8003B7A8u
+#define func_8003B7A8 NormalColorDpq3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_NormalColorCol 0x8003B7F0u
+#define func_8003B7F0 NormalColorCol  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_NormalColorCol3 0x8003B810u
+#define func_8003B810 NormalColorCol3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ColorDpq 0x8003B854u
+#define func_8003B854 ColorDpq  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ColorCol 0x8003B87Cu
+#define func_8003B87C ColorCol  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AverageSZ3 0x8003B8A0u
+#define func_8003B8A0 AverageSZ3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AverageSZ4 0x8003B8B0u
+#define func_8003B8B0 AverageSZ4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadOTZ 0x8003B8B4u
+#define func_8003B8B4 ReadOTZ  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LightColor 0x8003B8CCu
+#define func_8003B8CC LightColor  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DpqColorLight 0x8003B8F4u
+#define func_8003B8F4 DpqColorLight  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DpqColor3 0x8003B91Cu
+#define func_8003B91C DpqColor3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Intpl 0x8003B958u
+#define func_8003B958 Intpl  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Square12 0x8003B97Cu
+#define func_8003B97C Square12  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Square0 0x8003B9A4u
+#define func_8003B9A4 Square0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AverageZ3 0x8003B9CCu
+#define func_8003B9CC AverageZ3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AverageZ4 0x8003B9ECu
+#define func_8003B9EC AverageZ4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_OuterProduct12 0x8003BA10u
+#define func_8003BA10 OuterProduct12  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_OuterProduct0 0x8003BA68u
+#define func_8003BA68 OuterProduct0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Lzc 0x8003BAC0u
+#define func_8003BAC0 Lzc  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadLZC 0x8003BACCu
+#define func_8003BACC ReadLZC  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotTransSV 0x8003BADCu
+#define func_8003BADC RotTransSV  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SquareSS12 0x8003BB0Cu
+#define func_8003BB0C SquareSS12  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SquareSS0 0x8003BB44u
+#define func_8003BB44 SquareSS0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SquareSL12 0x8003BB7Cu
+#define func_8003BB7C SquareSL12  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SquareSL0 0x8003BBACu
+#define func_8003BBAC SquareSL0  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotTransPers 0x8003BBDCu
+#define func_8003BBDC RotTransPers  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotTransPers3 0x8003BC0Cu
+#define func_8003BC0C RotTransPers3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotTrans 0x8003BC6Cu
+#define func_8003BC6C RotTrans  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotTransPers4 0x8003BC9Cu
+#define func_8003BC9C RotTransPers4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotAverage3 0x8003BD1Cu
+#define func_8003BD1C RotAverage3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotAverage4 0x8003BD7Cu
+#define func_8003BD7C RotAverage4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotAverageNclip3 0x8003BDFCu
+#define func_8003BDFC RotAverageNclip3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotAverageNclip4 0x8003BE8Cu
+#define func_8003BE8C RotAverageNclip4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_TransposeMatrix 0x8003BF3Cu
+#define func_8003BF3C TransposeMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotMatrix 0x8003BF8Cu
+#define func_8003BF8C RotMatrix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotMatrixYXZ 0x8003C21Cu
+#define func_8003C21C RotMatrixYXZ  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotMatrixZYX 0x8003C4ACu
+#define func_8003C4AC RotMatrixZYX  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotMatrixX 0x8003C73Cu
+#define func_8003C73C RotMatrixX  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotMatrixY 0x8003C8DCu
+#define func_8003C8DC RotMatrixY  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RotMatrixZ 0x8003CA7Cu
+#define func_8003CA7C RotMatrixZ  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ratan2 0x8003CC1Cu
+#define func_8003CC1C ratan2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__patch_gte 0x8003CD9Cu
+#define func_8003CD9C _patch_gte  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PadInit 0x8003CE3Cu
+#define func_8003CE3C PadInit  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PadRead 0x8003CE8Cu
+#define func_8003CE8C PadRead  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PadStop 0x8003CEBCu
+#define func_8003CEBC PadStop  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_VSync 0x8003CEDCu
+#define func_8003CEDC VSync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_v_wait 0x8003D024u
+#define func_8003D024 v_wait  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ResetCallback 0x8003D0C0u
+#define func_8003D0C0 ResetCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_InterruptCallback 0x8003D0F0u
+#define func_8003D0F0 InterruptCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DMACallback 0x8003D120u
+#define func_8003D120 DMACallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_VSyncCallback 0x8003D150u
+#define func_8003D150 VSyncCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_VSyncCallbacks 0x8003D184u
+#define func_8003D184 VSyncCallbacks  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StopCallback 0x8003D1B4u
+#define func_8003D1B4 StopCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_RestartCallback 0x8003D1E4u
+#define func_8003D1E4 RestartCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CheckCallback 0x8003D214u
+#define func_8003D214 CheckCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetIntrMask 0x8003D224u
+#define func_8003D224 GetIntrMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetIntrMask 0x8003D23Cu
+#define func_8003D23C SetIntrMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_startIntr 0x8003D258u
+#define func_8003D258 startIntr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_trapIntr 0x8003D334u
+#define func_8003D334 trapIntr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_setIntr 0x8003D51Cu
+#define func_8003D51C setIntr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_stopIntr 0x8003D670u
+#define func_8003D670 stopIntr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_restartIntr 0x8003D71Cu
+#define func_8003D71C restartIntr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_memclr 0x8003D7A4u
+#define func_8003D7A4 memclr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_startIntrVSync 0x8003D7D0u
+#define func_8003D7D0 startIntrVSync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_trapIntrVSync 0x8003D828u
+#define func_8003D828 trapIntrVSync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_setIntrVSync 0x8003D8A0u
+#define func_8003D8A0 setIntrVSync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DMA_memclr 0x8003D8CCu
+#define func_8003D8CC DMA_memclr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_startIntrDMA 0x8003D8F8u
+#define func_8003D8F8 startIntrDMA  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_trapIntrDMA 0x8003D948u
+#define func_8003D948 trapIntrDMA  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_setIntrDMA 0x8003DACCu
+#define func_8003DACC setIntrDMA  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_VSync_memclr 0x8003DB74u
+#define func_8003DB74 VSync_memclr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StSetRing 0x8003DBA0u
+#define func_8003DBA0 StSetRing  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdInit 0x8003DBD0u
+#define func_8003DBD0 CdInit  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_def_cbsync 0x8003DC60u
+#define func_8003DC60 def_cbsync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_def_cbready 0x8003DC88u
+#define func_8003DC88 def_cbready  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_def_cbread 0x8003DCB0u
+#define func_8003DCB0 def_cbread  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdLastPos 0x8003DD08u
+#define func_8003DD08 CdLastPos  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdReset 0x8003DD18u
+#define func_8003DD18 CdReset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdControl 0x8003DE9Cu
+#define func_8003DE9C CdControl  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdControlF 0x8003DFD4u
+#define func_8003DFD4 CdControlF  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdControlB 0x8003E100u
+#define func_8003E100 CdControlB  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdMix 0x8003E244u
+#define func_8003E244 CdMix  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdGetSector 0x8003E268u
+#define func_8003E268 CdGetSector  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdIntToPos 0x8003E2D0u
+#define func_8003E2D0 CdIntToPos  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdPosToInt 0x8003E3D4u
+#define func_8003E3D4 CdPosToInt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_getintr 0x8003E454u
+#define func_8003E454 getintr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_sync 0x8003E9DCu
+#define func_8003E9DC CD_sync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_ready 0x8003EC60u
+#define func_8003EC60 CD_ready  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_vol 0x8003F398u
+#define func_8003F398 CD_vol  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_flush 0x8003F420u
+#define func_8003F420 CD_flush  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_initvol 0x8003F500u
+#define func_8003F500 CD_initvol  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_initintr 0x8003F5F4u
+#define func_8003F5F4 CD_initintr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_init 0x8003F644u
+#define func_8003F644 CD_init  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_datasync 0x8003F830u
+#define func_8003F830 CD_datasync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_getsector 0x8003F99Cu
+#define func_8003F99C CD_getsector  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_callback 0x8003FAACu
+#define func_8003FAAC callback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdSearchFile 0x8003FB8Cu
+#define func_8003FB8C CdSearchFile  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__cmp 0x8003FE74u
+#define func_8003FE74 _cmp  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_newmedia 0x8003FE98u
+#define func_8003FE98 CD_newmedia  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_searchdir 0x8004018Cu
+#define func_8004018C CD_searchdir  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_cachefile 0x80040238u
+#define func_80040238 CD_cachefile  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_cd_read 0x800404F4u
+#define func_800404F4 cd_read  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CD_memcpy 0x80040560u
+#define func_80040560 CD_memcpy  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdRead2 0x80040594u
+#define func_80040594 CdRead2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StCdInterrupt2 0x80040628u
+#define func_80040628 StCdInterrupt2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdDiskReady 0x80040648u
+#define func_80040648 CdDiskReady  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CdGetDiskType 0x8004076Cu
+#define func_8004076C CdGetDiskType  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StClearRing 0x80040898u
+#define func_80040898 StClearRing  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StUnSetRing 0x800408F8u
+#define func_800408F8 StUnSetRing  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_data_ready_callback 0x80040950u
+#define func_80040950 data_ready_callback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StGetBackloc 0x800409E0u
+#define func_800409E0 StGetBackloc  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StSetStream 0x80040A40u
+#define func_80040A40 StSetStream  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StFreeRing 0x80040AC8u
+#define func_80040AC8 StFreeRing  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_init_ring_status 0x80040B84u
+#define func_80040B84 init_ring_status  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StGetNext 0x80040BC4u
+#define func_80040BC4 StGetNext  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StSetMask 0x80040C88u
+#define func_80040C88 StSetMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StRingStatus 0x80041810u
+#define func_80041810 StRingStatus  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTReset 0x80041F14u
+#define func_80041F14 DecDCTReset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTGetEnv 0x80041F4Cu
+#define func_80041F4C DecDCTGetEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTPutEnv 0x80041FD8u
+#define func_80041FD8 DecDCTPutEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTBufSize 0x80042038u
+#define func_80042038 DecDCTBufSize  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTin 0x80042044u
+#define func_80042044 DecDCTin  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTout 0x800420C0u
+#define func_800420C0 DecDCTout  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTinSync 0x800420E0u
+#define func_800420E0 DecDCTinSync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCToutSync 0x80042100u
+#define func_80042100 DecDCToutSync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTinCallback 0x80042120u
+#define func_80042120 DecDCTinCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCToutCallback 0x80042144u
+#define func_80042144 DecDCToutCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MDEC_reset 0x80042168u
+#define func_80042168 MDEC_reset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MDEC_in 0x80042270u
+#define func_80042270 MDEC_in  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MDEC_out 0x80042304u
+#define func_80042304 MDEC_out  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MDEC_in_sync 0x80042394u
+#define func_80042394 MDEC_in_sync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MDEC_out_sync 0x8004242Cu
+#define func_8004242C MDEC_out_sync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_timeout 0x800424C4u
+#define func_800424C4 timeout  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTvlcSize 0x800425FCu
+#define func_800425FC DecDCTvlcSize  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DecDCTvlc 0x8004262Cu
+#define func_8004262C DecDCTvlc  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_InitHeap 0x80042990u
+#define func_80042990 InitHeap  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_FlushCache 0x800429A0u
+#define func_800429A0 FlushCache  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__bu_init 0x800429B0u
+#define func_800429B0 _bu_init  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__96_remove 0x800429C0u
+#define func_800429C0 _96_remove  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetMem 0x800429D0u
+#define func_800429D0 SetMem  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SystemError 0x800429E0u
+#define func_800429E0 SystemError  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DeliverEvent 0x800429F0u
+#define func_800429F0 DeliverEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_OpenEvent 0x80042A00u
+#define func_80042A00 OpenEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CloseEvent 0x80042A10u
+#define func_80042A10 CloseEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_WaitEvent 0x80042A20u
+#define func_80042A20 WaitEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_TestEvent 0x80042A30u
+#define func_80042A30 TestEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_EnableEvent 0x80042A40u
+#define func_80042A40 EnableEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DisableEvent 0x80042A50u
+#define func_80042A50 DisableEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_InitPAD 0x80042A60u
+#define func_80042A60 InitPAD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StartPAD 0x80042A70u
+#define func_80042A70 StartPAD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StopPAD 0x80042A80u
+#define func_80042A80 StopPAD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PAD_init 0x80042A90u
+#define func_80042A90 PAD_init  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PAD_dr 0x80042AA0u
+#define func_80042AA0 PAD_dr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReturnFromException 0x80042AB0u
+#define func_80042AB0 ReturnFromException  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ResetEntryInt 0x80042AC0u
+#define func_80042AC0 ResetEntryInt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_HookEntryInt 0x80042AD0u
+#define func_80042AD0 HookEntryInt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_UnDeliverEvent 0x80042AE0u
+#define func_80042AE0 UnDeliverEvent  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_EnterCriticalSection 0x80042AF0u
+#define func_80042AF0 EnterCriticalSection  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ExitCriticalSection 0x80042B00u
+#define func_80042B00 ExitCriticalSection  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSp 0x80042B10u
+#define func_80042B10 SetSp  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_open 0x80042B20u
+#define func_80042B20 open  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_read 0x80042B30u
+#define func_80042B30 read  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_write 0x80042B40u
+#define func_80042B40 write  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_close 0x80042B50u
+#define func_80042B50 close  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_format 0x80042B60u
+#define func_80042B60 format  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_firstfile 0x80042B70u
+#define func_80042B70 firstfile  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_nextfile 0x80042B80u
+#define func_80042B80 nextfile  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_delete 0x80042B90u
+#define func_80042B90 delete  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ChangeClearPAD 0x80042BA0u
+#define func_80042BA0 ChangeClearPAD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ChangeClearRCnt 0x80042BB0u
+#define func_80042BB0 ChangeClearRCnt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetRCnt 0x80042BC0u
+#define func_80042BC0 SetRCnt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetRCnt 0x80042C60u
+#define func_80042C60 GetRCnt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StartRCnt 0x80042C98u
+#define func_80042C98 StartRCnt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StopRCnt 0x80042CCCu
+#define func_80042CCC StopRCnt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ResetRCnt 0x80042D00u
+#define func_80042D00 ResetRCnt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_exit 0x80042D38u
+#define func_80042D38 exit  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_puts 0x80042D48u
+#define func_80042D48 puts  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_setjmp 0x80042D58u
+#define func_80042D58 setjmp  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_strcmp 0x80042D68u
+#define func_80042D68 strcmp  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_strncmp 0x80042D78u
+#define func_80042D78 strncmp  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_bcopy 0x80042D88u
+#define func_80042D88 bcopy  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_memcpy 0x80042D98u
+#define func_80042D98 memcpy  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_rand 0x80042DA8u
+#define func_80042DA8 rand  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_srand 0x80042DB8u
+#define func_80042DB8 srand  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_printf 0x80042DC8u
+#define func_80042DC8 printf  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_sprintf 0x80042DD8u
+#define func_80042DD8 sprintf  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_strlen 0x80043634u
+#define func_80043634 strlen  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_memchr 0x80043644u
+#define func_80043644 memchr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_memmove 0x80043654u
+#define func_80043654 memmove  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadTPage 0x800436C0u
+#define func_800436C0 LoadTPage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadClut 0x800437ACu
+#define func_800437AC LoadClut  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDefDrawEnv 0x80043814u
+#define func_80043814 SetDefDrawEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDefDispEnv 0x800438D4u
+#define func_800438D4 SetDefDispEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetVideoMode 0x80043910u
+#define func_80043910 SetVideoMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetVideoMode 0x80043928u
+#define func_80043928 GetVideoMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ResetGraph 0x80043938u
+#define func_80043938 ResetGraph  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetGraphReverse 0x80043A94u
+#define func_80043A94 SetGraphReverse  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetGraphDebug 0x80043BA8u
+#define func_80043BA8 SetGraphDebug  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetGraphQueue 0x80043C14u
+#define func_80043C14 SetGraphQueue  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetGraphType 0x80043CC0u
+#define func_80043CC0 GetGraphType  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetGraphDebug 0x80043CD0u
+#define func_80043CD0 GetGraphDebug  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DrawSyncCallback 0x80043CE0u
+#define func_80043CE0 DrawSyncCallback  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDispMask 0x80043D3Cu
+#define func_80043D3C SetDispMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DrawSync 0x80043DD8u
+#define func_80043DD8 DrawSync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_checkRECT 0x80043E44u
+#define func_80043E44 checkRECT  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ClearImage 0x80043F6Cu
+#define func_80043F6C ClearImage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_LoadImage 0x80044000u
+#define func_80044000 LoadImage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StoreImage 0x80044064u
+#define func_80044064 StoreImage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MoveImage 0x800440C8u
+#define func_800440C8 MoveImage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ClearOTag 0x8004418Cu
+#define func_8004418C ClearOTag  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ClearOTagR 0x80044244u
+#define func_80044244 ClearOTagR  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DrawPrim 0x800442DCu
+#define func_800442DC DrawPrim  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DrawOTag 0x8004433Cu
+#define func_8004433C DrawOTag  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PutDrawEnv 0x800443B0u
+#define func_800443B0 PutDrawEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetDrawEnv 0x80044474u
+#define func_80044474 GetDrawEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_PutDispEnv 0x800444ACu
+#define func_800444AC PutDispEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetDispEnv 0x800448D0u
+#define func_800448D0 GetDispEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetODE 0x80044908u
+#define func_80044908 GetODE  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetTexWindow 0x8004493Cu
+#define func_8004493C SetTexWindow  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDrawArea 0x80044978u
+#define func_80044978 SetDrawArea  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDrawOffset 0x800449FCu
+#define func_800449FC SetDrawOffset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPriority 0x80044A40u
+#define func_80044A40 SetPriority  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDrawMode 0x80044A68u
+#define func_80044A68 SetDrawMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDrawEnv 0x80044AC0u
+#define func_80044AC0 SetDrawEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_mode 0x80044D64u
+#define func_80044D64 get_mode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_cs 0x80044DC0u
+#define func_80044DC0 get_cs  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_ce 0x80044E8Cu
+#define func_80044E8C get_ce  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_ofs 0x80044F58u
+#define func_80044F58 get_ofs  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_tw 0x80044FA0u
+#define func_80044FA0 get_tw  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_dx 0x80045024u
+#define func_80045024 get_dx  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__status 0x800450E0u
+#define func_800450E0 _status  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__otc 0x800450F8u
+#define func_800450F8 _otc  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__clr 0x800451E0u
+#define func_800451E0 _clr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__dws 0x80045400u
+#define func_80045400 _dws  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__drs 0x80045654u
+#define func_80045654 _drs  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__ctl 0x800458F0u
+#define func_800458F0 _ctl  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__getctl 0x8004591Cu
+#define func_8004591C _getctl  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__cwb 0x80045934u
+#define func_80045934 _cwb  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__cwc 0x80045984u
+#define func_80045984 _cwc  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__param 0x800459D0u
+#define func_800459D0 _param  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__addque 0x80045A00u
+#define func_80045A00 _addque  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__addque2 0x80045A24u
+#define func_80045A24 _addque2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__exeque 0x80045D18u
+#define func_80045D18 _exeque  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__reset 0x8004602Cu
+#define func_8004602C _reset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__sync 0x80046168u
+#define func_80046168 _sync  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_set_alarm 0x800462B0u
+#define func_800462B0 set_alarm  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_alarm 0x800462E4u
+#define func_800462E4 get_alarm  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__version 0x80046450u
+#define func_80046450 _version  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GPU_memset 0x80046530u
+#define func_80046530 GPU_memset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GPU_cw 0x8004655Cu
+#define func_8004655C GPU_cw  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetTPage 0x8004656Cu
+#define func_8004656C GetTPage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_GetClut 0x80046634u
+#define func_80046634 GetClut  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DumpTPage 0x8004664Cu
+#define func_8004664C DumpTPage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DumpClut 0x8004671Cu
+#define func_8004671C DumpClut  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_NextPrim 0x8004675Cu
+#define func_8004675C NextPrim  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_IsEndPrim 0x80046778u
+#define func_80046778 IsEndPrim  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AddPrim 0x80046794u
+#define func_80046794 AddPrim  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_AddPrims 0x800467D0u
+#define func_800467D0 AddPrims  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_CatPrim 0x8004680Cu
+#define func_8004680C CatPrim  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_TermPrim 0x80046830u
+#define func_80046830 TermPrim  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSemiTrans 0x80046848u
+#define func_80046848 SetSemiTrans  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetShadeTex 0x80046870u
+#define func_80046870 SetShadeTex  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyF3 0x80046898u
+#define func_80046898 SetPolyF3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyFT3 0x800468ACu
+#define func_800468AC SetPolyFT3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyG3 0x800468C0u
+#define func_800468C0 SetPolyG3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyGT3 0x800468D4u
+#define func_800468D4 SetPolyGT3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyF4 0x800468E8u
+#define func_800468E8 SetPolyF4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyFT4 0x800468FCu
+#define func_800468FC SetPolyFT4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyG4 0x80046910u
+#define func_80046910 SetPolyG4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetPolyGT4 0x80046924u
+#define func_80046924 SetPolyGT4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSprt8 0x80046938u
+#define func_80046938 SetSprt8  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSprt16 0x8004694Cu
+#define func_8004694C SetSprt16  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetSprt 0x80046960u
+#define func_80046960 SetSprt  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetTile1 0x80046974u
+#define func_80046974 SetTile1  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetTile8 0x80046988u
+#define func_80046988 SetTile8  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetTile16 0x8004699Cu
+#define func_8004699C SetTile16  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetTile 0x800469B0u
+#define func_800469B0 SetTile  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetLineF2 0x800469C4u
+#define func_800469C4 SetLineF2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetLineG2 0x800469D8u
+#define func_800469D8 SetLineG2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetLineF3 0x800469ECu
+#define func_800469EC SetLineF3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetLineG3 0x80046A0Cu
+#define func_80046A0C SetLineG3  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetLineF4 0x80046A2Cu
+#define func_80046A2C SetLineF4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetLineG4 0x80046A4Cu
+#define func_80046A4C SetLineG4  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetBlockFill 0x80046A6Cu
+#define func_80046A6C SetBlockFill  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SetDrawMove 0x80046A80u
+#define func_80046A80 SetDrawMove  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_MargePrim 0x80046A9Cu
+#define func_80046A9C MargePrim  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DumpDrawEnv 0x80046AD0u
+#define func_80046AD0 DumpDrawEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_DumpDispEnv 0x80046C50u
+#define func_80046C50 DumpDispEnv  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_OpenTIM 0x80046CFCu
+#define func_80046CFC OpenTIM  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadTIM 0x80046D0Cu
+#define func_80046D0C ReadTIM  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_OpenTMD 0x80046D74u
+#define func_80046D74 OpenTMD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_ReadTMD 0x80046DB4u
+#define func_80046DB4 ReadTMD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_tim_addr 0x80047060u
+#define func_80047060 get_tim_addr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_get_tmd_addr 0x80047180u
+#define func_80047180 get_tmd_addr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_unpack_packet 0x80047318u
+#define func_80047318 unpack_packet  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_memset 0x80048498u
+#define func_80048498 memset  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__card_info 0x80048968u
+#define func_80048968 _card_info  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__card_load 0x80048978u
+#define func_80048978 _card_load  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__card_auto 0x80048988u
+#define func_80048988 _card_auto  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__card_clear 0x80048998u
+#define func_80048998 _card_clear  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__card_write 0x800489D0u
+#define func_800489D0 _card_write  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__new_card 0x800489E0u
+#define func_800489E0 _new_card  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_InitCARD 0x800489F0u
+#define func_800489F0 InitCARD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StartCARD 0x80048A44u
+#define func_80048A44 StartCARD  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_SsInitHot 0x80048A7Cu
+#define func_80048A7C SsInitHot  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_InitCARD2 0x80048AACu
+#define func_80048AAC InitCARD2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StartCARD2 0x80048ABCu
+#define func_80048ABC StartCARD2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_StopCARD2 0x80048ACCu
+#define func_80048ACC StopCARD2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__patch_card 0x80048B34u
+#define func_80048B34 _patch_card  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__patch_card2 0x80048BECu
+#define func_80048BEC _patch_card2  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN__ExitCard 0x80048C7Cu
+#define func_80048C7C _ExitCard  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_ElementIdToBitmask 0x800491B0u
+#define func_800491B0 g_ElementIdToBitmask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_BattleCharIdToCharId 0x800491D0u
+#define func_800491D0 g_BattleCharIdToCharId  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoWaveTableKey 0x8004A5CCu
+#define func_8004A5CC g_AkaoWaveTableKey  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldModelData 0x8004A62Cu
+#define func_8004A62C g_FieldModelData  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_RandomTableStep 0x8004A630u
+#define func_8004A630 g_RandomTableStep  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_Pad1ButtonsPressed 0x80062D7Cu
+#define func_80062D7C g_Pad1ButtonsPressed  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_Pad1FastButtons 0x80062D88u
+#define func_80062D88 g_Pad1FastButtons  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_PartyMenuListState 0x80062DF8u
+#define func_80062DF8 g_PartyMenuListState  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_PartyMenuPreviousMenuId 0x80062F0Cu
+#define func_80062F0C g_PartyMenuPreviousMenuId  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_PartyMenuListTransitionFactor 0x80062F20u
+#define func_80062F20 g_PartyMenuListTransitionFactor  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoPitchMulMusicSlideStep 0x80062F28u
+#define func_80062F28 g_AkaoPitchMulMusicSlideStep  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoVolMulMusicSlideStep 0x80062F2Cu
+#define func_80062F2C g_AkaoVolMulMusicSlideStep  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoTempoMulMusicSlideStep 0x80062F30u
+#define func_80062F30 g_AkaoTempoMulMusicSlideStep  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoPitchMulMusicSlideSteps 0x80062F40u
+#define func_80062F40 g_AkaoPitchMulMusicSlideSteps  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoVolMulMusicSlideSteps 0x80062F44u
+#define func_80062F44 g_AkaoVolMulMusicSlideSteps  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoTempoMulMusicSlideSteps 0x80062F48u
+#define func_80062F48 g_AkaoTempoMulMusicSlideSteps  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_MenuRenderBufferIndex 0x80062F58u
+#define func_80062F58 g_MenuRenderBufferIndex  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoVolMulMusic 0x80062F5Cu
+#define func_80062F5C g_AkaoVolMulMusic  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_PartyMenuSelectedMenuId 0x80062F94u
+#define func_80062F94 g_PartyMenuSelectedMenuId  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_TutorialActive 0x80062FA0u
+#define func_80062FA0 g_TutorialActive  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoCdVolSlideStep 0x80062FB4u
+#define func_80062FB4 g_AkaoCdVolSlideStep  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoCdVolSlideSteps 0x80062FCCu
+#define func_80062FCC g_AkaoCdVolSlideSteps  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoCdVol 0x80062FD4u
+#define func_80062FD4 g_AkaoCdVol  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoPitchMulMusic 0x80062FE4u
+#define func_80062FE4 g_AkaoPitchMulMusic  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoTempoMulMusic 0x80062FE8u
+#define func_80062FE8 g_AkaoTempoMulMusic  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_CurrentAction 0x80063014u
+#define func_80063014 g_CurrentAction  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_MenuOrderingTables 0x8006974Cu
+#define func_8006974C g_MenuOrderingTables  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_RewardMenuTable 0x800697ECu
+#define func_800697EC g_RewardMenuTable  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldModelsP 0x80070784u
+#define func_80070784 g_FieldModelsP  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_EntityToLine 0x8007078Cu
+#define func_8007078C g_EntityToLine  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_BattleMode 0x800707BEu
+#define func_800707BE g_BattleMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldTriggers 0x800716C4u
+#define func_800716C4 g_FieldTriggers  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldMusicLock 0x800716D4u
+#define func_800716D4 g_FieldMusicLock  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldWaitCounter 0x800716DCu
+#define func_800716DC g_FieldWaitCounter  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_SavedFieldScriptPC 0x80071748u
+#define func_80071748 g_SavedFieldScriptPC  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldEncounters 0x80071A54u
+#define func_80071A54 g_FieldEncounters  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldScriptSyncWaitEntity 0x80071A88u
+#define func_80071A88 g_FieldScriptSyncWaitEntity  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldDebugCurPage 0x80071C08u
+#define func_80071C08 g_FieldDebugCurPage  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AccessoryTable 0x80071C24u
+#define func_80071C24 g_AccessoryTable  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_WindowCount 0x80071E2Cu
+#define func_80071E2C g_WindowCount  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_PartyUpdatedByFieldScript 0x80071E34u
+#define func_80071E34 g_PartyUpdatedByFieldScript  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_ArmorTable 0x80071E44u
+#define func_80071E44 g_ArmorTable  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_CurrentEntity 0x800722C4u
+#define func_800722C4 g_CurrentEntity  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_MateriaData 0x800730D0u
+#define func_800730D0 g_MateriaData  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_WeaponTable 0x800738A0u
+#define func_800738A0 g_WeaponTable  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldEntity 0x80074EA4u
+#define func_80074EA4 g_FieldEntity  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldMapVars 0x80075E24u
+#define func_80075E24 g_FieldMapVars  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldText 0x8007E7A8u
+#define func_8007E7A8 g_FieldText  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldLines 0x8007E7ACu
+#define func_8007E7AC g_FieldLines  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_EntityToModel 0x8007EB98u
+#define func_8007EB98 g_EntityToModel  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoVoiceAttr 0x8007EBE4u
+#define func_8007EBE4 g_AkaoVoiceAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoVoiceAttrMask 0x8007EBE8u
+#define func_8007EBE8 g_AkaoVoiceAttrMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_EntitySplitJoinState 0x80081D90u
+#define func_80081D90 g_EntitySplitJoinState  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_CharacterLock 0x80081DC4u
+#define func_80081DC4 g_CharacterLock  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldScriptPC 0x800831FCu
+#define func_800831FC g_FieldScriptPC  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_WindowToEntity 0x8008326Cu
+#define func_8008326C g_WindowToEntity  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_WindowData 0x80083274u
+#define func_80083274 g_WindowData  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldScriptSyncState 0x800833F8u
+#define func_800833F8 g_FieldScriptSyncState  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldModelLoaderData 0x8008357Cu
+#define func_8008357C g_FieldModelLoaderData  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldLineCount 0x80095D84u
+#define func_80095D84 g_FieldLineCount  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_RandomTableIndex 0x80095DC8u
+#define func_80095DC8 g_RandomTableIndex  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldPreloadMapId 0x80095DD0u
+#define func_80095DD0 g_FieldPreloadMapId  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_PlayerModelId 0x800965E0u
+#define func_800965E0 g_PlayerModelId  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_isFieldLoading 0x800965E8u
+#define func_800965E8 g_isFieldLoading  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoSoundActiveMaskStored 0x80099FDCu
+#define func_80099FDC g_AkaoSoundActiveMaskStored  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoNoiseMask 0x80099FECu
+#define func_80099FEC g_AkaoNoiseMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoReverbMask 0x80099FF0u
+#define func_80099FF0 g_AkaoReverbMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoPitchLfoMask 0x80099FF4u
+#define func_80099FF4 g_AkaoPitchLfoMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldCurrentOpcode 0x8009A058u
+#define func_8009A058 g_FieldCurrentOpcode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_CurrentFieldIndex 0x8009A05Cu
+#define func_8009A05C g_CurrentFieldIndex  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_PartyMenuTables 0x8009A0C8u
+#define func_8009A0C8 g_PartyMenuTables  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoMusicActiveMask 0x8009A108u
+#define func_8009A108 g_AkaoMusicActiveMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoMusicActiveMaskStored 0x8009A118u
+#define func_8009A118 g_AkaoMusicActiveMaskStored  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoMusicOverMask 0x8009A128u
+#define func_8009A128 g_AkaoMusicOverMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_AkaoMusicAltMask 0x8009A12Cu
+#define func_8009A12C g_AkaoMusicAltMask  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_ReverbMode 0x8009A140u
+#define func_8009A140 g_ReverbMode  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldScriptPriority 0x8009A1C4u
+#define func_8009A1C4 g_FieldScriptPriority  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldTriggersP 0x8009AD28u
+#define func_8009AD28 g_FieldTriggersP  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_CharIdToEntity 0x8009AD30u
+#define func_8009AD30 g_CharIdToEntity  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldModels 0x8009C544u
+#define func_8009C544 g_FieldModels  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldEncountersP 0x8009C55Cu
+#define func_8009C55C g_FieldEncountersP  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_ReverbAttr 0x8009C564u
+#define func_8009C564 g_ReverbAttr  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldModelCount 0x8009C6C4u
+#define func_8009C6C4 g_FieldModelCount  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldScripts 0x8009C6DCu
+#define func_8009C6DC g_FieldScripts  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_FieldState 0x8009C6E0u
+#define func_8009C6E0 g_FieldState  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_Savemap 0x8009C6E4u
+#define func_8009C6E4 Savemap  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_RainControl 0x8009D70Bu
+#define func_8009D70B g_RainControl  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_CharacterLevelData 0x8009D7E4u
+#define func_8009D7E4 g_CharacterLevelData  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_BattleItemsEarned 0x8009D808u
+#define func_8009D808 g_BattleItemsEarned  /* alias */
+
+/* contextual: ff7-decomp 24a46a990dcc (main) */
+#define PSX_FN_g_DebugLevel 0x8009D820u
+#define func_8009D820 g_DebugLevel  /* alias */
+
+/* Functions marked hook = true in symbols.toml. The recompiler emits a
+ * psx_mod_function_entry() call at each of these, driven by game.toml
+ * [recompiler] mod_function_entry_funcs — keep the two in agreement with
+ * `tools/sync_symbols.py --check-hooks`.
+ *
+ * Iterate them by name instead of hand-listing addresses:
+ *   #define REG(name, addr) \
+ *       psx_mod_register_function_entry_plugin("id", addr, cb);
+ *   PSX_FN_HOOK_LIST(REG)
+ */
+#define PSX_FN_HOOK_COUNT 0
+#define PSX_FN_HOOK_LIST(X) /* none */

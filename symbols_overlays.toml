@@ -1,0 +1,4903 @@
+# Imported OVERLAY symbols — scoped, because FF7 overlays collide.
+#
+# PARTLY IMPORTED — DO NOT HAND-EDIT THE IMPORTED BLOCK.
+# Regenerate with: python3 tools/import_decomp_symbols.py
+#
+# Names below marked status = "contextual" were imported from the symbol map of
+# Xeeynamo/ff7-decomp
+#   commit:  24a46a990dccc7dad4cac107408df00b0cac6c4c
+#   licence: NONE — no LICENSE file; all rights reserved (read-only ref)
+#
+# That project's SOURCE is not used here and must not be merged: with no LICENCE
+# file, no licence is granted (recomp-ai-rules/LICENSING.md §5). Only the address
+# tables under config/ were read — addresses are facts, not expression (§2).
+# Import is gated on SHA-1 identity with our own disc/SCUS_941.63:
+#   a95e8b16b97071203b953bb81a33980509262f30
+#
+# "contextual" means evidence-backed but UNVERIFIED BY US. Per §5 a contextual
+# name must never later be cited as evidence. Promote to "confirmed" only after
+# you have independently established the behaviour, and move the entry into the
+# hand-authored block above so the next import cannot overwrite your work.
+#
+# Attribution: THIRD_PARTY_ATTRIBUTION.md
+
+# Most FF7 overlays share a load address (battle/brom/dschange/ending/
+# field/world at 0x800A0000; the menus at 0x801D0000; batini/barrier/
+# lv5deth at 0x801B0000), so a flat pc -> name map is WRONG here. Each
+# entry carries `overlay`, and tools/sync_symbols.py namespaces the macro
+# as PSX_FN_<OVERLAY>_<name> with no bare func_<pc> alias.
+#
+# These addresses live in overlay space and are NOT present in the static
+# generated/ tree, which covers the main executable only. They apply to
+# code reached through the overlay cache (psxrecomp/docs/COMPILING_OVERLAYS.md).
+
+# Load addresses, so offset math does not have to be rediscovered. Note how
+# many share one base — that is the whole reason these are scoped.
+[[overlay]]
+name = "battle"
+base = 0x800A0000
+
+[[overlay]]
+name = "brom"
+base = 0x800A0000
+
+[[overlay]]
+name = "dschange"
+base = 0x800A0000
+
+[[overlay]]
+name = "ending"
+base = 0x800A0000
+
+[[overlay]]
+name = "field"
+base = 0x800A0000
+
+[[overlay]]
+name = "world"
+base = 0x800A0000
+
+[[overlay]]
+name = "barrier"
+base = 0x801B0000
+
+[[overlay]]
+name = "batini"
+base = 0x801B0000
+
+[[overlay]]
+name = "lv5deth"
+base = 0x801B0000
+
+[[overlay]]
+name = "bginmenu"
+base = 0x801D0000
+
+[[overlay]]
+name = "cnfgmenu"
+base = 0x801D0000
+
+[[overlay]]
+name = "itemmenu"
+base = 0x801D0000
+
+[[overlay]]
+name = "savemenu"
+base = 0x801D0000
+
+[[func]]
+overlay = "batini"
+pc = 0x800F83AC
+name = "g_BattleState"
+# load base 0x801B0000, offset +0x-B7C54
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (batini)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A04D0
+name = "g_StatusBitTable"
+# load base 0x800A0000, offset +0x4D0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A6CC0
+name = "BATTLE_ClearStatusBit"
+# load base 0x800A0000, offset +0x6CC0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A6D10
+name = "BATTLE_ExpireDeathSentence"
+# load base 0x800A0000, offset +0x6D10
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A6D88
+name = "BATTLE_TickPoison"
+# load base 0x800A0000, offset +0x6D88
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A73C0
+name = "BATTLE_ResolveMagicActionIndex"
+# load base 0x800A0000, offset +0x73C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A73D8
+name = "BATTLE_ResolveSummonActionIndex"
+# load base 0x800A0000, offset +0x73D8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A76AC
+name = "BATTLE_ResolveEnemySkillActionIndex"
+# load base 0x800A0000, offset +0x76AC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A778C
+name = "BATTLE_ResolveLimitActionIndex"
+# load base 0x800A0000, offset +0x778C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800A9C24
+name = "BATTLE_ResolveCaitSithSlotsResult"
+# load base 0x800A0000, offset +0x9C24
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800ACE14
+name = "BATTLE_IsDamageNullified"
+# load base 0x800A0000, offset +0xCE14
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800AD088
+name = "BATTLE_QueueUnassignedResultDisplay"
+# load base 0x800A0000, offset +0xD088
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800AD420
+name = "BATTLE_ApplyDefaultAbsorbEffect"
+# load base 0x800A0000, offset +0xD420
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800AD890
+name = "BATTLE_ApplySadnessReduction"
+# load base 0x800A0000, offset +0xD890
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800AE318
+name = "BATTLE_ApplyKillCountBonus"
+# load base 0x800A0000, offset +0xE318
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800AF1D4
+name = "BATTLE_TryApplyHitEffect"
+# load base 0x800A0000, offset +0xF1D4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800AF594
+name = "BATTLE_ClearActorSlotReferences"
+# load base 0x800A0000, offset +0xF594
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800B0E5C
+name = "BATTLE_ApplyConditionalReduction"
+# load base 0x800A0000, offset +0x10E5C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800B1304
+name = "BATTLE_InvalidateQueuedMessages"
+# load base 0x800A0000, offset +0x11304
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800BBEAC
+name = "BattleEffectRegister"
+# load base 0x800A0000, offset +0x1BEAC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D2538
+name = "BATTLE_EnqueueLoadImage"
+# load base 0x800A0000, offset +0x32538
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D25E8
+name = "BATTLE_FlushImageQueue"
+# load base 0x800A0000, offset +0x325E8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D3994
+name = "BattleGetPartPosition"
+# load base 0x800A0000, offset +0x33994
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D4FA8
+name = "BattleEventQueuePush"
+# load base 0x800A0000, offset +0x34FA8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D5230
+name = "BattleFixedPointRampUpdate"
+# load base 0x800A0000, offset +0x35230
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D5350
+name = "BattleAnimationUpdate"
+# load base 0x800A0000, offset +0x35350
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D54EC
+name = "BattleEntityGetCenter"
+# load base 0x800A0000, offset +0x354EC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800D55F4
+name = "BattleCommandSend"
+# load base 0x800A0000, offset +0x355F4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800E7AB4
+name = "g_StatusExpireTable"
+# load base 0x800A0000, offset +0x47AB4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800F32C4
+name = "g_AtbBarPulseColor"
+# load base 0x800A0000, offset +0x532C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800F32C6
+name = "g_AtbBarPulseValue"
+# load base 0x800A0000, offset +0x532C6
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800F32C8
+name = "g_ActiveCharsHPMPInited"
+# load base 0x800A0000, offset +0x532C8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800F5BB8
+name = "g_CombatantTurnState"
+# load base 0x800A0000, offset +0x55BB8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800F8368
+name = "g_dbIndex"
+# load base 0x800A0000, offset +0x58368
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800F83AC
+name = "g_BattleState"
+# load base 0x800A0000, offset +0x583AC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x800FAFF4
+name = "g_db"
+# load base 0x800A0000, offset +0x5AFF4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x801516FC
+name = "g_modelScreenPos"
+# load base 0x800A0000, offset +0xB16FC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "battle"
+pc = 0x801517C0
+name = "g_cDb"
+# load base 0x800A0000, offset +0xB17C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (battle)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A1368
+name = "FieldLoadMimDatFiles"
+# load base 0x800A0000, offset +0x1368
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A1498
+name = "StopFieldMapPreload"
+# load base 0x800A0000, offset +0x1498
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A14D8
+name = "PreloadNextFieldMap"
+# load base 0x800A0000, offset +0x14D8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A16CC
+name = "FieldMain"
+# load base 0x800A0000, offset +0x16CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A2314
+name = "FieldMainLoop"
+# load base 0x800A0000, offset +0x2314
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A2D5C
+name = "FieldLoadMimToVram"
+# load base 0x800A0000, offset +0x2D5C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A2F78
+name = "FieldButtonsUpdate"
+# load base 0x800A0000, offset +0x2F78
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A3020
+name = "FieldBackgroundInitPackets"
+# load base 0x800A0000, offset +0x3020
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A364C
+name = "AddBackgroundToRender"
+# load base 0x800A0000, offset +0x364C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A4094
+name = "FieldCalcLinearStep"
+# load base 0x800A0000, offset +0x4094
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A4134
+name = "FieldCalcEaseInOut"
+# load base 0x800A0000, offset +0x4134
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A41CC
+name = "FieldCalcWorldToScreenPos"
+# load base 0x800A0000, offset +0x41CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A424C
+name = "FieldBGShakeUpdate"
+# load base 0x800A0000, offset +0x424C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A4430
+name = "FieldBGScrollInit"
+# load base 0x800A0000, offset +0x4430
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A45D4
+name = "FieldCalcPointOnLine"
+# load base 0x800A0000, offset +0x45D4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A47F8
+name = "FieldBGClampPos"
+# load base 0x800A0000, offset +0x47F8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A48B8
+name = "FieldBGGetEntityScreenPos"
+# load base 0x800A0000, offset +0x48B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A496C
+name = "FieldBGScrollUpdate"
+# load base 0x800A0000, offset +0x496C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A4BEC
+name = "FieldBGUpdateDrawenv"
+# load base 0x800A0000, offset +0x4BEC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A5FB4
+name = "FieldEntityInitPos"
+# load base 0x800A0000, offset +0x5FB4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A635C
+name = "FieldEntityAddRotate"
+# load base 0x800A0000, offset +0x635C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A6418
+name = "FieldEntityAnimationUpdate"
+# load base 0x800A0000, offset +0x6418
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A65A4
+name = "FieldEntityMovementUpdate"
+# load base 0x800A0000, offset +0x65A4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A82A0
+name = "FieldEntityGatewayMapLoad"
+# load base 0x800A0000, offset +0x82A0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8304
+name = "FieldEntityCheckTalk"
+# load base 0x800A0000, offset +0x8304
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8600
+name = "FieldEntityGetDirVectorX"
+# load base 0x800A0000, offset +0x8600
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8620
+name = "FieldEntityGetDirVectorY"
+# load base 0x800A0000, offset +0x8620
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8640
+name = "FieldEntityDirByVec"
+# load base 0x800A0000, offset +0x8640
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8858
+name = "FieldEntityAutoMove"
+# load base 0x800A0000, offset +0x8858
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8968
+name = "FieldEntityWalkmechCross"
+# load base 0x800A0000, offset +0x8968
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8DF4
+name = "FieldEntityVectorSub"
+# load base 0x800A0000, offset +0x8DF4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8E34
+name = "FieldEntityCalculateZ"
+# load base 0x800A0000, offset +0x8E34
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A8F88
+name = "FieldEntityMove"
+# load base 0x800A0000, offset +0x8F88
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A9B64
+name = "FieldEntityCollisionCheck"
+# load base 0x800A0000, offset +0x9B64
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A9CE8
+name = "FieldEntitySqrDistToLine"
+# load base 0x800A0000, offset +0x9CE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800A9EEC
+name = "FieldEntityLineCheck"
+# load base 0x800A0000, offset +0x9EEC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AA180
+name = "FieldEntityLineInteract"
+# load base 0x800A0000, offset +0xA180
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AA32C
+name = "FieldEntityLineClear"
+# load base 0x800A0000, offset +0xA32C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AA348
+name = "FieldEntityGatewayCheck"
+# load base 0x800A0000, offset +0xA348
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AA514
+name = "FieldEntityBgTriggerActivate"
+# load base 0x800A0000, offset +0xA514
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AA5E4
+name = "FieldEntityTriggerCheck"
+# load base 0x800A0000, offset +0xA5E4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AA870
+name = "FieldEntityBgTriggerInit"
+# load base 0x800A0000, offset +0xA870
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AA930
+name = "FieldModelLoadAndInit"
+# load base 0x800A0000, offset +0xA930
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AAB24
+name = "HandleKawaiDataInModel"
+# load base 0x800A0000, offset +0xAB24
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AB2AC
+name = "DebugRunEveryLoop"
+# load base 0x800A0000, offset +0xB2AC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AB2B4
+name = "FieldCameraAssign"
+# load base 0x800A0000, offset +0xB2B4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AB310
+name = "FieldUpdateMovieStream"
+# load base 0x800A0000, offset +0xB310
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AB4AC
+name = "FieldRainInit"
+# load base 0x800A0000, offset +0xB4AC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AB5E8
+name = "FieldRainAddToRender"
+# load base 0x800A0000, offset +0xB5E8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AB728
+name = "FieldRainUpdate"
+# load base 0x800A0000, offset +0xB728
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AB9C8
+name = "FieldGetRandomU8FromList"
+# load base 0x800A0000, offset +0xB9C8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ABA34
+name = "FieldGetNextRandomU8"
+# load base 0x800A0000, offset +0xBA34
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ABA70
+name = "FieldBattleCheck"
+# load base 0x800A0000, offset +0xBA70
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ABF0C
+name = "FieldArrowsInit"
+# load base 0x800A0000, offset +0xBF0C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ABFE8
+name = "FieldArrowsAddToRender"
+# load base 0x800A0000, offset +0xBFE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AC35C
+name = "LoadLocalFieldModelAndInitAll"
+# load base 0x800A0000, offset +0xC35C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ACBA0
+name = "FieldModelCreatePktsAndScale"
+# load base 0x800A0000, offset +0xCBA0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ACC5C
+name = "FieldModelCreatePktsForPart"
+# load base 0x800A0000, offset +0xCC5C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AD7B8
+name = "FieldModelLoadBsxTexToVram"
+# load base 0x800A0000, offset +0xD7B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AD858
+name = "FieldModelBsxTdbModify"
+# load base 0x800A0000, offset +0xD858
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ADAA4
+name = "FieldModelStructInit"
+# load base 0x800A0000, offset +0xDAA4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ADC90
+name = "FieldModelLoadGlobalModels"
+# load base 0x800A0000, offset +0xDC90
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800ADD70
+name = "FieldModelLoadBcx"
+# load base 0x800A0000, offset +0xDD70
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AE23C
+name = "FieldModelPrepareRender"
+# load base 0x800A0000, offset +0xE23C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AE4DC
+name = "FieldModelAddToRender"
+# load base 0x800A0000, offset +0xE4DC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AEE24
+name = "FieldModelAnimCalcMtrxs"
+# load base 0x800A0000, offset +0xEE24
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AF6EC
+name = "FieldModelScaleModel"
+# load base 0x800A0000, offset +0xF6EC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AF96C
+name = "FieldModelScalePartVrtxs"
+# load base 0x800A0000, offset +0xF96C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AFAC4
+name = "FieldModelScaleAnimTranslat"
+# load base 0x800A0000, offset +0xFAC4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AFDE4
+name = "KawaiClearData"
+# load base 0x800A0000, offset +0xFDE4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800AFE1C
+name = "KawaiExecute"
+# load base 0x800A0000, offset +0xFE1C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B0618
+name = "KawaiSetCustomLightToModelPkts"
+# load base 0x800A0000, offset +0x10618
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B0A48
+name = "KawaiSetVertexColorFromLighting"
+# load base 0x800A0000, offset +0x10A48
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B0EDC
+name = "KawaiSetColorToModelPkts"
+# load base 0x800A0000, offset +0x10EDC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B0FB0
+name = "KawaiSetColorToPartPkts"
+# load base 0x800A0000, offset +0x10FB0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B1C7C
+name = "KawaiLoadEyesMouthTexToVram"
+# load base 0x800A0000, offset +0x11C7C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B1E40
+name = "KawaiLightingApplyToModel"
+# load base 0x800A0000, offset +0x11E40
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B2598
+name = "KawaiLightingApplyToPolyColor"
+# load base 0x800A0000, offset +0x12598
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B2A00
+name = "KawaiSetModelTransparency"
+# load base 0x800A0000, offset +0x12A00
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B2DD4
+name = "KawaiSetColorToPktsBelowLvl"
+# load base 0x800A0000, offset +0x12DD4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B2F40
+name = "KawaiSetColorToPartPktsBelowLvl"
+# load base 0x800A0000, offset +0x12F40
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B480C
+name = "KawaiFadeModelColor"
+# load base 0x800A0000, offset +0x1480C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B4B04
+name = "KawaiSetCustomLighting"
+# load base 0x800A0000, offset +0x14B04
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B4EAC
+name = "KawaiColorFadeBelowLvl"
+# load base 0x800A0000, offset +0x14EAC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B5260
+name = "KawaiSetLightingToModelPkts"
+# load base 0x800A0000, offset +0x15260
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B5504
+name = "KawaiSetLightingToPartPkts"
+# load base 0x800A0000, offset +0x15504
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B62C4
+name = "KawaiSetSplashToPktsBelowLvl"
+# load base 0x800A0000, offset +0x162C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B69C0
+name = "KawaiInitSplashPkts"
+# load base 0x800A0000, offset +0x169C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B6AE4
+name = "KawaiSetPartAttribute"
+# load base 0x800A0000, offset +0x16AE4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B6B4C
+name = "KawaiApplyBoneTransform"
+# load base 0x800A0000, offset +0x16B4C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B79B8
+name = "KawaiRenderClippedPart"
+# load base 0x800A0000, offset +0x179B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B86D8
+name = "KawaiDirectionalColorGradient"
+# load base 0x800A0000, offset +0x186D8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B8CF0
+name = "KawaiGradientColor"
+# load base 0x800A0000, offset +0x18CF0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800B9B0C
+name = "KawaiAnimatedPointLight"
+# load base 0x800A0000, offset +0x19B0C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BA534
+name = "FieldEventInit"
+# load base 0x800A0000, offset +0x1A534
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BA65C
+name = "FieldEventUpdate"
+# load base 0x800A0000, offset +0x1A65C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BA7C4
+name = "FieldInitDefaultValues"
+# load base 0x800A0000, offset +0x1A7C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BAF54
+name = "FieldEventRunInit"
+# load base 0x800A0000, offset +0x1AF54
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BB1B4
+name = "FieldEnablePartyModels"
+# load base 0x800A0000, offset +0x1B1B4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BB3A8
+name = "FieldEventOpcodeCycle"
+# load base 0x800A0000, offset +0x1B3A8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BBBCC
+name = "FieldUpdateAnimationState"
+# load base 0x800A0000, offset +0x1BBCC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BBF74
+name = "FieldEventRequestRun"
+# load base 0x800A0000, offset +0x1BF74
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BC338
+name = "ResetFieldRenderState"
+# load base 0x800A0000, offset +0x1C338
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BC438
+name = "UpdateFieldExitArrows"
+# load base 0x800A0000, offset +0x1C438
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BC4D4
+name = "DrawFieldExitArrow"
+# load base 0x800A0000, offset +0x1C4D4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BC9FC
+name = "DebugUpdateActor"
+# load base 0x800A0000, offset +0x1C9FC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BEAD4
+name = "DebugPrintOpcode"
+# load base 0x800A0000, offset +0x1EAD4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BECA4
+name = "FieldDebugAddParseValueToPage2"
+# load base 0x800A0000, offset +0x1ECA4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BEE10
+name = "FieldEventReadMemoryU8"
+# load base 0x800A0000, offset +0x1EE10
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BF3AC
+name = "FieldEventWriteMemoryU8"
+# load base 0x800A0000, offset +0x1F3AC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800BF908
+name = "FieldEventReadMemoryS16"
+# load base 0x800A0000, offset +0x1F908
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0248
+name = "FieldEventWriteMemoryS16"
+# load base 0x800A0000, offset +0x20248
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0B54
+name = "OpcodeFuncBad"
+# load base 0x800A0000, offset +0x20B54
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0BE8
+name = "OpcodeFuncWait1"
+# load base 0x800A0000, offset +0x20BE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0C18
+name = "OpcodeFuncWait"
+# load base 0x800A0000, offset +0x20C18
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0DE0
+name = "OpcodeFuncSet"
+# load base 0x800A0000, offset +0x20DE0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0E5C
+name = "OpcodeFuncSet2"
+# load base 0x800A0000, offset +0x20E5C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0EDC
+name = "OpcodeFuncLbyte"
+# load base 0x800A0000, offset +0x20EDC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0F58
+name = "OpcodeFuncHbyte"
+# load base 0x800A0000, offset +0x20F58
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C0FD8
+name = "OpcodeFunc2byte"
+# load base 0x800A0000, offset +0x20FD8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C107C
+name = "OpcodeFuncSetx"
+# load base 0x800A0000, offset +0x2107C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1214
+name = "OpcodeFuncGetx"
+# load base 0x800A0000, offset +0x21214
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C13B0
+name = "OpcodeFuncSrchx"
+# load base 0x800A0000, offset +0x213B0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1674
+name = "OpcodeFuncBiton"
+# load base 0x800A0000, offset +0x21674
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1714
+name = "OpcodeFuncBitof"
+# load base 0x800A0000, offset +0x21714
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C17B8
+name = "OpcodeFuncBitxr"
+# load base 0x800A0000, offset +0x217B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1858
+name = "OpcodeFuncLine"
+# load base 0x800A0000, offset +0x21858
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1AB4
+name = "OpcodeFuncSline"
+# load base 0x800A0000, offset +0x21AB4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1BF4
+name = "OpcodeFuncLinon"
+# load base 0x800A0000, offset +0x21BF4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1D24
+name = "OpcodeFuncSlip"
+# load base 0x800A0000, offset +0x21D24
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1DE4
+name = "OpcodeFuncIf"
+# load base 0x800A0000, offset +0x21DE4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C1EEC
+name = "OpcodeFuncLif"
+# load base 0x800A0000, offset +0x21EEC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2000
+name = "IfCheck"
+# load base 0x800A0000, offset +0x22000
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C228C
+name = "OpcodeFuncIf2"
+# load base 0x800A0000, offset +0x2228C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2394
+name = "OpcodeFuncLif2"
+# load base 0x800A0000, offset +0x22394
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C24A8
+name = "If2CheckSigned"
+# load base 0x800A0000, offset +0x224A8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2754
+name = "OpcodeFuncIf2u"
+# load base 0x800A0000, offset +0x22754
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C285C
+name = "OpcodeFuncLif2u"
+# load base 0x800A0000, offset +0x2285C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2970
+name = "If2CheckUnsigned"
+# load base 0x800A0000, offset +0x22970
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2BFC
+name = "OpcodeFuncKeyEx"
+# load base 0x800A0000, offset +0x22BFC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2CA8
+name = "OpcodeFuncKeyon"
+# load base 0x800A0000, offset +0x22CA8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2D54
+name = "OpcodeFuncKeyof"
+# load base 0x800A0000, offset +0x22D54
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2F7C
+name = "OpcodeFuncReq"
+# load base 0x800A0000, offset +0x22F7C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C2FFC
+name = "OpcodeFuncReqsw"
+# load base 0x800A0000, offset +0x22FFC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C307C
+name = "OpcodeFuncReqew"
+# load base 0x800A0000, offset +0x2307C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C30FC
+name = "OpcodeFuncPreq"
+# load base 0x800A0000, offset +0x230FC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C31E4
+name = "OpcodeFuncPrqsw"
+# load base 0x800A0000, offset +0x231E4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C32CC
+name = "OpcodeFuncPrqew"
+# load base 0x800A0000, offset +0x232CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C33B4
+name = "FieldEventRequest"
+# load base 0x800A0000, offset +0x233B4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C3A20
+name = "OpcodeFuncRet"
+# load base 0x800A0000, offset +0x23A20
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C3C34
+name = "OpcodeFuncRetto"
+# load base 0x800A0000, offset +0x23C34
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C3EA0
+name = "OpcodeFuncBack"
+# load base 0x800A0000, offset +0x23EA0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C3F1C
+name = "OpcodeFuncLback"
+# load base 0x800A0000, offset +0x23F1C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C3FA0
+name = "OpcodeFuncSkip"
+# load base 0x800A0000, offset +0x23FA0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C401C
+name = "OpcodeFuncLskip"
+# load base 0x800A0000, offset +0x2401C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C40A4
+name = "OpcodeFuncMjump"
+# load base 0x800A0000, offset +0x240A4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C42B0
+name = "OpcodeFuncPmjmp"
+# load base 0x800A0000, offset +0x242B0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4350
+name = "OpcodeFuncPmjmp2"
+# load base 0x800A0000, offset +0x24350
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C43C4
+name = "OpcodeFuncMgame"
+# load base 0x800A0000, offset +0x243C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C45AC
+name = "OpcodeFuncBatle"
+# load base 0x800A0000, offset +0x245AC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C46A4
+name = "FieldEventClearAkaoStruct"
+# load base 0x800A0000, offset +0x246A4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C46D0
+name = "OpcodeFuncAkao"
+# load base 0x800A0000, offset +0x246D0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4804
+name = "OpcodeFuncAkao2"
+# load base 0x800A0000, offset +0x24804
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C493C
+name = "OpcodeFuncSe"
+# load base 0x800A0000, offset +0x2493C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C49EC
+name = "OpcodeFuncMusic"
+# load base 0x800A0000, offset +0x249EC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4A40
+name = "OpcodeFuncMusvt"
+# load base 0x800A0000, offset +0x24A40
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4A94
+name = "OpcodeFuncMusvm"
+# load base 0x800A0000, offset +0x24A94
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4AE8
+name = "OpcodeFuncCmusc"
+# load base 0x800A0000, offset +0x24AE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4BCC
+name = "SetAndApplyAkao"
+# load base 0x800A0000, offset +0x24BCC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4C9C
+name = "GetAkaoBlockOffset"
+# load base 0x800A0000, offset +0x24C9C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4CE8
+name = "OpcodeFuncBmusc"
+# load base 0x800A0000, offset +0x24CE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4DE8
+name = "OpcodeFuncFmusc"
+# load base 0x800A0000, offset +0x24DE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C4EE8
+name = "OpcodeFuncTutor"
+# load base 0x800A0000, offset +0x24EE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C506C
+name = "OpcodeFuncMulck"
+# load base 0x800A0000, offset +0x2506C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C50EC
+name = "OpcodeFuncBgmovie"
+# load base 0x800A0000, offset +0x250EC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5194
+name = "OpcodeFuncScrlo"
+# load base 0x800A0000, offset +0x25194
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C523C
+name = "OpcodeFuncDskcg"
+# load base 0x800A0000, offset +0x2523C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C532C
+name = "OpcodeFuncUc"
+# load base 0x800A0000, offset +0x2532C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5414
+name = "OpcodeFuncBtlon"
+# load base 0x800A0000, offset +0x25414
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C54BC
+name = "OpcodeFuncMpdsp"
+# load base 0x800A0000, offset +0x254BC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5564
+name = "OpcodeFuncMvcam"
+# load base 0x800A0000, offset +0x25564
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C560C
+name = "OpcodeFuncGmovr"
+# load base 0x800A0000, offset +0x2560C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5668
+name = "OpcodeFuncCc"
+# load base 0x800A0000, offset +0x25668
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5740
+name = "OpcodeFuncChar"
+# load base 0x800A0000, offset +0x25740
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5898
+name = "OpcodeFuncDfanm"
+# load base 0x800A0000, offset +0x25898
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5A2C
+name = "OpcodeFuncCcanm"
+# load base 0x800A0000, offset +0x25A2C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5B38
+name = "StartModelAnimation"
+# load base 0x800A0000, offset +0x25B38
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5CE8
+name = "OpcodeFuncAnime"
+# load base 0x800A0000, offset +0x25CE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5E80
+name = "OpcodeFuncAnimEx"
+# load base 0x800A0000, offset +0x25E80
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C5FF4
+name = "OpcodeFuncCanim"
+# load base 0x800A0000, offset +0x25FF4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C63CC
+name = "OpcodeFuncCanmEx"
+# load base 0x800A0000, offset +0x263CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C6748
+name = "OpcodeFuncAnimw"
+# load base 0x800A0000, offset +0x26748
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C684C
+name = "OpcodeFuncAnimb"
+# load base 0x800A0000, offset +0x2684C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C6924
+name = "OpcodeFuncMove"
+# load base 0x800A0000, offset +0x26924
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C6D64
+name = "OpcodeFuncFmove"
+# load base 0x800A0000, offset +0x26D64
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C6FD8
+name = "OpcodeFuncCmove"
+# load base 0x800A0000, offset +0x26FD8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C728C
+name = "OpcodeFuncFcfix"
+# load base 0x800A0000, offset +0x2728C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C7354
+name = "OpcodeFuncJump"
+# load base 0x800A0000, offset +0x27354
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C75F0
+name = "OpcodeFuncLader"
+# load base 0x800A0000, offset +0x275F0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C7C3C
+name = "OpcodeFuncPmova"
+# load base 0x800A0000, offset +0x27C3C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C7CE8
+name = "OpcodeFuncMova"
+# load base 0x800A0000, offset +0x27CE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C7D5C
+name = "FieldMoveToEntityUpdate"
+# load base 0x800A0000, offset +0x27D5C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C814C
+name = "OpcodeFuncDira"
+# load base 0x800A0000, offset +0x2814C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C81C0
+name = "OpcodeFuncPdira"
+# load base 0x800A0000, offset +0x281C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C826C
+name = "FieldEventSetDirByActorId"
+# load base 0x800A0000, offset +0x2826C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C8514
+name = "OpcodeFuncTura"
+# load base 0x800A0000, offset +0x28514
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C8588
+name = "OpcodeFuncPtura"
+# load base 0x800A0000, offset +0x28588
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C8634
+name = "FieldEntityTurnToEntity"
+# load base 0x800A0000, offset +0x28634
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C8B98
+name = "OpcodeFuncOfstd"
+# load base 0x800A0000, offset +0x28B98
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C8F64
+name = "OpcodeFuncOfstw"
+# load base 0x800A0000, offset +0x28F64
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C9080
+name = "OpcodeFuncTurnw"
+# load base 0x800A0000, offset +0x29080
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C91D8
+name = "OpcodeFuncTurn"
+# load base 0x800A0000, offset +0x291D8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C955C
+name = "OpcodeFuncTurnr"
+# load base 0x800A0000, offset +0x2955C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C9A20
+name = "OpcodeFuncDir"
+# load base 0x800A0000, offset +0x29A20
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C9B88
+name = "OpcodeFuncSlidr"
+# load base 0x800A0000, offset +0x29B88
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C9C84
+name = "OpcodeFuncSldr2"
+# load base 0x800A0000, offset +0x29C84
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C9D80
+name = "OpcodeFuncTalkr"
+# load base 0x800A0000, offset +0x29D80
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C9E7C
+name = "OpcodeFuncTlkr2"
+# load base 0x800A0000, offset +0x29E7C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800C9F78
+name = "OpcodeFuncMsped"
+# load base 0x800A0000, offset +0x29F78
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA074
+name = "OpcodeFuncAsped"
+# load base 0x800A0000, offset +0x2A074
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA158
+name = "OpcodeFuncGtdir"
+# load base 0x800A0000, offset +0x2A158
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA254
+name = "OpcodeFuncPgtdr"
+# load base 0x800A0000, offset +0x2A254
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA394
+name = "OpcodeFuncGetai"
+# load base 0x800A0000, offset +0x2A394
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA490
+name = "OpcodeFuncGetaxy"
+# load base 0x800A0000, offset +0x2A490
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA5D4
+name = "OpcodeFuncAxyzi"
+# load base 0x800A0000, offset +0x2A5D4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA77C
+name = "OpcodeFuncPxyzi"
+# load base 0x800A0000, offset +0x2A77C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CA95C
+name = "OpcodeFuncVisi"
+# load base 0x800A0000, offset +0x2A95C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CAA24
+name = "OpcodeFuncTlkon"
+# load base 0x800A0000, offset +0x2AA24
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CAAEC
+name = "OpcodeFuncXyzi"
+# load base 0x800A0000, offset +0x2AAEC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CAC98
+name = "OpcodeFuncXyz"
+# load base 0x800A0000, offset +0x2AC98
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CADFC
+name = "OpcodeFuncXyi"
+# load base 0x800A0000, offset +0x2ADFC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CAF60
+name = "OpcodeFuncMes"
+# load base 0x800A0000, offset +0x2AF60
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB01C
+name = "OpcodeFuncMpnam"
+# load base 0x800A0000, offset +0x2B01C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB0B8
+name = "OpcodeFuncAsk"
+# load base 0x800A0000, offset +0x2B0B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB1CC
+name = "OpcodeFuncWclsEx"
+# load base 0x800A0000, offset +0x2B1CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB28C
+name = "OpcodeFuncWsizw"
+# load base 0x800A0000, offset +0x2B28C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB354
+name = "OpcodeFuncWsize"
+# load base 0x800A0000, offset +0x2B354
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB450
+name = "OpcodeFuncWrow"
+# load base 0x800A0000, offset +0x2B450
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB4F8
+name = "OpcodeFuncWmove"
+# load base 0x800A0000, offset +0x2B4F8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB5C0
+name = "OpcodeFuncWrest"
+# load base 0x800A0000, offset +0x2B5C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB660
+name = "OpcodeFuncWclse"
+# load base 0x800A0000, offset +0x2B660
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB718
+name = "OpcodeFuncWmode"
+# load base 0x800A0000, offset +0x2B718
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB7C0
+name = "OpcodeFuncAnd"
+# load base 0x800A0000, offset +0x2B7C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB858
+name = "OpcodeFuncAnd2"
+# load base 0x800A0000, offset +0x2B858
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB8F4
+name = "OpcodeFuncOr"
+# load base 0x800A0000, offset +0x2B8F4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CB98C
+name = "OpcodeFuncOr2"
+# load base 0x800A0000, offset +0x2B98C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBA28
+name = "OpcodeFuncXor"
+# load base 0x800A0000, offset +0x2BA28
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBAC0
+name = "OpcodeFuncXor2"
+# load base 0x800A0000, offset +0x2BAC0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBB5C
+name = "OpcodeFuncPlus"
+# load base 0x800A0000, offset +0x2BB5C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBBF4
+name = "OpcodeFuncPlusEx"
+# load base 0x800A0000, offset +0x2BBF4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBCA4
+name = "OpcodeFuncPlus2"
+# load base 0x800A0000, offset +0x2BCA4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBD40
+name = "OpcodeFuncPls2Ex"
+# load base 0x800A0000, offset +0x2BD40
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBDFC
+name = "OpcodeFuncMinus"
+# load base 0x800A0000, offset +0x2BDFC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBE94
+name = "OpcodeFuncMinsEx"
+# load base 0x800A0000, offset +0x2BE94
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBF40
+name = "OpcodeFuncMins2"
+# load base 0x800A0000, offset +0x2BF40
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CBFDC
+name = "OpcodeFuncMns2Ex"
+# load base 0x800A0000, offset +0x2BFDC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC098
+name = "OpcodeFuncMul"
+# load base 0x800A0000, offset +0x2C098
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC134
+name = "OpcodeFuncMul2"
+# load base 0x800A0000, offset +0x2C134
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC1D4
+name = "OpcodeFuncDiv"
+# load base 0x800A0000, offset +0x2C1D4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC284
+name = "OpcodeFuncDiv2"
+# load base 0x800A0000, offset +0x2C284
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC358
+name = "OpcodeFuncRemai"
+# load base 0x800A0000, offset +0x2C358
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC404
+name = "OpcodeFuncRema2"
+# load base 0x800A0000, offset +0x2C404
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC4D8
+name = "OpcodeFuncInc"
+# load base 0x800A0000, offset +0x2C4D8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC558
+name = "OpcodeFuncIncEx"
+# load base 0x800A0000, offset +0x2C558
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC5EC
+name = "OpcodeFuncInc2"
+# load base 0x800A0000, offset +0x2C5EC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC670
+name = "OpcodeFuncInc2Ex"
+# load base 0x800A0000, offset +0x2C670
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC70C
+name = "OpcodeFuncDec"
+# load base 0x800A0000, offset +0x2C70C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC78C
+name = "OpcodeFuncDecEx"
+# load base 0x800A0000, offset +0x2C78C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC824
+name = "OpcodeFuncDec2"
+# load base 0x800A0000, offset +0x2C824
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC8A8
+name = "OpcodeFuncDec2Ex"
+# load base 0x800A0000, offset +0x2C8A8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC944
+name = "OpcodeFuncRandm"
+# load base 0x800A0000, offset +0x2C944
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CC9EC
+name = "OpcodeFuncRdmsd"
+# load base 0x800A0000, offset +0x2C9EC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCA68
+name = "OpcodeFuncBgon"
+# load base 0x800A0000, offset +0x2CA68
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCB10
+name = "OpcodeFuncBgoff"
+# load base 0x800A0000, offset +0x2CB10
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCBBC
+name = "OpcodeFuncBgclr"
+# load base 0x800A0000, offset +0x2CBBC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCC3C
+name = "OpcodeFuncBgrol"
+# load base 0x800A0000, offset +0x2CC3C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCCC8
+name = "OpcodeFuncBgrol2"
+# load base 0x800A0000, offset +0x2CCC8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCD54
+name = "OpcodeFuncPmvie"
+# load base 0x800A0000, offset +0x2CD54
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCE94
+name = "OpcodeFuncMovie"
+# load base 0x800A0000, offset +0x2CE94
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CCFE8
+name = "OpcodeFuncMvief"
+# load base 0x800A0000, offset +0x2CFE8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD0C4
+name = "OpcodeFuncMpjpo"
+# load base 0x800A0000, offset +0x2D0C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD16C
+name = "OpcodeFuncScr2d"
+# load base 0x800A0000, offset +0x2D16C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD214
+name = "OpcodeFuncScrlc"
+# load base 0x800A0000, offset +0x2D214
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD2E8
+name = "OpcodeFuncScrla"
+# load base 0x800A0000, offset +0x2D2E8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD3F0
+name = "OpcodeFuncScrlp"
+# load base 0x800A0000, offset +0x2D3F0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD554
+name = "OpcodeFuncScrcc"
+# load base 0x800A0000, offset +0x2D554
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD5F0
+name = "OpcodeFuncScr2dc"
+# load base 0x800A0000, offset +0x2D5F0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD6B0
+name = "OpcodeFuncScr2dl"
+# load base 0x800A0000, offset +0x2D6B0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD770
+name = "OpcodeFuncScrlw"
+# load base 0x800A0000, offset +0x2D770
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD834
+name = "OpcodeFuncStpal"
+# load base 0x800A0000, offset +0x2D834
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CD91C
+name = "OpcodeFuncStpls"
+# load base 0x800A0000, offset +0x2D91C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CDA24
+name = "OpcodeFuncLdpal"
+# load base 0x800A0000, offset +0x2DA24
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CDB0C
+name = "OpcodeFuncLdpls"
+# load base 0x800A0000, offset +0x2DB0C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CDC14
+name = "FieldEventRectClear"
+# load base 0x800A0000, offset +0x2DC14
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CDC28
+name = "OpcodeFuncCppal"
+# load base 0x800A0000, offset +0x2DC28
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CDD40
+name = "OpcodeFuncCppal2"
+# load base 0x800A0000, offset +0x2DD40
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CDE8C
+name = "OpcodeFuncRtpal"
+# load base 0x800A0000, offset +0x2DE8C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CE054
+name = "OpcodeFuncRtpal2"
+# load base 0x800A0000, offset +0x2E054
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CE214
+name = "OpcodeFuncAdpal"
+# load base 0x800A0000, offset +0x2E214
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CE480
+name = "OpcodeFuncAdpal2"
+# load base 0x800A0000, offset +0x2E480
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CE6F4
+name = "OpcodeFuncMppal2"
+# load base 0x800A0000, offset +0x2E6F4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CE904
+name = "OpcodeFuncMppal"
+# load base 0x800A0000, offset +0x2E904
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CEB20
+name = "SetPcModel"
+# load base 0x800A0000, offset +0x2EB20
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CEB94
+name = "OpcodeFuncPc"
+# load base 0x800A0000, offset +0x2EB94
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CEE44
+name = "OpcodeFuncPrtyp"
+# load base 0x800A0000, offset +0x2EE44
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF028
+name = "OpcodeFuncPrtym"
+# load base 0x800A0000, offset +0x2F028
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF140
+name = "OpcodeFuncPrtye"
+# load base 0x800A0000, offset +0x2F140
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF200
+name = "OpcodeFuncSptye"
+# load base 0x800A0000, offset +0x2F200
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF2BC
+name = "OpcodeFuncGptye"
+# load base 0x800A0000, offset +0x2F2BC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF368
+name = "PartyReplace"
+# load base 0x800A0000, offset +0x2F368
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF4CC
+name = "PartyCompare"
+# load base 0x800A0000, offset +0x2F4CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF5A0
+name = "PartyFromBank2ToSave"
+# load base 0x800A0000, offset +0x2F5A0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF60C
+name = "PartyFromSaveToBank2"
+# load base 0x800A0000, offset +0x2F60C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF66C
+name = "PartyRemove"
+# load base 0x800A0000, offset +0x2F66C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF6C0
+name = "PartyAdd"
+# load base 0x800A0000, offset +0x2F6C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF718
+name = "OpcodeFuncPrtyq"
+# load base 0x800A0000, offset +0x2F718
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF874
+name = "OpcodeFuncMembq"
+# load base 0x800A0000, offset +0x2F874
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CF9B8
+name = "OpcodeFuncMmbPlusMinus"
+# load base 0x800A0000, offset +0x2F9B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CFAF0
+name = "OpcodeFuncMmblk"
+# load base 0x800A0000, offset +0x2FAF0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CFB84
+name = "OpcodeFuncMmbuk"
+# load base 0x800A0000, offset +0x2FB84
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CFC1C
+name = "OpcodeFuncSolid"
+# load base 0x800A0000, offset +0x2FC1C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CFCE4
+name = "OpcodeFuncVwoft"
+# load base 0x800A0000, offset +0x2FCE4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800CFE78
+name = "OpcodeFuncJoin"
+# load base 0x800A0000, offset +0x2FE78
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D0180
+name = "OpcodeFuncSplit"
+# load base 0x800A0000, offset +0x30180
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D0518
+name = "FieldEventJoinSet"
+# load base 0x800A0000, offset +0x30518
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D0938
+name = "FieldEventSplitSet"
+# load base 0x800A0000, offset +0x30938
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D0B4C
+name = "FieldEventSplitJoinSetMove"
+# load base 0x800A0000, offset +0x30B4C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1200
+name = "FieldEventSplitJoinEndMove"
+# load base 0x800A0000, offset +0x31200
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1350
+name = "FieldEventSplitJoinSetTurn"
+# load base 0x800A0000, offset +0x31350
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D152C
+name = "FieldEventSplitJoinEndTurn"
+# load base 0x800A0000, offset +0x3152C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1654
+name = "OpcodeFuncFade"
+# load base 0x800A0000, offset +0x31654
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D184C
+name = "OpcodeFuncNfade"
+# load base 0x800A0000, offset +0x3184C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D195C
+name = "OpcodeFuncFadew"
+# load base 0x800A0000, offset +0x3195C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1A80
+name = "OpcodeFuncIdlck"
+# load base 0x800A0000, offset +0x31A80
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1B94
+name = "OpcodeFuncGwcol"
+# load base 0x800A0000, offset +0x31B94
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1C68
+name = "OpcodeFuncSwcol"
+# load base 0x800A0000, offset +0x31C68
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1D3C
+name = "OpcodeFuncLstmp"
+# load base 0x800A0000, offset +0x31D3C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1DB8
+name = "OpcodeFuncShake"
+# load base 0x800A0000, offset +0x31DB8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1F20
+name = "OpcodeFuncStitm"
+# load base 0x800A0000, offset +0x31F20
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D1FDC
+name = "OpcodeFuncDlitm"
+# load base 0x800A0000, offset +0x31FDC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2098
+name = "OpcodeFuncCkitm"
+# load base 0x800A0000, offset +0x32098
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2164
+name = "OpcodeFuncSpcal"
+# load base 0x800A0000, offset +0x32164
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2794
+name = "OpcodeFuncBgscr"
+# load base 0x800A0000, offset +0x32794
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D28A8
+name = "OpcodeFuncBgdph"
+# load base 0x800A0000, offset +0x328A8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D298C
+name = "OpcodeFuncSmtra"
+# load base 0x800A0000, offset +0x3298C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2A70
+name = "OpcodeFuncDmtra"
+# load base 0x800A0000, offset +0x32A70
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2B60
+name = "OpcodeFuncCmtra"
+# load base 0x800A0000, offset +0x32B60
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2C60
+name = "OpcodeFuncMenu"
+# load base 0x800A0000, offset +0x32C60
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2E94
+name = "OpcodeFuncMenu2"
+# load base 0x800A0000, offset +0x32E94
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D2F3C
+name = "OpcodeFuncGetpc"
+# load base 0x800A0000, offset +0x32F3C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3004
+name = "OpcodeFuncMpara"
+# load base 0x800A0000, offset +0x33004
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3124
+name = "OpcodeFuncMpra2"
+# load base 0x800A0000, offset +0x33124
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3264
+name = "OpcodeFuncSin"
+# load base 0x800A0000, offset +0x33264
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3330
+name = "OpcodeFuncCos"
+# load base 0x800A0000, offset +0x33330
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D33FC
+name = "SystemRefreshParty"
+# load base 0x800A0000, offset +0x333FC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D348C
+name = "SystemResoreParty"
+# load base 0x800A0000, offset +0x3348C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3548
+name = "OpcodeFuncMhmmx"
+# load base 0x800A0000, offset +0x33548
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D368C
+name = "OpcodeFuncHmpmx"
+# load base 0x800A0000, offset +0x3368C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3728
+name = "OpcodeFuncMpPlus"
+# load base 0x800A0000, offset +0x33728
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3840
+name = "OpcodeFuncMpMinus"
+# load base 0x800A0000, offset +0x33840
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3958
+name = "OpcodeFuncHpPlus"
+# load base 0x800A0000, offset +0x33958
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3A70
+name = "OpcodeFuncHpMinus"
+# load base 0x800A0000, offset +0x33A70
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3B88
+name = "OpcodeFuncGoldPlus"
+# load base 0x800A0000, offset +0x33B88
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3C18
+name = "OpcodeFuncGoldMinus"
+# load base 0x800A0000, offset +0x33C18
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3CA8
+name = "OpcodeFuncChgld"
+# load base 0x800A0000, offset +0x33CA8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3D40
+name = "OpcodeFuncChmph"
+# load base 0x800A0000, offset +0x33D40
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3DCC
+name = "OpcodeFuncChmst"
+# load base 0x800A0000, offset +0x33DCC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3E64
+name = "OpcodeFuncSttim"
+# load base 0x800A0000, offset +0x33E64
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D3F30
+name = "OpcodeFuncWspcl"
+# load base 0x800A0000, offset +0x33F30
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4038
+name = "OpcodeFuncWnumb"
+# load base 0x800A0000, offset +0x34038
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4160
+name = "OpcodeFuncBtlmd"
+# load base 0x800A0000, offset +0x34160
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4214
+name = "OpcodeFuncBtmd2"
+# load base 0x800A0000, offset +0x34214
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4300
+name = "OpcodeFuncBtrlt"
+# load base 0x800A0000, offset +0x34300
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4378
+name = "OpcodeFuncBtltb"
+# load base 0x800A0000, offset +0x34378
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4420
+name = "OpcodeFuncBlink"
+# load base 0x800A0000, offset +0x34420
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D44E8
+name = "OpcodeFuncKawai"
+# load base 0x800A0000, offset +0x344E8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4780
+name = "OpcodeFuncKawiw"
+# load base 0x800A0000, offset +0x34780
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4838
+name = "DebugDummyFunc"
+# load base 0x800A0000, offset +0x34838
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4840
+name = "DebugPrintToFieldWindow"
+# load base 0x800A0000, offset +0x34840
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4848
+name = "FieldEventDebugError"
+# load base 0x800A0000, offset +0x34848
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D48C0
+name = "FieldWindowResetAll"
+# load base 0x800A0000, offset +0x348C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D493C
+name = "FieldWindowReset"
+# load base 0x800A0000, offset +0x3493C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4B28
+name = "FieldWindowSetStateToClose"
+# load base 0x800A0000, offset +0x34B28
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4BC0
+name = "FieldDialogSetWindowStyleCbc"
+# load base 0x800A0000, offset +0x34BC0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4BFC
+name = "FieldWindowResetTextAll"
+# load base 0x800A0000, offset +0x34BFC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4C68
+name = "FieldDialogSetSize"
+# load base 0x800A0000, offset +0x34C68
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4E24
+name = "FieldDialogMove"
+# load base 0x800A0000, offset +0x34E24
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4E88
+name = "FieldDialogSetWindowHeight"
+# load base 0x800A0000, offset +0x34E88
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D4EB4
+name = "FieldDialogMessageUpdateStates"
+# load base 0x800A0000, offset +0x34EB4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D5228
+name = "FieldDialogAskUpdateStates"
+# load base 0x800A0000, offset +0x35228
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D5750
+name = "PlayWindowPointerClickSound"
+# load base 0x800A0000, offset +0x35750
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D579C
+name = "FieldDialogWindowInit"
+# load base 0x800A0000, offset +0x3579C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D5A60
+name = "FieldDialogWindowGrowth"
+# load base 0x800A0000, offset +0x35A60
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D5C9C
+name = "FieldDialogCopyTextFromField"
+# load base 0x800A0000, offset +0x35C9C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D6D44
+name = "DialogScrollText"
+# load base 0x800A0000, offset +0x36D44
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D6E0C
+name = "DialogScrollTextDuringOk"
+# load base 0x800A0000, offset +0x36E0C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D6F6C
+name = "FieldDialogWindowInitNext"
+# load base 0x800A0000, offset +0x36F6C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D707C
+name = "FieldDialogWindowDecrease"
+# load base 0x800A0000, offset +0x3707C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D726C
+name = "FieldDialogGetVariableFromBank"
+# load base 0x800A0000, offset +0x3726C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D775C
+name = "ConvertDigitToString"
+# load base 0x800A0000, offset +0x3775C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D785C
+name = "ConvertNumToStrWithSpace"
+# load base 0x800A0000, offset +0x3785C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D7970
+name = "ConvertHexToString"
+# load base 0x800A0000, offset +0x37970
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D7A58
+name = "CopyDialogToMapName"
+# load base 0x800A0000, offset +0x37A58
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D7C98
+name = "SystemMessageSetCharName"
+# load base 0x800A0000, offset +0x37C98
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D7D6C
+name = "FieldDebugInitBuffers"
+# load base 0x800A0000, offset +0x37D6C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D8194
+name = "FieldDebugPagesResetPosSize"
+# load base 0x800A0000, offset +0x38194
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D828C
+name = "FieldDebugPageInit"
+# load base 0x800A0000, offset +0x3828C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D8334
+name = "FieldDebugPageSetPosSize"
+# load base 0x800A0000, offset +0x38334
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D83A8
+name = "FieldDebugPageAddPos"
+# load base 0x800A0000, offset +0x383A8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D8420
+name = "FieldDebugPageAddSize"
+# load base 0x800A0000, offset +0x38420
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D8498
+name = "FieldDebugPageIsRender"
+# load base 0x800A0000, offset +0x38498
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D84CC
+name = "FieldDebugPageResetStrings"
+# load base 0x800A0000, offset +0x384CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D85C0
+name = "FieldDebugRenderClear"
+# load base 0x800A0000, offset +0x385C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D85FC
+name = "FieldDebugRender"
+# load base 0x800A0000, offset +0x385FC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D8710
+name = "FieldDebugRenderPage"
+# load base 0x800A0000, offset +0x38710
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D9C04
+name = "FieldDebugRenderString"
+# load base 0x800A0000, offset +0x39C04
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D9F00
+name = "AddStrNextDebugRow"
+# load base 0x800A0000, offset +0x39F00
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800D9FFC
+name = "AddColorStrNextDebugRow"
+# load base 0x800A0000, offset +0x39FFC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA124
+name = "SetStrToDebugRow"
+# load base 0x800A0000, offset +0x3A124
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA194
+name = "SetDebugStrRowColor"
+# load base 0x800A0000, offset +0x3A194
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA1D4
+name = "FieldDebugPageSetHeadRow"
+# load base 0x800A0000, offset +0x3A1D4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA214
+name = "FieldDebugPageSetColor"
+# load base 0x800A0000, offset +0x3A214
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA28C
+name = "FieldDebugPageNotInit"
+# load base 0x800A0000, offset +0x3A28C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA2CC
+name = "FieldDebugPageHide"
+# load base 0x800A0000, offset +0x3A2CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA310
+name = "FieldDebugTranspSwitch"
+# load base 0x800A0000, offset +0x3A310
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA334
+name = "FieldDebugStringCopy"
+# load base 0x800A0000, offset +0x3A334
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA368
+name = "FieldDebugStringConcat"
+# load base 0x800A0000, offset +0x3A368
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA3C4
+name = "FieldDebugStringSize"
+# load base 0x800A0000, offset +0x3A3C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA3F0
+name = "FieldDebugStringPartCopy"
+# load base 0x800A0000, offset +0x3A3F0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA424
+name = "FieldDebugStringU8hex"
+# load base 0x800A0000, offset +0x3A424
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA444
+name = "FieldDebugStringU16hex"
+# load base 0x800A0000, offset +0x3A444
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA480
+name = "FieldDebugStringU32hex"
+# load base 0x800A0000, offset +0x3A480
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA4FC
+name = "FieldDebugIntToString"
+# load base 0x800A0000, offset +0x3A4FC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA5B8
+name = "g_FieldFileInfo"
+# load base 0x800A0000, offset +0x3A5B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA5C0
+name = "g_FieldLzsInfo"
+# load base 0x800A0000, offset +0x3A5C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DA5C4
+name = "g_FieldFileTable"
+# load base 0x800A0000, offset +0x3A5C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DEF80
+name = "g_WmPreSector"
+# load base 0x800A0000, offset +0x3EF80
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800DEF84
+name = "g_WmPreSize"
+# load base 0x800A0000, offset +0x3EF84
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E0208
+name = "g_FieldDebugDigits"
+# load base 0x800A0000, offset +0x40208
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E0228
+name = "g_FieldOpcodes"
+# load base 0x800A0000, offset +0x40228
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E0638
+name = "g_RandomTable"
+# load base 0x800A0000, offset +0x40638
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E0738
+name = "g_DialogDigitCharacters"
+# load base 0x800A0000, offset +0x40738
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E1024
+name = "g_FieldDebugRb"
+# load base 0x800A0000, offset +0x41024
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E41B8
+name = "g_FieldDebugRChars"
+# load base 0x800A0000, offset +0x441B8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E41BC
+name = "g_FieldDebugRRect"
+# load base 0x800A0000, offset +0x441BC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E41C0
+name = "g_FieldDebugRLines"
+# load base 0x800A0000, offset +0x441C0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E41C4
+name = "g_FieldDebugRDm"
+# load base 0x800A0000, offset +0x441C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4210
+name = "g_FieldDebugTransp"
+# load base 0x800A0000, offset +0x44210
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4214
+name = "g_WindowReplaceBank"
+# load base 0x800A0000, offset +0x44214
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4234
+name = "g_WindowStringPtr"
+# load base 0x800A0000, offset +0x44234
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E424C
+name = "g_WindowTotalRowsHeight"
+# load base 0x800A0000, offset +0x4424C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4254
+name = "g_DebugText"
+# load base 0x800A0000, offset +0x44254
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4278
+name = "g_WindowNameCopyCount"
+# load base 0x800A0000, offset +0x44278
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4280
+name = "g_WindowReplaceParam"
+# load base 0x800A0000, offset +0x44280
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4288
+name = "g_DebugMessageBuffer"
+# load base 0x800A0000, offset +0x44288
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E42D8
+name = "g_FieldRain"
+# load base 0x800A0000, offset +0x442D8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E48D8
+name = "g_RainForce"
+# load base 0x800A0000, offset +0x448D8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E48F0
+name = "g_EntityForSplitJoin"
+# load base 0x800A0000, offset +0x448F0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4944
+name = "g_WindowString"
+# load base 0x800A0000, offset +0x44944
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4D44
+name = "g_FieldMoviePlayed"
+# load base 0x800A0000, offset +0x44D44
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4D48
+name = "g_WindowReplaceBankAddr"
+# load base 0x800A0000, offset +0x44D48
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x800E4DF0
+name = "g_FieldRenderData"
+# load base 0x800A0000, offset +0x44DF0
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x801142CC
+name = "g_WindowExtraRows"
+# load base 0x800A0000, offset +0x742CC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x801142D4
+name = "SavedScriptIds"
+# load base 0x800A0000, offset +0x742D4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x8011445C
+name = "g_WindowWaitTime"
+# load base 0x800A0000, offset +0x7445C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x80114470
+name = "g_WindowTextBudget"
+# load base 0x800A0000, offset +0x74470
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x80114480
+name = "g_WindowFastForwardLevel"
+# load base 0x800A0000, offset +0x74480
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x801144DC
+name = "g_WindowBuffer"
+# load base 0x800A0000, offset +0x744DC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "field"
+pc = 0x8011451C
+name = "g_WindowBufferPos"
+# load base 0x800A0000, offset +0x7451C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (field)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D03B4
+name = "SwapS32"
+# load base 0x801D0000, offset +0x3B4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D03C8
+name = "Quicksort"
+# load base 0x801D0000, offset +0x3C8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D0618
+name = "SwapU16"
+# load base 0x801D0000, offset +0x618
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D062C
+name = "Sign"
+# load base 0x801D0000, offset +0x62C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D0650
+name = "CompareItemsByType"
+# load base 0x801D0000, offset +0x650
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D069C
+name = "CompareItemsByMost"
+# load base 0x801D0000, offset +0x69C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D0704
+name = "CompareItemsByLeast"
+# load base 0x801D0000, offset +0x704
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D076C
+name = "CompareItemsByName"
+# load base 0x801D0000, offset +0x76C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D081C
+name = "CompareItemsByField"
+# load base 0x801D0000, offset +0x81C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D08E4
+name = "CompareItemsByBattle"
+# load base 0x801D0000, offset +0x8E4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D09AC
+name = "CompareItemsByThrow"
+# load base 0x801D0000, offset +0x9AC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D0A74
+name = "SwapItemSlots"
+# load base 0x801D0000, offset +0xA74
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D0AAC
+name = "ArrangeItems"
+# load base 0x801D0000, offset +0xAAC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2974
+name = "EvictWeakestStolenMateria"
+# load base 0x801D0000, offset +0x2974
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D29C4
+name = "GetLowestStealPriority"
+# load base 0x801D0000, offset +0x29C4
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2A18
+name = "OfferMateriaToSteal"
+# load base 0x801D0000, offset +0x2A18
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2ABC
+name = "ReequipReturnedMateria"
+# load base 0x801D0000, offset +0x2ABC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2C00
+name = "RemoveMateriaFromPlayer"
+# load base 0x801D0000, offset +0x2C00
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2CDC
+name = "FinalizeMateriaSteal"
+# load base 0x801D0000, offset +0x2CDC
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2D74
+name = "StealAllMateria"
+# load base 0x801D0000, offset +0x2D74
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2E84
+name = "ReturnStolenMateria"
+# load base 0x801D0000, offset +0x2E84
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D2F00
+name = "UnequipCharacterMateria"
+# load base 0x801D0000, offset +0x2F00
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D3018
+name = "BackupCharacterMateria"
+# load base 0x801D0000, offset +0x3018
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D3138
+name = "RestoreCharacterMateria"
+# load base 0x801D0000, offset +0x3138
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D3834
+name = "g_MateriaPriority"
+# load base 0x801D0000, offset +0x3834
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "itemmenu"
+pc = 0x801D3F60
+name = "g_MateriaStealLoot"
+# load base 0x801D0000, offset +0x3F60
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (itemmenu)"
+
+[[func]]
+overlay = "savemenu"
+pc = 0x801E2CF8
+name = "g_MenuStartMode"
+# load base 0x801D0000, offset +0x12CF8
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (savemenu)"
+
+[[func]]
+overlay = "savemenu"
+pc = 0x801E379C
+name = "menus"
+# load base 0x801D0000, offset +0x1379C
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (savemenu)"
+
+# 535 imported entries.

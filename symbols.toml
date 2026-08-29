@@ -9,3 +9,4107 @@ name = "BootEntry"
 emit = false
 status = "guessed"
 note = "SYSTEM.CNF / EXE entry PC (probe seed)"
+
+# --- Hand-authored / promoted entries -----------------------------------------
+# Entries here are OWNED BY US and survive re-import: tools/import_decomp_symbols.py
+# skips any address this block already claims. Promote an imported name up here
+# when you attach behaviour to it (hook = true) or when you have independently
+# confirmed it — the imported block below is regenerated and will lose edits.
+#
+# hook = true asks the recompiler to emit a psx_mod_function_entry() call at the
+# function's entry. It only takes effect once the address is also listed in
+# game.toml [recompiler] mod_function_entry_funcs AND generated/ is rebuilt;
+# `python3 tools/sync_symbols.py --check-hooks` verifies those agree.
+#
+# STATUS IS STILL "contextual": these names came from ff7-decomp's map and have
+# NOT been verified by us. The ff7.modhooks trace feature exists precisely to
+# promote them — observe the call fire when you expect it, then set
+# status = "confirmed" here. Do not cite a contextual name as evidence (§5).
+
+[[func]]
+pc = 0x80011C1C
+name = "main"
+emit = false
+status = "contextual"
+note = "entry of the game's own main(); proves the seam fires at the earliest guest code [ff7-decomp 24a46a990dcc]"
+
+[[func]]
+pc = 0x80017108
+name = "Unzip"
+emit = false
+status = "contextual"
+note = "decompression entry; fires on asset unpack [ff7-decomp 24a46a990dcc]"
+
+[[func]]
+pc = 0x8001C434
+name = "SetupGamepad"
+emit = false
+status = "contextual"
+note = "controller init; should fire once at input setup [ff7-decomp 24a46a990dcc]"
+
+[[func]]
+pc = 0x80025040
+name = "SnapshotPartyLevels"
+emit = false
+status = "contextual"
+note = "party level snapshot [ff7-decomp 24a46a990dcc]"
+
+[[func]]
+pc = 0x800257CC
+name = "GetCharacterName"
+emit = false
+status = "contextual"
+note = "character name lookup; fires from menus [ff7-decomp 24a46a990dcc]"
+
+[[func]]
+pc = 0x80025B10
+name = "SystemMenuRemovePartyGold"
+emit = false
+status = "contextual"
+note = "gil spend; easy to trigger deliberately [ff7-decomp 24a46a990dcc]"
+
+[[func]]
+pc = 0x80025B48
+name = "SystemMenuAddPartyGold"
+emit = false
+status = "contextual"
+note = "gil gain; easy to trigger deliberately [ff7-decomp 24a46a990dcc]"
+
+# >>> BEGIN IMPORTED (ff7-decomp) — regenerated, do not hand-edit
+
+# Imported main-executable symbols (always resident).
+#
+# PARTLY IMPORTED — DO NOT HAND-EDIT THE IMPORTED BLOCK.
+# Regenerate with: python3 tools/import_decomp_symbols.py
+#
+# Names below marked status = "contextual" were imported from the symbol map of
+# Xeeynamo/ff7-decomp
+#   commit:  24a46a990dccc7dad4cac107408df00b0cac6c4c
+#   licence: NONE — no LICENSE file; all rights reserved (read-only ref)
+#
+# That project's SOURCE is not used here and must not be merged: with no LICENCE
+# file, no licence is granted (recomp-ai-rules/LICENSING.md §5). Only the address
+# tables under config/ were read — addresses are facts, not expression (§2).
+# Import is gated on SHA-1 identity with our own disc/SCUS_941.63:
+#   a95e8b16b97071203b953bb81a33980509262f30
+#
+# "contextual" means evidence-backed but UNVERIFIED BY US. Per §5 a contextual
+# name must never later be cited as evidence. Promote to "confirmed" only after
+# you have independently established the behaviour, and move the entry into the
+# hand-authored block above so the next import cannot overwrite your work.
+#
+# Attribution: THIRD_PARTY_ATTRIBUTION.md
+
+[[func]]
+pc = 0x800110B8
+name = "__main"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8001F1BC
+name = "SystemMenuDrawDialog"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80025668
+name = "GetPartySlotArmorMateriaSlots"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800256DC
+name = "GetPartySlotWeaponMateriaSlots"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800258BC
+name = "SystemMenuAddHpByPartyId"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80025A44
+name = "SystemMenuAddMpByPartyId"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80025B7C
+name = "SystemMenuGetPartyGold"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80029AF0
+name = "SetReverbMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80029BAC
+name = "SoundChannelInit"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002BA5C
+name = "AkaoC0VolumeSet"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002BA98
+name = "AkaoC1VolumeSlideFromCurrent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002BB20
+name = "AkaoC2VolumeSlideBetweenTargets"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002BBEC
+name = "AkaoC9CdVolumeSlideFromCurrent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002BC58
+name = "AkaoCACdVolumeSlideBetweenTargets"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002C5C8
+name = "AkaoD1TempoSlideFromCurrent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002C634
+name = "AkaoD2TempoSlideBetweenTargets"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002C6C8
+name = "AkaoD5PitchSlideFromCurrent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002C734
+name = "AkaoD6PitchSlideBetweenTargets"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002C850
+name = "Akao81SetMonoMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002C8DC
+name = "Akao9BApplyPendingMusicUpdates"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002C9E4
+name = "Akao9AFlushPendingMusicUpdates"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002CA84
+name = "Akao9DApplyPendingSoundUpdates"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002CB78
+name = "Akao9CFlushPendingSoundUpdates"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002CC18
+name = "AkaoE0SetReverbPan"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002CC44
+name = "AkaoE4SetReverbMul"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002CEC0
+name = "AkaoF8StreamReverbMaskClear"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002CF1C
+name = "AkaoF9StreamReverbMaskRestore"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002D1E4
+name = "AkaoStreamVoiceAttrMono"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002D410
+name = "AkaoStreamTransferCallbackMono"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002D4A0
+name = "AkaoStreamTransferCallbackSplit"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002DA7C
+name = "SystemAkaoExecute"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8002E428
+name = "AkaoUpdateCdVolume"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800328F8
+name = "AkaoDETremoloDepthSlideFromCurrent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003298C
+name = "AkaoBCSetPanLfo"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80032A28
+name = "AkaoDFPanLfoDepthSlideFromCurrent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80032ABC
+name = "AkaoC4NoiseOn"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80032B30
+name = "AkaoC5NoiseOff"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80032BB4
+name = "AkaoC6PitchLfoOn"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80032C20
+name = "AkaoC7PitchLfoOff"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80032C8C
+name = "AkaoC2ReverbOn"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80032CE8
+name = "AkaoC3ReverbOff"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80033E34
+name = "SystemLoadFileBySector"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80033E74
+name = "DS_read"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003408C
+name = "SystemCdromAbortLoading"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80034B44
+name = "SystemCdromReadChain"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80034BB0
+name = "SystemLzsDecompress"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80034CE8
+name = "ChangeClearSIO"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800362B8
+name = "_SpuInit"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800363B0
+name = "SpuStart"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003642C
+name = "_spu_init"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800366C0
+name = "_spu_writeByIO"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003688C
+name = "_spu_FiDMA"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003695C
+name = "_spu_r_"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036A18
+name = "_spu_t"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036CA8
+name = "_spu_write"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036D30
+name = "_spu_read"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036D98
+name = "_spu_FsetRXX"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036DE0
+name = "_spu_FsetRXXa"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036E84
+name = "_spu_FgetRXXa"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036EC0
+name = "_spu_FsetPCR"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036F20
+name = "_spu_FsetDelayW"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036F4C
+name = "_spu_FsetDelayR"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036F78
+name = "_spu_FwaitFs"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036FD8
+name = "_SpuDataCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80036FFC
+name = "SpuInitMalloc"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037050
+name = "_SpuMallocSeparateTo3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800373AC
+name = "SpuMallocWithStartAddr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037664
+name = "_spu_gcSPU"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037964
+name = "SpuSetNoiseVoice"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037988
+name = "_SpuSetAnyVoice"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037B90
+name = "SpuSetNoiseClock"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037BE0
+name = "SpuRead"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037C40
+name = "SpuSetReverb"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037D10
+name = "_SpuIsInAllocateArea"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037D90
+name = "_SpuIsInAllocateArea_"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80037E1C
+name = "SpuSetReverbModeParam"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003832C
+name = "_spu_setReverbAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800387FC
+name = "SpuGetReverbModeParam"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003884C
+name = "SpuSetReverbDepth"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800388C4
+name = "SpuSetReverbVoice"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800388E8
+name = "SpuClearReverbWorkArea"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038A84
+name = "SpuSetIRQ"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038BC4
+name = "SpuSetIRQAddr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038C04
+name = "SpuSetIRQCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038C48
+name = "_SpuCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038C6C
+name = "SpuSetKey"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038E70
+name = "SpuGetKeyStatus"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038F64
+name = "SpuSetTransferStartAddr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038FB8
+name = "SpuSetTransferMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80038FEC
+name = "SpuSetTransferCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039010
+name = "SpuSetPitchLFOVoice"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039034
+name = "SpuSetCommonAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800393C8
+name = "SpuSetVoiceVolume"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039450
+name = "SpuSetVoiceVolumeAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800395C8
+name = "SpuSetVoicePitch"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039644
+name = "SpuSetVoiceStartAddr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800396C0
+name = "SpuSetVoiceLoopStartAddr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003973C
+name = "SpuSetVoiceDR"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800397C8
+name = "SpuSetVoiceSL"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039850
+name = "SpuSetVoiceARAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800398EC
+name = "SpuSetVoiceSRAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800399D0
+name = "SpuSetVoiceRRAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039A74
+name = "rsin"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039AB0
+name = "sin_1"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039B40
+name = "rcos"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039BE0
+name = "SetFogNearFar"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039CEC
+name = "csqrt_1"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039E40
+name = "csqrt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039EDC
+name = "InitGeom"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039F5C
+name = "SquareRoot0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80039FEC
+name = "InvSquareRoot"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A078
+name = "VectorNormalS"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A08C
+name = "VectorNormal"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A0B8
+name = "VectorNormalSS"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A1A4
+name = "MatrixNormal"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A28C
+name = "gteMIMefunc"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A30C
+name = "LoadAverage12"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A35C
+name = "LoadAverage0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A3AC
+name = "LoadAverageShort12"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A434
+name = "LoadAverageShort0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A4BC
+name = "LoadAverageByte"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A51C
+name = "LoadAverageCol"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A59C
+name = "SquareRoot12"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A63C
+name = "CompMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A79C
+name = "MulMatrix0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A8A8
+name = "MulRotMatrix0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003A98C
+name = "MulRotMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003AA74
+name = "SetMulMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003AB84
+name = "ApplyMatrixLV"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003ACE4
+name = "ApplyRotMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003AD14
+name = "ScaleMatrixL"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003AE38
+name = "PushMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003AED8
+name = "PopMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003AF78
+name = "ReadRotMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003AFC0
+name = "ReadLightMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B008
+name = "ReadColorMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B05C
+name = "MulMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B16C
+name = "MulMatrix2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B27C
+name = "ApplyMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B2CC
+name = "ApplyMatrixSV"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B32C
+name = "TransMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B35C
+name = "ScaleMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B48C
+name = "SetRotMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B4BC
+name = "SetLightMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B4EC
+name = "SetColorMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B51C
+name = "SetTransMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B53C
+name = "SetVertex0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B54C
+name = "SetVertex1"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B55C
+name = "SetVertex2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B56C
+name = "SetVertexTri"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B58C
+name = "SetRGBfifo"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B5A0
+name = "SetIR123"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B5B4
+name = "SetIR0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B5C0
+name = "SetSZfifo3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B5D4
+name = "SetSZfifo4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B5EC
+name = "SetSXSYfifo"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B600
+name = "SetRii"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B614
+name = "SetMAC123"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B628
+name = "SetData32"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B634
+name = "SetDQA"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B640
+name = "SetDQB"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B64C
+name = "ReadGeomOffset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B66C
+name = "ReadGeomScreen"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B67C
+name = "SetBackColor"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B69C
+name = "SetFarColor"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B6BC
+name = "SetGeomOffset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B6DC
+name = "SetGeomScreen"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B6EC
+name = "LocalLight"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B710
+name = "DpqColor"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B72C
+name = "NormalColor"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B748
+name = "NormalColor3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B784
+name = "NormalColorDpq"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B7A8
+name = "NormalColorDpq3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B7F0
+name = "NormalColorCol"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B810
+name = "NormalColorCol3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B854
+name = "ColorDpq"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B87C
+name = "ColorCol"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B8A0
+name = "AverageSZ3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B8B0
+name = "AverageSZ4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B8B4
+name = "ReadOTZ"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B8CC
+name = "LightColor"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B8F4
+name = "DpqColorLight"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B91C
+name = "DpqColor3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B958
+name = "Intpl"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B97C
+name = "Square12"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B9A4
+name = "Square0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B9CC
+name = "AverageZ3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003B9EC
+name = "AverageZ4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BA10
+name = "OuterProduct12"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BA68
+name = "OuterProduct0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BAC0
+name = "Lzc"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BACC
+name = "ReadLZC"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BADC
+name = "RotTransSV"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BB0C
+name = "SquareSS12"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BB44
+name = "SquareSS0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BB7C
+name = "SquareSL12"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BBAC
+name = "SquareSL0"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BBDC
+name = "RotTransPers"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BC0C
+name = "RotTransPers3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BC6C
+name = "RotTrans"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BC9C
+name = "RotTransPers4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BD1C
+name = "RotAverage3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BD7C
+name = "RotAverage4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BDFC
+name = "RotAverageNclip3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BE8C
+name = "RotAverageNclip4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BF3C
+name = "TransposeMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003BF8C
+name = "RotMatrix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003C21C
+name = "RotMatrixYXZ"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003C4AC
+name = "RotMatrixZYX"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003C73C
+name = "RotMatrixX"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003C8DC
+name = "RotMatrixY"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003CA7C
+name = "RotMatrixZ"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003CC1C
+name = "ratan2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003CD9C
+name = "_patch_gte"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003CE3C
+name = "PadInit"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003CE8C
+name = "PadRead"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003CEBC
+name = "PadStop"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003CEDC
+name = "VSync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D024
+name = "v_wait"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D0C0
+name = "ResetCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D0F0
+name = "InterruptCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D120
+name = "DMACallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D150
+name = "VSyncCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D184
+name = "VSyncCallbacks"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D1B4
+name = "StopCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D1E4
+name = "RestartCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D214
+name = "CheckCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D224
+name = "GetIntrMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D23C
+name = "SetIntrMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D258
+name = "startIntr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D334
+name = "trapIntr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D51C
+name = "setIntr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D670
+name = "stopIntr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D71C
+name = "restartIntr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D7A4
+name = "memclr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D7D0
+name = "startIntrVSync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D828
+name = "trapIntrVSync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D8A0
+name = "setIntrVSync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D8CC
+name = "DMA_memclr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D8F8
+name = "startIntrDMA"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003D948
+name = "trapIntrDMA"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DACC
+name = "setIntrDMA"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DB74
+name = "VSync_memclr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DBA0
+name = "StSetRing"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DBD0
+name = "CdInit"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DC60
+name = "def_cbsync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DC88
+name = "def_cbready"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DCB0
+name = "def_cbread"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DD08
+name = "CdLastPos"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DD18
+name = "CdReset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DE9C
+name = "CdControl"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003DFD4
+name = "CdControlF"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003E100
+name = "CdControlB"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003E244
+name = "CdMix"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003E268
+name = "CdGetSector"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003E2D0
+name = "CdIntToPos"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003E3D4
+name = "CdPosToInt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003E454
+name = "getintr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003E9DC
+name = "CD_sync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003EC60
+name = "CD_ready"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003F398
+name = "CD_vol"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003F420
+name = "CD_flush"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003F500
+name = "CD_initvol"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003F5F4
+name = "CD_initintr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003F644
+name = "CD_init"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003F830
+name = "CD_datasync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003F99C
+name = "CD_getsector"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003FAAC
+name = "callback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003FB8C
+name = "CdSearchFile"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003FE74
+name = "_cmp"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8003FE98
+name = "CD_newmedia"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004018C
+name = "CD_searchdir"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040238
+name = "CD_cachefile"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800404F4
+name = "cd_read"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040560
+name = "CD_memcpy"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040594
+name = "CdRead2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040628
+name = "StCdInterrupt2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040648
+name = "CdDiskReady"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004076C
+name = "CdGetDiskType"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040898
+name = "StClearRing"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800408F8
+name = "StUnSetRing"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040950
+name = "data_ready_callback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800409E0
+name = "StGetBackloc"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040A40
+name = "StSetStream"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040AC8
+name = "StFreeRing"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040B84
+name = "init_ring_status"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040BC4
+name = "StGetNext"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80040C88
+name = "StSetMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80041810
+name = "StRingStatus"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80041F14
+name = "DecDCTReset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80041F4C
+name = "DecDCTGetEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80041FD8
+name = "DecDCTPutEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042038
+name = "DecDCTBufSize"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042044
+name = "DecDCTin"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800420C0
+name = "DecDCTout"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800420E0
+name = "DecDCTinSync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042100
+name = "DecDCToutSync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042120
+name = "DecDCTinCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042144
+name = "DecDCToutCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042168
+name = "MDEC_reset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042270
+name = "MDEC_in"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042304
+name = "MDEC_out"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042394
+name = "MDEC_in_sync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004242C
+name = "MDEC_out_sync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800424C4
+name = "timeout"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800425FC
+name = "DecDCTvlcSize"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004262C
+name = "DecDCTvlc"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042990
+name = "InitHeap"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800429A0
+name = "FlushCache"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800429B0
+name = "_bu_init"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800429C0
+name = "_96_remove"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800429D0
+name = "SetMem"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800429E0
+name = "SystemError"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800429F0
+name = "DeliverEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A00
+name = "OpenEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A10
+name = "CloseEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A20
+name = "WaitEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A30
+name = "TestEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A40
+name = "EnableEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A50
+name = "DisableEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A60
+name = "InitPAD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A70
+name = "StartPAD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A80
+name = "StopPAD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042A90
+name = "PAD_init"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042AA0
+name = "PAD_dr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042AB0
+name = "ReturnFromException"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042AC0
+name = "ResetEntryInt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042AD0
+name = "HookEntryInt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042AE0
+name = "UnDeliverEvent"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042AF0
+name = "EnterCriticalSection"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B00
+name = "ExitCriticalSection"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B10
+name = "SetSp"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B20
+name = "open"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B30
+name = "read"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B40
+name = "write"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B50
+name = "close"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B60
+name = "format"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B70
+name = "firstfile"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B80
+name = "nextfile"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042B90
+name = "delete"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042BA0
+name = "ChangeClearPAD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042BB0
+name = "ChangeClearRCnt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042BC0
+name = "SetRCnt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042C60
+name = "GetRCnt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042C98
+name = "StartRCnt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042CCC
+name = "StopRCnt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D00
+name = "ResetRCnt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D38
+name = "exit"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D48
+name = "puts"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D58
+name = "setjmp"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D68
+name = "strcmp"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D78
+name = "strncmp"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D88
+name = "bcopy"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042D98
+name = "memcpy"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042DA8
+name = "rand"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042DB8
+name = "srand"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042DC8
+name = "printf"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80042DD8
+name = "sprintf"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043634
+name = "strlen"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043644
+name = "memchr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043654
+name = "memmove"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800436C0
+name = "LoadTPage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800437AC
+name = "LoadClut"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043814
+name = "SetDefDrawEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800438D4
+name = "SetDefDispEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043910
+name = "SetVideoMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043928
+name = "GetVideoMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043938
+name = "ResetGraph"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043A94
+name = "SetGraphReverse"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043BA8
+name = "SetGraphDebug"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043C14
+name = "SetGraphQueue"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043CC0
+name = "GetGraphType"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043CD0
+name = "GetGraphDebug"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043CE0
+name = "DrawSyncCallback"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043D3C
+name = "SetDispMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043DD8
+name = "DrawSync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043E44
+name = "checkRECT"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80043F6C
+name = "ClearImage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044000
+name = "LoadImage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044064
+name = "StoreImage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800440C8
+name = "MoveImage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004418C
+name = "ClearOTag"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044244
+name = "ClearOTagR"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800442DC
+name = "DrawPrim"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004433C
+name = "DrawOTag"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800443B0
+name = "PutDrawEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044474
+name = "GetDrawEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800444AC
+name = "PutDispEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800448D0
+name = "GetDispEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044908
+name = "GetODE"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004493C
+name = "SetTexWindow"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044978
+name = "SetDrawArea"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800449FC
+name = "SetDrawOffset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044A40
+name = "SetPriority"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044A68
+name = "SetDrawMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044AC0
+name = "SetDrawEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044D64
+name = "get_mode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044DC0
+name = "get_cs"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044E8C
+name = "get_ce"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044F58
+name = "get_ofs"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80044FA0
+name = "get_tw"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045024
+name = "get_dx"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800450E0
+name = "_status"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800450F8
+name = "_otc"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800451E0
+name = "_clr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045400
+name = "_dws"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045654
+name = "_drs"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800458F0
+name = "_ctl"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004591C
+name = "_getctl"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045934
+name = "_cwb"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045984
+name = "_cwc"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800459D0
+name = "_param"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045A00
+name = "_addque"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045A24
+name = "_addque2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80045D18
+name = "_exeque"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004602C
+name = "_reset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046168
+name = "_sync"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800462B0
+name = "set_alarm"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800462E4
+name = "get_alarm"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046450
+name = "_version"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046530
+name = "GPU_memset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004655C
+name = "GPU_cw"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004656C
+name = "GetTPage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046634
+name = "GetClut"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004664C
+name = "DumpTPage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004671C
+name = "DumpClut"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004675C
+name = "NextPrim"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046778
+name = "IsEndPrim"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046794
+name = "AddPrim"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800467D0
+name = "AddPrims"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004680C
+name = "CatPrim"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046830
+name = "TermPrim"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046848
+name = "SetSemiTrans"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046870
+name = "SetShadeTex"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046898
+name = "SetPolyF3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800468AC
+name = "SetPolyFT3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800468C0
+name = "SetPolyG3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800468D4
+name = "SetPolyGT3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800468E8
+name = "SetPolyF4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800468FC
+name = "SetPolyFT4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046910
+name = "SetPolyG4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046924
+name = "SetPolyGT4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046938
+name = "SetSprt8"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004694C
+name = "SetSprt16"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046960
+name = "SetSprt"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046974
+name = "SetTile1"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046988
+name = "SetTile8"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004699C
+name = "SetTile16"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800469B0
+name = "SetTile"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800469C4
+name = "SetLineF2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800469D8
+name = "SetLineG2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800469EC
+name = "SetLineF3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046A0C
+name = "SetLineG3"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046A2C
+name = "SetLineF4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046A4C
+name = "SetLineG4"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046A6C
+name = "SetBlockFill"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046A80
+name = "SetDrawMove"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046A9C
+name = "MargePrim"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046AD0
+name = "DumpDrawEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046C50
+name = "DumpDispEnv"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046CFC
+name = "OpenTIM"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046D0C
+name = "ReadTIM"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046D74
+name = "OpenTMD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80046DB4
+name = "ReadTMD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80047060
+name = "get_tim_addr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80047180
+name = "get_tmd_addr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80047318
+name = "unpack_packet"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048498
+name = "memset"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048968
+name = "_card_info"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048978
+name = "_card_load"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048988
+name = "_card_auto"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048998
+name = "_card_clear"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800489D0
+name = "_card_write"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800489E0
+name = "_new_card"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800489F0
+name = "InitCARD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048A44
+name = "StartCARD"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048A7C
+name = "SsInitHot"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048AAC
+name = "InitCARD2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048ABC
+name = "StartCARD2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048ACC
+name = "StopCARD2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048B34
+name = "_patch_card"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048BEC
+name = "_patch_card2"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80048C7C
+name = "_ExitCard"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800491B0
+name = "g_ElementIdToBitmask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800491D0
+name = "g_BattleCharIdToCharId"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004A5CC
+name = "g_AkaoWaveTableKey"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004A62C
+name = "g_FieldModelData"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8004A630
+name = "g_RandomTableStep"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062D7C
+name = "g_Pad1ButtonsPressed"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062D88
+name = "g_Pad1FastButtons"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062DF8
+name = "g_PartyMenuListState"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F0C
+name = "g_PartyMenuPreviousMenuId"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F20
+name = "g_PartyMenuListTransitionFactor"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F28
+name = "g_AkaoPitchMulMusicSlideStep"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F2C
+name = "g_AkaoVolMulMusicSlideStep"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F30
+name = "g_AkaoTempoMulMusicSlideStep"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F40
+name = "g_AkaoPitchMulMusicSlideSteps"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F44
+name = "g_AkaoVolMulMusicSlideSteps"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F48
+name = "g_AkaoTempoMulMusicSlideSteps"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F58
+name = "g_MenuRenderBufferIndex"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F5C
+name = "g_AkaoVolMulMusic"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062F94
+name = "g_PartyMenuSelectedMenuId"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062FA0
+name = "g_TutorialActive"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062FB4
+name = "g_AkaoCdVolSlideStep"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062FCC
+name = "g_AkaoCdVolSlideSteps"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062FD4
+name = "g_AkaoCdVol"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062FE4
+name = "g_AkaoPitchMulMusic"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80062FE8
+name = "g_AkaoTempoMulMusic"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80063014
+name = "g_CurrentAction"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8006974C
+name = "g_MenuOrderingTables"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800697EC
+name = "g_RewardMenuTable"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80070784
+name = "g_FieldModelsP"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8007078C
+name = "g_EntityToLine"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800707BE
+name = "g_BattleMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800716C4
+name = "g_FieldTriggers"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800716D4
+name = "g_FieldMusicLock"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800716DC
+name = "g_FieldWaitCounter"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071748
+name = "g_SavedFieldScriptPC"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071A54
+name = "g_FieldEncounters"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071A88
+name = "g_FieldScriptSyncWaitEntity"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071C08
+name = "g_FieldDebugCurPage"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071C24
+name = "g_AccessoryTable"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071E2C
+name = "g_WindowCount"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071E34
+name = "g_PartyUpdatedByFieldScript"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80071E44
+name = "g_ArmorTable"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800722C4
+name = "g_CurrentEntity"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800730D0
+name = "g_MateriaData"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800738A0
+name = "g_WeaponTable"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80074EA4
+name = "g_FieldEntity"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80075E24
+name = "g_FieldMapVars"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8007E7A8
+name = "g_FieldText"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8007E7AC
+name = "g_FieldLines"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8007EB98
+name = "g_EntityToModel"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8007EBE4
+name = "g_AkaoVoiceAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8007EBE8
+name = "g_AkaoVoiceAttrMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80081D90
+name = "g_EntitySplitJoinState"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80081DC4
+name = "g_CharacterLock"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800831FC
+name = "g_FieldScriptPC"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8008326C
+name = "g_WindowToEntity"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80083274
+name = "g_WindowData"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800833F8
+name = "g_FieldScriptSyncState"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8008357C
+name = "g_FieldModelLoaderData"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80095D84
+name = "g_FieldLineCount"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80095DC8
+name = "g_RandomTableIndex"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80095DD0
+name = "g_FieldPreloadMapId"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800965E0
+name = "g_PlayerModelId"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x800965E8
+name = "g_isFieldLoading"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80099FDC
+name = "g_AkaoSoundActiveMaskStored"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80099FEC
+name = "g_AkaoNoiseMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80099FF0
+name = "g_AkaoReverbMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x80099FF4
+name = "g_AkaoPitchLfoMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A058
+name = "g_FieldCurrentOpcode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A05C
+name = "g_CurrentFieldIndex"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A0C8
+name = "g_PartyMenuTables"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A108
+name = "g_AkaoMusicActiveMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A118
+name = "g_AkaoMusicActiveMaskStored"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A128
+name = "g_AkaoMusicOverMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A12C
+name = "g_AkaoMusicAltMask"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A140
+name = "g_ReverbMode"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009A1C4
+name = "g_FieldScriptPriority"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009AD28
+name = "g_FieldTriggersP"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009AD30
+name = "g_CharIdToEntity"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009C544
+name = "g_FieldModels"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009C55C
+name = "g_FieldEncountersP"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009C564
+name = "g_ReverbAttr"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009C6C4
+name = "g_FieldModelCount"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009C6DC
+name = "g_FieldScripts"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009C6E0
+name = "g_FieldState"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009C6E4
+name = "Savemap"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009D70B
+name = "g_RainControl"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009D7E4
+name = "g_CharacterLevelData"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009D808
+name = "g_BattleItemsEarned"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+[[func]]
+pc = 0x8009D820
+name = "g_DebugLevel"
+emit = false
+status = "contextual"
+note = "ff7-decomp 24a46a990dcc (main)"
+
+# 573 imported entries.
+# <<< END IMPORTED (ff7-decomp)

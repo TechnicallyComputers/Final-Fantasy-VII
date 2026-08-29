@@ -1,0 +1,54 @@
+# Symbol-map drift gates.
+#
+# Deliberately does NOT run `tools/import_decomp_symbols.py --check`. That tool's
+# identity gate hashes disc/SCUS_941.63, and the boot executable is never
+# committed (recomp-ai-rules/LICENSING.md §4 — nothing derived from the disc
+# belongs in a repository). Re-import is therefore a local gate, run by whoever
+# bumps DECOMP_COMMIT, on a machine that has the disc.
+#
+# What CI can prove is that the committed map, the generated headers, and
+# game.toml still agree with each other.
+
+name: Symbols
+
+on:
+  push:
+    paths:
+      - 'symbols.toml'
+      - 'symbols_overlays.toml'
+      - 'psx_symbols.h'
+      - 'psx_symbols_overlays.h'
+      - 'game.toml'
+      - 'tools/sync_symbols.py'
+      - '.github/workflows/symbols.yml'
+  pull_request:
+    paths:
+      - 'symbols.toml'
+      - 'symbols_overlays.toml'
+      - 'psx_symbols.h'
+      - 'psx_symbols_overlays.h'
+      - 'game.toml'
+      - 'tools/sync_symbols.py'
+      - '.github/workflows/symbols.yml'
+  workflow_dispatch:
+
+jobs:
+  symbols:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'   # tomllib
+
+      # Headers are generated from the maps; a hand-edited header or a map
+      # change committed without a re-sync fails here.
+      - name: Headers match the symbol maps
+        run: python3 tools/sync_symbols.py --check
+
+      # game.toml's mod_function_entry_funcs is derived from every symbols.toml
+      # entry with hook = true. Drift means a registered plugin callback whose
+      # call site was never emitted — a hook that silently never fires.
+      - name: game.toml hook list matches symbols.toml
+        run: python3 tools/sync_symbols.py --check-hooks
