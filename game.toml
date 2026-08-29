@@ -14,6 +14,11 @@ discs = [
     "disc/Final Fantasy VII (USA) (Disc 2).cue",
     "disc/Final Fantasy VII (USA) (Disc 3).cue",
 ]
+# Parallel to `discs`. Each disc of the set carries its OWN serial, so the
+# launcher must verify the selected disc against this list rather than against
+# [game] id (disc 1's) — otherwise picking Disc 2 reports "wrong disc".
+# Values are verify_disc_set.py's per-disc probe (disc_set.json).
+disc_serials = ["SCUS-94163", "SCUS-94164", "SCUS-94165"]
 load_address = "0x80010000"
 entry_pc = "0x800110C0"
 text_size = "0x00060800"
@@ -57,4 +62,13 @@ default_mode = "digital"
 [netplay]
 require_cue = true
 required_tracks = 1
+# Disc 1's fingerprint, kept for hosts that read only the flat key.
 required_disc_fp = "23f1f7ab6a5327016a16783978fe49f94fb67814f4689f3c187612ece77418a3"
+# Per-disc TOC fingerprints, parallel to [game] discs. Each disc has its own
+# TOC, so gating the whole set on disc 1's would refuse online play on every
+# other disc the launcher lets the player select. Same probe as disc_set.json.
+required_disc_fps = [
+  "23f1f7ab6a5327016a16783978fe49f94fb67814f4689f3c187612ece77418a3",
+  "d1972bb6d776f89bbe543c3edf34fc4fa82b206fb90fb7dcd2c59c526324e616",
+  "bdcefd0d9329b13097d29b004d51e893815e8923c975c4365a8509fc2b3a4ab9",
+]
