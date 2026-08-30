@@ -568,7 +568,16 @@ jobs:
             echo "::error::release zip contains mods/state.toml (per-machine state)" >&2
             exit 1
           fi
-          echo "mod catalog verified in ${ZIP}"
+          # Developer-channel packages are unfinished work that ships with
+          # local builds only. The packager drops them under CI automatically
+          # (it keys off $CI); assert the outcome so a future change to that
+          # default cannot quietly publish in-progress mods.
+          if unzip -p "${ZIP}" 'mods/**/manifest.toml' 2>/dev/null \
+               | grep -Eq '^[[:space:]]*channel[[:space:]]*=[[:space:]]*"developer"'; then
+            echo "::error::release zip contains developer-channel mod packages" >&2
+            exit 1
+          fi
+          echo "mod catalog verified in ${ZIP} (no developer-channel packages)"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

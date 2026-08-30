@@ -9,6 +9,16 @@ author = "Final Fantasy VII Recompiled project"
 description = "Optional presentation enhancements, each independently toggleable and off by default."
 save_compatibility = "shared"
 
+# DEVELOPER CHANNEL -- not published. Both features here are unfinished:
+# widescreen is engaged but unvalidated as gameplay (FF7's pre-rendered field
+# backdrops still cull at the 4:3 bound), and hook-trace is a symbol-promotion
+# instrument, not a player feature. Local builds and local exports still carry
+# this package so the work is testable; CI release packaging drops it
+# (EXCLUDE_DEV_MODS=1). Remove this line to publish, and split any
+# player-ready feature into its own stable package rather than flipping the
+# whole catalog at once.
+channel = "developer"
+
 # The runtime matches this against game.toml [game] id, which is the BOOT
 # disc's serial and does not change with the selected disc — so one entry
 # covers all three discs of the set.
