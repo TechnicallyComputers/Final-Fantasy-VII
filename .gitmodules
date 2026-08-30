@@ -1,9 +1,9 @@
 [submodule "psxrecomp"]
 	path = psxrecomp
 	url = https://github.com/mstan/psxrecomp.git
-	branch = feat/host-pacing-and-hotkey-focus
+	branch = feat/multi-disc-launcher
 
 [submodule "recomp-ui"]
 	path = recomp-ui
 	url = https://github.com/mstan/recomp-ui.git
-	branch = feat/multi-disc-launcher
+	branch = feat/setup-wizard-multi-disc
