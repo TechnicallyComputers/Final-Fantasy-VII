@@ -53,4 +53,6 @@ exec bash "${PACKAGER}" \
   --project-dir seeds \
   --project-dir launcher_assets \
   --project-dir src \
+  --project-file psx_symbols.h \
+  --project-file psx_symbols_overlays.h \
   "${EXTRA_PROJECT[@]}"
