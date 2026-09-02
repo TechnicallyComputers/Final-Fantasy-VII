@@ -1,7 +1,7 @@
 # Game-owned enhancement catalog for Final Fantasy VII.
 # Implementations are statically linked (src/ff7_mods.c); this archive carries
 # no native code. See psxrecomp/docs/MOD_PACKAGES.md.
-format_version = 5
+format_version = 6
 id = "ff7.enhancements"
 version = "1.0.0"
 name = "Final Fantasy VII Enhancements"
@@ -9,15 +9,12 @@ author = "Final Fantasy VII Recompiled project"
 description = "Optional presentation enhancements, each independently toggleable and off by default."
 save_compatibility = "shared"
 
-# DEVELOPER CHANNEL -- not published. Both features here are unfinished:
-# widescreen is engaged but unvalidated as gameplay (FF7's pre-rendered field
-# backdrops still cull at the 4:3 bound), and hook-trace is a symbol-promotion
-# instrument, not a player feature. Local builds and local exports still carry
-# this package so the work is testable; CI release packaging drops it
-# (EXCLUDE_DEV_MODS=1). Remove this line to publish, and split any
-# player-ready feature into its own stable package rather than flipping the
-# whole catalog at once.
-channel = "developer"
+# Channels are per feature (format 6). This catalog used to carry a
+# package-level channel = "developer", which quarantined BOTH features because
+# one of them was an instrument -- so no FF7 player ever saw either. Widescreen
+# is now experimental (it ships, badged, default off) and hook-trace stays
+# developer (absent from any release build). Nothing had to be split into a
+# second package to say that.
 
 # The runtime matches this against game.toml [game] id, which is the BOOT
 # disc's serial and does not change with the selected disc — so one entry
@@ -28,6 +25,10 @@ game_id = "SCUS-94163"
 [[feature]]
 id = "widescreen"
 name = "Widescreen"
+# Engaged and working, but unvalidated as gameplay on this title: FF7's field
+# screens are pre-rendered 2D backdrops, so a wider view there can only reveal
+# what the backdrop bitmap happens to contain.
+channel = "experimental"
 description = "Renders a wider field of view instead of stretching the 4:3 image. EXPERIMENTAL and unvalidated on this title: FF7's field screens are pre-rendered 2D backdrops, so a wider view there can only reveal what the backdrop bitmap happens to contain. Fully 3D scenes (battles, the world map) are where this is expected to hold up. FMV and the BIOS boot stay 4:3."
 group = "Graphics"
 default_enabled = false
@@ -63,6 +64,7 @@ id = "ff7.widescreen"
 [[feature]]
 id = "hook-trace"
 name = "Hook Trace (developer)"
+channel = "developer"
 description = "Logs entry into the named functions listed in game.toml [recompiler] mod_function_entry_funcs, capped per function. Verifies imported symbol names against what the game actually calls. Console output only; no effect on the game."
 group = "Developer"
 default_enabled = false

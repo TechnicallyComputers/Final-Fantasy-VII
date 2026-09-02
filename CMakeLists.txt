@@ -49,15 +49,16 @@ foreach(_PSX_RUNTIME_CONFIG game.toml game_options.toml)
 endforeach()
 
 # Stage this game's own mod catalog. MUST come after psxrecomp_add_game_runtime:
-# the framework's POST_BUILD wipes <exe>/mods/packages before copying its own
+# the framework's POST_BUILD wipes <exe>/mods/bundled before copying its own
 # builtin packages, so a copy added earlier would be deleted again. Only
-# packages/ is copied — mods/preloaded/README.md is repo documentation and
-# mods/state.toml next to the exe is launcher-owned user state.
+# packages/ is copied — mods/preloaded/README.md is repo documentation.
+# Everything a build stages goes to mods/bundled; mods/installed/ (player
+# .psxmod installs) and mods/state.toml are launcher-owned and never touched.
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded/packages")
     add_custom_command(TARGET psx-runtime POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded/packages"
-            "$<TARGET_FILE_DIR:psx-runtime>/mods/packages"
+            "$<TARGET_FILE_DIR:psx-runtime>/mods/bundled"
         COMMENT "Staging Final Fantasy VII mod catalog"
         VERBATIM)
 endif()

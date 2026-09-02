@@ -8,6 +8,12 @@ packages/<package-id>/<version>/
   …
 ```
 
-Build wiring copies `mods/preloaded` next to the game executable as `mods/`.
-Install player `.psxmod` archives through the launcher Mods manager instead of
-committing them here. See `psxrecomp/docs/MOD_PACKAGES.md`.
+Build wiring copies `mods/preloaded/packages` next to the game executable as
+`mods/bundled/`. That tree is build output: every build wipes and re-stages it,
+so nothing you place there by hand survives.
+
+Player-installed `.psxmod` archives live in `mods/installed/`, which the
+launcher owns and no build ever touches. Install them through the launcher Mods
+manager rather than committing them here.
+
+See `psxrecomp/docs/MOD_PACKAGES.md`.
