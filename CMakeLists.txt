@@ -26,6 +26,12 @@ psxrecomp_add_game_runtime(psx-runtime
     MAX_PLAYERS 1
     LAUNCHER_BOXART "${CMAKE_CURRENT_SOURCE_DIR}/launcher_assets/img/boxart.tga"
     APP_ICON "${CMAKE_CURRENT_SOURCE_DIR}/assets/psxrecomp.ico"
+    # The framework stages this alongside its own mods/builtin/packages into
+    # <exe-dir>/mods/bundled; the title must not copy it itself. Must sit
+    # BEFORE GEN_FULL_GLOB/CODEGEN_SETUP_SOURCES: psxrecomp_add_game_runtime
+    # does not know this keyword, so after a multi-value keyword it would be
+    # swallowed into that list instead of forwarded.
+    PRELOADED_MODS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded"
     GEN_MARKER "generated/SCUS_941.63_dispatch.c"
     GEN_FULL_GLOB "generated/SCUS_941.63_full_*.c"
     CODEGEN_SETUP_SOURCES
@@ -47,19 +53,3 @@ foreach(_PSX_RUNTIME_CONFIG game.toml game_options.toml)
             VERBATIM)
     endif()
 endforeach()
-
-# Stage this game's own mod catalog. MUST come after psxrecomp_add_game_runtime:
-# the framework's POST_BUILD wipes <exe>/mods/bundled before copying its own
-# builtin packages, so a copy added earlier would be deleted again. Only
-# packages/ is copied — mods/preloaded/README.md is repo documentation.
-# Everything a build stages goes to mods/bundled; mods/installed/ (player
-# .psxmod installs) and mods/state.toml are launcher-owned and never touched.
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded/packages")
-    add_custom_command(TARGET psx-runtime POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded/packages"
-            "$<TARGET_FILE_DIR:psx-runtime>/mods/bundled"
-        COMMENT "Staging Final Fantasy VII mod catalog"
-        VERBATIM)
-endif()
-
