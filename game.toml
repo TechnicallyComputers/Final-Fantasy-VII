@@ -79,6 +79,9 @@ mod_function_entry_funcs = [
 ]
 
 [runtime]
+# Enable the overlay loader: the shipped static shard / bundled overlay
+# toolchain turn streamed overlays native instead of running them interpreted.
+overlay_cache = true
 window_title = "Final Fantasy 7 Recompiled"
 memcard_dir = "saves"
 
