@@ -87,6 +87,8 @@ The [first-release burndown](docs/RELEASE_BURNDOWN.md) records completed checks,
 remaining work and the focused validation plan. Gameplay implementation is paused;
 the latest authorization covers documentation and tracker updates only.
 Loading and visuals take priority; Sephiroth integration follows them.
+The [Claude Code handoff](docs/CLAUDE_CODE_HANDOFF.md) contains the owner's
+requested continuation for focused validation and the Sephiroth MVP.
 
 Enhancements are independently selectable packages in the Mods screen and
 default to off. The original widescreen feature has been retired in favor of

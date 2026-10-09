@@ -5,6 +5,10 @@ FFVII enhancement mods. Gameplay implementation is **paused**. The owner has
 authorized updating documentation and Beads only; implementation, builds and
 live testing require explicit authorization to resume.
 
+The owner has now requested continuation in Claude Code: validate loading/visuals,
+then complete the scoped Sephiroth MVP. The stopped state above refers to Codex;
+the [Claude Code handoff](CLAUDE_CODE_HANDOFF.md) records the continuation brief.
+
 **Work order:** finish the loading and visuals review/integration first, then
 return to Sephiroth. The owner moved the Sephiroth work to the end.
 
