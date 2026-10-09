@@ -713,7 +713,7 @@ block_800629D4:
 #ifdef PSX_COSIM
     cosim_instr(0x80062B0Cu);
 #endif
-    { /* reserved opcode 0x5C010006: architectural RI exception */
+        { /* reserved opcode 0x5C010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B10u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -731,7 +731,7 @@ block_80062B18:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B18u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5C010006: architectural RI exception */
+        { /* reserved opcode 0x5C010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B18u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -749,7 +749,7 @@ block_80062B1C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B1Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5C010006: architectural RI exception */
+        { /* reserved opcode 0x5C010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B1Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -767,7 +767,7 @@ block_80062B20:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B20u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5C010006: architectural RI exception */
+        { /* reserved opcode 0x5C010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B20u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -785,7 +785,7 @@ block_80062B24:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B24u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5C010006: architectural RI exception */
+        { /* reserved opcode 0x5C010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B24u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -803,7 +803,7 @@ block_80062B28:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B28u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5C010006: architectural RI exception */
+        { /* reserved opcode 0x5C010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B28u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -821,7 +821,7 @@ block_80062B2C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B2Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5C010006: architectural RI exception */
+        { /* reserved opcode 0x5C010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B2Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -839,7 +839,7 @@ block_80062B30:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B30u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B30u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -857,7 +857,7 @@ block_80062B34:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B34u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B34u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -875,7 +875,7 @@ block_80062B38:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B38u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B38u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -893,7 +893,7 @@ block_80062B3C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B3Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B3Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -911,7 +911,7 @@ block_80062B40:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B40u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B40u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -929,7 +929,7 @@ block_80062B44:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B44u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B44u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -947,7 +947,7 @@ block_80062B48:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B48u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B48u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -965,7 +965,7 @@ block_80062B4C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B4Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5FFF0006: architectural RI exception */
+        { /* reserved opcode 0x5FFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B4Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -983,7 +983,7 @@ block_80062B50:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B50u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B50u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1001,7 +1001,7 @@ block_80062B54:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B54u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B54u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1019,7 +1019,7 @@ block_80062B58:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B58u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B58u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1037,7 +1037,7 @@ block_80062B5C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B5Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B5Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1055,7 +1055,7 @@ block_80062B60:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B60u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B60u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1073,7 +1073,7 @@ block_80062B64:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B64u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B64u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1091,7 +1091,7 @@ block_80062B68:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B68u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B68u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1109,7 +1109,7 @@ block_80062B6C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B6Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x58010006: architectural RI exception */
+        { /* reserved opcode 0x58010006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B6Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1127,7 +1127,7 @@ block_80062B70:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B70u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B70u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1145,7 +1145,7 @@ block_80062B74:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B74u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B74u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1163,7 +1163,7 @@ block_80062B78:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B78u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B78u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1181,7 +1181,7 @@ block_80062B7C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B7Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B7Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1199,7 +1199,7 @@ block_80062B80:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B80u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B80u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1217,7 +1217,7 @@ block_80062B84:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B84u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B84u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1235,7 +1235,7 @@ block_80062B88:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B88u, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B88u;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1253,7 +1253,7 @@ block_80062B8C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B8Cu, 2u, 0)) return;
 #endif
-    { /* reserved opcode 0x5BFF0006: architectural RI exception */
+        { /* reserved opcode 0x5BFF0006: architectural RI exception */
       uint32_t psx_ri_sr = cpu->cop0[12];
       cpu->cop0[14] = 0x80062B8Cu;  /* EPC = faulting PC, BD=0 */
       cpu->cop0[13] = (cpu->cop0[13] & ~0x8000007Cu) | (10u << 2);  /* Cause: RI */
@@ -1271,7 +1271,7 @@ block_80062B90:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B90u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062B90u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -1310,7 +1310,7 @@ block_80062B94:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062B94u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062B94u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -1429,7 +1429,7 @@ block_80062BA4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
-    /* TODO: SPECIAL funct=0x01 */  /* 0x80062BA4: 0x00000001 */
+    /* undefined SPECIAL funct=0x01: R3000A-compatible no-op */  /* 0x80062BA4: 0x00000001 */
 #ifdef PSX_COSIM
     cosim_instr(0x80062BA4u);
 #endif
@@ -1920,7 +1920,7 @@ block_80062CA8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CA8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CA8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -1992,7 +1992,7 @@ block_80062CBC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CBCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CBCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2058,7 +2058,7 @@ block_80062CC4:
 #ifdef PSX_COSIM
     cosim_instr(0x80062CCCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CD0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2097,7 +2097,7 @@ block_80062CD8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CD8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CD8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2136,7 +2136,7 @@ block_80062CDC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CDCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CDCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2178,7 +2178,7 @@ block_80062CE0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CE0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CE0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2217,7 +2217,7 @@ block_80062CE4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CE4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CE4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2256,7 +2256,7 @@ block_80062CE8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CE8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CE8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2295,7 +2295,7 @@ block_80062CEC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CECu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CECu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2337,7 +2337,7 @@ block_80062CF0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062CF0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062CF0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2477,7 +2477,7 @@ block_80062CF8:
 #ifdef PSX_COSIM
     cosim_instr(0x80062D1Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062D20u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2516,7 +2516,7 @@ block_80062D28:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062D28u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062D28u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2555,7 +2555,7 @@ block_80062D2C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062D2Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062D2Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2597,7 +2597,7 @@ block_80062D30:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80062D30u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80062D30u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2670,7 +2670,7 @@ block_80062D38:
 #ifdef PSX_COSIM
     cosim_instr(0x80062D38u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -2745,7 +2745,7 @@ block_80062D48:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
-    /* TODO: SPECIAL funct=0x3F */  /* 0x80062D50: 0x000000FF */
+    /* undefined SPECIAL funct=0x3F: R3000A-compatible no-op */  /* 0x80062D50: 0x000000FF */
 #ifdef PSX_COSIM
     cosim_instr(0x80062D50u);
 #endif
@@ -2756,7 +2756,7 @@ block_80062D48:
 #ifdef PSX_COSIM
     cosim_instr(0x80062D54u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x1u);
 #endif
     uint32_t _jt_80062D58 = cpu->gpr[0];  /* latch indirect target before delay slot */
@@ -2945,7 +2945,7 @@ block_80062D60:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
-    /* TODO: SPECIAL funct=0x01 */  /* 0x80062DB0: 0x00010001 */
+    /* undefined SPECIAL funct=0x01: R3000A-compatible no-op */  /* 0x80062DB0: 0x00010001 */
 #ifdef PSX_COSIM
     cosim_instr(0x80062DB0u);
 #endif
@@ -3052,7 +3052,7 @@ block_80062D60:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
-    /* TODO: SPECIAL funct=0x28 */  /* 0x80062DE8: 0x00000068 */
+    /* undefined SPECIAL funct=0x28: R3000A-compatible no-op */  /* 0x80062DE8: 0x00000068 */
 #ifdef PSX_COSIM
     cosim_instr(0x80062DE8u);
 #endif
@@ -3081,7 +3081,7 @@ block_80062D60:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
-    /* TODO: SPECIAL funct=0x01 */  /* 0x80062DF8: 0x00000001 */
+    /* undefined SPECIAL funct=0x01: R3000A-compatible no-op */  /* 0x80062DF8: 0x00000001 */
 #ifdef PSX_COSIM
     cosim_instr(0x80062DF8u);
 #endif

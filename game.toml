@@ -10,20 +10,13 @@ exe = "disc/SCUS_941.63"
 # The launcher's Disc Selection dropdown offers all three; Play boots the
 # selected one (settings.toml [disc] selected remembers which).
 #
-# ABSOLUTE paths into the dump library — the images are NOT copied into this
-# repo. A 3-disc PS1 set is ~2.2 GB; staging it here would be a second copy of
-# ROMs the user already owns and stores elsewhere, for no gain (disc/ is
-# gitignored, so a staged copy is never shipped either). Only the small boot
-# EXE lives under disc/. Set up with setup_project.sh's default
-# --no-stage-disc; --stage-disc copies instead, and rewrites these to
-# "disc/<name>.cue".
-#
-# These paths are MACHINE-SPECIFIC: another checkout re-points them by running
-# setup with its own --disc, or by editing this list.
+# Local, ignored disc images. Relative paths keep the three-disc set portable
+# across development machines; players can select their own legal images in
+# the launcher. Disc images are never included in source or release artifacts.
 discs = [
-    "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 1)/Final Fantasy VII (USA) (Disc 1).cue",
-    "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 2)/Final Fantasy VII (USA) (Disc 2).cue",
-    "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 3)/Final Fantasy VII (USA) (Disc 3).cue",
+    "disc/Final Fantasy VII (USA) (Disc 1).cue",
+    "disc/Final Fantasy VII (USA) (Disc 2).cue",
+    "disc/Final Fantasy VII (USA) (Disc 3).cue",
 ]
 # Parallel to `discs`. Each disc of the set carries its OWN serial, so the
 # launcher must verify the selected disc against this list rather than against
