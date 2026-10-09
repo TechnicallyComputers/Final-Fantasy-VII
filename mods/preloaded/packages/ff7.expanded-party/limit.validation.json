@@ -3,7 +3,7 @@
   "status": "passed-original-code-oracles",
   "runtime_status": "Integrated: CMake runtime/lifecycle tests,11 entry hooks and736 unique instruction addresses; Release18 CTests pass. Developer feature remains default-off.",
   "strict_limit_unit": "passed (-std=c11 -Wall -Wextra -Werror)",
-  "game_lifecycle_codec_test": "passed: new-game policy defaults; legacy bit0-only migration; selected level/gauge/kills/all use counters/other bits preserved; native and policy0 records unchanged; canonical codec round-trip and proxy reorder/rewind",
+  "game_lifecycle_codec_test": "passed: new-game policy defaults; canonical load adds bit0, drops learned bits the release policy does not define, returns a selected level without a learned technique to level1 with an empty gauge; kills/use counters and every other byte preserved; native and policy0 records unchanged; canonical codec round-trip and proxy reorder/rewind",
   "real_framework_header_compile": "passed",
   "guest_allocation_bytes": 1024,
   "disc_reports": [
@@ -12,12 +12,12 @@
       "disc": "Final Fantasy VII (USA) (Disc 1).cue",
       "cases": [
         "Original GetLimit returns twelve policy slots for extras11/12/26; all native0..10 outputs and kernel/records unchanged",
-        "Whole original BATRES learning increments and saturates own kills/uses, learns six moves at policy thresholds, unlocks final mastery at320 kills",
+        "Whole original BATRES learning increments and saturates own kills/uses, learns Crescent Arc after eight level1 uses; levels2-4 and final mastery never learn in the release preset",
         "Whole original LIMTMENU cache builder preserves native Cloud/Vincent and copies independent custom attack records for allfour selected levels",
         "Original menu confirmation block sets allfour levels and clears only extra26 gauge; own attack cache and native Cloud/Vincent records remain independent",
-        "Guarded native string function returns generated encoded names and descriptions for allseven reserved custom IDs",
-        "Whole native Limit command preparer converts own IDs96..102, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback and unknown IDs preserve stock behavior",
-        "Whole original battle attack-data resolver executes allseven limits, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
+        "Guarded native string function returns generated encoded names and descriptions for Masamune/Crescent Arc and declines the five unreleased reserved IDs",
+        "Whole native Limit command preparer converts own IDs96/97, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback, unreleased98..102 and unknown IDs preserve stock behavior",
+        "Whole original battle attack-data resolver executes Masamune and Crescent Arc, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
         "Whole original physical damage formula accepts powers16..128 and preserves normal physical modifiers: [696, 1359, 2164, 2740, 4336, 5755]",
         "Whole original BATINI enables independent full gauge,policy divisor and two learned level1 techniques alongside Cloud/Vincent",
         "Original C7C4C dispatches own strike/sweep actions20/21 to motions26/3; original CD400 decodes every frame of all8 referenced motions (65 body+weapon pairs) identically to independent bitstream decoder"
@@ -29,12 +29,12 @@
       "disc": "Final Fantasy VII (USA) (Disc 2).cue",
       "cases": [
         "Original GetLimit returns twelve policy slots for extras11/12/26; all native0..10 outputs and kernel/records unchanged",
-        "Whole original BATRES learning increments and saturates own kills/uses, learns six moves at policy thresholds, unlocks final mastery at320 kills",
+        "Whole original BATRES learning increments and saturates own kills/uses, learns Crescent Arc after eight level1 uses; levels2-4 and final mastery never learn in the release preset",
         "Whole original LIMTMENU cache builder preserves native Cloud/Vincent and copies independent custom attack records for allfour selected levels",
         "Original menu confirmation block sets allfour levels and clears only extra26 gauge; own attack cache and native Cloud/Vincent records remain independent",
-        "Guarded native string function returns generated encoded names and descriptions for allseven reserved custom IDs",
-        "Whole native Limit command preparer converts own IDs96..102, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback and unknown IDs preserve stock behavior",
-        "Whole original battle attack-data resolver executes allseven limits, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
+        "Guarded native string function returns generated encoded names and descriptions for Masamune/Crescent Arc and declines the five unreleased reserved IDs",
+        "Whole native Limit command preparer converts own IDs96/97, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback, unreleased98..102 and unknown IDs preserve stock behavior",
+        "Whole original battle attack-data resolver executes Masamune and Crescent Arc, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
         "Whole original physical damage formula accepts powers16..128 and preserves normal physical modifiers: [696, 1359, 2164, 2740, 4336, 5755]",
         "Whole original BATINI enables independent full gauge,policy divisor and two learned level1 techniques alongside Cloud/Vincent",
         "Original C7C4C dispatches own strike/sweep actions20/21 to motions26/3; original CD400 decodes every frame of all8 referenced motions (65 body+weapon pairs) identically to independent bitstream decoder"
@@ -46,12 +46,12 @@
       "disc": "Final Fantasy VII (USA) (Disc 3).cue",
       "cases": [
         "Original GetLimit returns twelve policy slots for extras11/12/26; all native0..10 outputs and kernel/records unchanged",
-        "Whole original BATRES learning increments and saturates own kills/uses, learns six moves at policy thresholds, unlocks final mastery at320 kills",
+        "Whole original BATRES learning increments and saturates own kills/uses, learns Crescent Arc after eight level1 uses; levels2-4 and final mastery never learn in the release preset",
         "Whole original LIMTMENU cache builder preserves native Cloud/Vincent and copies independent custom attack records for allfour selected levels",
         "Original menu confirmation block sets allfour levels and clears only extra26 gauge; own attack cache and native Cloud/Vincent records remain independent",
-        "Guarded native string function returns generated encoded names and descriptions for allseven reserved custom IDs",
-        "Whole native Limit command preparer converts own IDs96..102, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback and unknown IDs preserve stock behavior",
-        "Whole original battle attack-data resolver executes allseven limits, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
+        "Guarded native string function returns generated encoded names and descriptions for Masamune/Crescent Arc and declines the five unreleased reserved IDs",
+        "Whole native Limit command preparer converts own IDs96/97, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback, unreleased98..102 and unknown IDs preserve stock behavior",
+        "Whole original battle attack-data resolver executes Masamune and Crescent Arc, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
         "Whole original physical damage formula accepts powers16..128 and preserves normal physical modifiers: [696, 1359, 2164, 2740, 4336, 5755]",
         "Whole original BATINI enables independent full gauge,policy divisor and two learned level1 techniques alongside Cloud/Vincent",
         "Original C7C4C dispatches own strike/sweep actions20/21 to motions26/3; original CD400 decodes every frame of all8 referenced motions (65 body+weapon pairs) identically to independent bitstream decoder"
@@ -60,8 +60,8 @@
     }
   ],
   "remaining_acceptance": [
-    "Restrict first-release availability to Masamune and Crescent Arc at level1; current prototype still defines seven techniques",
-    "Verify Crescent Arc learning/unlock and native save/load of two-move progression and gauge",
+    "Live Crescent Arc learning after eight level1 uses and native save/load of the two-move progression and gauge",
+    "Live load of a diagnostic higher-level record returns to level1 (canonical load)",
     "Review the two existing own-rig release choreographies; see docs/RELEASE_BURNDOWN.md"
   ],
   "deferred_acceptance": [
@@ -73,6 +73,7 @@
     "limit_menu": "Masamune name and Powerful sword strike description observed in original LIMTMENU.",
     "battle": "Live original first battle: Masamune single target completes and leaves one enemy; rewind restores gauge/state; Crescent Arc confirms multiple targets, defeats both enemies and reaches native victory. Own gauge clears and use/kill counters update; native EXP+32/AP+4 continue.",
     "save_reload": "Actual native save and fresh title-to-field reload preserve exact own chosenlevel1, gauge255 and diagnostic learnedmask02DB; no mastery is granted by production initialization.",
-    "limitations": "Current source still defines seven moves sharing two own-rig choreographies; first release is scoped to Masamune/Crescent Arc only and the availability change is pending. Higher selected levels and final mastery are future enhancement checks."
-  }
+    "limitations": "Earlier live checks ran the seven-move prototype; the release preset now defines two moves. Masamune/Crescent Arc battle playback paths (actions20/21, IDs96/97) are unchanged."
+  },
+  "release_preset": "Masamune (ID96, bit0) and Crescent Arc (ID97, bit1, eight level1 uses) only. Kill/use thresholds are published only for defined techniques; all others stay 0xFFFF so the original learner never unlocks levels2-4; mastery requires a bit9 technique. Name filter declines reserved IDs98..102; their attack entries stay original FF."
 }

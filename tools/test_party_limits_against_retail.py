@@ -43,7 +43,8 @@ def main():
   ordered={n:images[n]for n in('BATTLE','BATRES','BATINI')};return LimitVM(lib,ev,report,ordered,exe,kernel,menu,batres)
  def half(v,p):return struct.unpack('<H',v.read(p,2))[0]
  def word(v,p):return struct.unpack('<I',v.read(p,4))[0]
- bits=[0,1,3,4,6,7,9];ids=[96,97,127,98,99,127,100,101,127,102,127,127]
+ # First-release preset: Masamune/Crescent Arc only; no level2-4 or mastery slot.
+ bits=[0,1];ids=[96,97]+[127]*10
  cases=[];v=vm();original=v.read(0x8009c738,9*132);kg=v.read(0x80082268,len(kernel[2]))
  for guest in list(range(11))+[11,12,26]:
   for bit in range(12):
@@ -57,12 +58,15 @@ def main():
   v=vm(True);rec=0x9f010000+132*(guest-11);v.write(rec,bytes([guest]));v.write(rec+14,b'\1');v.write(rec+0x22,b'\1\0')
   def learn(kills,uses):v.reg(4,rec);v.reg(5,kills);v.reg(6,uses);v.run(0x801b17cc);return v.reg(2)
   assert learn(79,7)==0;assert half(v,rec+0x24)==79 and half(v,rec+0x26)==7
-  assert learn(1,1)==0x0a;assert half(v,rec+0x22)==0x0b
-  v.write(rec+14,b'\2');assert learn(80,7)==0x50;assert half(v,rec+0x22)==0x5b
-  v.write(rec+14,b'\3');assert learn(159,6)==0x80;assert half(v,rec+0x22)==0xdb
-  assert learn(1,0)==0x200;assert half(v,rec+0x22)==0x2db
-  assert learn(65535,65535)==0;assert half(v,rec+0x24)==65535 and half(v,rec+0x2a)==65535
- cases.append('Whole original BATRES learning increments and saturates own kills/uses, learns six moves at policy thresholds, unlocks final mastery at320 kills')
+  assert learn(1,1)==0x02;assert half(v,rec+0x22)==0x03
+  assert learn(1000,1000)==0;assert half(v,rec+0x22)==0x03
+  # Diagnostic higher levels: unpublished thresholds never learn bits3..9.
+  for level,counter in((2,0x28),(3,0x2a),(4,None)):
+   v.write(rec+14,bytes([level]));assert learn(20000,20000)==0;assert half(v,rec+0x22)==0x03
+   if counter:assert half(v,rec+counter)==20000
+  v.write(rec+0x22,b'\xdb\0');assert learn(65535,65535)==0;assert half(v,rec+0x22)==0xdb
+  assert half(v,rec+0x24)==65535
+ cases.append('Whole original BATRES learning increments and saturates own kills/uses, learns Crescent Arc after eight level1 uses; levels2-4 and final mastery never learn in the release preset')
  for level in range(1,5):
   v=vm();v.write(0x8009cbdc,bytes([0,7,11]));v.write(0x8009c746,b'\1');v.write(0x8009c738+7*132+14,b'\1');rec=0x9f010000;v.write(rec+14,bytes([level]));before=v.read(0x8009c738,9*132)
   v.run(0x801d11a8);cache=0x8009d8f8+2*0x440
@@ -83,13 +87,16 @@ def main():
  v=vm()
  for ordinal in range(7):
   for kind,stride,base in((8,32,288),(0,64,512)):
+   if ordinal>=len(bits):
+    regs=(ctypes.c_uint32*32)();regs[4]=3;regs[5]=96+ordinal;regs[6]=kind
+    assert not lib.ff7_test_limit_filter(regs);continue
    v.reg(4,3);v.reg(5,96+ordinal);v.reg(6,kind);v.run(0x80015248)
    assert v.reg(2)==lib.ff7_test_limit_data()+base+stride*ordinal
    assert 255 in v.read(v.reg(2),stride)
- cases.append('Guarded native string function returns generated encoded names and descriptions for allseven reserved custom IDs')
+ cases.append('Guarded native string function returns generated encoded names and descriptions for Masamune/Crescent Arc and declines the five unreleased reserved IDs')
  # The native command preparer rejects raw IDs >=96 without our exact adapter.
  # Keep the actual gauge consumption/use count/event path, including native IDs.
- for guest,raw,enabled in((0,0,True),(7,52,True),(10,96,False),(11,96,True),(26,102,True),(11,103,False)):
+ for guest,raw,enabled in((0,0,True),(7,52,True),(10,96,False),(11,96,True),(26,97,True),(11,98,False),(26,102,False),(11,103,False)):
   v=vm();v.write(0x801636d8,bytes([guest]));context=0x801e0000;v.word(0x80063014,context)
   v.word(context,2);v.word(context+0x10,raw);v.write(0x800f5ed0,b'\xff\0');v.write(0x800f5ecc,b'\x05')
   v.write(0x800f83d0,b'\x08\0') # Original battle flag suppresses only visual event enqueue.
@@ -98,16 +105,16 @@ def main():
   assert half(v,0x800f5ed0)==(0 if enabled else 255)
   assert v.read(0x800f5ecc,1)==bytes([6 if enabled else 5])
   assert v.read(0x800f5e60,2*0x34)==before
- cases.append('Whole native Limit command preparer converts own IDs96..102, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback and unknown IDs preserve stock behavior')
+ cases.append('Whole native Limit command preparer converts own IDs96/97, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback, unreleased98..102 and unknown IDs preserve stock behavior')
  # Original attack-data resolver finds selected limit and routes own valid script.
  for ordinal,bit in enumerate(bits):
   v=vm();v.write(0x801636b8,b'\x0b');v.write(0x8009cbdc,bytes([11,0,7]));rec=0x9f010000;v.write(rec+14,bytes([bit//3+1]));v.run(0x801d11a8)
   context=0x801e0000;v.word(0x80063014,context);v.word(context,0);v.word(context+0x28,20);v.word(context+0x2c,128+96+ordinal);v.word(context+0x14,0xffffffff)
   v.run(0x800a79cc)
-  assert word(v,context+0x20)==(20 if ordinal in(0,2,4)else 21),(ordinal,word(v,context+0x20))
-  assert word(v,context+0x40)==0x11 and word(v,context+0x48)==[48,32,64,48,96,64,128][ordinal]
+  assert word(v,context+0x20)==(20 if ordinal==0 else 21),(ordinal,word(v,context+0x20))
+  assert word(v,context+0x40)==0x11 and word(v,context+0x48)==[48,32][ordinal]
   assert word(v,context+0x24)==255
- cases.append('Whole original battle attack-data resolver executes allseven limits, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested')
+ cases.append('Whole original battle attack-data resolver executes Masamune and Crescent Arc, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested')
  # Original physical formula: native target/defend modifiers remain operational.
  v=vm();context=0x801e0000;v.word(0x80063014,context)
  damages=[]

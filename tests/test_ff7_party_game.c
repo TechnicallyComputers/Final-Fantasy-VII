@@ -143,9 +143,11 @@ static void lifecycle(void) {
     CHECK(ff7_party_decode(&decoded,digest,payload,payload_bytes)==FF7_PARTY_OK);
     CHECK(!memcmp(decoded.extra[0].record,state.extra[0].record,132));
     CHECK(ff7_party_game_load(&decoded,fallback)==FF7_PARTY_OK);
-    CHECK(psx_mod_read_half(a+0x22)==0xdb);
-    for(unsigned j=1;j<132;++j)CHECK(psx_mod_read_byte(a+j)==
-        (j==0x22 ? (uint8_t)(state.extra[0].record[j]|1) : state.extra[0].record[j]));
+    /* Release policy defines bits0/1 only: the diagnostic level3 record
+     * returns to level1 with an empty gauge; counters stay intact. */
+    CHECK(psx_mod_read_half(a+0x22)==0x03 && psx_mod_read_byte(a+14)==1 && psx_mod_read_byte(a+15)==0);
+    for(unsigned j=1;j<132;++j)if(j!=14&&j!=15&&j!=0x22)CHECK(psx_mod_read_byte(a+j)==state.extra[0].record[j]);
+    CHECK(psx_mod_read_half(a+0x24)==319 && psx_mod_read_half(a+0x2a)==6);
     CHECK(!memcmp(address(b)+1,state.extra[1].record+1,131));
     CHECK(memcmp(original,address(NATIVE_RECORDS),sizeof original)==0);
     /* Two physical stores make one active-active PHS swap transaction. */

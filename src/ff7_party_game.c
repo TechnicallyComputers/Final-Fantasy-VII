@@ -213,11 +213,17 @@ FF7PartyResult ff7_party_game_load(const FF7PartyState* state, const uint8_t fal
         psx_mod_write_word(s_game+H_ALIASES+4*i,FF7_PARTY_GUEST_FIRST+i);
         for (unsigned j = 0; j < FF7_PARTY_RECORD_SIZE; ++j)
             psx_mod_write_byte(record+j,j ? m->record[j] : (uint8_t)(FF7_PARTY_GUEST_FIRST+i));
-        /* Pre-limit extended saves had no first technique. Add only bit0;
-         * keep selected level, gauge, all counters and all other learned bits. */
+        /* Pre-limit extended saves lack bit0; diagnostic prototype saves may
+         * hold techniques or a level this policy does not define. */
         const FF7PartyProfile* profile = find_profile(m->id);
-        if (ff7_party_limit_policy(profile->limit_policy))
-            psx_mod_write_byte(record+0x22,(uint8_t)(m->record[0x22]|1));
+        uint8_t limits[FF7_PARTY_RECORD_SIZE];
+        memcpy(limits,m->record,sizeof limits);
+        if (ff7_party_limit_canonical(profile->limit_policy,limits)) {
+            psx_mod_write_byte(record+14,limits[14]);
+            psx_mod_write_byte(record+15,limits[15]);
+            psx_mod_write_half(record+0x22,(uint16_t)(limits[0x22]|limits[0x23]<<8));
+            psx_mod_counter_add("ff7.party_game.limit_canonical",1);
+        }
     }
     psx_mod_write_word(s_game+H_MAGIC,GAME_MAGIC);
     psx_mod_write_word(s_game+H_VERSION,GAME_VERSION);
