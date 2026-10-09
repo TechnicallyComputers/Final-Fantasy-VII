@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "oracles": [
+    {
+      "schema": 1,
+      "status": "original resident paths tested; battle/field/save lifecycle separate",
+      "disc": "SCUS_941.63",
+      "guard_sites": 65,
+      "accessor_cases": 18,
+      "recalculation": [
+        {
+          "guest": 0,
+          "hp": 302,
+          "mp": 56,
+          "hooks": 42
+        },
+        {
+          "guest": 7,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 10,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 11,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 12,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        }
+      ]
+    },
+    {
+      "schema": 1,
+      "status": "original resident paths tested; battle/field/save lifecycle separate",
+      "disc": "SCUS_941.64",
+      "guard_sites": 65,
+      "accessor_cases": 18,
+      "recalculation": [
+        {
+          "guest": 0,
+          "hp": 302,
+          "mp": 56,
+          "hooks": 42
+        },
+        {
+          "guest": 7,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 10,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 11,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 12,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        }
+      ]
+    },
+    {
+      "schema": 1,
+      "status": "original resident paths tested; battle/field/save lifecycle separate",
+      "disc": "SCUS_941.65",
+      "guard_sites": 65,
+      "accessor_cases": 18,
+      "recalculation": [
+        {
+          "guest": 0,
+          "hp": 302,
+          "mp": 56,
+          "hooks": 42
+        },
+        {
+          "guest": 7,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 10,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 11,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        },
+        {
+          "guest": 12,
+          "hp": 3264,
+          "mp": 529,
+          "hooks": 42
+        }
+      ]
+    }
+  ],
+  "limits": "Original-MIPS execution and isolated C tests; live gameplay/card/story acceptance is documented separately. No game assets or saves are distributed."
+}

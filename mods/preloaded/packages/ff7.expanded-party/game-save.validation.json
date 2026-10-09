@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "oracles": [
+    {
+      "schema": 1,
+      "disc": "SCUS_941.63",
+      "checksum_cases": [
+        19741,
+        19092,
+        39078,
+        34062,
+        19398,
+        11896,
+        34135,
+        61654
+      ],
+      "preview_cases": [
+        {
+          "guest": 0,
+          "hooks": 1
+        },
+        {
+          "guest": 7,
+          "hooks": 1
+        },
+        {
+          "guest": 11,
+          "hooks": 1
+        }
+      ],
+      "scope": "Original SAVEMENU checksum and full preview function; synthetic card lifecycle C tests separate; live BIOS save UI pending"
+    },
+    {
+      "schema": 1,
+      "disc": "SCUS_941.64",
+      "checksum_cases": [
+        19741,
+        19092,
+        39078,
+        34062,
+        19398,
+        11896,
+        34135,
+        61654
+      ],
+      "preview_cases": [
+        {
+          "guest": 0,
+          "hooks": 1
+        },
+        {
+          "guest": 7,
+          "hooks": 1
+        },
+        {
+          "guest": 11,
+          "hooks": 1
+        }
+      ],
+      "scope": "Original SAVEMENU checksum and full preview function; synthetic card lifecycle C tests separate; live BIOS save UI pending"
+    },
+    {
+      "schema": 1,
+      "disc": "SCUS_941.65",
+      "checksum_cases": [
+        19741,
+        19092,
+        39078,
+        34062,
+        19398,
+        11896,
+        34135,
+        61654
+      ],
+      "preview_cases": [
+        {
+          "guest": 0,
+          "hooks": 1
+        },
+        {
+          "guest": 7,
+          "hooks": 1
+        },
+        {
+          "guest": 11,
+          "hooks": 1
+        }
+      ],
+      "scope": "Original SAVEMENU checksum and full preview function; synthetic card lifecycle C tests separate; live BIOS save UI pending"
+    }
+  ],
+  "limits": "Original-MIPS execution and isolated C tests; live gameplay/card/story acceptance is documented separately. No game assets or saves are distributed."
+}

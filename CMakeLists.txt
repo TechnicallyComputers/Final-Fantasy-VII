@@ -48,6 +48,17 @@ psxrecomp_add_game_runtime(psx-runtime
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_save.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_access.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_game.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_resident.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_menu.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_battle.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_projection.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_game_save.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_rewards.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_results.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_field.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_field_assets.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_field_loader.c"
 )
 target_compile_definitions(psx-runtime PRIVATE FF7_PARTY_WITH_RUNTIME=1)
 if(TARGET psx-runtime-pgxp)
@@ -65,6 +76,61 @@ if(BUILD_TESTING)
         "${CMAKE_CURRENT_SOURCE_DIR}/src"
         "${PSXRECOMP_ROOT}/runtime/include")
     add_test(NAME ff7_party_access COMMAND ff7-party-access-tests)
+
+    add_executable(ff7-party-game-tests tests/test_ff7_party_game.c src/ff7_party.c)
+    target_include_directories(ff7-party-game-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_game_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    target_link_libraries(ff7-party-game-tests PRIVATE ZLIB::ZLIB)
+    add_test(NAME ff7_party_game COMMAND ff7-party-game-tests)
+
+    add_executable(ff7-party-menu-tests tests/test_ff7_party_menu.c)
+    target_include_directories(ff7-party-menu-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_menu_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_menu COMMAND ff7-party-menu-tests)
+
+    add_executable(ff7-party-battle-tests tests/test_ff7_party_battle.c)
+    target_include_directories(ff7-party-battle-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_battle_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_battle COMMAND ff7-party-battle-tests)
+
+    add_executable(ff7-party-rewards-tests tests/test_ff7_party_rewards.c)
+    target_include_directories(ff7-party-rewards-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_game_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_rewards COMMAND ff7-party-rewards-tests)
+
+    add_executable(ff7-party-results-tests tests/test_ff7_party_results.c)
+    target_include_directories(ff7-party-results-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_game_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_results COMMAND ff7-party-results-tests)
+
+    add_executable(ff7-party-field-assets-tests tests/test_ff7_party_field_assets.c src/ff7_party_field_assets.c)
+    target_include_directories(ff7-party-field-assets-tests PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+    add_test(NAME ff7_party_field_assets COMMAND ff7-party-field-assets-tests)
+
+    add_executable(ff7-party-field-loader-tests tests/test_ff7_party_field_loader.c
+        src/ff7_party_field_assets.c src/ff7_party_field.c)
+    target_include_directories(ff7-party-field-loader-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_field_loader_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_field_loader COMMAND ff7-party-field-loader-tests)
+
+    add_executable(ff7-party-field-tests tests/test_ff7_party_field.c src/ff7_party_resident.c)
+    target_include_directories(ff7-party-field-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_game_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_field COMMAND ff7-party-field-tests)
+
+    add_executable(ff7-party-game-save-tests tests/test_ff7_party_game_save.c
+        src/ff7_party.c src/ff7_party_projection.c)
+    target_include_directories(ff7-party-game-save-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_game_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_game_save COMMAND ff7-party-game-save-tests)
 
     add_executable(ff7-party-save-tests tests/test_ff7_party_save.c
         src/ff7_party.c src/ff7_party_save.c)

@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "asset_oracles": [
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "status": "passed",
+      "cases": [
+        "Original ADAA4 model allocation plus AC484..AC744 relocation: appended NIVL model3 in MD1STIN equals original24 bones,16 parts,7 motions and referenced vertex/motion bytes",
+        "Original ACBA0/ACC5C builds identical double-buffered GPU packets and consumes exactly reserved packet bytes",
+        "16 appended independent copies: last model still matches original geometry/motions/packets",
+        "Original script entity numbers/code bytes and all32 offsets per existing entity preserved; independent proxy11 init appended",
+        "Small capacity and native-identity insertion rejected"
+      ],
+      "merged_bytes_one_extra": 150920,
+      "packet_reserve_16_extras": 2013168,
+      "limitations": "Texture uploads and GTE scaling stubbed; full script initialization and visual field gameplay not covered"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "status": "passed",
+      "cases": [
+        "Original ADAA4 model allocation plus AC484..AC744 relocation: appended NIVL model3 in MD1STIN equals original24 bones,16 parts,7 motions and referenced vertex/motion bytes",
+        "Original ACBA0/ACC5C builds identical double-buffered GPU packets and consumes exactly reserved packet bytes",
+        "16 appended independent copies: last model still matches original geometry/motions/packets",
+        "Original script entity numbers/code bytes and all32 offsets per existing entity preserved; independent proxy11 init appended",
+        "Small capacity and native-identity insertion rejected"
+      ],
+      "merged_bytes_one_extra": 150920,
+      "packet_reserve_16_extras": 2013168,
+      "limitations": "Texture uploads and GTE scaling stubbed; full script initialization and visual field gameplay not covered"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "status": "passed",
+      "cases": [
+        "Original ADAA4 model allocation plus AC484..AC744 relocation: appended NIVL model3 in MD1STIN equals original24 bones,16 parts,7 motions and referenced vertex/motion bytes",
+        "Original ACBA0/ACC5C builds identical double-buffered GPU packets and consumes exactly reserved packet bytes",
+        "16 appended independent copies: last model still matches original geometry/motions/packets",
+        "Original script entity numbers/code bytes and all32 offsets per existing entity preserved; independent proxy11 init appended",
+        "Small capacity and native-identity insertion rejected"
+      ],
+      "merged_bytes_one_extra": 150920,
+      "packet_reserve_16_extras": 2013168,
+      "limitations": "Texture uploads and GTE scaling stubbed; full script initialization and visual field gameplay not covered"
+    }
+  ],
+  "loader_oracles": [
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "status": "passed",
+      "extent_table": "Original FIELD bytes at800DA5C8; MD1STIN tuple matches owner ISO directly, never synthesized",
+      "cases": [
+        "Production owned-disc preparation publishes expanded script/model metadata and separate GPU arenas; all original DAT bytes preserved",
+        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping writes",
+        "Extent mismatch restores original workspace and leaves next field unmodified; exact instruction mismatch rejects",
+        "Restoring guest RAM/Expansion1/GPU arena snapshot recovers prepared field and independent entity; callback preserves arbitrary incoming CPU PC"
+      ],
+      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "status": "passed",
+      "extent_table": "Original FIELD bytes at800DA5C8; MD1STIN tuple matches owner ISO directly, never synthesized",
+      "cases": [
+        "Production owned-disc preparation publishes expanded script/model metadata and separate GPU arenas; all original DAT bytes preserved",
+        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping writes",
+        "Extent mismatch restores original workspace and leaves next field unmodified; exact instruction mismatch rejects",
+        "Restoring guest RAM/Expansion1/GPU arena snapshot recovers prepared field and independent entity; callback preserves arbitrary incoming CPU PC"
+      ],
+      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "status": "passed",
+      "extent_table": "Original FIELD bytes at800DA5C8; MD1STIN tuple matches owner ISO directly, never synthesized",
+      "cases": [
+        "Production owned-disc preparation publishes expanded script/model metadata and separate GPU arenas; all original DAT bytes preserved",
+        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping writes",
+        "Extent mismatch restores original workspace and leaves next field unmodified; exact instruction mismatch rejects",
+        "Restoring guest RAM/Expansion1/GPU arena snapshot recovers prepared field and independent entity; callback preserves arbitrary incoming CPU PC"
+      ],
+      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation"
+    }
+  ],
+  "runtime_status": "Developer guarded loader linked, original signed extent table corrected and all3 original-table oracles passed; live appearance/traversal pending",
+  "pending": [
+    "Relocate native132-byte model state array and direct references to safely exceed16 total models",
+    "Live field appearance, walk/run/follower camera behavior, story scheduling and transitions",
+    "Application save-state/rewind validation (isolated guest arena snapshot passes)"
+  ]
+}

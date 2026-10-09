@@ -28588,6 +28588,7 @@ block_800156F8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80015700u);
 #endif
+psx_mod_instruction(cpu, 0x80015700u, 0x9022C738u);
     { uint32_t _pgxa = cpu->gpr[1] + -14536; cpu->gpr[2] = psx_cyc_load_byte(cpu, cpu->gpr[1] + -14536, 2, 0x2u);
     PGXP_LOAD(0x9022C738u, _pgxa, cpu->gpr[2]); }  /* 0x80015700: 0x9022C738 */
 #ifdef PSX_COSIM

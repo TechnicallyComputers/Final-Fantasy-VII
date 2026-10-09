@@ -37,6 +37,7 @@ static void storage_and_roster(void) {
     CHECK(ff7_party_add_sephiroth(&party, sephiroth) == FF7_PARTY_OK);
     CHECK(ff7_party_add_sephiroth(&party, sephiroth) == FF7_PARTY_INVALID);
     CHECK(ff7_party_select(&party, active) == FF7_PARTY_OK);
+    party.stored_known=1;party.stored[0]=0x100;party.stored[1]=7;party.stored_hint[1]=10;
     CHECK(ff7_party_record(&party, 7, native, sizeof(native)) == native + 7 * 132);
     CHECK(ff7_party_record(&party, 0, native, sizeof(native)) == native);
     CHECK(ff7_party_record(&party, 10, native, sizeof(native)) == NULL);
@@ -67,18 +68,24 @@ static void payload(void) {
     CHECK(ff7_party_add_sephiroth(&party, record) == FF7_PARTY_OK);
     CHECK(ff7_party_select(&party, active) == FF7_PARTY_OK);
     CHECK(ff7_party_encode(&party, digest, NULL, 0, &size) == FF7_PARTY_BUFFER_SMALL);
-    CHECK(size == 200);
+    CHECK(size == 216);
     memset(encoded, 0xcc, sizeof(encoded));
     CHECK(ff7_party_encode(&party, digest, encoded, size - 1, NULL) == FF7_PARTY_BUFFER_SMALL);
     CHECK(encoded[0] == 0xcc);
     CHECK(ff7_party_encode(&party, digest, encoded, sizeof(encoded), &size) == FF7_PARTY_OK);
-    CHECK(!memcmp(encoded, "FF7PARTY\x02\x00\x40\x00\xc8\x00\x00\x00", 16));
+    CHECK(!memcmp(encoded, "FF7PARTY\x03\x00\x50\x00\xd8\x00\x00\x00", 16));
     CHECK(encoded[22] == 0 && encoded[23] == 1); /* Independent 16-bit identity. */
-    CHECK(encoded[64] == 0 && encoded[65] == 1 && encoded[66] == 10);
+    CHECK(encoded[80] == 0 && encoded[81] == 1 && encoded[82] == 10);
     CHECK(ff7_party_decode(&decoded, digest, encoded, size) == FF7_PARTY_OK);
     CHECK(!memcmp(&party, &decoded, sizeof(party)));
     CHECK(ff7_party_encode(&decoded, digest, corrupt, sizeof(corrupt), &second_size) == FF7_PARTY_OK);
     CHECK(second_size == size && !memcmp(encoded, corrupt, size));
+    /* v2 full-card payloads migrate without inventing the absent field bank. */
+    memcpy(corrupt,encoded,64);memcpy(corrupt+64,encoded+80,size-80);
+    corrupt[8]=2;corrupt[10]=64;corrupt[12]=(uint8_t)(size-16);corrupt[13]=0;
+    repair_crc(corrupt,size-16);
+    CHECK(ff7_party_decode(&decoded,digest,corrupt,size-16)==FF7_PARTY_OK);
+    CHECK(!decoded.stored_known && decoded.stored[0]==FF7_PARTY_EMPTY && decoded.stored_hint[0]==255);
     memset(&sentinel, 0x55, sizeof(sentinel));
     decoded = sentinel;
     CHECK(ff7_party_decode(&decoded, other, encoded, size) == FF7_PARTY_BASE_MISMATCH);
@@ -94,12 +101,12 @@ static void payload(void) {
         CHECK(!memcmp(&decoded, &sentinel, sizeof(decoded)));
     }
     /* Structurally invalid inputs with VALID checksums also fail atomically. */
-    const size_t invalid_offsets[] = {16, 20, 56, 64, 66, 67};
+    const size_t invalid_offsets[] = {16, 20, 56, 80, 82, 83};
     const uint8_t invalid_values[] = {17, 0, 1, 0xff, 11, 0x80};
     for (size_t i = 0; i < sizeof(invalid_offsets) / sizeof(invalid_offsets[0]); ++i) {
         memcpy(corrupt, encoded, size);
         corrupt[invalid_offsets[i]] = invalid_values[i];
-        if (invalid_offsets[i] == 64) corrupt[65] = 0xff;
+        if (invalid_offsets[i] == 80) corrupt[81] = 0xff;
         repair_crc(corrupt, size);
         CHECK(ff7_party_decode(&decoded, digest, corrupt, size) != FF7_PARTY_OK);
         CHECK(!memcmp(&decoded, &sentinel, sizeof(decoded)));
@@ -117,7 +124,7 @@ static void payload(void) {
     CHECK(size == FF7_PARTY_PAYLOAD_MAX);
     CHECK(ff7_party_decode(&decoded, digest, encoded, size) == FF7_PARTY_OK);
     memcpy(corrupt, encoded, size);
-    memcpy(corrupt + 64 + 136, corrupt + 64, 2); /* Duplicate identity. */
+    memcpy(corrupt + 80 + 136, corrupt + 80, 2); /* Duplicate identity. */
     repair_crc(corrupt, size);
     CHECK(ff7_party_decode(&decoded, digest, corrupt, size) == FF7_PARTY_CORRUPT);
 }
@@ -172,12 +179,12 @@ static void extended_card(void) {
     const uint16_t active[] = {0, 7, 0x100};
     CHECK(ff7_party_select(&card.slots[0].party, active) == FF7_PARTY_OK);
     CHECK(ff7_party_card_encode(&card, base, sizeof(base), NULL, 0, &size) == FF7_PARTY_BUFFER_SMALL);
-    CHECK(size == 272);
+    CHECK(size == 288);
     memset(tail, 0xcc, sizeof(tail));
     CHECK(ff7_party_card_encode(&card, base, sizeof(base), tail, size-1, NULL) == FF7_PARTY_BUFFER_SMALL);
     CHECK(tail[0] == 0xcc);
     CHECK(ff7_party_card_encode(&card, base, sizeof(base), tail, sizeof(tail), &size) == FF7_PARTY_OK);
-    CHECK(!memcmp(tail, "FF7MCEXT\x01\0\x40\0\x10\x01\0\0", 16));
+    CHECK(!memcmp(tail, "FF7MCEXT\x01\0\x40\0\x20\x01\0\0", 16));
     CHECK(ff7_party_card_decode(&decoded, base, sizeof(base), tail, size) == FF7_PARTY_OK);
     CHECK(!memcmp(&card, &decoded, sizeof(card)));
     CHECK(!memcmp(base, original, sizeof(base)));
@@ -203,7 +210,7 @@ static void extended_card(void) {
     }
     memcpy(corrupt, tail, size);
     corrupt[72+8] = 1; /* Old slot-bound payload not accepted inside new envelope. */
-    repair_crc(corrupt+72, 200); repair_crc(corrupt, size);
+    repair_crc(corrupt+72, 216); repair_crc(corrupt, size);
     CHECK(ff7_party_card_decode(&decoded, base, sizeof(base), corrupt, size) == FF7_PARTY_VERSION);
     CHECK(ff7_party_card_decode(&decoded, base, sizeof(base)-1, tail, size) == FF7_PARTY_INVALID);
     base[127] ^= 1;

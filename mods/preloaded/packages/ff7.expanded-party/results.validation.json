@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "oracles": [
+    {
+      "schema": 1,
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "cases": [
+        "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy11, untouched native destination slot2",
+        "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy26, untouched native destination slot2"
+      ],
+      "limits": "Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted."
+    },
+    {
+      "schema": 1,
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "cases": [
+        "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy11, untouched native destination slot2",
+        "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy26, untouched native destination slot2"
+      ],
+      "limits": "Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted."
+    },
+    {
+      "schema": 1,
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "cases": [
+        "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy11, untouched native destination slot2",
+        "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy26, untouched native destination slot2"
+      ],
+      "limits": "Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted."
+    }
+  ],
+  "limits": "Original-MIPS execution and isolated C tests; live gameplay/card/story acceptance is documented separately. No game assets or saves are distributed."
+}

@@ -34,8 +34,11 @@ static uint32_t checksum(const uint8_t* data, size_t size) {
 void ff7_party_init(FF7PartyState* state) {
     if (!state) return;
     memset(state, 0, sizeof(*state));
-    for (size_t i = 0; i < FF7_PARTY_ACTIVE_COUNT; ++i)
+    for (size_t i = 0; i < FF7_PARTY_ACTIVE_COUNT; ++i) {
         state->active[i] = FF7_PARTY_EMPTY;
+        state->stored[i] = FF7_PARTY_EMPTY;
+        state->stored_hint[i] = 255;
+    }
 }
 
 static const FF7PartyMember* find_extra(const FF7PartyState* state, uint16_t id) {
@@ -78,7 +81,15 @@ static int valid_state(const FF7PartyState* state) {
         for (size_t j = 0; j < i; ++j)
             if (state->extra[i].id == state->extra[j].id) return 0;
     }
-    return valid_active(state, state->active);
+    if(!valid_active(state,state->active) || state->stored_known>1)return 0;
+    if(state->stored_known && !valid_active(state,state->stored))return 0;
+    for(unsigned i=0;i<3;++i){
+        uint8_t hint=state->stored_hint[i];
+        if(!state->stored_known && state->stored[i]!=FF7_PARTY_EMPTY)return 0;
+        if(hint!=255 && (!state->stored_known ||
+            !((hint==9 && state->stored[i]==6)||(hint==10 && state->stored[i]==7))))return 0;
+    }
+    return 1;
 }
 
 FF7PartyResult ff7_party_add(FF7PartyState* state, uint16_t id,
@@ -140,13 +151,17 @@ FF7PartyResult ff7_party_encode(const FF7PartyState* state,
     if (!out || capacity < size) return FF7_PARTY_BUFFER_SMALL;
     memset(out, 0, size);
     memcpy(out, "FF7PARTY", 8);
-    put16(out + 8, 2);
+    put16(out + 8, 3);
     put16(out + 10, FF7_PARTY_PAYLOAD_HEADER);
     put32(out + 12, (uint32_t)size);
     put16(out + 16, state->count);
     for (size_t i = 0; i < FF7_PARTY_ACTIVE_COUNT; ++i)
         put16(out + 18 + 2 * i, state->active[i]);
     memcpy(out + 24, base_sha256, 32);
+    for(unsigned i=0;i<3;++i){
+        put16(out+64+2*i,state->stored[i]);out[70+i]=state->stored_hint[i];
+    }
+    out[73]=state->stored_known;
     for (size_t i = 0; i < state->count; ++i) {
         const FF7PartyMember* member = &state->extra[i];
         uint8_t* p = out + FF7_PARTY_PAYLOAD_HEADER + i * FF7_PARTY_PAYLOAD_RECORD;
@@ -163,22 +178,28 @@ FF7PartyResult ff7_party_decode(FF7PartyState* state,
     const uint8_t base_sha256[32], const uint8_t* data, size_t size) {
     FF7PartyState next;
     if (!state || !base_sha256 || !data) return FF7_PARTY_INVALID;
-    if (size < FF7_PARTY_PAYLOAD_HEADER || size > FF7_PARTY_PAYLOAD_MAX ||
+    if (size < 64 || size > FF7_PARTY_PAYLOAD_MAX ||
         memcmp(data, "FF7PARTY", 8)) return FF7_PARTY_CORRUPT;
-    if (get16(data + 8) != 2) return FF7_PARTY_VERSION;
-    if (get16(data + 10) != FF7_PARTY_PAYLOAD_HEADER ||
+    unsigned version=get16(data+8),header=version==2?64:FF7_PARTY_PAYLOAD_HEADER;
+    if(version!=2 && version!=3)return FF7_PARTY_VERSION;
+    if(size<header || get16(data + 10) != header ||
         get32(data + 12) != size || get32(data + 56) != 0 ||
         get32(data + 60) != checksum(data, size)) return FF7_PARTY_CORRUPT;
     if (memcmp(data + 24, base_sha256, 32)) return FF7_PARTY_BASE_MISMATCH;
     ff7_party_init(&next);
+    if(version==3){
+        for(unsigned i=74;i<80;++i)if(data[i])return FF7_PARTY_CORRUPT;
+        for(unsigned i=0;i<3;++i){next.stored[i]=get16(data+64+2*i);next.stored_hint[i]=data[70+i];}
+        next.stored_known=data[73];
+    }
     next.count = get16(data + 16);
     if (next.count > FF7_PARTY_EXTRA_CAPACITY ||
-        size != FF7_PARTY_PAYLOAD_HEADER + (size_t)next.count * FF7_PARTY_PAYLOAD_RECORD)
+        size != header + (size_t)next.count * FF7_PARTY_PAYLOAD_RECORD)
         return FF7_PARTY_CORRUPT;
     for (size_t i = 0; i < FF7_PARTY_ACTIVE_COUNT; ++i)
         next.active[i] = get16(data + 18 + 2 * i);
     for (size_t i = 0; i < next.count; ++i) {
-        const uint8_t* p = data + FF7_PARTY_PAYLOAD_HEADER + i * FF7_PARTY_PAYLOAD_RECORD;
+        const uint8_t* p = data + header + i * FF7_PARTY_PAYLOAD_RECORD;
         next.extra[i].id = get16(p);
         next.extra[i].presentation_id = p[2];
         next.extra[i].flags = p[3];

@@ -5,17 +5,62 @@ after the standard 128 KiB card image. It does not require a separate sidecar.
 The first 131,072 bytes retain the standard card representation. Exporting a
 standard card copies those bytes exactly and removes the extension.
 
-This document specifies `FF7MCEXT` version 1 and its nested `FF7PARTY` version 2
-payloads. The format codecs and export tool are implemented and tested. The
-codecs alone do not make Sephiroth playable or integrate game save/load hooks.
-The developer-only `party-save` feature now supplies a runtime adapter through
-the shared memory-card extension transport. It loads and refreshes **existing**
-validated metadata. It does not create metadata from gameplay or prove that a
-native fallback party has been written into a particular real FFVII save.
-The framework transport and title adapter build together in the runtime; a
-separate integration test exercises their actual file writer on synthetic cards.
-The exporter currently runs as a standalone command. Game save/load integration and rewind synchronization remain
-unfinished; the lifecycle and fallback requirements below still apply.
+This document specifies `FF7MCEXT` version 1 and its nested `FF7PARTY` version 3
+payloads. Version 2 full-card payloads remain readable. The developer-only
+`party-gameplay` feature now integrates the guest roster with guarded original
+SAVEMENU save/load instructions, native fallback projection and the shared card
+extension transport. Pending writes live in snapshot-owned enhancement memory.
+The earlier `party-save` adapter remains a codec test fixture; it is no longer
+offered in the catalog because the gameplay adapter must own card persistence.
+The exporter currently runs as a standalone command. Original-MIPS checksum and
+preview tests and synthetic card lifecycle tests pass; a live BIOS save-menu
+playthrough, live field-model acceptance and complete animation/limit integration
+remain required before calling the character playable.
+
+## Additional-character architecture
+
+Sephiroth is the first entry in an added-character registry. `FF7PartyProfile`
+separates a persistent 16-bit identity from its asset paths, template, equipment
+compatibility, growth rules and motion policy. Multiple entries can share a
+stock presentation or rule set while retaining independent character records.
+Future characters add descriptors and the corresponding asset/ability adapters;
+they do not replace Vincent or consume another native character's record.
+
+The version 3 payload stores a variable-length roster of up to sixteen
+added records per save, plus active and stored field-party identities. These limits are
+explicit format bounds, not an assumption that only Sephiroth exists. Increasing
+them requires a versioned migration. A reader that lacks a character's registered
+profile refuses to publish that roster; it must preserve the metadata and use
+the native fallback instead of interpreting an unknown identity as a stock ID.
+
+`src/ff7_party_game.c` gives live additions separate Expansion 1 records. Guest
+byte IDs 11 through 26 are temporary handles for those records; persistent IDs
+start at 0x100. On load, proxies are rebuilt from canonical identities. The
+original IDs 9 and 10 retain the flashback aliases. Native alias tables remain
+unchanged: guarded instruction adapters redirect only added-character operands.
+
+The live registry, records, alias scratch and native fallback are guest memory,
+which psxrecomp captures with its main RAM and devices. Host globals hold only
+immutable descriptors and activation-fixed addresses. The bridge's lifecycle
+tests exercise two additions with one presentation, record reordering on load,
+atomic PHS swaps, rejected unknown profiles and whole-state rewind. This closes
+the live-roster ownership gap. The gameplay adapter below supplies slot-level
+packet matching and native projection; complete live gameplay acceptance is
+still separate from these storage tests.
+
+PHS currently retains its nine reserve cells and one additional portrait atlas
+cell. Materia exchange has a separate expanded 25-entry list. Reserve overflow
+is counted; future larger rosters need paging and portrait banks. These UI bounds
+are separate from save/storage capacity and must be addressed before enabling
+additional characters beyond what those screens can show.
+
+Field assets are also profile-selected. The loader appends independent script
+entities and model descriptors, preserving original entity numbers and NPC data.
+The initial loader caps total field models at the native 16-model state capacity;
+11 of the 703 original fields already reach that cap. A larger field-state arena
+and direct-access adapters are separate from the saved roster's 16-extra capacity.
+The loader reports a rejection rather than replacing a native model. This still
+requires live story testing before added members can be used on every map.
 
 ## Supported files and original card structure
 
@@ -56,11 +101,11 @@ There can be 0–15 extension entries, one per **first allocated directory
 frame**. This is the physical memory-card directory index, not a battle-party
 position or a host array index. Entries must be strictly increasing by index;
 duplicate entries are invalid. Each save entry can hold at most sixteen extra
-characters. The maximum tail is 33,784 bytes (`0x83F8`), so the maximum complete
-file is 164,856 bytes (`0x283F8`).
+characters. The maximum tail is 34,024 bytes (`0x84E8`), so the maximum complete
+file is 165,096 bytes (`0x284E8`).
 
 An empty extension is 64 bytes. One save entry containing one extra character
-uses a 272-byte tail, for a total file size of 131,344 bytes (`0x20110`).
+uses a 288-byte tail, for a total file size of 131,360 bytes (`0x20120`).
 
 ## Extension header: `FF7MCEXT` version 1
 
@@ -96,8 +141,8 @@ immediately after the previous entry's payload.
 | --- | ---: | --- |
 | `0x00` | 1 | First allocated directory-frame index, `1..15` |
 | `0x01` | 3 | Reserved: zero |
-| `0x04` | 4 | Payload byte count, `64..2240` |
-| `0x08` | variable | One complete `FF7PARTY` version 2 payload |
+| `0x04` | 4 | Payload byte count, `80..2256` for v3; v2 starts at 64 |
+| `0x08` | variable | One complete `FF7PARTY` version 2 or 3 payload |
 
 A directory index is only meaningful together with the bound card image.
 Deleting or replacing a save must remove its old metadata before rebinding.
@@ -105,20 +150,24 @@ Moving a save requires explicitly moving its metadata to the new directory
 index. A matching index in a different file is not sufficient evidence that
 the metadata belongs to the same save.
 
-## Party payload: `FF7PARTY` version 2
+## Party payload: `FF7PARTY` version 3
 
 | Payload-relative offset | Bytes | Field |
 | --- | ---: | --- |
 | `0x00` | 8 | ASCII `FF7PARTY` |
-| `0x08` | 2 | Payload version: `2` |
-| `0x0A` | 2 | Header size: `64` |
-| `0x0C` | 4 | Payload size: `64 + 136 × member_count` |
+| `0x08` | 2 | Payload version: `3` |
+| `0x0A` | 2 | Header size: `80` |
+| `0x0C` | 4 | Payload size: `80 + 136 * member_count` |
 | `0x10` | 2 | Extra-member count, `0..16` |
 | `0x12` | 6 | Three active identities, each a 16-bit integer |
 | `0x18` | 32 | SHA-256 of the same entire 131,072-byte base card |
 | `0x38` | 4 | Reserved: zero |
 | `0x3C` | 4 | CRC32 of this payload, with these four bytes zeroed |
-| `0x40` | variable | Extra-member records |
+| `0x40` | 6 | Three stored field-party identities, each a 16-bit integer |
+| `0x46` | 3 | Stored native alias hints: 255, or 9/10 for canonical 6/7 |
+| `0x49` | 1 | Stored field-party bank present: 0 or 1 |
+| `0x4A` | 6 | Reserved: zero |
+| `0x50` | variable | Extra-member records |
 
 Each 136-byte extra-member record contains:
 
@@ -135,12 +184,21 @@ Nonempty active identities cannot repeat. Sephiroth's independent identity is
 `0x0100`; his presentation identity is `10`. Presentation identities select
 assets and must never be used as native character-storage indices.
 
+The stored roster follows the same identity/unlock/duplicate rules. The verified
+NTSC-U FIELD functions at `0x800CF60C` and `0x800CF5A0` copy the three-byte party
+bank at Savemap offset `0xCAD` (`0x8009D391`) to/from the active party. Version 3
+stores that bank canonically so proxy reordering on load preserves the intended
+members. Native flashback IDs 9/10 have explicit hints to retain their original
+presentation after canonicalization. An absent bank contains three `0xFFFF`
+identities and three 255 hints. Version 2 used a 64-byte header and had no bank;
+loading it retains the already-loaded native base bank, rather than inventing one.
+
 The 132-byte character record holds the extra character's game-format state;
 the codec preserves its bytes without inventing stats or validating individual
 equipment/materia fields. Semantic validation belongs to the gameplay adapter.
 
 The earlier experimental `FF7PARTY` **version 1** sidecar used a digest of an
-individual base save slot. Version 2 deliberately rejects it: a digest with
+individual base save slot. Versions 2 and 3 deliberately reject it: a digest with
 that meaning cannot be interpreted as a full-card digest. There is no automatic
 migration, and the exporter does not accept standalone party payload files.
 
@@ -152,10 +210,17 @@ the extension may contain Cloud, Vincent, and independent Sephiroth as
 `[0, 7, 256]`, while the base retains a separately validated native fallback
 party chosen by the gameplay adapter.
 
-The writer must retain the save's last verified native roster, or build and
-validate a native roster through a game-aware adapter before saving. If it
-cannot produce one, it must fail the extended save without replacing the last
-good file. It must not truncate `0x0100` into a byte, write asset identity `10`
+The gameplay writer retains the last wholly native party. For its private
+outgoing copy, it keeps currently selected native members and replaces each
+extra proxy with an unused member from that fallback, or 255 for an empty slot.
+It projects the stored field-party bank too. Preview IDs, leader name/level and
+HP/MP are rebuilt from the projected native leader, and the original 4340-byte
+Savemap checksum is recomputed (CRC16 polynomial `0x1021`, initial `0xFFFF`,
+complemented result over bytes 4..4339). Native character records and inventory
+bytes remain unchanged. Live records and selections are never temporarily
+replaced during saving. If preparation fails, the adapter sends the original
+BIOS open path an empty filename so its normal error path returns without a
+card write. It must not truncate `0x0100` into a byte, write asset identity `10`
 as though it were an independent playable character, or replace Vincent's
 record. Original FFVII maps identity `10` to Vincent's storage row; silently
 doing that would lose the distinction the mod is intended to preserve.
@@ -254,7 +319,7 @@ FF7PartyResult ff7_party_card_decode(
 ```
 
 `base_size` must be 131,072. Encoding returns only the tail; the frontend writes
-`base + tail` as one transaction. `FF7_PARTY_CARD_EXTENSION_MAX` is 33,784 bytes.
+`base + tail` as one transaction. `FF7_PARTY_CARD_EXTENSION_MAX` is 34,024 bytes.
 A null/undersized output returns `FF7_PARTY_BUFFER_SMALL` and reports the needed
 length without writing output. Card slots must be strictly ascending. Inputs,
 outputs, and state must not overlap. Decoding validates into temporary storage
@@ -287,15 +352,55 @@ The frontend/game adapter must:
    exported copy. Use the same validation and exact-base policy as the tool.
 
 The low-level `ff7_party_encode/decode` functions remain available for a single
-version 2 payload. Their caller-supplied digest must now be the SHA-256 of the
+version 3 payload, with version 2 decoding supported. Their caller-supplied digest must be the SHA-256 of the
 whole base card. They are not sufficient for a save-file transaction on their
 own; prefer the card APIs.
 
+## Gameplay save adapter
+
+`src/ff7_party_game_save.c` shares plugin `ff7.party-gameplay` with the independent
+roster and menu/battle adapters. It verifies thirteen original instruction words
+around each seam. At `0x801D2900`, after SAVEMENU finishes constructing its 8192-byte
+file at `0x801E6F38`, it snapshots added records, projects the private outgoing
+Savemap and captures the exact packet plus filename in Expansion 1. The filename
+must use `bu00:` or `bu10:` and identify one allocated, checksum-valid, single-block
+directory entry of exactly 8192 bytes. It does not guess from a UI row number.
+
+The BIOS writes and flushes individual 128-byte sectors. Returning a flush
+failure for every partial packet would make the game retry those sectors rather
+than finish the save. The adapter accepts ordinary sector writes, removes the
+target's previous metadata while the replacement is incomplete, and attaches the
+new roster only when all 8192 current card bytes match the captured packet.
+Every retained entry is rehashed against the resulting complete base card.
+Deleted, reallocated or renamed entries lose their metadata. Each framework
+flush publishes its base and tail together; this does not make the entire
+multi-sector native BIOS operation atomic. An interrupted native write can leave
+an incomplete native save, as in the original game, and never gains new metadata
+through a partial-packet match. Pending state remains retryable across host
+publication failures and rewinds with guest RAM. The original save function's
+return seam clears its pending transaction.
+
+After a successful original load at `0x801D2134`, the adapter checks the exact
+filename, allocated slot, full file equality and native checksum before restoring
+that slot's added records and both parties. An ordinary save resets added records
+from immutable kernel templates rather than keeping another game's progress.
+Missing character profiles retain the native fallback and leave on-card metadata
+intact until an explicit new save replaces it. Invalid card extensions reject
+flushing; there is no automatic hash recovery. The new-game-only seam at
+`0x80011DBC` resets added progress after the original kernel and native party reset;
+the shared native reset routine also runs before the title and is unsuitable alone.
+
+The framework restores card base/tail bytes and invokes the codec loader to
+rebuild host card caches. The live roster, field bank and pending packet are guest
+snapshot bytes, so no host roster from a later frame is republished on rewind.
+Save-menu BIOS I/O and live rewind during saving still need acceptance testing.
+
 ## Developer runtime adapter
 
-`src/ff7_party_save.c` registers plugin `ff7.party-save`, selected by the
-default-off, developer-channel `party-save` feature in `ff7.expanded-party`.
-Activation installs callbacks using `memcard_set_extension_codec`. The shared
+`src/ff7_party_save.c` retains the earlier `ff7.party-save` codec test fixture.
+It is not selectable in the mod catalog. Its isolated tests install callbacks
+using `memcard_set_extension_codec`; gameplay uses the slot-aware adapter above.
+The shared
 frontend must clear that codec registration before each new mod session and
 invoke the loader on card initialization/reload. The adapter has no path I/O.
 
@@ -353,5 +458,11 @@ adapter and framework card transport. It verifies file refresh, preserved extra
 records, stale-binding rejection and explicit standard-card import. It does
 not establish native FFVII save fallback or actual gameplay state creation.
 
-No test here establishes that Sephiroth's game-specific save/load lifecycle,
-native fallback projection, or selectable playable-party behavior is complete.
+The gameplay adapter tests additionally cover all 64 sector writes of a synthetic
+packet, exact filename/full-packet matching, deletion/replacement, two-card
+isolation, native fallback and field-bank projection, reload, pending-packet
+rewind, failed preparation and native PC preservation. An original-MIPS oracle
+matches eight checksum inputs and the full preview routine for native Cloud,
+Vincent and an independent proxy on all three discs. C/Python v3 bytes match and
+both readers migrate v2 without inventing its missing bank. These tests do not
+establish live BIOS save-menu acceptance or complete playable-party behavior.

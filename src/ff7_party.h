@@ -18,14 +18,14 @@ enum {
     FF7_PARTY_SEPHIROTH = 0x100,
     FF7_PARTY_EMPTY = 0xffff,
     FF7_PARTY_UNLOCKED = 1,
-    FF7_PARTY_PAYLOAD_HEADER = 64,
+    FF7_PARTY_PAYLOAD_HEADER = 80,
     FF7_PARTY_PAYLOAD_RECORD = 136,
-    FF7_PARTY_PAYLOAD_MAX = 64 + 16 * 136,
+    FF7_PARTY_PAYLOAD_MAX = 80 + 16 * 136,
     FF7_PARTY_CARD_BYTES = 131072,
     FF7_PARTY_CARD_SLOTS = 15,
     FF7_PARTY_CARD_HEADER = 64,
     FF7_PARTY_CARD_ENTRY = 8,
-    FF7_PARTY_CARD_EXTENSION_MAX = 64 + 15 * (8 + 64 + 16 * 136)
+    FF7_PARTY_CARD_EXTENSION_MAX = 64 + 15 * (8 + 80 + 16 * 136)
 };
 
 typedef struct FF7PartyMember {
@@ -39,6 +39,9 @@ typedef struct FF7PartyState {
     uint16_t active[FF7_PARTY_ACTIVE_COUNT];
     uint16_t count;
     FF7PartyMember extra[FF7_PARTY_EXTRA_CAPACITY];
+    uint16_t stored[FF7_PARTY_ACTIVE_COUNT]; /* FIELD's saved party bank. */
+    uint8_t stored_hint[FF7_PARTY_ACTIVE_COUNT]; /* Native9/10 story aliases. */
+    uint8_t stored_known; /* v2 lacks this bank; preserve its native base bytes. */
 } FF7PartyState;
 
 typedef struct FF7PartyCardSlot {
@@ -80,13 +83,15 @@ const uint8_t* ff7_party_record(const FF7PartyState* state, uint16_t id,
 FF7PartyResult ff7_party_select(FF7PartyState* state,
     const uint16_t active[FF7_PARTY_ACTIVE_COUNT]);
 
-/* Version 2 payload: explicit little-endian, CRC32, and SHA-256 binding supplied
+/* Version 3 payload: explicit little-endian, CRC32, and SHA-256 binding supplied
  * by the caller for the entire exact 128KiB base card, NOT an individual save.
  * Decode validates before replacing state, including duplicate IDs and parties.
  * Encoding does not modify state, native saves or native character records.
  * Buffer arguments must not overlap state or the digest. Version 1 sidecars
  * are rejected; their digest meant an individual slot and cannot be migrated
- * without the original slot identity. Prefer the card APIs below.
+ * without the original slot identity. Version2 full-card payloads still load;
+ * their absent stored-party bank is retained from the standard base save.
+ * Prefer the card APIs below.
  */
 FF7PartyResult ff7_party_encode(const FF7PartyState* state,
     const uint8_t base_sha256[32], uint8_t* out, size_t capacity, size_t* written);

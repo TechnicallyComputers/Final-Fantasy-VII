@@ -463,6 +463,7 @@ block_800258D8:
 #ifdef PSX_COSIM
     cosim_instr(0x80025900u);
 #endif
+psx_mod_instruction(cpu, 0x80025904u, 0x8C260000u);
     { uint32_t _pgxa = cpu->gpr[1]; cpu->gpr[6] = psx_cyc_load_word(cpu, cpu->gpr[1], 6, 0x2u);
     PGXP_LOAD(0x8C260000u, _pgxa, cpu->gpr[6]); }  /* 0x80025904: 0x8C260000 */
 #ifdef PSX_COSIM
@@ -714,6 +715,7 @@ block_80025954:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
+psx_mod_instruction(cpu, 0x80025968u, 0x00021080u);
     { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
     PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x80025968: 0x00021080 */
 #ifdef PSX_COSIM
@@ -999,6 +1001,7 @@ block_800259A4:
 #ifdef PSX_COSIM
     cosim_instr(0x800259C8u);
 #endif
+psx_mod_instruction(cpu, 0x800259CCu, 0x8C230000u);
     { uint32_t _pgxa = cpu->gpr[1]; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[1], 3, 0x2u);
     PGXP_LOAD(0x8C230000u, _pgxa, cpu->gpr[3]); }  /* 0x800259CC: 0x8C230000 */
 #ifdef PSX_COSIM
@@ -1532,6 +1535,7 @@ block_80025A60:
 #ifdef PSX_COSIM
     cosim_instr(0x80025A88u);
 #endif
+psx_mod_instruction(cpu, 0x80025A8Cu, 0x8C260000u);
     { uint32_t _pgxa = cpu->gpr[1]; cpu->gpr[6] = psx_cyc_load_word(cpu, cpu->gpr[1], 6, 0x2u);
     PGXP_LOAD(0x8C260000u, _pgxa, cpu->gpr[6]); }  /* 0x80025A8C: 0x8C260000 */
 #ifdef PSX_COSIM
@@ -1786,6 +1790,7 @@ block_80025ADC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
+psx_mod_instruction(cpu, 0x80025AF0u, 0x00021080u);
     { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
     PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x80025AF0: 0x00021080 */
 #ifdef PSX_COSIM
@@ -4957,6 +4962,7 @@ block_80025F10:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
+psx_mod_instruction(cpu, 0x80025F20u, 0x2402FFFFu);
     { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = -1;
     PGXP_ALU(0x2402FFFFu, cpu->gpr[2], _pgx1, 0xFFFFFFFFu); }  /* 0x80025F20: 0x2402FFFF */
 #ifdef PSX_COSIM
@@ -8185,6 +8191,7 @@ block_80026318:
 #ifdef PSX_COSIM
     cosim_instr(0x80026318u);
 #endif
+psx_mod_instruction(cpu, 0x8002631Cu, 0x8C430000u);
     { uint32_t _pgxa = cpu->gpr[2]; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[2], 3, 0x4u);
     PGXP_LOAD(0x8C430000u, _pgxa, cpu->gpr[3]); }  /* 0x8002631C: 0x8C430000 */
 #ifdef PSX_COSIM
@@ -8219,6 +8226,7 @@ block_80026318:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
+psx_mod_instruction(cpu, 0x8002632Cu, 0x00021080u);
     { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
     PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x8002632C: 0x00021080 */
 #ifdef PSX_COSIM
@@ -8538,6 +8546,7 @@ block_80026384:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x8u);
 #endif
+psx_mod_instruction(cpu, 0x800263A8u, 0x00031880u);
     { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = cpu->gpr[3] << 2;
     PGXP_ALU(0x00031880u, cpu->gpr[3], _pgx1, 2u); }  /* 0x800263A8: 0x00031880 */
 #ifdef PSX_COSIM

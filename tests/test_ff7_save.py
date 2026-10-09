@@ -85,7 +85,7 @@ class FormatTests(unittest.TestCase):
 
     def test_valid_crc_invalid_envelope_fields(self):
         for offset, value in ((8, 2), (10, 63), (12, 0), (16, 16), (18, 1), (20, 1),
-                              (56, 1), (64, 0), (65, 1), (68, 255), (272, 1)):
+                              (56, 1), (64, 0), (65, 1), (68, 255), (288, 1)):
             tail = bytearray(self.tail)
             tail[offset] = value
             repair_crc(tail)
@@ -94,17 +94,31 @@ class FormatTests(unittest.TestCase):
 
     def test_valid_crc_invalid_payload_fields(self):
         for offset, value in ((8, 1), (16, 17), (18, 10), (22, 9), (56, 1),
-                              (64, 255), (66, 11), (67, 128)):
+                              (64, 0), (70, 9), (73, 2), (74, 1), (80, 255), (82, 11), (83, 128)):
             tail = bytearray(self.tail)
-            payload = bytearray(tail[72:272])
+            payload = bytearray(tail[72:288])
             payload[offset] = value
-            if offset == 64:
-                payload[65] = 255
+            if offset == 80:
+                payload[81] = 255
             repair_crc(payload)
-            tail[72:272] = payload
+            tail[72:288] = payload
             repair_crc(tail)
             with self.subTest(offset=offset), self.assertRaises(save.SaveFormatError):
                 save.parse_card(self.base + tail)
+
+    def test_stored_party_and_version2_migration(self):
+        party = save.Party((0, 7, 256), sample_party().members,
+                          (256, 7, save.EMPTY), (255, 10, 255), True)
+        digest = hashlib.sha256(self.base).digest()
+        payload = save.encode_payload(party, digest)
+        self.assertEqual(save.decode_payload(payload, digest), party)
+        legacy = bytearray(payload[:64] + payload[80:])
+        struct.pack_into('<HHI', legacy, 8, 2, 64, len(legacy))
+        repair_crc(legacy)
+        migrated = save.decode_payload(legacy, digest)
+        self.assertEqual(migrated.active, party.active)
+        self.assertFalse(migrated.stored_known)
+        self.assertEqual(migrated.stored, (save.EMPTY,) * 3)
 
     def test_directory_slot_must_be_allocated_first_and_checksum_valid(self):
         for offset in (128, 255):
@@ -244,7 +258,8 @@ class CParityTests(unittest.TestCase):
 
         class CParty(ctypes.Structure):
             _fields_ = [("active", ctypes.c_uint16 * 3), ("count", ctypes.c_uint16),
-                        ("extra", CMember * 16)]
+                        ("extra", CMember * 16), ("stored", ctypes.c_uint16 * 3),
+                        ("stored_hint", ctypes.c_uint8 * 3), ("stored_known", ctypes.c_uint8)]
 
         class CSlot(ctypes.Structure):
             _fields_ = [("directory_slot", ctypes.c_uint8), ("party", CParty)]

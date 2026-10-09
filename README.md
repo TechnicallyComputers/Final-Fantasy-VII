@@ -112,17 +112,37 @@ Native CD timing is retained: accelerated sector bursts produced incomplete
 actors in the first battle. Gzip overlays and other loaders still execute their original
 code; eliminating all loading is an ongoing task.
 
-**Expanded Party Research** (`ff7.expanded-party`) is developer-only groundwork,
-not a playable Sephiroth mod. `src/ff7_party.c` provides independent character
-records and IDs, an always-unlocked Sephiroth initializer from the owner's
-original kernel template, and a versioned extension appended after a standard
-128 KiB memory card. The developer-only **Extended card persistence** feature
-(`party-save`) connects the codec to the framework's card transport: it loads
-and refreshes existing valid metadata, while raw cards remain raw. It does not
-create characters or populate metadata from gameplay. Native base bytes are
-unchanged by this adapter; all extra state is bound to the whole card digest.
-Tests cover coexistence with Cloud/Vincent, storage isolation, corrupt/stale
-metadata, transactional decoding and adapter reload/flush behavior.
+**Expanded Party Research** (`ff7.expanded-party`) has an experimental,
+default-off **Added-character gameplay integration** feature (`party-gameplay`).
+Sephiroth is its first registered addition. Stable saved identities and separate
+guest character records let future additions share assets or rules while owning
+their own stats, equipment, materia and progress. Vincent's record and the
+original flashback aliases remain native.
+
+Guarded original-code adapters cover PHS selection, equipment compatibility and
+inventory transactions, materia exchange, player-controlled battle initialization,
+model loading, active/reserve EXP, AP routing and result writeback/display.
+Original-MIPS checks on all three owned discs exercise Cloud, Vincent and added
+records together. Live diagnostic battles have verified Sephiroth's selected
+Attack, Potion and Cure, MP spending, victory and independent EXP/level progress.
+These diagnostics place him in a test party; story unlocks/PHS permissions still
+follow their original rules.
+
+The field loader prepares a separate script entity and copies his original
+skeleton and motions from owned-disc field assets without replacing existing
+NPCs. Its model/entity/packet tests pass; live controls, map transitions and
+story coverage remain acceptance work. The current loader rejects fields whose
+added models exceed the native 16-model state capacity. Full death/defend motions,
+custom limits, broader menu coverage and a live card-save playthrough also remain
+unfinished. Keep the feature disabled for ordinary play.
+
+Gameplay saves project extra party handles to a native fallback, preserve native
+character records, rebuild the preview/checksum and append per-slot metadata in
+the same card file. Loading restores the independent roster after the original
+native save load. The versioned payload also stores the field-party backup bank;
+canonical identities survive proxy reordering. Pending writes and roster state
+rewind with guest memory. Synthetic lifecycle tests cover sector writes, exact
+packet/slot binding, two cards, replacements, reload and rewind.
 
 Export a standard card with an explicit new output path:
 
@@ -133,15 +153,17 @@ python tools/ff7_save.py export-standard "saves/extended.mcd" --output "saves/st
 Export preserves the standard base byte for byte and omits extra characters;
 it never interprets Sephiroth as Vincent or overwrites the source. See
 [the save-format writeup](docs/SEPHIROTH_SAVE_FORMAT.md) for layout, validation,
-recovery and native fallback-party requirements. Gameplay slot-save/load hooks,
-fallback roster projection, rewind synchronization, PHS selection, menu/battle
-accessors, actor-scoped AI control and complete animations remain unfinished.
+recovery and native fallback-party policy. Gear and materia held by extra
+characters are omitted with those records; exporting does not duplicate them
+into the native inventory. The exporter currently runs as a standalone tool.
 
-The developer-only **Independent record queries** feature (`party-access`)
+The gameplay feature owns card persistence. The earlier `party-save` adapter
+remains a test fixture and is no longer offered in the mod catalog, so it cannot
+replace the gameplay codec. **Independent record queries** (`party-access`)
 provides guarded name and equipment materia-slot access for explicitly published
 16-bit extra identities. It allocates separate Expansion 1 records, leaves
 ordinary callers and flashback ID 10 stock, and invalidates publication after
-savestate restore. It does not yet convert the game's PHS/menu/battle callers.
+savestate restore. Gameplay caller conversion uses the separate registry above.
 The calling convention and publication/snapshot API are documented in
 `src/ff7_party_access.h`; exact guards and remaining sites are recorded in
 `access.evidence.json` beside the package. An original-MIPS oracle checks all

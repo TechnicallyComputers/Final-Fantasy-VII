@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "basis": "Original owner-disc MIPS operands and execution",
+  "sites": [
+    {
+      "address": 2147571456,
+      "action": "RECORD_SCAN",
+      "reg": 0,
+      "expected": 2418198328,
+      "guard": [
+        52443169,
+        33562657,
+        31477793,
+        18465,
+        1006731274,
+        2689057,
+        2418198328,
+        0,
+        340131977,
+        614793217,
+        872939521,
+        1006796807,
+        608329000
+      ]
+    },
+    {
+      "address": 2147623632,
+      "action": "RESULT_ALIAS",
+      "reg": 1,
+      "expected": 2419261440,
+      "guard": [
+        2418278400,
+        0,
+        272512,
+        1006731269,
+        606179792,
+        2426913,
+        2419261440,
+        137155,
+        16400,
+        530627,
+        6457379,
+        872546559,
+        276955563
+      ]
+    },
+    {
+      "address": 2147632616,
+      "action": "RESULT_ALIAS",
+      "reg": 2,
+      "expected": 2421489664,
+      "guard": [
+        273350861,
+        644087910,
+        135296,
+        1007386629,
+        627806672,
+        4919329,
+        2421489664,
+        48244769,
+        1380672,
+        5574689,
+        166016,
+        1006731274,
+        606193496
+      ]
+    },
+    {
+      "address": 2147639072,
+      "action": "PORTRAIT_COPY",
+      "reg": 16,
+      "expected": 604176383,
+      "guard": [
+        873529837,
+        873595192,
+        1006731274,
+        606194159,
+        3213345,
+        2419064832,
+        604176383,
+        302121006,
+        872546328,
+        2812411924,
+        872546352,
+        2812411926,
+        704774149
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "start": 2147571304,
+      "end_exclusive": 2147572144,
+      "sha256": "6bf188ba06805811116cca0cc75514b5ff0d43428381dbd3d699c0f8b3595366"
+    },
+    {
+      "start": 2147622744,
+      "end_exclusive": 2147625820,
+      "sha256": "c6bd5daa3248047b092179095b775d9a1bdcc003ddcbae5e348198703dc70c70"
+    },
+    {
+      "start": 2147638996,
+      "end_exclusive": 2147639356,
+      "sha256": "d014ebbce0fd48724e1f37e705d7c873ef5256c279de3ea1c0275a1a68aeaad5"
+    }
+  ],
+  "contract": {
+    "plugin": "ff7.party-gameplay, default-off",
+    "record_search": "Original EXP tween searches one independent record; native nine-record search remains unchanged",
+    "aliases": "LW/LBU operands point to proxy scratch, retaining logical identity; final strides select independent records",
+    "portraits": "Shared profile atlas preparation; original GPU copy uses atlas index and original party destination; draw retains party-slot CLUT/UVs",
+    "state": "Original party-slot EXP buffers and guest-owned registry; no new host gameplay state",
+    "dependencies": "Resident alias80021EE0 and record strides800225EC/800227A4; each shared plugin address registered once",
+    "limits": "Existing limit announcement is memory-safe; custom learning remains separate"
+  }
+}

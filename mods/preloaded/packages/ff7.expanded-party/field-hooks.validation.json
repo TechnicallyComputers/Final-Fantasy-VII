@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "strict_c_adapter_tests": "passed",
+  "production_header_compile": "passed",
+  "resident_sites": 65,
+  "disc_reports": [
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "status": "passed",
+      "cases": [
+        "Whole original D348C full-heal, including original resident derived stats and HP/MP routines: Cloud/Vincent/proxy11 or26 retain records, recover to maximum, clear status",
+        "Whole original party-model enable and leader entity selection for an independent bound actor, plus PC opcode stores/collision rejection and native per-field reset; logical proxies preserved",
+        "Unbound extra leader leaves existing leader selection intact; no AD30 out-of-range access"
+      ],
+      "limits": "Bound model/entity is a test fixture; automatic Sephiroth BSX actor injection, follower/script safety and visual gameplay remain pending"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "status": "passed",
+      "cases": [
+        "Whole original D348C full-heal, including original resident derived stats and HP/MP routines: Cloud/Vincent/proxy11 or26 retain records, recover to maximum, clear status",
+        "Whole original party-model enable and leader entity selection for an independent bound actor, plus PC opcode stores/collision rejection and native per-field reset; logical proxies preserved",
+        "Unbound extra leader leaves existing leader selection intact; no AD30 out-of-range access"
+      ],
+      "limits": "Bound model/entity is a test fixture; automatic Sephiroth BSX actor injection, follower/script safety and visual gameplay remain pending"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "status": "passed",
+      "cases": [
+        "Whole original D348C full-heal, including original resident derived stats and HP/MP routines: Cloud/Vincent/proxy11 or26 retain records, recover to maximum, clear status",
+        "Whole original party-model enable and leader entity selection for an independent bound actor, plus PC opcode stores/collision rejection and native per-field reset; logical proxies preserved",
+        "Unbound extra leader leaves existing leader selection intact; no AD30 out-of-range access"
+      ],
+      "limits": "Bound model/entity is a test fixture; automatic Sephiroth BSX actor injection, follower/script safety and visual gameplay remain pending"
+    }
+  ]
+}

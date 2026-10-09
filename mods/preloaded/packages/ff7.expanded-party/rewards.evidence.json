@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "basis": "Original owner-disc MIPS operand analysis and execution",
+  "overlay": {
+    "name": "BATRES",
+    "base": 2149253120,
+    "bytes": 6460,
+    "sha256": "138b71b4c6843eb77a7909263f12166aea597ab8a694dc8ef10a39afe58cc35e"
+  },
+  "sites": [
+    {
+      "address": 2149255172,
+      "expected": 1006731274,
+      "action": "ACTIVE_RECORD",
+      "guard": [
+        2947940400,
+        2948005944,
+        2948464704,
+        1006731274,
+        3213345,
+        2418265052,
+        1006731274,
+        3409953,
+        2418198328,
+        0,
+        341966907,
+        12321,
+        872546305
+      ]
+    },
+    {
+      "address": 2149255888,
+      "expected": 2451701760,
+      "action": "WRITEBACK_RECORD",
+      "guard": [
+        872742913,
+        39858209,
+        6177,
+        1006796810,
+        608356152,
+        6457377,
+        2451701760,
+        0,
+        373424169,
+        0,
+        2787442732,
+        2787573808,
+        1006731279
+      ]
+    },
+    {
+      "address": 2149256164,
+      "expected": 2418198328,
+      "action": "RESTORE_RECORD",
+      "guard": [
+        617087104,
+        1006993418,
+        614844216,
+        6177,
+        1006731274,
+        2295841,
+        2418198328,
+        0,
+        350355472,
+        612630529,
+        10500129,
+        2361524224,
+        2361589764
+      ]
+    },
+    {
+      "address": 2149256512,
+      "expected": 1006731274,
+      "action": "RESERVE_RECORD",
+      "guard": [
+        2947743772,
+        38945,
+        2948530216,
+        2947678232,
+        2947612692,
+        2947547152,
+        1006731274,
+        3344417,
+        2418263864,
+        0,
+        744620041,
+        272629796,
+        7671815
+      ]
+    },
+    {
+      "address": 2149256532,
+      "expected": 272629796,
+      "action": "RESERVE_ID",
+      "guard": [
+        2947547152,
+        1006731274,
+        3344417,
+        2418263864,
+        0,
+        744620041,
+        272629796,
+        7671815,
+        809631745,
+        272629793,
+        604438527,
+        1006796810,
+        608356152
+      ]
+    },
+    {
+      "address": 2149256688,
+      "expected": 339804115,
+      "action": "RESERVE_LOOP",
+      "guard": [
+        2516713520,
+        0,
+        4395041,
+        2785148976,
+        647233537,
+        713162761,
+        339804115,
+        645070980,
+        2411659304,
+        2411003940,
+        2410938400,
+        2410872860,
+        2410807320
+      ]
+    },
+    {
+      "address": 2149257636,
+      "expected": 202944,
+      "action": "GROWTH_ROW",
+      "guard": [
+        12321,
+        872873985,
+        2424438788,
+        8398881,
+        137408,
+        6428707,
+        202944,
+        1006796808,
+        608313960,
+        6428705,
+        2894266408,
+        2493644808,
+        0
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "start": 2149253120,
+      "end_exclusive": 2149255616,
+      "sha256": "b401d4f4007547f336c6eb3e0d4a02d2a9998fe688d867627da680cd8f6580c7"
+    },
+    {
+      "start": 2149255616,
+      "end_exclusive": 2149256308,
+      "sha256": "af231a2b34bdda44aacd98e3c0c959694365318312f9d290fc32e348c11a5ae8"
+    },
+    {
+      "start": 2149256468,
+      "end_exclusive": 2149256736,
+      "sha256": "e50f948bf675e16cc23ddbf762b9af003063bc584592dda78d2d0aad10e6e97c"
+    },
+    {
+      "start": 2149256952,
+      "end_exclusive": 2149257224,
+      "sha256": "443dba36c38102359ebfb095ebbcb4a5de435d2d09efb4e6f67206529ae6f93b"
+    },
+    {
+      "start": 2149257224,
+      "end_exclusive": 2149257356,
+      "sha256": "a5320afc39fc20b0ab14f0110d8e529591da4079ccad5dcf76c474d9cb41f7ac"
+    },
+    {
+      "start": 2149257356,
+      "end_exclusive": 2149257612,
+      "sha256": "077061875c919beaa5f47c5e3b31871b61f8c66388c4c92a75d12064f1c5823c"
+    },
+    {
+      "start": 2149257612,
+      "end_exclusive": 2149257732,
+      "sha256": "cc2e1f8c60bc31f80b63add413c0122c85bb1c2bb8b9031e5b01bb34c2ae459a"
+    },
+    {
+      "start": 2149257732,
+      "end_exclusive": 2149258596,
+      "sha256": "5cd7f86b8918f22ff68a580929460d1646cc46f811c77484d47707019e0c81f3"
+    },
+    {
+      "start": 2149258596,
+      "end_exclusive": 2149258724,
+      "sha256": "c6ab99c3e79e939bbe1c0b2f555b8f920e0df033c54405d0d6e9a171abd27391"
+    },
+    {
+      "start": 2149258724,
+      "end_exclusive": 2149258968,
+      "sha256": "ad36373dc65278d0a808fd892d87f3a8a05e9ccecd94c5c862c19f5d3cb80d32"
+    },
+    {
+      "start": 2149258968,
+      "end_exclusive": 2149259212,
+      "sha256": "2fb702580060b24e1a1ecd8cb9668f521cc94ec27a0a7a5e1ec17f77b4aa8b29"
+    },
+    {
+      "start": 2149259212,
+      "end_exclusive": 2149259580,
+      "sha256": "4087a5b955029b1462b6a85acb9afab72b3cbdd453af88dbdfa3bfc6da6f2557"
+    }
+  ],
+  "contract": {
+    "plugin": "ff7.party-gameplay, developer default-off",
+    "lifecycle": "Stateless; canonical guest registry/records own all progress and rewind state",
+    "clobbers": {
+      "ACTIVE_RECORD": "s4 independent record offset, s0=8 final search iteration",
+      "WRITEBACK_RECORD": "s1 independent record pointer for original HP/MP/status/limit-meter stores",
+      "RESTORE_RECORD": "a1 independent destination, at destination+0x38c8 before backup restore search",
+      "GROWTH_ROW": "v1=7*profile.growth_identity before original SLL by3; record ID untouched",
+      "RESERVE_RECORD": "s3 independent offset; local s5 mask includes extra only when absent from active party",
+      "RESERVE_ID": "v0=1 before original branch for registered extra",
+      "RESERVE_LOOP": "v0=(s4 < 9+registry_count); original branch/delay slot retained"
+    },
+    "policy": "Registered extras are unlocked reserves; stock half-XP policy and native availability remain intact",
+    "limits": "Stock kill/use counters persist; custom limit-learning policy remains separate",
+    "dependencies": [
+      "Resident AP/record adapters",
+      "Shared canonical roster/save lifecycle"
+    ],
+    "scope": "Original NTSC-U all-three-disc BATRES only; no whole-function replacement or native alias changes"
+  }
+}

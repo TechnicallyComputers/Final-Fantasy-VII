@@ -3,7 +3,7 @@ id = "ff7.expanded-party"
 version = "0.1.0"
 name = "Final Fantasy VII Expanded Party Research"
 author = "Final Fantasy VII Recompiled project"
-description = "Developer tools, guarded independent-record queries and extended-card persistence plumbing. Playable Sephiroth, expanded PHS and complete equipment, materia and animation integration remain unfinished."
+description = "Experimental independent-character registry with guarded PHS, equipment, materia, battle, progression and extended-save adapters. Full field assets, animations, limits and live gameplay acceptance remain unfinished."
 save_compatibility = "shared"
 
 [[target]]
@@ -22,18 +22,6 @@ feature = "party-audit"
 id = "ff7.party-audit"
 
 [[feature]]
-id = "party-save"
-name = "Extended card persistence (developer)"
-channel = "developer"
-description = "Loads and refreshes existing FF7MCEXT party metadata through the card transport. Raw cards stay unchanged. Does not create characters, populate game save slots, or implement native fallback parties, gameplay save/load hooks or rewind support. Invalid metadata blocks refresh."
-group = "Developer"
-default_enabled = false
-
-[[plugin]]
-feature = "party-save"
-id = "ff7.party-save"
-
-[[feature]]
 id = "party-access"
 name = "Independent record queries (developer)"
 channel = "developer"
@@ -44,3 +32,15 @@ default_enabled = false
 [[plugin]]
 feature = "party-access"
 id = "ff7.party-access"
+
+[[feature]]
+id = "party-gameplay"
+name = "Added-character gameplay integration (developer)"
+channel = "developer"
+description = "Experimental guest-owned roster, PHS, equipment/materia, battle, progression and save adapters. Separate records and stable saved identities support future additions. Field assets, complete motions/limits and live gameplay/save acceptance remain under development. Requires a fresh launch; leave disabled for ordinary play."
+group = "Developer"
+default_enabled = false
+
+[[plugin]]
+feature = "party-gameplay"
+id = "ff7.party-gameplay"

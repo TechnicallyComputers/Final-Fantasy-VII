@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "status": "menu-paths-tested; resident/battle/field integration separate",
+  "menus": {
+    "FORMMENU": {
+      "sha256": "6412f26cbb4ad5df677caf7d29716d62b2b184fcb266bdb2cf05ad73c555a074",
+      "bytes": 60020
+    },
+    "EQIPMENU": {
+      "sha256": "433e448de0a5908239df6e50e741fc96e2381a42a0112ce781de9ecf318f8759",
+      "bytes": 96140
+    }
+  },
+  "guard_sites": 103,
+  "passed": [
+    "PHS native availability enumeration + independent added row",
+    "PHS real two-click swap: Cloud/Vincent/Sephiroth coexist",
+    "PHS original lock-bit rejection",
+    "Original materia-exchange initializer:10/25 rows, adjacent globals intact",
+    "15 original inventory-list eligibility cases, native/flashback masks intact",
+    "8 original weapon/accessory commit transactions preserve independent/native records and inventory",
+    "20 original cross-character weapon/armor materia swaps preserve full AP words and all other records"
+  ],
+  "validated_owner_discs": [
+    1,
+    2,
+    3
+  ],
+  "c_validation": "C11 Wall Wextra Werror standalone and runtime-header compile passed; all16 proxy offsets, guarded passthrough, roster bounds, VRAM backup/restore"
+}

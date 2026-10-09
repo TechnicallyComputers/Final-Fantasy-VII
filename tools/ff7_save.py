@@ -21,7 +21,8 @@ CARD_SIZE = 131072
 HEADER = 64
 MEMBER_SIZE = 136
 MAX_MEMBERS = 16
-MAX_PAYLOAD = HEADER + MAX_MEMBERS * MEMBER_SIZE
+PAYLOAD_HEADER = 80
+MAX_PAYLOAD = PAYLOAD_HEADER + MAX_MEMBERS * MEMBER_SIZE
 MAX_EXTENSION = HEADER + 15 * (8 + MAX_PAYLOAD)
 MAX_FILE = CARD_SIZE + MAX_EXTENSION
 EMPTY = 0xFFFF
@@ -43,6 +44,9 @@ class Member:
 class Party:
     active: tuple[int, int, int]
     members: tuple[Member, ...]
+    stored: tuple[int, int, int] = (EMPTY, EMPTY, EMPTY)
+    stored_hint: tuple[int, int, int] = (255, 255, 255)
+    stored_known: bool = False
 
 
 @dataclass(frozen=True)
@@ -92,26 +96,34 @@ def validate_party(party):
                 "Invalid presentation identity or member flags")
         require(len(member.record) == 132, "Character record must contain exactly 132 bytes")
         members[member.id] = member
-    require(len(party.active) == 3, "Active party must contain three slots")
-    present = []
-    for identity in party.active:
-        if identity == EMPTY:
-            continue
-        require(0 <= identity < 9 or identity in members and members[identity].flags & 1,
-                "Active identity is neither native nor an unlocked expanded member")
-        require(identity not in present, "Duplicate active party identity")
-        present.append(identity)
+    require(party.stored_known in (False, True), "Invalid stored-party presence flag")
+    for roster in (party.active, party.stored):
+        require(len(roster) == 3, "Party must contain three slots")
+        present = []
+        for identity in roster:
+            if identity == EMPTY:
+                continue
+            require(0 <= identity < 9 or identity in members and members[identity].flags & 1,
+                    "Identity is neither native nor an unlocked expanded member")
+            require(identity not in present, "Duplicate party identity")
+            present.append(identity)
+    require(party.stored_known or party.stored == (EMPTY, EMPTY, EMPTY), "Unknown stored party contains members")
+    require(len(party.stored_hint) == 3, "Stored hints must contain three entries")
+    for identity, hint in zip(party.stored, party.stored_hint):
+        require(hint == 255 or party.stored_known and (identity, hint) in ((6, 9), (7, 10)),
+                "Invalid stored native alias hint")
 
 
 def encode_payload(party, digest):
     validate_party(party)
     require(len(digest) == 32, "Expected SHA256 of the complete base card")
-    out = bytearray(HEADER + len(party.members) * MEMBER_SIZE)
+    out = bytearray(PAYLOAD_HEADER + len(party.members) * MEMBER_SIZE)
     out[:8] = b"FF7PARTY"
-    struct.pack_into("<HHIH3H", out, 8, 2, HEADER, len(out), len(party.members), *party.active)
+    struct.pack_into("<HHIH3H", out, 8, 3, PAYLOAD_HEADER, len(out), len(party.members), *party.active)
     out[24:56] = digest
+    struct.pack_into('<3H3BB', out, 64, *party.stored, *party.stored_hint, party.stored_known)
     for index, member in enumerate(party.members):
-        offset = HEADER + index * MEMBER_SIZE
+        offset = PAYLOAD_HEADER + index * MEMBER_SIZE
         struct.pack_into("<HBB", out, offset, member.id, member.presentation_id, member.flags)
         out[offset + 4:offset + MEMBER_SIZE] = member.record
     struct.pack_into("<I", out, 60, crc(out))
@@ -121,16 +133,21 @@ def encode_payload(party, digest):
 def decode_payload(data, digest):
     require(HEADER <= len(data) <= MAX_PAYLOAD and data[:8] == b"FF7PARTY", "Invalid party payload")
     version, header, size, count, *active = struct.unpack_from("<HHIH3H", data, 8)
-    require(version == 2, "Unsupported party payload version (v1 sidecars are not full-card bound)")
-    require(header == HEADER and size == len(data) and data[56:60] == bytes(4), "Invalid payload header")
+    require(version in (2, 3), "Unsupported party payload version (v1 sidecars are not full-card bound)")
+    expected_header = HEADER if version == 2 else PAYLOAD_HEADER
+    require(header == expected_header and size == len(data) and len(data) >= header and data[56:60] == bytes(4), "Invalid payload header")
     require(struct.unpack_from("<I", data, 60)[0] == crc(data), "Party payload CRC32 mismatch")
     require(data[24:56] == digest, "Party payload does not match the complete base card")
-    require(count <= MAX_MEMBERS and len(data) == HEADER + count * MEMBER_SIZE, "Invalid payload member count/extent")
+    require(count <= MAX_MEMBERS and len(data) == header + count * MEMBER_SIZE, "Invalid payload member count/extent")
     members = []
-    for offset in range(HEADER, len(data), MEMBER_SIZE):
+    for offset in range(header, len(data), MEMBER_SIZE):
         identity, presentation, flags = struct.unpack_from("<HBB", data, offset)
         members.append(Member(identity, presentation, flags, data[offset + 4:offset + MEMBER_SIZE]))
     party = Party(tuple(active), tuple(members))
+    if version == 3:
+        require(data[74:80] == bytes(6), 'Nonzero reserved payload bytes')
+        party = Party(tuple(active), tuple(members), struct.unpack_from('<3H', data, 64),
+                      tuple(data[70:73]), data[73])
     validate_party(party)
     return party
 
@@ -222,6 +239,7 @@ def describe(card):
             "binding_matches": card.binding_matches,
             "recovered_stale_binding": not card.binding_matches,
             "directory_slots": [{"slot": slot, "active_ids": list(party.active),
+                                  "stored_ids": list(party.stored) if party.stored_known else None,
                                   "expanded_ids": [m.id for m in party.members],
                                   "active_extra_ids": [i for i in party.active if 0x100 <= i < EMPTY]}
                                  for slot, party in sorted(card.slots.items())],

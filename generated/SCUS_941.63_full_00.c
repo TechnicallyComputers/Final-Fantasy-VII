@@ -11057,7 +11057,8 @@ block_80011DBC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80011DBCu, 2u, 0)) return;
 #endif
-    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_mod_instruction(cpu, 0x80011DBCu, 0x0C0046EDu);
+#ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80011DBCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -20494,7 +20495,8 @@ block_80011DBC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80011DBCu, 2u, 0)) return;
 #endif
-    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_mod_instruction(cpu, 0x80011DBCu, 0x0C0046EDu);
+#ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80011DBCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
