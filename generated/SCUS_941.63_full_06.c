@@ -38519,6 +38519,7 @@ void func_80025668(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80025668u);
+    if (psx_mod_function_entry(cpu, 0x80025668u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80025668, Size: 116 bytes, Blocks: 3 */
 
 block_80025668:
@@ -38833,6 +38834,7 @@ void func_800256DC(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x800256DCu);
+    if (psx_mod_function_entry(cpu, 0x800256DCu)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x800256DC, Size: 124 bytes, Blocks: 3 */
 
 block_800256DC:

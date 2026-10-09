@@ -59,16 +59,19 @@ strict = true
 # hook = true. Regenerate/verify with
 #   python3 tools/sync_symbols.py --check-hooks
 # which prints this exact block on drift. Names come from the imported ff7-decomp
-# map and are status = "contextual" — unverified by us. The ff7.modhooks trace
-# feature is how you confirm one actually is what its name says.
+# map begin as status = "contextual". Promoted decoder/accessor hooks have
+# independent original-binary oracle evidence in their implementation/tests.
 mod_function_entry_funcs = [
     "0x80011C1C",  # main
     "0x80017108",  # Unzip
     "0x8001C434",  # SetupGamepad
     "0x80025040",  # SnapshotPartyLevels
+    "0x80025668",  # GetPartySlotArmorMateriaSlots (verified independent accessor)
+    "0x800256DC",  # GetPartySlotWeaponMateriaSlots (verified independent accessor)
     "0x800257CC",  # GetCharacterName
     "0x80025B10",  # SystemMenuRemovePartyGold
     "0x80025B48",  # SystemMenuAddPartyGold
+    "0x80034BB0",  # SystemLzsDecompress (verified host decoder)
 ]
 
 [runtime]
@@ -82,19 +85,22 @@ memcard_dir = "saves"
 renderer = "opengl"
 aspect_ratio = "4:3"
 
-# Widescreen is MOD-OWNED on PSX: the runtime hardcodes ws_offered = false and
-# clamps the display aspect to 4:3 after every config source, so `offer` and
-# `adaptive_view` here would do nothing. The aspect is selected by the trusted
-# activation plugin in src/ff7_mods.c, gated by the "Widescreen" feature of
-# mods/preloaded/packages/ff7.enhancements. This block carries only the
-# BEHAVIOURAL knobs the framework reads once that plugin has engaged.
+# The Enhanced Renderer mod selects the aspect and resolution. These dormant
+# settings select psxrecomp's enhanced native-wide compositor (the Tomba path),
+# rather than the original projection-squash widescreen implementation.
 [widescreen]
+native_wide = true
+adaptive_view = true
+nw_hud_corners = false
+nw_backdrop = false
+nw_phase_backdrop = false
 # FF7 has no sprite-tag helper configured, so without a gameplay detector
 # ws_game_mode() is never true and gpu_ws_present_native_43() pillarboxes
 # EVERY frame at 4:3 — the widescreen is engaged but never presented. The
-# GTE-activity detector stamps a frame as gameplay once enough vertices go
-# through RTPS/RTPT, which covers FF7's 3D scenes and the 3D character models
-# on field maps, while genuine full-2D screens (menus, save) still pillarbox.
+# GTE activity identifies 3D frames. The renderer mod additionally recognizes
+# the live FIELD.BIN image and retains authored 4:3 field composition until
+# a verified background tile/camera adapter is implemented. FMV and full-2D
+# screens retain the framework's native presentation policy.
 # Runtime-only; no regen.
 gte_game_mode = true
 

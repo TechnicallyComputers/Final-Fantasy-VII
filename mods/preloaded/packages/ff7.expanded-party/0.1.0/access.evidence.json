@@ -1,0 +1,78 @@
+{
+  "status": "developer-query-ABI-verified-not-playable",
+  "schema": "ff7 party accessor evidence v1",
+  "program_sha1": "a95e8b16b97071203b953bb81a33980509262f30",
+  "guards": {
+    "name": {
+      "address": "0x800257CC",
+      "words": 13,
+      "bytes": 52,
+      "sha256": "e9ee4bfa8a04c1116536715bec1c70afa23255ec4eae618b7c79a98b7852af1c"
+    },
+    "armor": {
+      "address": "0x80025668",
+      "words": 29,
+      "bytes": 116,
+      "sha256": "3d45bfdb837eb7df002029ca8da08b09777ac13a92c8a632bf20325aaa4828d9"
+    },
+    "weapon": {
+      "address": "0x800256DC",
+      "words": 31,
+      "bytes": 124,
+      "sha256": "76e32f9cc2307bef2d64027e16df485762e185b218c62b01461ac7ed59c014e1"
+    }
+  },
+  "cases": 256,
+  "original_mips_calls": 768,
+  "all_32_gprs_and_link_return_match": true,
+  "equipment_ids_exercised": {
+    "armor": 32,
+    "weapon": 128
+  },
+  "original_sephiroth_equipment": {
+    "weapon_id": 127,
+    "armor_id": 6,
+    "weapon_equip_mask": "0x400",
+    "weapon_slot_bytes": [
+      2,
+      3,
+      2,
+      3,
+      2,
+      3,
+      0,
+      0
+    ],
+    "armor_slot_bytes": [
+      6,
+      7,
+      6,
+      7,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "format_reference": "https://wiki.ffrtt.ru/index.php/FF7/Weapon_data",
+  "guest_storage": "Framework psx_mod_alloc_guest_memory, Expansion1; no guessed main-RAM address",
+  "query_abi": {
+    "native": "Every a0<0x100 declines with all GPRs unchanged; stock function executes.",
+    "extended_input": "a0=published extra identity0x100..0xFFFE; equipment functions extend original party-slot ABI.",
+    "name_success": "v0=extra_record+0x10; at=0x800491D0+identity*4; v1=0x8009C748; a0=identity*4",
+    "armor_success": "v0=0x80071E4D+armorID*36; at=extra_record+0x1D; v1=0x80071E4D; a0 unchanged",
+    "weapon_success": "v0=0x800738BC+weaponID*44; at=extra_record+0x1C; v1=0x800738BC; a0 unchanged",
+    "extended_error": "Consumes unsupported query with v0=0; all other GPRs unchanged.",
+    "return": "All consumed calls return PC=ra through runtime filter dispatch; remaining GPRs unchanged."
+  },
+  "blockers": [
+    "PHS init/enumeration cap9 at0x801D0C5C/0x801D0DFC, byte reserve grid0x801D3424, portrait alias use0x801D18E4 need separate host identity mapping.",
+    "EQIPMENU cached record base store0x801D6D0C and hardcoded reads0x801D0740/0x801D0778 bypass these query functions; not redirected.",
+    "EQIPMENU guestID10 branch0x801D7770 and MGICMENU level read0x801D1BD4/ID10 MP branch0x801D1C6C require per-context adapters.",
+    "Battle name cache0x800DD654..0x800DD65C and record read0x800E350C bypass GetCharacterName; AI/control/stats/rewards need independent actor binding.",
+    "Field/story byte party IDs, forced-party transitions and actor models have no validated extended-identity adapter yet.",
+    "Equipment compatibility, actual materia transfers, native fallback saves and gameplay ownership/rewind synchronization remain unfinished."
+  ],
+  "oracle_fixture": "Synthetic lookup entries only in isolated Unicorn VM; runtime changes no native alias or party table.",
+  "remaining": "PHS/menu/battle callers still require explicit conversion to 16-bit identities and complete read/write adapters."
+}

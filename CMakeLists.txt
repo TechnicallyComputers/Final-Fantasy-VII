@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(Final_Fantasy_7 LANGUAGES C CXX)
+include(CTest)
 
 set(PSXRECOMP_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/psxrecomp" CACHE PATH
     "Path to psxrecomp")
@@ -18,6 +19,9 @@ set(PSX_SETUP_WIZARD ON CACHE BOOL
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")
 
 psxrecomp_add_game_runtime(psx-runtime
+    # Compile precision propagation into the primary binary. The renderer mod
+    # decides whether it runs; disabling the mod retains the original math.
+    PGXP
     # ENABLE_NETPLAY_IF_PRESENT
     # NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
     ENABLE_SETUP_WIZARD
@@ -36,10 +40,49 @@ psxrecomp_add_game_runtime(psx-runtime
     GEN_FULL_GLOB "generated/SCUS_941.63_full_*.c"
     CODEGEN_SETUP_SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
-        # Game-owned trusted mod plugins (widescreen). Registered by a
-        # constructor, selected by mods/preloaded/packages/ff7.enhancements.
+        # Trusted implementations selected independently by the mod catalog.
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_mods.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_lzs.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_loading.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_renderer.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_save.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_access.c"
 )
+target_compile_definitions(psx-runtime PRIVATE FF7_PARTY_WITH_RUNTIME=1)
+if(TARGET psx-runtime-pgxp)
+    target_compile_definitions(psx-runtime-pgxp PRIVATE FF7_PARTY_WITH_RUNTIME=1)
+endif()
+
+if(BUILD_TESTING)
+    add_executable(ff7-party-tests tests/test_ff7_party.c src/ff7_party.c)
+    target_include_directories(ff7-party-tests PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+    add_test(NAME ff7_party COMMAND ff7-party-tests)
+
+    add_executable(ff7-party-access-tests tests/test_ff7_party_access.c src/ff7_party.c)
+    target_include_directories(ff7-party-access-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_access_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+        "${PSXRECOMP_ROOT}/runtime/include")
+    add_test(NAME ff7_party_access COMMAND ff7-party-access-tests)
+
+    add_executable(ff7-party-save-tests tests/test_ff7_party_save.c
+        src/ff7_party.c src/ff7_party_save.c)
+    target_include_directories(ff7-party-save-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_save_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src")
+    add_test(NAME ff7_party_save COMMAND ff7-party-save-tests)
+
+    add_executable(ff7-party-save-integration-tests
+        tests/test_ff7_party_save_integration.c src/ff7_party.c
+        src/ff7_party_save.c "${PSXRECOMP_ROOT}/runtime/src/memcard.c")
+    target_include_directories(ff7-party-save-integration-tests PRIVATE
+        "${PSXRECOMP_ROOT}/runtime/include" "${CMAKE_CURRENT_SOURCE_DIR}/src")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/ff7_party_save_scratch")
+    add_test(NAME ff7_party_save_integration
+        COMMAND ff7-party-save-integration-tests
+        WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/ff7_party_save_scratch")
+endif()
 
 # Stage runtime configs next to the exe for direct build/ launches. Only copy
 # files that exist — never fail POST_BUILD when game_options.toml is absent.

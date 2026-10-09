@@ -81,6 +81,97 @@ by us**. The default-off *Hook Trace (developer)* feature in the Mods list is
 how you promote one: arm it, do the thing the name claims to describe, and see
 whether the call fires.
 
+## Enhancement mods
+
+Enhancements are independently selectable packages in the Mods screen and
+default to off. The original widescreen feature has been retired in favor of
+**Enhanced Renderer** (`ff7.enhancement.renderer`). It uses psxrecomp's hardware
+native-wide renderer shared with Tomba, rather than changing the guest's
+projection. Options include adaptive window aspect, fixed 16:9/21:9/32:9,
+1080p (default) through 4K, PGXP geometry/texture precision, and stable texture
+minification. The primary executable includes PGXP propagation; activating the
+mod requests it without changing guest backface decisions or saved settings.
+Resolution is an integer raster scale (1080p requests 5x at 240 lines), subject
+to the backend and the player's dynamic-resolution policy.
+
+This renderer package is experimental. Prerendered fields retain 4:3 until a
+verified background tile/camera adapter is available. FMVs and full-screen 2D
+use the framework's native presentation policy. Battle/world geometry outside
+the original frame still needs coverage and culling validation.
+
+**Fast Loading** (`ff7.enhancement.loading`) adds a guarded host implementation
+of the original LZS decompressor and accelerates host pacing during CD loads.
+It checks the complete routine's instruction hash, decodes into scratch space,
+and publishes RAM through the runtime's executable-write tracking. Unsupported
+input retains the original code. The oracle compares output and all 32 GPRs
+against the original MIPS routine on 600 generated streams, two retail assets,
+and seven streaming-overlap/segment-alias cases, including the observed startup
+call. Overlapping guest input reads observe previous output stores, matching
+the original routine even when it overwrites unread compressed bytes.
+Native CD timing is retained: accelerated sector bursts produced incomplete
+actors in the first battle. Gzip overlays and other loaders still execute their original
+code; eliminating all loading is an ongoing task.
+
+**Expanded Party Research** (`ff7.expanded-party`) is developer-only groundwork,
+not a playable Sephiroth mod. `src/ff7_party.c` provides independent character
+records and IDs, an always-unlocked Sephiroth initializer from the owner's
+original kernel template, and a versioned extension appended after a standard
+128 KiB memory card. The developer-only **Extended card persistence** feature
+(`party-save`) connects the codec to the framework's card transport: it loads
+and refreshes existing valid metadata, while raw cards remain raw. It does not
+create characters or populate metadata from gameplay. Native base bytes are
+unchanged by this adapter; all extra state is bound to the whole card digest.
+Tests cover coexistence with Cloud/Vincent, storage isolation, corrupt/stale
+metadata, transactional decoding and adapter reload/flush behavior.
+
+Export a standard card with an explicit new output path:
+
+```sh
+python tools/ff7_save.py export-standard "saves/extended.mcd" --output "saves/standard-copy.mcd"
+```
+
+Export preserves the standard base byte for byte and omits extra characters;
+it never interprets Sephiroth as Vincent or overwrites the source. See
+[the save-format writeup](docs/SEPHIROTH_SAVE_FORMAT.md) for layout, validation,
+recovery and native fallback-party requirements. Gameplay slot-save/load hooks,
+fallback roster projection, rewind synchronization, PHS selection, menu/battle
+accessors, actor-scoped AI control and complete animations remain unfinished.
+
+The developer-only **Independent record queries** feature (`party-access`)
+provides guarded name and equipment materia-slot access for explicitly published
+16-bit extra identities. It allocates separate Expansion 1 records, leaves
+ordinary callers and flashback ID 10 stock, and invalidates publication after
+savestate restore. It does not yet convert the game's PHS/menu/battle callers.
+The calling convention and publication/snapshot API are documented in
+`src/ff7_party_access.h`; exact guards and remaining sites are recorded in
+`access.evidence.json` beside the package. An original-MIPS oracle checks all
+32 registers and the return address behavior of the three query functions.
+
+Read-only evidence tools inspect all three original discs without downloading
+decompilation source or distributing assets:
+
+```sh
+python tools/inspect_ff7_party.py "disc/Final Fantasy VII (USA) (Disc 1).cue"
+python tools/inspect_ff7_animations.py "disc/Final Fantasy VII (USA) (Disc 1).cue"
+python -m unittest discover -s tests -p 'test_ff7_animations.py'
+ctest --test-dir build-release -R ff7_party --output-on-failure
+```
+
+Set `FF7_TEST_CUE` to an owned disc's cue path to include asset-based animation
+tests. `inspect_ff7_animations.py --prepare-fallbacks analysis/<directory>`
+can prepare local review candidates using Sephiroth's existing motions. They
+are never installed automatically and still need battle playback and loader
+allocation validation. Instruction evidence lives beside the research package
+in `party.evidence.json` and `animation.evidence.json`.
+
+To reproduce the LZS oracle, install Unicorn and build `src/ff7_lzs.c` as a
+shared library, then run:
+
+```sh
+python tools/test_lzs_against_retail.py --library <shared-library> \
+  --disc "disc/Final Fantasy VII (USA) (Disc 1).cue"
+```
+
 ## Legal
 
 You must own the original game. Disc images under `disc/` are gitignored and

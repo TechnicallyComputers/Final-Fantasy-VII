@@ -63,8 +63,8 @@ pc = 0x800257CC
 name = "GetCharacterName"
 emit = false
 hook = true
-status = "contextual"
-note = "character name lookup; fires from menus [ff7-decomp 24a46a990dcc]"
+status = "confirmed"
+note = "Original 13-word leaf independently executed in Unicorn, every GPR and return PC verified. Native ID10 aliases Vincent storage. See access.evidence.json."
 
 [[func]]
 pc = 0x80025B10
@@ -81,6 +81,31 @@ emit = false
 hook = true
 status = "contextual"
 note = "gil gain; easy to trigger deliberately [ff7-decomp 24a46a990dcc]"
+
+[[func]]
+pc = 0x80034BB0
+name = "SystemLzsDecompress"
+emit = false
+hook = true
+status = "confirmed"
+note = "Original NTSC-U MIPS independently executed in Unicorn: 600 streams match host decoder output and every GPR; code word hash 176b8b96."
+
+[[func]]
+pc = 0x80025668
+name = "GetPartySlotArmorMateriaSlots"
+emit = false
+hook = true
+status = "confirmed"
+note = "Original 29-word leaf independently executed in Unicorn; stock a0 is party-slot0..2, result armor-table+36*armorID. Full-body guard in ff7_party_access.c."
+
+[[func]]
+pc = 0x800256DC
+name = "GetPartySlotWeaponMateriaSlots"
+emit = false
+hook = true
+status = "confirmed"
+note = "Original 31-word leaf independently executed in Unicorn; stock a0 is party-slot0..2, result weapon-table+44*weaponID. Full-body guard in ff7_party_access.c."
+
 
 # >>> BEGIN IMPORTED (ff7-decomp) — regenerated, do not hand-edit
 
@@ -117,20 +142,6 @@ note = "ff7-decomp 24a46a990dcc (main)"
 [[func]]
 pc = 0x8001F1BC
 name = "SystemMenuDrawDialog"
-emit = false
-status = "contextual"
-note = "ff7-decomp 24a46a990dcc (main)"
-
-[[func]]
-pc = 0x80025668
-name = "GetPartySlotArmorMateriaSlots"
-emit = false
-status = "contextual"
-note = "ff7-decomp 24a46a990dcc (main)"
-
-[[func]]
-pc = 0x800256DC
-name = "GetPartySlotWeaponMateriaSlots"
 emit = false
 status = "contextual"
 note = "ff7-decomp 24a46a990dcc (main)"
@@ -418,13 +429,6 @@ note = "ff7-decomp 24a46a990dcc (main)"
 [[func]]
 pc = 0x80034B44
 name = "SystemCdromReadChain"
-emit = false
-status = "contextual"
-note = "ff7-decomp 24a46a990dcc (main)"
-
-[[func]]
-pc = 0x80034BB0
-name = "SystemLzsDecompress"
 emit = false
 status = "contextual"
 note = "ff7-decomp 24a46a990dcc (main)"

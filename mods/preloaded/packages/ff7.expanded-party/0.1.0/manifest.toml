@@ -1,0 +1,46 @@
+format_version = 6
+id = "ff7.expanded-party"
+version = "0.1.0"
+name = "Final Fantasy VII Expanded Party Research"
+author = "Final Fantasy VII Recompiled project"
+description = "Developer tools, guarded independent-record queries and extended-card persistence plumbing. Playable Sephiroth, expanded PHS and complete equipment, materia and animation integration remain unfinished."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "party-audit"
+name = "Character storage audit (developer)"
+channel = "developer"
+description = "Read-only logging of character-name lookups and native record aliases, capped at 24 observations. Verifies executable bytes before reading. Does not unlock characters or change saves."
+group = "Developer"
+default_enabled = false
+
+[[plugin]]
+feature = "party-audit"
+id = "ff7.party-audit"
+
+[[feature]]
+id = "party-save"
+name = "Extended card persistence (developer)"
+channel = "developer"
+description = "Loads and refreshes existing FF7MCEXT party metadata through the card transport. Raw cards stay unchanged. Does not create characters, populate game save slots, or implement native fallback parties, gameplay save/load hooks or rewind support. Invalid metadata blocks refresh."
+group = "Developer"
+default_enabled = false
+
+[[plugin]]
+feature = "party-save"
+id = "ff7.party-save"
+
+[[feature]]
+id = "party-access"
+name = "Independent record queries (developer)"
+channel = "developer"
+description = "Guarded developer ABI for 16-bit extra-character name and equipment materia-slot queries using separate enhancement memory. Requires explicit host roster publication. Ordinary native calls and flashback ID10 remain stock; PHS/menu/battle caller conversion is not implemented."
+group = "Developer"
+default_enabled = false
+
+[[plugin]]
+feature = "party-access"
+id = "ff7.party-access"

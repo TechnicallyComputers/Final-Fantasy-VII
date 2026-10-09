@@ -344,7 +344,7 @@ def main() -> int:
         return 0
 
     for p, t in outputs:
-        p.write_text(t, encoding="utf-8")
+        p.write_text(t, encoding="utf-8", newline="\n")
     print(f"wrote {args.header} ({len(funcs)} funcs)")
     if len(outputs) > 1:
         n_ovl = len({f['overlay'] for f in ovl_funcs})
