@@ -284,10 +284,13 @@
       ]
     }
   ],
-  "runtime_status": "Integrated AA930 pre-descriptor reload seam. Fresh extended-save field load and normal MD1STIN-to-MD1_1 transition pass live with native actors intact. Live battle return and extra-leader walking remain acceptance.",
+  "runtime_status": "Integrated AA930 pre-descriptor reload seam. Fresh extended-save field load, normal MD1STIN-to-MD1_1 transition and live battle return after Crescent Arc victory pass with native actors intact; pristine reloaded/models counters advance with no rejection. First release retains the native story-selected avatar; extra-leader walking/camera is deferred. Representative existing story transitions remain acceptance; see docs/RELEASE_BURNDOWN.md.",
   "pending": [
-    "Live field appearance, walk/run/follower camera behavior, story scheduling and transitions",
+    "Representative existing story scheduling and transitions with the original story-selected avatar",
     "Application save-state/rewind validation (isolated guest arena snapshot passes)"
+  ],
+  "deferred": [
+    "Added-character field leader walk/run/follower camera and cutscene control; see docs/FIELD_LEADER_ENHANCEMENT.md"
   ],
   "field_name_validation": "All787 FIELD table IDs independently match owner ISO BSX names/extents on all3 discs; script header labels deliberately ignored because some are truncated",
   "battle_return_reload": {

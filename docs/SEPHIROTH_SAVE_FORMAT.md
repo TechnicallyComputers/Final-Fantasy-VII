@@ -15,8 +15,16 @@ offered in the catalog because the gameplay adapter must own card persistence.
 The exporter currently runs as a standalone command. A live BIOS save, exact
 standard-card export and extended-card title-to-field reload have passed. Native
 checksum and preview tests, synthetic card lifecycle tests and independent limit
-progression checks also pass. Live battle-limit acceptance, field-leader walking
-and broader story coverage remain required before calling the character playable.
+progression checks also pass. Live single/all-target limits complete and return
+through native victory into the field. First release is scoped to Masamune and
+Crescent Arc, retaining the original story-selected field and world-map avatars.
+Restricting the current seven-technique prototype to those two limits remains
+implementation work. Learning/unlock, saved progression, interrupted-write/rewind
+behavior and representative existing story transitions remain acceptance checks.
+Higher levels, final mastery and added-character field leadership are deferred.
+Standalone save export/import is sufficient; recomp-ui integration is not required.
+See the [first-release burndown](RELEASE_BURNDOWN.md) for the current acceptance
+plan and the [field-leader note](FIELD_LEADER_ENHANCEMENT.md) for the optional patch.
 
 ## Additional-character architecture
 
@@ -55,12 +63,26 @@ is counted; future larger rosters need paging and portrait banks. These UI bound
 are separate from save/storage capacity and must be addressed before enabling
 additional characters beyond what those screens can show.
 
-Limits are profile-selected too. Policy zero retains the native rules; Sephiroth
-uses policy one with seven authored techniques across four levels. His reserved
-attack IDs 96 through 102 use existing strike/sweep action scripts on his own
-body and weapon rig. A future character needs an explicitly registered policy,
+Limits are profile-selected too. Policy zero retains the native rules; the current
+Sephiroth prototype uses policy one with seven techniques across four levels.
+First release will expose only the two level-1 techniques, Masamune and Crescent
+Arc. The other five are future content, and fine balance tuning is deferred.
+The prototype's reserved attack IDs 96 through 102 use existing strike/sweep
+action scripts on his own body and weapon rig. A future character needs an
+explicitly registered policy,
 verified unused attack entries and suitable action/asset adapters. Adding a
 descriptor alone does not make an arbitrary model or ability compatible.
+
+Future limits use `FF7LimitMove` and `FF7LimitPolicy` in
+`src/ff7_party_limit.h`, policy data in `src/ff7_party_limit_policy.c`, and the
+profile's `limit_policy`. Adding a technique requires a unique learned bit and
+verified unused attack ID, encoded name/description, targeting and power, plus
+compatible body/weapon choreography. The guarded menu, learning, battle dispatch
+and attack-cache adapters in `src/ff7_party_limit.c` must cover that policy.
+The current seven-move arrays, IDs 96-102 and fixed guest storage are implementation
+bounds; extending them requires updating those bounds and validating the new path.
+Progression remains in the independent record fields below. A new technique does
+not itself require a new save envelope version; changing the saved layout does.
 
 ## Saved limit progression
 
@@ -71,7 +93,7 @@ not to the containing 136-byte envelope entry.
 
 | Offset | Bytes | Meaning |
 | --- | ---: | --- |
-| `0x0E` | 1 | Selected limit level, 1 through 4 |
+| `0x0E` | 1 | Selected limit level; prototype supports 1 through 4, first release targets level 1 |
 | `0x0F` | 1 | Limit gauge |
 | `0x22` | 2 | Learned-technique bit mask |
 | `0x24` | 2 | Enemy kills |
@@ -80,7 +102,10 @@ not to the containing 136-byte envelope entry.
 | `0x2A` | 2 | Level 3 limit uses |
 
 New Sephiroth records start at level 1 with an empty gauge, learned mask 1 and
-zero counters. His move bits are 0, 1, 3, 4, 6, 7 and 9. The second moves at
+zero counters. Masamune and Crescent Arc use bits 0 and 1; the current prototype
+learns Crescent Arc after eight level-1 limit uses. The remaining thresholds
+describe future content, not first-release acceptance. The prototype's move bits
+are 0, 1, 3, 4, 6, 7 and 9. The second moves at
 levels 1, 2 and 3 require 8, 7 and 6 uses respectively; the first moves at
 levels 2 and 3 require 80 and 160 kills. The final move requires the previous
 six techniques and 320 kills. These are provisional mod balance values.
@@ -101,8 +126,10 @@ isolated checks for the 11 fields that already use 16 models, plus ordinary and
 delayed-initialization maps. Verified field IDs select complete BSX filenames
 instead of relying on truncated names in DAT headers. Model, script and workspace
 capacity checks reject unsupported combinations before publication. These runtime
-bounds are separate from the saved roster's 16-extra capacity. Live controls,
-transitions and story testing remain required before enabling every map.
+bounds are separate from the saved roster's 16-extra capacity. Representative
+transitions and existing story transactions remain first-release checks.
+Controlling an added character as the field leader is an optional future feature;
+its profile-selected prototype does not change the save envelope layout.
 
 ## Supported files and original card structure
 

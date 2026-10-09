@@ -83,6 +83,11 @@ whether the call fires.
 
 ## Enhancement mods
 
+The [first-release burndown](docs/RELEASE_BURNDOWN.md) records completed checks,
+remaining work and the focused validation plan. Gameplay implementation is paused;
+the latest authorization covers documentation and tracker updates only.
+Loading and visuals take priority; Sephiroth integration follows them.
+
 Enhancements are independently selectable packages in the Mods screen and
 default to off. The original widescreen feature has been retired in favor of
 **Enhanced Renderer** (`ff7.enhancement.renderer`). It uses psxrecomp's hardware
@@ -134,13 +139,21 @@ skeleton and motions from owned-disc field assets without replacing existing
 NPCs. A separate 32-model state arena preserves native entity identities and
 delayed actor initialization. Original-code checks on all three discs cover the
 11 fields that already use 16 models, plus ordinary and delayed-initialization
-fields. Live controls, map transitions and story coverage remain acceptance work.
+fields. Live native battle return and a normal field transition pass. First release
+keeps the original story-selected field and world-map avatars. Added-leader
+walking/camera is a [deferred enhancement](docs/FIELD_LEADER_ENHANCEMENT.md).
+Representative existing story transitions remain acceptance work.
 Procedural near-death, death and defend motions use Sephiroth's own paired body
 and weapon poses. Live battles verify Defend, low-HP posture, death and Phoenix
-Down revival; floor contact, grip and clipping still need artist review. Seven
-authored limits use his existing strike/sweep choreography, with independent
-learning, gauge and selected level. Original-code checks pass on all three discs;
-live battle-limit acceptance and broader story coverage remain unfinished.
+Down revival; floor contact, grip and clipping still need visual review. The
+first-release scope is two limits, Masamune and Crescent Arc, using his existing
+strike/sweep choreography with independent learning and gauge. Live commands
+complete single/all-target attacks, consume gauge, update own counters and reach
+native victory. The current prototype still defines seven techniques across four
+levels; restricting release availability to the two level-1 techniques remains
+implementation work. The other five techniques, levels 2-4 and final mastery are
+deferred. Learning/unlock, saved progression and representative story compatibility
+remain first-release checks; fine balance tuning can follow player feedback.
 Keep the feature disabled for ordinary play.
 
 Gameplay saves project extra party handles to a native fallback, preserve native
@@ -164,7 +177,9 @@ it never interprets Sephiroth as Vincent or overwrites the source. See
 [the save-format writeup](docs/SEPHIROTH_SAVE_FORMAT.md) for layout, validation,
 recovery and native fallback-party policy. Gear and materia held by extra
 characters are omitted with those records; exporting does not duplicate them
-into the native inventory. The exporter currently runs as a standalone tool.
+into the native inventory. The exporter runs as a standalone tool; standard raw
+cards load through the existing card path. Standalone save tools satisfy the
+release requirement; no recomp-ui export/import integration is required.
 
 The gameplay feature owns card persistence. The earlier `party-save` adapter
 remains a test fixture and is no longer offered in the mod catalog, so it cannot

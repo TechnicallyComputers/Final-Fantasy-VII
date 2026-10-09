@@ -60,13 +60,19 @@
     }
   ],
   "remaining_acceptance": [
-    "Live battle target selection and single/all-target limit completion",
-    "Live final mastery notification and native save/load of chosen limit level",
-    "Provisional balance and artist review; two existing choreographies serve seven techniques"
+    "Restrict first-release availability to Masamune and Crescent Arc at level1; current prototype still defines seven techniques",
+    "Verify Crescent Arc learning/unlock and native save/load of two-move progression and gauge",
+    "Review the two existing own-rig release choreographies; see docs/RELEASE_BURNDOWN.md"
+  ],
+  "deferred_acceptance": [
+    "Five additional prototype techniques, selected levels2..4 and final mastery",
+    "Additional authored choreography/effects and fine balance tuning"
   ],
   "live": {
     "status_menu": "Own EXP320470, next16402, equipment and limit gauge observed.",
     "limit_menu": "Masamune name and Powerful sword strike description observed in original LIMTMENU.",
-    "limitations": "Live limit battle execution, mastery notification and chosen-level reload pending; seven moves share two own-rig choreographies."
+    "battle": "Live original first battle: Masamune single target completes and leaves one enemy; rewind restores gauge/state; Crescent Arc confirms multiple targets, defeats both enemies and reaches native victory. Own gauge clears and use/kill counters update; native EXP+32/AP+4 continue.",
+    "save_reload": "Actual native save and fresh title-to-field reload preserve exact own chosenlevel1, gauge255 and diagnostic learnedmask02DB; no mastery is granted by production initialization.",
+    "limitations": "Current source still defines seven moves sharing two own-rig choreographies; first release is scoped to Masamune/Crescent Arc only and the availability change is pending. Higher selected levels and final mastery are future enhancement checks."
   }
 }
