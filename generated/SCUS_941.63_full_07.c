@@ -6884,6 +6884,7 @@ block_80026170:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80026180u);
 #endif
+psx_mod_instruction(cpu, 0x80026180u, 0x8C440000u);
     { uint32_t _pgxa = cpu->gpr[2]; cpu->gpr[4] = psx_cyc_load_word(cpu, cpu->gpr[2], 4, 0x4u);
     PGXP_LOAD(0x8C440000u, _pgxa, cpu->gpr[4]); }  /* 0x80026180: 0x8C440000 */
 #ifdef PSX_COSIM

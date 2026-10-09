@@ -7,10 +7,12 @@
       "status": "passed",
       "disc": "Final Fantasy VII (USA) (Disc 1).cue",
       "cases": [
+        "original result initializer and TIM parser: proxy11 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
         "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
         "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
         "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
         "original portrait copy: proxy11, untouched native destination slot2",
+        "original result initializer and TIM parser: proxy26 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
         "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
         "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
         "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
@@ -23,10 +25,12 @@
       "status": "passed",
       "disc": "Final Fantasy VII (USA) (Disc 2).cue",
       "cases": [
+        "original result initializer and TIM parser: proxy11 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
         "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
         "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
         "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
         "original portrait copy: proxy11, untouched native destination slot2",
+        "original result initializer and TIM parser: proxy26 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
         "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
         "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
         "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
@@ -39,10 +43,12 @@
       "status": "passed",
       "disc": "Final Fantasy VII (USA) (Disc 3).cue",
       "cases": [
+        "original result initializer and TIM parser: proxy11 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
         "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
         "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
         "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
         "original portrait copy: proxy11, untouched native destination slot2",
+        "original result initializer and TIM parser: proxy26 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
         "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
         "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
         "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
@@ -51,5 +57,10 @@
       "limits": "Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted."
     }
   ],
-  "limits": "Original-MIPS execution and isolated C tests; live gameplay/card/story acceptance is documented separately. No game assets or saves are distributed."
+  "live": {
+    "checkpoint": "5a4d873",
+    "exp_level_progress": "Both Cloud and independent Sephiroth rows observed in live result screen",
+    "portrait": "Wrong Chocobo portrait exposed original260DC direct file-table path; added26180 extent route is original-MIPS validated, final live visual acceptance pending"
+  },
+  "limitations": "Drawing/GPU and BIOS reads isolated in oracles. Original TIM parser/upload inputs execute; full story/save acceptance separate."
 }

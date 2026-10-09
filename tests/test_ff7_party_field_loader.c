@@ -6,9 +6,10 @@
 static uint8_t ram_bytes[0x200000],expansion_bytes[0x20000],gpu_bytes[0x600000];
 static unsigned guest_used,gpu_used,rejects,registered,file_count;
 static FF7PartyProfile profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",1,"FIELD/NIVL",3};
-static struct{uint32_t pc;void(*fn)(CPUState*,uint32_t);}callbacks[64];
+static struct{uint32_t pc;void(*fn)(CPUState*,uint32_t);}callbacks[512];
 static struct{char path[80];const void* data;uint32_t size,lba;}files[20];
 void register_ff7_party_field(void);
+void register_ff7_party_field_state(void);
 static uint8_t* pointer(uint32_t p){p&=0x1fffffffu;
     if(p<sizeof ram_bytes)return ram_bytes+p;
     if(p>=0x1f000000 && p-0x1f000000<sizeof expansion_bytes)return expansion_bytes+p-0x1f000000;
@@ -22,7 +23,7 @@ uint32_t psx_mod_alloc_guest_memory(uint32_t n,uint32_t a){guest_used=(guest_use
 uint32_t psx_mod_alloc_gpu_dma_memory(uint32_t n,uint32_t a){gpu_used=(gpu_used+a-1)&~(a-1);CHECK(gpu_used+n<=sizeof gpu_bytes);uint32_t p=0x80800000+gpu_used;gpu_used+=n;return p;}
 void psx_mod_counter_add(const char* s,uint32_t n){CHECK(n==1);if(strstr(s,"reject"))++rejects;}
 int psx_mod_register_instruction_plugin(const char* id,uint32_t pc,uint32_t word,void(*fn)(CPUState*,uint32_t)){
-    (void)word;CHECK(!strcmp(id,"ff7.party-gameplay")&&registered<64);callbacks[registered].pc=pc;callbacks[registered++].fn=fn;return 1;
+    (void)word;CHECK(!strcmp(id,"ff7.party-gameplay")&&registered<512);callbacks[registered].pc=pc;callbacks[registered++].fn=fn;return 1;
 }
 int psx_mod_read_disc_file(const char* p,void* out,uint32_t cap,uint32_t* size){
     for(unsigned i=0;i<file_count;++i)if(!strcmp(p,files[i].path)){
@@ -48,14 +49,14 @@ unsigned ff7_test_loader_rejects(void){return rejects;}
 void ff7_test_loader_file(const char* p,const void* data,uint32_t n,uint32_t lba){CHECK(file_count<20&&strlen(p)<80);strcpy(files[file_count].path,p);files[file_count].data=data;files[file_count].size=n;files[file_count++].lba=lba;}
 void ff7_test_loader_reset(void){
     memset(ram_bytes,0,sizeof ram_bytes);memset(expansion_bytes,0,sizeof expansion_bytes);memset(gpu_bytes,0,sizeof gpu_bytes);
-    guest_used=gpu_used=rejects=registered=file_count=0;register_ff7_party_field();register_ff7_party_field_loader();
+    guest_used=gpu_used=rejects=registered=file_count=0;register_ff7_party_field();register_ff7_party_field_loader();register_ff7_party_field_state();
     CHECK(ff7_party_field_init());CHECK(ff7_party_field_loader_init());
 }
 void ff7_test_loader_hook(uint32_t pc,uint32_t* regs){CPUState cpu;memset(&cpu,0,sizeof cpu);cpu.pc=0x81234560;memcpy(cpu.gpr,regs,sizeof cpu.gpr);
     for(unsigned i=0;i<registered;++i)if(callbacks[i].pc==pc)callbacks[i].fn(&cpu,pc);
     CHECK(cpu.pc==0x81234560);memcpy(regs,cpu.gpr,sizeof cpu.gpr);
 }
-int main(void){ff7_test_loader_reset();CHECK(registered==32);CHECK(guest_used<0x20000&&gpu_used==0x500000);
+int main(void){ff7_test_loader_reset();CHECK(registered==432);CHECK(guest_used<0x20000&&gpu_used==0x500000);
     uint32_t r[32]={0};ff7_test_loader_hook(0x800ba534,r);CHECK(rejects==1);
     puts("field loader allocation and guard rejection passed");return 0;
 }

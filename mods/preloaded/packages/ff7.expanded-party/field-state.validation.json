@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "status": "passed-integrated-isolated",
+  "oracles": [
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "status": "passed",
+      "cases": [
+        "All398 original ADDIU base instructions produce independent field-state addresses",
+        "Whole original BA7C4 initializes32 records identically in reference and enhancement arrays; native16-record storage untouched",
+        "Whole original resident119E4 return-location snapshot reads relocated model0/15/16/31 coordinates,triangle and direction",
+        "Whole original CHAR initializes16 appended entities without consuming native counter; subsequent delayed native CHAR still gets original model5",
+        "Actual SEMKIN_3 CHAR operands plus delayed g_sol_1 CHAR: all6 native state records and11 entity mappings equal the no-extra reference after extra creation"
+      ],
+      "limits": "Direct base construction scan and isolated original initializer/snapshot/CHAR oracle; Production loader and saturated-field initialization validated separately; live traversal pending"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "status": "passed",
+      "cases": [
+        "All398 original ADDIU base instructions produce independent field-state addresses",
+        "Whole original BA7C4 initializes32 records identically in reference and enhancement arrays; native16-record storage untouched",
+        "Whole original resident119E4 return-location snapshot reads relocated model0/15/16/31 coordinates,triangle and direction",
+        "Whole original CHAR initializes16 appended entities without consuming native counter; subsequent delayed native CHAR still gets original model5",
+        "Actual SEMKIN_3 CHAR operands plus delayed g_sol_1 CHAR: all6 native state records and11 entity mappings equal the no-extra reference after extra creation"
+      ],
+      "limits": "Direct base construction scan and isolated original initializer/snapshot/CHAR oracle; Production loader and saturated-field initialization validated separately; live traversal pending"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "status": "passed",
+      "cases": [
+        "All398 original ADDIU base instructions produce independent field-state addresses",
+        "Whole original BA7C4 initializes32 records identically in reference and enhancement arrays; native16-record storage untouched",
+        "Whole original resident119E4 return-location snapshot reads relocated model0/15/16/31 coordinates,triangle and direction",
+        "Whole original CHAR initializes16 appended entities without consuming native counter; subsequent delayed native CHAR still gets original model5",
+        "Actual SEMKIN_3 CHAR operands plus delayed g_sol_1 CHAR: all6 native state records and11 entity mappings equal the no-extra reference after extra creation"
+      ],
+      "limits": "Direct base construction scan and isolated original initializer/snapshot/CHAR oracle; Production loader and saturated-field initialization validated separately; live traversal pending"
+    }
+  ],
+  "integration": "Loader init/restore own state lifecycle. At BA534, publish independent state a1 and expanded script a2 only after all400 contexts and all asset capacities validate.32 total models/64 entities; native CHAR allocation counter preserved. Config/CMake synchronized; generated runtime rebuild and live traversal pending.",
+  "limits": [
+    "32 total model states and64 total script entities",
+    "Live movement/rendering/camera/story and application rewind tests pending"
+  ],
+  "production_loader_cases": {
+    "discs": 3,
+    "fields_per_disc": [
+      "MD1STIN",
+      "ASTAGE_A",
+      "BLIN1",
+      "BONEVIL2",
+      "CLSIN2_1",
+      "COLOSS",
+      "COS_BTM",
+      "JUNONR4",
+      "KURO_1",
+      "MOGU_1",
+      "TRNAD_3",
+      "UTTMPIN3",
+      "SEMKIN_3"
+    ],
+    "passed": 39,
+    "evidence": "field-loader.validation.json",
+    "command": "python tools/test_party_field_loader_against_retail.py --disc <owner.cue> --library <adapter-test.dll> --field <field-name>"
+  }
+}

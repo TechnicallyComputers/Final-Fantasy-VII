@@ -13,7 +13,8 @@ typedef struct FF7FieldAssetSource {
  * Returns output bytes, zero on failure; callers publish only complete builds.
  * BSX reserve includes the original loader's descriptor/packet scratch region.
  * Script builder appends new visible entities; existing entity numbers and
- * relative script branches stay unchanged. */
+ * relative script branches stay unchanged. Runtime insertion requires the
+ * independent CHAR counter adapter in ff7_party_field_state.c. */
 size_t ff7_field_append_script(const uint8_t* input,size_t bytes,
                               const uint8_t* guests,unsigned count,
                               uint8_t* output,size_t capacity);

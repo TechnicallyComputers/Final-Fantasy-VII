@@ -4,7 +4,7 @@
 #include "mod_plugins.h"
 #include <stddef.h>
 
-enum ResultAction {RECORD_SCAN,RESULT_ALIAS,PORTRAIT_COPY};
+enum ResultAction {RECORD_SCAN,RESULT_ALIAS,PORTRAIT_COPY,PORTRAIT_EXTENT};
 typedef struct {uint32_t pc;enum ResultAction action;unsigned reg;uint32_t words[13];} ResultSite;
 static const ResultSite s_sites[]={
 #include "ff7_party_results_sites.inc"
@@ -38,6 +38,16 @@ static void result_instruction(CPUState* cpu,uint32_t pc){
             if(extra(r[s->reg])){
                 int cell=ff7_party_menu_prepare_portrait((uint8_t)r[s->reg]);
                 if(cell>=0)r[s->reg]=(uint32_t)cell;
+            }
+            break;
+        case PORTRAIT_EXTENT:
+            if(extra(r[17])){
+                uint32_t extent=ff7_party_menu_portrait_extent((uint8_t)r[17],r[16]);
+                /* A missing profile asset cannot index past the native table.
+                 * Use the first valid native portrait as a visible fallback. */
+                r[2]=extent?extent:0x80048fe8u;r[3]=r[2]+4;
+                psx_mod_counter_add(extent?"ff7.party_results.portrait_asset":
+                                           "ff7.party_results.portrait_fallback",1);
             }
             break;
         }

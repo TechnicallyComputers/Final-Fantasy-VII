@@ -49,44 +49,245 @@
     {
       "disc": "Final Fantasy VII (USA) (Disc 1).cue",
       "status": "passed",
-      "extent_table": "Original FIELD bytes at800DA5C8; MD1STIN tuple matches owner ISO directly, never synthesized",
+      "extent_table": "Original FIELD bytes at800DA5C8; Selected field tuple matches owner ISO directly, never synthesized",
       "cases": [
         "Production owned-disc preparation publishes expanded script/model metadata and separate GPU arenas; all original DAT bytes preserved",
-        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping writes",
-        "Extent mismatch restores original workspace and leaves next field unmodified; exact instruction mismatch rejects",
+        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping or native132-byte-state writes; appended CHAR preserves native initialization counter",
+        "Extent mismatch restores original workspace; failure of a relocated-state guard leaves script, metadata and workspace unpublished; exact loader instruction mismatch rejects and retires the preceding field state",
         "Restoring guest RAM/Expansion1/GPU arena snapshot recovers prepared field and independent entity; callback preserves arbitrary incoming CPU PC"
       ],
-      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation"
+      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation",
+      "fields": [
+        {
+          "field": "MD1STIN",
+          "native_models": 10,
+          "expanded_models": 11
+        },
+        {
+          "field": "ASTAGE_A",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "BLIN1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "BONEVIL2",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "CLSIN2_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "COLOSS",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "COS_BTM",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "JUNONR4",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "KURO_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "MOGU_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "TRNAD_3",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "UTTMPIN3",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "SEMKIN_3",
+          "native_models": 6,
+          "expanded_models": 7
+        }
+      ]
     },
     {
       "disc": "Final Fantasy VII (USA) (Disc 2).cue",
       "status": "passed",
-      "extent_table": "Original FIELD bytes at800DA5C8; MD1STIN tuple matches owner ISO directly, never synthesized",
+      "extent_table": "Original FIELD bytes at800DA5C8; Selected field tuple matches owner ISO directly, never synthesized",
       "cases": [
         "Production owned-disc preparation publishes expanded script/model metadata and separate GPU arenas; all original DAT bytes preserved",
-        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping writes",
-        "Extent mismatch restores original workspace and leaves next field unmodified; exact instruction mismatch rejects",
+        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping or native132-byte-state writes; appended CHAR preserves native initialization counter",
+        "Extent mismatch restores original workspace; failure of a relocated-state guard leaves script, metadata and workspace unpublished; exact loader instruction mismatch rejects and retires the preceding field state",
         "Restoring guest RAM/Expansion1/GPU arena snapshot recovers prepared field and independent entity; callback preserves arbitrary incoming CPU PC"
       ],
-      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation"
+      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation",
+      "fields": [
+        {
+          "field": "MD1STIN",
+          "native_models": 10,
+          "expanded_models": 11
+        },
+        {
+          "field": "ASTAGE_A",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "BLIN1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "BONEVIL2",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "CLSIN2_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "COLOSS",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "COS_BTM",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "JUNONR4",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "KURO_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "MOGU_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "TRNAD_3",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "UTTMPIN3",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "SEMKIN_3",
+          "native_models": 6,
+          "expanded_models": 7
+        }
+      ]
     },
     {
       "disc": "Final Fantasy VII (USA) (Disc 3).cue",
       "status": "passed",
-      "extent_table": "Original FIELD bytes at800DA5C8; MD1STIN tuple matches owner ISO directly, never synthesized",
+      "extent_table": "Original FIELD bytes at800DA5C8; Selected field tuple matches owner ISO directly, never synthesized",
       "cases": [
         "Production owned-disc preparation publishes expanded script/model metadata and separate GPU arenas; all original DAT bytes preserved",
-        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping writes",
-        "Extent mismatch restores original workspace and leaves next field unmodified; exact instruction mismatch rejects",
+        "Original A1 CHAR, A0 PC and A2 DFANM execute for appended entity; logical proxy11 binds separate model and selects leader without native mapping or native132-byte-state writes; appended CHAR preserves native initialization counter",
+        "Extent mismatch restores original workspace; failure of a relocated-state guard leaves script, metadata and workspace unpublished; exact loader instruction mismatch rejects and retires the preceding field state",
         "Restoring guest RAM/Expansion1/GPU arena snapshot recovers prepared field and independent entity; callback preserves arbitrary incoming CPU PC"
       ],
-      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation"
+      "limitations": "Isolated actor init; full story-script scheduling, pose rendering, walking/following, field transitions and application rewind acceptance need live validation",
+      "fields": [
+        {
+          "field": "MD1STIN",
+          "native_models": 10,
+          "expanded_models": 11
+        },
+        {
+          "field": "ASTAGE_A",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "BLIN1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "BONEVIL2",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "CLSIN2_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "COLOSS",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "COS_BTM",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "JUNONR4",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "KURO_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "MOGU_1",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "TRNAD_3",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "UTTMPIN3",
+          "native_models": 16,
+          "expanded_models": 17
+        },
+        {
+          "field": "SEMKIN_3",
+          "native_models": 6,
+          "expanded_models": 7
+        }
+      ]
     }
   ],
-  "runtime_status": "Developer guarded loader linked, original signed extent table corrected and all3 original-table oracles passed; live appearance/traversal pending",
+  "runtime_status": "Developer loader source/config integration includes400 field-state seams (650 total party sites); production adapter and original-MIPS isolated oracles pass on all3 discs; runtime rebuild and live traversal remain parent acceptance work",
   "pending": [
-    "Relocate native132-byte model state array and direct references to safely exceed16 total models",
     "Live field appearance, walk/run/follower camera behavior, story scheduling and transitions",
     "Application save-state/rewind validation (isolated guest arena snapshot passes)"
-  ]
+  ],
+  "field_name_validation": "All787 FIELD table IDs independently match owner ISO BSX names/extents on all3 discs; script header labels deliberately ignored because some are truncated"
 }

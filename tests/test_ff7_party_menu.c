@@ -9,6 +9,7 @@ static uint8_t s_ram[0x200000],s_expansion[0x20000];
 static uint16_t s_vram[1024*512];
 static unsigned s_count=1,s_registered,s_observed,s_rejected,s_alloc_fail;
 static unsigned s_gpu_phase,s_gpu_x,s_gpu_y,s_gpu_w,s_gpu_h,s_gpu_pixel;
+static unsigned s_extent_fail,s_extent_size=2848;
 static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",0,NULL,0};
 static uint8_t* ptr(uint32_t address) {
     uint32_t p=address&0x1fffffffu;
@@ -23,6 +24,9 @@ void psx_mod_write_half(uint32_t a,uint16_t v){for(unsigned i=0;i<2;++i)*ptr(a+i
 void psx_mod_write_word(uint32_t a,uint32_t v){for(unsigned i=0;i<4;++i)*ptr(a+i)=(uint8_t)(v>>(8*i));}
 uint32_t psx_mod_alloc_guest_memory(uint32_t n,uint32_t align){CHECK(n==4096&&align==4);return s_alloc_fail?0:0x9f000000u;}
 int psx_mod_read_disc_file(const char* p,void* b,uint32_t c,uint32_t* n){(void)p;(void)b;(void)c;*n=0;return 0;}
+int psx_mod_disc_file_extent(const char* p,uint32_t* lba,uint32_t* size){
+    CHECK(!strcmp(p,"MENU/PCEFI.TIM"));*lba=0x12345;*size=s_extent_size;return !s_extent_fail;
+}
 void psx_mod_counter_add(const char* p,uint32_t n){CHECK(n==1);if(strstr(p,"reject"))++s_rejected;}
 int psx_mod_register_instruction_plugin(const char* p,uint32_t a,uint32_t w,void(*f)(CPUState*,uint32_t)){
     CHECK(!strcmp(p,"ff7.party-gameplay")&&a&&w&&f);++s_registered;return 1;
@@ -96,7 +100,16 @@ int main(void){
     s=find(LIST_APPEND,MENU_EQIPMENU);seed(s);r[8]=9;ff7_test_menu_hook(s->pc,r);
     CHECK(r[8]==25&&psx_mod_read_byte(s_storage+EXCHANGE+24)==26);
     s=find(PHS_SWAP,MENU_FORMMENU);seed(s);ff7_test_menu_hook(s->pc,r);CHECK(s_observed==1);
+    s_portrait_valid=1;
+    for(unsigned slot=0;slot<3;++slot){
+        uint32_t p=ff7_party_menu_portrait_extent(11,slot);
+        CHECK(p==s_storage+176+slot*8 && psx_mod_read_word(p)==0x12345 && psx_mod_read_word(p+4)==4096);
+    }
+    CHECK(!ff7_party_menu_portrait_extent(0,0) && !ff7_party_menu_portrait_extent(11,3));
+    s_extent_fail=1;CHECK(!ff7_party_menu_portrait_extent(11,0));s_extent_fail=0;
+    s_extent_size=2849;CHECK(!ff7_party_menu_portrait_extent(11,0));s_extent_size=2848;
+    s_portrait_valid=0;CHECK(!ff7_party_menu_portrait_extent(11,0));
     s_alloc_fail=1;CHECK(!ff7_party_menu_init());
-    puts("ff7_party_menu: registry offsets, guards, aliases, roster bounds, portrait backup/restore passed");
+    puts("ff7_party_menu: registry offsets, guards, roster bounds, portrait backup/restore and validated extent routing passed");
     return 0;
 }

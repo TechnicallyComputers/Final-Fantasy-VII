@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "image": "BATTLE/BATTLE.X",
+  "sha256": "94a0c251c98197a6b902068082180ce244a8b4ecd93792298816a486880a2e7b",
+  "sites": [
+    {
+      "address": 2148324440,
+      "expected": 135296,
+      "context_start": 2148324416,
+      "context_words": [
+        2948530208,
+        1006731285,
+        606148850,
+        3147809,
+        2216820736,
+        35659809,
+        135296,
+        5378081,
+        2353397760,
+        1006731285,
+        606148852,
+        3147809,
+        2217017344
+      ],
+      "register": 2
+    },
+    {
+      "address": 2148324556,
+      "expected": 135296,
+      "context_start": 2148324532,
+      "context_words": [
+        35659809,
+        1006731285,
+        606148850,
+        3147809,
+        2216820736,
+        0,
+        135296,
+        5378081,
+        2353397968,
+        134427976,
+        268672,
+        1006731285,
+        606148875
+      ],
+      "register": 2
+    }
+  ],
+  "functions": [
+    {
+      "start": 2148154700,
+      "end_exclusive": 2148155032,
+      "sha256": "2aa439b3ad28fce6afcd74c5be4c9b021b6c0fbaafe2a8e30e3b217c359d5ad9"
+    },
+    {
+      "start": 2148324352,
+      "end_exclusive": 2148324696,
+      "sha256": "37d9a44857f912638a57d7e95ab3bb2161b88f5f5477fad2f859b4a81cebd3a6"
+    },
+    {
+      "start": 2148349804,
+      "end_exclusive": 2148350356,
+      "sha256": "007fa43e29b8815afb0d36fcd877b03c9243b6adcba101a905b7619270e713db"
+    }
+  ],
+  "resident_rotation": {
+    "start": 2147729292,
+    "end_exclusive": 2147729944,
+    "sha256": "132b50d6ba8eb94b594505f31eb6403f53e53878dd63ab8a51fc3682b2830746",
+    "convention": "Rx*Ry*Rz; root transform pre-multiplies a world Z roll and extracts this order for both independent body and weapon roots"
+  },
+  "defend": {
+    "command": 19,
+    "flags_base": 2148500452,
+    "actor_stride": 104,
+    "mask": 32,
+    "proof": "Original queue insertion clears bit0x20 for ordinary commands and sets it for command0x13; original physical-damage path800ADB00 tests same flag and halves damage. Command default800A004C selects idle action0, not a distinct defend script."
+  },
+  "contract": [
+    "Two seams are two instructions after LH v0, so native load delay has completed",
+    "Require independently prepared extra slot,matching body/table pointers, motion0 and idle action0; use actual original defend flag",
+    "Select generated motion11 in v0 at body and weapon pointer lookups; do not change logical action or original flashback",
+    "Reset both guest bitstream cursors together when selecting or leaving guard stance; all generated motion storage and role control rewind in guest RAM"
+  ],
+  "visual_limits": [
+    "Procedural root roll and paired own-pose synthesis require live visual review for floor contact,weapon grip and cloth",
+    "No authored kneeling,ragdoll,cloth simulation or custom limit effects claimed"
+  ]
+}

@@ -24,6 +24,8 @@ def main():
     if (EVIDENCE/'field-hooks.evidence.json').exists(): paths.append(EVIDENCE/'field-hooks.evidence.json')
     if (EVIDENCE/'results.evidence.json').exists(): paths.append(EVIDENCE/'results.evidence.json')
     if (EVIDENCE/'field-loader.evidence.json').exists(): paths.append(EVIDENCE/'field-loader.evidence.json')
+    if (EVIDENCE/'field-state.evidence.json').exists(): paths.append(EVIDENCE/'field-state.evidence.json')
+    if (EVIDENCE/'motion.evidence.json').exists(): paths.append(EVIDENCE/'motion.evidence.json')
     sites=set()
     for path in paths:
         for site in json.loads(path.read_text(encoding='utf-8'))['sites']:

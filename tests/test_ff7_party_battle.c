@@ -4,6 +4,8 @@
 #include "../src/ff7_party_battle.c"
 #define CHECK(x) do{if(!(x)){fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,#x);exit(1);}}while(0)
 static uint8_t s_ram[0x200000],s_expansion[0x20000];
+static void(*s_motion_callbacks[2])(CPUState*,uint32_t);
+void register_ff7_party_motion(void);
 static unsigned s_count=1,s_registered,s_rejected,s_alloc_fail,s_asset_fail;
 static uint32_t s_lba=30363,s_bytes=43264;
 static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",FF7_PARTY_MOTION_SEPHIROTH,NULL,0};
@@ -13,11 +15,11 @@ uint8_t psx_mod_read_byte(uint32_t p){return *ptr(p);}
 uint32_t psx_mod_read_word(uint32_t p){uint32_t v=0;for(unsigned i=0;i<4;++i)v|=(uint32_t)*ptr(p+i)<<(i*8);return v;}
 void psx_mod_write_byte(uint32_t p,uint8_t v){*ptr(p)=v;}
 void psx_mod_write_word(uint32_t p,uint32_t v){for(unsigned i=0;i<4;++i)*ptr(p+i)=(uint8_t)(v>>(i*8));}
-uint32_t psx_mod_alloc_guest_memory(uint32_t n,uint32_t align){CHECK(n==192&&align==4);return s_alloc_fail?0:0x9f000000u;}
+uint32_t psx_mod_alloc_guest_memory(uint32_t n,uint32_t align){CHECK((n==192&&align==4)||(n==24624&&align==16));return s_alloc_fail?0:(n==192?0x9f000000u:0x9f002000u);}
 int psx_mod_disc_file_extent(const char* p,uint32_t* l,uint32_t* n){CHECK(!strcmp(p,s_profile.battle_model));*l=s_lba;*n=s_bytes;return !s_asset_fail;}
 void psx_mod_counter_add(const char* p,uint32_t n){CHECK(n==1);if(strstr(p,"reject"))++s_rejected;}
 int psx_mod_register_instruction_plugin(const char* p,uint32_t a,uint32_t w,void(*f)(CPUState*,uint32_t)){
-    CHECK(!strcmp(p,"ff7.party-gameplay")&&a&&w&&f);++s_registered;return 1;}
+    CHECK(!strcmp(p,"ff7.party-gameplay")&&a&&w&&f);if(a==0x800cd458)s_motion_callbacks[0]=f;if(a==0x800cd4cc)s_motion_callbacks[1]=f;++s_registered;return 1;}
 int ff7_party_game_is_extra(uint8_t g){return g>=11&&g<11+s_count;}
 uint32_t ff7_party_game_record(uint8_t g){return ff7_party_game_is_extra(g)?0x9f010000u+132u*(g-11):0;}
 uint32_t ff7_party_game_record_offset(uint8_t g){return ff7_party_game_record(g)-0x8009c738u;}
@@ -28,10 +30,10 @@ uint8_t* ff7_test_battle_ram(void){return s_ram;}
 uint8_t* ff7_test_battle_expansion(void){return s_expansion;}
 void ff7_test_battle_extent(uint32_t lba,uint32_t bytes){s_lba=lba;s_bytes=bytes;}
 void ff7_test_battle_reset(unsigned count){memset(s_ram,0,sizeof s_ram);memset(s_expansion,0,sizeof s_expansion);
-    s_count=count;s_rejected=s_alloc_fail=s_asset_fail=0;CHECK(ff7_party_battle_init());
+    s_count=count;s_rejected=s_alloc_fail=s_asset_fail=0;register_ff7_party_motion();CHECK(ff7_party_battle_init());
     for(unsigned i=0;i<count;++i)psx_mod_write_byte(ff7_party_game_record((uint8_t)(11+i)),(uint8_t)(11+i));}
-void ff7_test_battle_hook(uint32_t pc,uint32_t* regs){CPUState cpu;memset(&cpu,0,sizeof cpu);
-    memcpy(cpu.gpr,regs,sizeof cpu.gpr);battle_instruction(&cpu,pc);memcpy(regs,cpu.gpr,sizeof cpu.gpr);}
+void ff7_test_battle_hook(uint32_t pc,uint32_t* regs){CPUState cpu;memset(&cpu,0,sizeof cpu);cpu.pc=0x81234560;
+    memcpy(cpu.gpr,regs,sizeof cpu.gpr);if(pc==0x800cd458 || pc==0x800cd4cc)s_motion_callbacks[pc==0x800cd4cc](&cpu,pc);else battle_instruction(&cpu,pc);CHECK(cpu.pc==0x81234560);memcpy(regs,cpu.gpr,sizeof cpu.gpr);}
 static void seed(const BattleSite* s){for(unsigned i=0;i<13;++i)psx_mod_write_word(s->pc-24+4*i,s->words[i]);}
 int main(void){
     register_ff7_party_battle();CHECK(s_registered==sizeof s_sites/sizeof s_sites[0]);ff7_test_battle_reset(16);

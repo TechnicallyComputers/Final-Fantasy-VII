@@ -1,5 +1,6 @@
 #include "ff7_party_battle.h"
 #include "ff7_party_game.h"
+#include "ff7_party_motion.h"
 #include "cpu_state.h"
 #include "mod_plugins.h"
 #include <stddef.h>
@@ -22,26 +23,21 @@ static int matches(const BattleSite* s){
     for(unsigned i=0;i<13;++i)if(psx_mod_read_word(s->pc-24+4*i)!=s->words[i])return 0;
     return 1;
 }
-static uint32_t guest_crc32(uint32_t start,uint32_t length){
-    uint32_t crc=~0u;
-    for(uint32_t i=0;i<length;++i){
-        crc^=psx_mod_read_byte(start+i);
-        for(unsigned b=0;b<8;++b)crc=(crc>>1)^((0u-(crc&1u))&0xedb88320u);
-    }
-    return ~crc;
-}
 static void prepare_motions(unsigned slot){
     if(slot>=3)return;
+    ff7_party_motion_clear(slot);
     uint8_t guest=psx_mod_read_byte(0x801636b8u+slot*16u);
     const FF7PartyProfile* profile=ff7_party_game_profile(guest);
     if(!extra(guest) || !profile || profile->motion_policy!=FF7_PARTY_MOTION_SEPHIROTH)return;
     uint32_t model=0x80103200u+slot*0xf000u;
     /* Original copy completed. Guard the whole51,420-byte original body.
-     * Skeleton, motion bitstreams, textures and allocation size stay intact.
+     * Skeleton, textures and original allocation size stay intact. Generated
+     * paired motions reside in separate allocator-owned guest memory.
      * Original interpreter consumes relative motion pointers directly.
      * Cover/damage reuse own evade5; items reuse own casting12, with paired
-     * weapon pointers. Death/defend/limits still require separate work. */
-    if(guest_crc32(model,51420u)!=0xb30ba230u){
+     * weapon pointers. New low-HP/death/defend use the motion policy module;
+     * custom limits remain separate work. */
+    if(!ff7_party_motion_prepare(slot,model,profile->motion_policy)){
         psx_mod_counter_add("ff7.party_battle.motion_reject",1);return;
     }
     static const struct{uint16_t offset;uint32_t replacement;} pointers[]={
@@ -125,9 +121,9 @@ int ff7_party_battle_init(void){
     s_storage=psx_mod_alloc_guest_memory(STORAGE_SIZE,4);
     if(!s_storage)return 0;
     for(unsigned i=0;i<64;++i)psx_mod_write_byte(s_storage+i,255);
-    return 1;
+    return ff7_party_motion_init();
 }
-void ff7_party_battle_restore(void){/* All mutable adapter data rewinds in guest memory. */}
+void ff7_party_battle_restore(void){ff7_party_motion_restore();}
 PSX_MOD_CONSTRUCTOR(register_ff7_party_battle){
     for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i)
         (void)psx_mod_register_instruction_plugin("ff7.party-gameplay",s_sites[i].pc,

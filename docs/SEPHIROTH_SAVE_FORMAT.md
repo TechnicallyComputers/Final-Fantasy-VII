@@ -56,11 +56,15 @@ additional characters beyond what those screens can show.
 
 Field assets are also profile-selected. The loader appends independent script
 entities and model descriptors, preserving original entity numbers and NPC data.
-The initial loader caps total field models at the native 16-model state capacity;
-11 of the 703 original fields already reach that cap. A larger field-state arena
-and direct-access adapters are separate from the saved roster's 16-extra capacity.
-The loader reports a rejection rather than replacing a native model. This still
-requires live story testing before added members can be used on every map.
+The loader uses a separate 32-model state arena and guarded original-code
+adapters for field state access and delayed actor creation. Native entity numbers,
+NPC records and the original CHAR counter remain unchanged. All three discs pass
+isolated checks for the 11 fields that already use 16 models, plus ordinary and
+delayed-initialization maps. Verified field IDs select complete BSX filenames
+instead of relying on truncated names in DAT headers. Model, script and workspace
+capacity checks reject unsupported combinations before publication. These runtime
+bounds are separate from the saved roster's 16-extra capacity. Live controls,
+transitions and story testing remain required before enabling every map.
 
 ## Supported files and original card structure
 

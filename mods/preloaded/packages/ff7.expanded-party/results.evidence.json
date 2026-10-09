@@ -85,6 +85,27 @@
         2812411926,
         704774149
       ]
+    },
+    {
+      "address": 2147639680,
+      "action": "PORTRAIT_EXTENT",
+      "reg": 17,
+      "expected": 2353266688,
+      "guard": [
+        201350558,
+        0,
+        39858209,
+        1120448,
+        7606305,
+        7673889,
+        2353266688,
+        2355429376,
+        201379792,
+        14369,
+        39854113,
+        872743872,
+        37761057
+      ]
     }
   ],
   "functions": [
@@ -102,6 +123,11 @@
       "start": 2147638996,
       "end_exclusive": 2147639356,
       "sha256": "d014ebbce0fd48724e1f37e705d7c873ef5256c279de3ea1c0275a1a68aeaad5"
+    },
+    {
+      "start": 2147639516,
+      "end_exclusive": 2147639896,
+      "sha256": "f6a034ff3e478142db0db4e352104d0e804f884d69d22203e96d67644db85a8f"
     }
   ],
   "contract": {
@@ -109,6 +135,7 @@
     "record_search": "Original EXP tween searches one independent record; native nine-record search remains unchanged",
     "aliases": "LW/LBU operands point to proxy scratch, retaining logical identity; final strides select independent records",
     "portraits": "Shared profile atlas preparation; original GPU copy uses atlas index and original party destination; draw retains party-slot CLUT/UVs",
+    "result_portrait_load": "Original260DC reads each TIM directly, not through25ED4;26180 redirects only the two extent load bases to CRC-validated profile LBA/4096-byte size. Original CD/TIM upload/palette restore execute. Native IDs untouched; missing assets use bounded native portrait0 fallback.",
     "state": "Original party-slot EXP buffers and guest-owned registry; no new host gameplay state",
     "dependencies": "Resident alias80021EE0 and record strides800225EC/800227A4; each shared plugin address registered once",
     "limits": "Existing limit announcement is memory-safe; custom learning remains separate"

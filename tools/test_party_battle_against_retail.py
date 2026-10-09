@@ -143,7 +143,8 @@ def main():
     assert vm.read(0x9f010030,2)==struct.pack('<H',92)
     cases.append('original arena continuation HP/MP writeback reaches independent extra record and only selected native records')
     # Original memcpy/weapon loader and guarded preparation; native flashback
-    # Sephiroth is untouched. No expanded asset buffer or recompression needed.
+    # Sephiroth is untouched. The original model allocation stays fixed;
+    # generated streams occupy independent guest storage.
     unpacked=decompress_lzs(seph);prep=report['motion_preparation'];body=prep['body_bytes']
     expected=bytearray(unpacked[:body])
     for edit in prep['pointer_aliases']:struct.pack_into('<I',expected,edit['offset'],edit['after'])
@@ -152,10 +153,18 @@ def main():
         vm=VM(lib,report,images,exe,kernel);vm.write(0x801b0000,unpacked)
         vm.write(0x801636b8+slot*16,bytes([g]));dest=0x80103200+slot*0xf000
         vm.write(dest+body,b'\xa5'*32);vm.reg(4,slot);vm.run(0x800b5c1c)
-        assert vm.read(dest,body)==(bytes(expected)if g>=11 else unpacked[:body])
+        expected_slot=bytearray(expected if g>=11 else unpacked[:body])
+        if g>=11:
+            for offset in(16,56,72,224,264,280):
+                value=struct.unpack('<I',vm.read(dest+offset,4))[0];target=(dest+value)&0xffffffff
+                assert 0x9f002000+slot*8208<=target<0x9f004000+slot*8208
+                assert vm.read(target,2)==b'\x1e\0'
+                struct.pack_into('<I',expected_slot,offset,value)
+            expected_slot[35388]=1;expected_slot[35392]=15
+        assert vm.read(dest,body)==bytes(expected_slot)
         assert vm.read(dest+body,32)==b'\xa5'*32
         assert vm.read(0x801b0000,len(unpacked))==unpacked,'Source staging asset changed'
-    cases.append('whole original body/weapon load: exact six relative-pointer + four damage-byte changes; allocation/skeleton/textures/nativeSeph intact')
+    cases.append('whole original body/weapon load: exact fallback pointers/damage bytes plus six generated-motion pointers/two action bytes; original allocation/skeleton/textures/nativeSeph intact')
     # Consume every reused frame through the original full animation-step and
     # bitstream decoder, including paired weapon motions. Alias and source must
     # yield identical bone poses, position and decoder state at every frame.

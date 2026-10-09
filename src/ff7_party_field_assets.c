@@ -43,12 +43,9 @@ size_t ff7_field_append_script(const uint8_t* in,size_t n,const uint8_t* guests,
     }
     for(unsigned i=0;i<akao;++i)if(u32(in+names+4*i)<end || u32(in+names+4*i)>=n)return 0;
     for(unsigned i=0;i<entities*32u;++i)if(u16(in+table+2*i)<end || u16(in+table+2*i)>=n)return 0;
-    /* CHAR allocates visible model numbers sequentially, independently of its
-     * operand. Only accept the verified initialization convention: every
-     * existing visible model is defined by its entity's first init opcode. */
-    unsigned visible=0;
-    for(unsigned i=0;i<entities;++i)if(in[u16(in+table+64*i)]==0xa1)++visible;
-    if(visible!=models)return 0;
+    /* The runtime's guarded CHAR adapter gives appended entities independent
+     * state indices. It preserves the native counter even when a field creates
+     * an original actor later (SEMKIN_3); script order alone is insufficient. */
     memset(out,0,total);memcpy(out,in,names);
     out[2]=(uint8_t)(entities+count);out[3]=(uint8_t)(models+count);w16(out+4,u16(in+4)+(unsigned)delta);
     for(unsigned i=0;i<count;++i){
@@ -60,7 +57,7 @@ size_t ff7_field_append_script(const uint8_t* in,size_t n,const uint8_t* guests,
     memcpy(out+end+delta,in+end,n-end);
     for(unsigned i=0;i<count;++i){
         size_t start=n+delta+40*i;uint8_t* code=out+start;
-        /* Original engine creates the next visible model, binds logical party
+        /* Original engine creates the independently assigned model, binds party
          * identity, selects animation0/speed1, then returns from init. All
          * remaining script entries have distinct RET bytes, preserving the
          * retail script-row convention. No story-NPC scripts are copied. */

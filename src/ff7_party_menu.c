@@ -22,6 +22,7 @@ static const MenuSite s_sites[] = {
 
 enum { EXTRA_CAPACITY = 16, PORTRAIT_CELL = 9, STORAGE_SIZE = 4096,
        FLAG = 0, ALIAS_WORD = 4, PORTRAIT_WORD = 68, EXCHANGE = 144,
+       PORTRAIT_EXTENTS = 176,
        PALETTE_BACKUP = 256, IMAGE_BACKUP = 768 };
 static const uint32_t NATIVE = 0x8009c738u, ACTIVE = 0x8009cbdcu;
 static const uint32_t ALIAS_TABLE = 0x800491d0u, RESERVE = 0x801d3424u;
@@ -83,7 +84,7 @@ static void backup(unsigned x, unsigned y, unsigned w, unsigned h, uint32_t gues
         for (unsigned col=0; col<w; ++col)
             psx_mod_write_half(guest+2*(row*w+col), gpu_vram_peek((int)(x+col),(int)(y+row)));
 }
-static int prepare_portrait(const FF7PartyProfile* p) {
+static int load_portrait(const FF7PartyProfile* p) {
     uint32_t bytes=0;
     if (!s_portrait_valid) {
         if (!psx_mod_read_disc_file(p->portrait,s_portrait,sizeof s_portrait,&bytes) ||
@@ -94,6 +95,10 @@ static int prepare_portrait(const FF7PartyProfile* p) {
         /* Exact original TIM: 8bpp, 256x1 CLUT at file20, 24x48 image at544. */
         s_portrait_valid=1;
     }
+    return 1;
+}
+static int prepare_portrait(const FF7PartyProfile* p) {
+    if(!load_portrait(p))return 0;
     if (psx_mod_read_word(s_storage+FLAG)!=BACKUP_MAGIC) {
         backup(384,9,256,1,s_storage+PALETTE_BACKUP);
         backup(856,448,24,48,s_storage+IMAGE_BACKUP);
@@ -115,6 +120,19 @@ int ff7_party_menu_prepare_portrait(uint8_t guest) {
     const FF7PartyProfile* p=ff7_party_game_profile(guest);
     if(cell==PORTRAIT_CELL && (!p || !prepare_portrait(p)))return -1;
     return cell;
+}
+uint32_t ff7_party_menu_portrait_extent(uint8_t guest,unsigned slot) {
+    if(!s_storage || slot>=3 || !ff7_party_game_is_extra(guest) ||
+       portrait_cell(guest)!=PORTRAIT_CELL)return 0;
+    const FF7PartyProfile* p=ff7_party_game_profile(guest);
+    uint32_t lba,size;
+    if(!p || !load_portrait(p) ||
+       !psx_mod_disc_file_extent(p->portrait,&lba,&size) || size!=sizeof s_portrait){
+        psx_mod_counter_add("ff7.party_menu.portrait_extent_reject",1);return 0;
+    }
+    uint32_t extent=s_storage+PORTRAIT_EXTENTS+slot*8;
+    psx_mod_write_word(extent,lba);psx_mod_write_word(extent+4,(size+2047u)&~2047u);
+    return extent;
 }
 static void append_reserve(void) {
     for (unsigned e=0;e<extra_count();++e) {

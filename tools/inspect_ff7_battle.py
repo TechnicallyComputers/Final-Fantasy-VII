@@ -66,10 +66,11 @@ def inspect(cue):
           'damage_bytes':[offsets[1]+actions(chunks[1])[action]['settings_offset']+delta
                           for action,delta in((5,0),(6,0),(6,1),(7,0))],
           'policy':'profile.motion_policy==FF7_PARTY_MOTION_SEPHIROTH; new actor instance only',
-          'limitations':'Existing gestures reused, no new artistic motion; death/defend/limit authoring and visual playtest pending'}
+          'generated_policy':'motion.evidence.json: separate guest-owned paired low-HP/death/defend motions derived from own poses; original decoder/rotation/command oracles',
+          'limitations':'Procedural posture,floor contact and weapon grip require visual review; custom limits pending'}
         result['integration']={
           'plugin':'ff7.party-gameplay, developer default-off; shared activation owns lifecycle',
-          'lifecycle':['ff7_party_battle_init allocates guest-owned empty AI header and model extent scratch',
+          'lifecycle':['ff7_party_battle_init allocates guest-owned AI/extent scratch and three independent motion arenas',
                        'ff7_party_battle_restore retains guest-backed bytes; no host character state'],
           'abi':{'INITIAL_RECORD':'v1=record(fp)-t1; original ADDU executes, including branch delay slot',
             'REFRESH_RECORD':'s1=record(a3) before original byte load',
@@ -80,9 +81,9 @@ def inspect(cue):
             'EXTENT':'first: a0,v1; others: v0,v1 point to extent selected through sorted actor-slot pair',
             'ALIAS':'specified load base points to scratch word containing proxy, native alias table untouched',
             'OFFSET':'specified source GPR becomes(record-0x8009C738)>>2 before original SLL by2',
-            'MOTIONS':'s0 actor slot selects newly copied body; exact CRC guard, six pointer/four script-byte edits; no GPR changes'},
+            'MOTIONS':'s0 actor slot selects newly copied body; exact CRC and decoder guards; fallback pointers/damage bytes plus paired generated-motion pointers/low-HP/death scripts; no GPR changes'},
           'pending':['Limit moves/policy; BATINI skips limit setup for IDs>=9 and resident80015AFC safely returns127',
-                     'Death/defend motions, visual validation and full battle/reward/field lifecycle',
+                     'Procedural motion visual validation and full battle/reward/field lifecycle',
                      'Personal AI intentionally absent; native characters retain their original scripts'],
         }
         return result
@@ -94,11 +95,11 @@ def main():
     args=parser.parse_args();report=inspect(args.disc)
     if args.write:
         dest=ROOT/'mods/preloaded/packages/ff7.expanded-party/battle.evidence.json'
-        dest.write_text(json.dumps(report,indent=2)+'\n')
+        dest.write_text(json.dumps(report,indent=2)+'\n',newline='\n')
         lines=['/* Generated from owner-disc instruction words by inspect_ff7_battle.py. */']
         for s in report['sites']:
             lines.append(' {0x%08xu,%s,%du,{%s}},' % (s['address'],s['action'],s['reg'],
                            ','.join('0x%08xu'%w for w in s['guard'])))
-        (ROOT/'src/ff7_party_battle_sites.inc').write_text('\n'.join(lines)+'\n')
+        (ROOT/'src/ff7_party_battle_sites.inc').write_text('\n'.join(lines)+'\n',newline='\n')
     print(json.dumps({'overlays':report['overlays'],'sites':len(report['sites'])}))
 if __name__=='__main__':main()

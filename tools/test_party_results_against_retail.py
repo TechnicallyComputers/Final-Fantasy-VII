@@ -22,7 +22,7 @@ class VM:
         self.uc.mem_map_ptr(0x1f000000,0x20000,7,lib.ff7_test_results_expansion())
         self.write(0x80010000,exe[0x800:]);self.write(0x8009c738,kernel[3])
         self.sites={s['address']:s for s in report['sites']}if hooked else {}
-        self.calls=[];self.rects=[];self.hooks=0;self.stubs=set()
+        self.calls=[];self.rects=[];self.uploads=[];self.files={};self.hooks=0;self.stubs=set()
         self.reg(28,0x80062d44);self.reg(29,0x801ff000)
         self.uc.hook_add(UC_HOOK_CODE,self.hook)
     def reg(self,n,v=None):
@@ -37,15 +37,23 @@ class VM:
         if pc in self.stubs:
             self.calls.append((pc,tuple(self.reg(n)for n in range(4,8)),self.read(self.reg(29)+16,24)))
             if pc==0x800440c8:self.rects.append(struct.unpack('<4H',self.read(self.reg(4),8)))
+            if pc==0x80033f40:
+                assert self.reg(4)in self.files,('unregistered file extent',hex(self.reg(4)))
+                data=self.files[self.reg(4)]
+                assert self.reg(5)==(len(data)+2047)&~2047 and self.reg(5)<=4352
+                self.write(self.reg(6),data+b'\0'*(self.reg(5)-len(data)))
+            if pc==0x80044000:
+                rect=struct.unpack('<4H',self.read(self.reg(4),8))
+                self.uploads.append((rect,self.read(self.reg(5),rect[2]*rect[3]*2)))
         if pc not in self.sites:return
         r=(ctypes.c_uint32*32)(*(self.reg(n)for n in range(32)))
         self.lib.ff7_test_results_hook(pc,r)
         for n in range(1,32):
             if r[n]!=self.reg(n):self.reg(n,r[n])
         self.hooks+=1
-    def run(self,pc):
-        self.reg(31,0x80001000);self.uc.emu_start(pc,0x80001000,count=1000000)
-        assert self.uc.reg_read(UC_MIPS_REG_PC)in(0x80001000,0x80000ffc)
+    def run(self,pc,end=0x80001000):
+        self.reg(31,0x80001000);self.uc.emu_start(pc,end,count=1000000)
+        assert self.uc.reg_read(UC_MIPS_REG_PC)in(end,end-4)
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--disc',required=True,type=Path)
@@ -53,17 +61,40 @@ def main():
     lib=ctypes.CDLL(str(a.library.resolve()))
     for n in('ff7_test_results_ram','ff7_test_results_expansion'):getattr(lib,n).restype=ctypes.c_void_p
     lib.ff7_test_results_hook.argtypes=[ctypes.c_uint32,ctypes.POINTER(ctypes.c_uint32)]
+    lib.ff7_test_results_extent.argtypes=[ctypes.c_uint32,ctypes.c_uint32,ctypes.c_int]
     report=inspect(a.disc);assert report==json.loads((ROOT/'mods/preloaded/packages/ff7.expanded-party/results.evidence.json').read_text())
     d=Disc(a.disc)
     try:
         boot=next(n for n in d.files if n.startswith('SCUS_')and '/'not in n)
         exe=d.read(boot);kernel=kernel_sections(d.read('INIT/KERNEL.BIN'))
+        original_portraits={}
+        for native in(0,8):
+            lba,size=struct.unpack_from('<II',exe,0x800+0x80048fe8-0x80010000+native*8)
+            name=next(n for n,(sector,length)in d.files.items()if sector==lba and n.endswith('.TIM'))
+            raw=d.read(name);assert size==(len(raw)+2047)&~2047
+            original_portraits[native]=(lba,raw)
+        seph_lba,seph_size=d.files['MENU/PCEFI.TIM'];seph_tim=d.read('MENU/PCEFI.TIM')
     finally:d.reader.close()
     report['sites']+=inspect_resident(a.disc,boot)['sites']
     cases=[]
     template=bytearray(kernel[3][7*132:8*132]);template[1]=50
     struct.pack_into('<I',template,0x3c,1500);struct.pack_into('<I',template,0x80,321)
     for guest in(11,26):
+        v=VM(lib,report,exe,kernel);lib.ff7_test_results_extent(seph_lba,(seph_size+2047)&~2047,0)
+        v.files={lba:raw for lba,raw in original_portraits.values()};v.files[seph_lba]=seph_tim
+        v.write(0x8009cbdc,bytes([0,guest,8]));native=v.read(0x8009c738,9*132)
+        # Execute original TIM parser/upload and all3 party load iterations.
+        # CD and GPU services are isolated; derived stats have separate oracles.
+        v.stub(0x80034b44,0x80043dd8,0x80044064,0x80044000,0x80033f40,
+               0x80020058,0x8001786c,0x80017678)
+        v.run(0x800260dc,0x80026204)
+        assert v.read(0x8009c738,9*132)==native and v.read(0x8009cbdc,3)==bytes([0,guest,8])
+        reads=[regs for pc,regs,stack in v.calls if pc==0x80033f40]
+        assert [regs[0]for regs in reads]==[original_portraits[0][0],seph_lba,original_portraits[8][0]]
+        for slot,raw in enumerate((original_portraits[0][1],seph_tim,original_portraits[8][1])):
+            assert ((960,312+slot*48,24,48),raw[544:])in v.uploads
+            assert ((384,slot,256,1),raw[20:532])in v.uploads
+        cases.append(f'original result initializer and TIM parser: proxy{guest} requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged')
         for tween in(0,1):
             outputs=[]
             for identity in(7,guest):

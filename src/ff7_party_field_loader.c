@@ -1,6 +1,7 @@
 #include "ff7_party_field_loader.h"
 #include "ff7_party_field_assets.h"
 #include "ff7_party_field.h"
+#include "ff7_party_field_state.h"
 #include "ff7_party_game.h"
 #include "cpu_state.h"
 #include "mod_plugins.h"
@@ -8,7 +9,7 @@
 #include <string.h>
 #include <stdio.h>
 
-enum {SCRIPT_BYTES=65536,META_BYTES=260,WORK_BYTES=0x100000,MODEL_BYTES=0x400000,NATIVE_STATE_CAPACITY=16};
+enum {SCRIPT_BYTES=65536,META_BYTES=260,WORK_BYTES=0x100000,MODEL_BYTES=0x400000,STATE_CAPACITY=32};
 enum LoaderAction {PREPARE,MODELS};
 typedef struct {uint32_t pc;enum LoaderAction action;uint32_t words[13];} LoaderSite;
 static const LoaderSite s_sites[]={
@@ -17,6 +18,9 @@ static const LoaderSite s_sites[]={
 /* Arena addresses are immutable for one activation; active field and previous
  * native workspace live in rewindable guest memory. No external file writes. */
 static uint32_t s_script,s_metadata,s_control,s_workspace,s_models;
+static const char* const s_field_paths[]={
+#include "ff7_party_field_names.inc"
+};
 static uint16_t u16(const uint8_t* p){return (uint16_t)(p[0]|((unsigned)p[1]<<8));}
 static uint32_t u32(const uint8_t* p){return u16(p)|((uint32_t)u16(p+2)<<16);}
 static void put16(uint8_t* p,unsigned n){p[0]=(uint8_t)n;p[1]=(uint8_t)(n>>8);}
@@ -51,26 +55,20 @@ static int prepare(CPUState* cpu){
     if(original_models>32 || !ram(metadata,original_meta))goto done;
     read_bytes(metadata,meta,original_meta);
     if(u16(meta)!=original_meta || u16(meta+2)!=original_models)goto done;
-    char name[9]={0},path[80];
-    for(unsigned i=0;i<8 && input[24+i];++i){
-        unsigned c=input[24+i];if(c>='a' && c<='z')c-=32;
-        if(!((c>='A'&&c<='Z') || (c>='0'&&c<='9') || c=='_'))goto done;
-        name[i]=(char)c;
-    }
-    if(!name[0])goto done;
-    (void)snprintf(path,sizeof path,"FIELD/%s.BSX",name);
+    char path[80];
     uint32_t lba=0,size=0,field=(uint32_t)(psx_mod_read_byte(0x8009a05c)|((unsigned)psx_mod_read_byte(0x8009a05d)<<8));
-    if(field>=800 || !psx_mod_disc_file_extent(path,&lba,&size) ||
+    /* DAT labels are not ISO names (ASTAGE_A stores "astage_", SEMKIN_3
+     * stores "semkin_"). Names are generated from each original ISO and
+     * checked against the original FIELD table; verify effective extent again. */
+    if(field>=sizeof s_field_paths/sizeof s_field_paths[0])goto done;
+    (void)snprintf(path,sizeof path,"%s",s_field_paths[field]);
+    if(!psx_mod_disc_file_extent(path,&lba,&size) ||
        lba!=psx_mod_read_word(0x800da5c8+24*field) || size!=psx_mod_read_word(0x800da5cc+24*field))goto done;
     bsx=file(path,&bsx_bytes);if(!bsx || bsx_bytes<24 || u32(bsx+4)>bsx_bytes-16 || u32(bsx+u32(bsx+4)+4)!=original_models)goto done;
     for(unsigned i=0;i<ff7_party_game_extra_count();++i){
         uint8_t g=ff7_party_game_extra_guest(i);const FF7PartyProfile* profile=ff7_party_game_profile(g);
         if(!profile || !profile->field_source)continue;
-        /* The renderer has32 auxiliaries, but native script model-state data
-         * has many direct80074EA4 accesses. Only16 total states are established
-         * by original fields. A saturated field needs a separate state-array
-         * relocation before adding actors; never overwrite a native actor. */
-        if(count>=16 || original_models+count>=NATIVE_STATE_CAPACITY || input[2]+count>=64)goto done;
+        if(count>=16 || original_models+count>=STATE_CAPACITY || input[2]+count>=64)goto done;
         if(snprintf(path,sizeof path,"%s.BSX",profile->field_source)>=(int)sizeof path)goto done;
         sources[count].model=profile->field_model_index;sources[count].bsx=file(path,&sources[count].size);
         if(!sources[count].bsx)goto done;
@@ -97,6 +95,8 @@ static int prepare(CPUState* cpu){
         }
     }
     if(working>WORK_BYTES)goto done;
+    uint32_t states=ff7_party_field_state_begin(cpu->gpr[5],input[2],original_models,count);
+    if(!states)goto done;
     /* Publish only after every input and capacity is validated. The original
      * DAT header remains untouched: the entry register and two model globals
      * are the verified consumers. Current field/context owns these pointers. */
@@ -106,7 +106,7 @@ static int prepare(CPUState* cpu){
     psx_mod_write_word(s_control+8,field);psx_mod_write_word(s_control+12,(uint32_t)model_bytes);
     psx_mod_write_word(0x8007e770,s_metadata);psx_mod_write_word(0x8008357c,s_metadata+4);
     psx_mod_write_word(0x8004a62c,s_workspace);psx_mod_write_word(s_control,1);
-    cpu->gpr[6]=s_script;ok=1;
+    cpu->gpr[5]=states;cpu->gpr[6]=s_script;ok=1;
 done:
     for(unsigned i=0;i<count;++i)free((void*)sources[i].bsx);
     free(input);free(bsx);free(output);free(model_output);return ok;
@@ -115,11 +115,16 @@ static void instruction(CPUState* cpu,uint32_t pc){
     if(!cpu || !s_control || !ff7_party_game_ready())return;
     pc=(pc&0x1fffffffu)|0x80000000u;
     if(pc!=s_sites[0].pc && pc!=s_sites[1].pc)return;
-    if(!guards()){psx_mod_counter_add("ff7.party_field_loader.context_reject",1);return;}
     if(pc==s_sites[0].pc){
+        /* Retire the preceding field even if this entry's context rejects.
+         * Otherwise its active state hooks could redirect an unprepared field. */
+        ff7_party_field_state_end();
         if(psx_mod_read_word(s_control) && psx_mod_read_word(0x8004a62c)==s_workspace)
             psx_mod_write_word(0x8004a62c,psx_mod_read_word(s_control+4));
         psx_mod_write_word(s_control,0);
+    }
+    if(!guards()){psx_mod_counter_add("ff7.party_field_loader.context_reject",1);return;}
+    if(pc==s_sites[0].pc){
         psx_mod_counter_add(prepare(cpu)?"ff7.party_field_loader.prepared":"ff7.party_field_loader.prepare_reject",1);
     }else if(psx_mod_read_word(s_control)){
         uint32_t field=psx_mod_read_byte(0x8009a05c)|((unsigned)psx_mod_read_byte(0x8009a05d)<<8);
@@ -136,9 +141,10 @@ int ff7_party_field_loader_init(void){
     s_metadata=s_control=0;
     if(!s_script || !s_workspace || !s_models)return 0;
     s_metadata=s_script+SCRIPT_BYTES;s_control=s_metadata+META_BYTES;
-    psx_mod_write_word(s_control,0);ff7_party_field_owned_storage(s_script,s_metadata);return 1;
+    psx_mod_write_word(s_control,0);ff7_party_field_owned_storage(s_script,s_metadata);
+    return ff7_party_field_state_init();
 }
-void ff7_party_field_loader_restore(void){/* Arenas and control restore with guest state. */}
+void ff7_party_field_loader_restore(void){ff7_party_field_state_restore();}
 PSX_MOD_CONSTRUCTOR(register_ff7_party_field_loader){
     for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i)
         (void)psx_mod_register_instruction_plugin("ff7.party-gameplay",s_sites[i].pc,s_sites[i].words[6],instruction);

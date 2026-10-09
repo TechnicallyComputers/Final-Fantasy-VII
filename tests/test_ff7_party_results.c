@@ -8,6 +8,8 @@
 #define CHECK(x) do{if(!(x)){fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,#x);exit(1);}}while(0)
 static uint8_t ram[0x200000],expansion[0x20000];
 static unsigned registered,rejected,prepared;
+static uint32_t portrait_lba=0x12345,portrait_size=4096;
+static int portrait_fail;
 static uint8_t* ptr(uint32_t p){p&=0x1fffffffu;if(p<sizeof ram)return ram+p;
     CHECK(p>=0x1f000000u && p-0x1f000000u<sizeof expansion);return expansion+p-0x1f000000u;}
 uint8_t psx_mod_read_byte(uint32_t p){return *ptr(p);}
@@ -24,6 +26,12 @@ uint32_t ff7_party_game_record(uint8_t g){return 0x9f010000u+(g-11)*132u;}
 uint32_t ff7_party_game_record_offset(uint8_t g){return ff7_party_game_record(g)-0x8009c738u;}
 uint32_t ff7_party_game_alias_word(uint8_t g){uint32_t p=0x9f000000u+4u*(g-11);psx_mod_write_word(p,g);return p;}
 int ff7_party_menu_prepare_portrait(uint8_t g){CHECK(ff7_party_game_is_extra(g));++prepared;return 9;}
+uint32_t ff7_party_menu_portrait_extent(uint8_t g,unsigned slot){
+    CHECK(ff7_party_game_is_extra(g));if(slot>=3 || portrait_fail)return 0;
+    uint32_t p=0x9f000200u+slot*8;psx_mod_write_word(p,portrait_lba);
+    psx_mod_write_word(p+4,portrait_size);return p;
+}
+void ff7_test_results_extent(uint32_t lba,uint32_t size,int fail){portrait_lba=lba;portrait_size=size;portrait_fail=fail;}
 uint8_t* ff7_test_results_ram(void){return ram;}
 uint8_t* ff7_test_results_expansion(void){return expansion;}
 void ff7_test_results_reset(void){memset(ram,0,sizeof ram);memset(expansion,0,sizeof expansion);rejected=prepared=0;}
@@ -32,21 +40,27 @@ void ff7_test_results_hook(uint32_t pc,uint32_t* regs){CPUState cpu;memset(&cpu,
     party_resident_instruction(&cpu,pc);
     CHECK(cpu.pc==0x80045678u);memcpy(regs,cpu.gpr,sizeof cpu.gpr);}
 int main(void){
-    register_ff7_party_results();CHECK(registered==4);ff7_test_results_reset();
+    register_ff7_party_results();CHECK(registered==5);ff7_test_results_reset();
     for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i){const ResultSite* s=&s_sites[i];
         for(unsigned j=0;j<13;++j)psx_mod_write_word(s->pc-24+j*4,s->words[j]);
         for(unsigned g=0;g<=26;++g){uint32_t r[32]={0},before[32];
             unsigned reg=s->reg;
             if(s->action==RECORD_SCAN){r[6]=g;r[9]=132;r[1]=0x800a0084u;r[5]=1;}
             else if(s->action==RESULT_ALIAS)r[reg]=0x800491d0u+4*g;
-            else r[reg]=g;
+            else {r[reg]=g;if(s->action==PORTRAIT_EXTENT){r[2]=0x80048fe8u+g*8;r[3]=r[2]+4;}}
             memcpy(before,r,sizeof r);ff7_test_results_hook(s->pc,r);
             if(g<11){CHECK(!memcmp(before,r,sizeof r));continue;}
             if(s->action==RECORD_SCAN){CHECK(r[9]==ff7_party_game_record_offset((uint8_t)g));CHECK(r[1]==r[9]+0x800a0000u);CHECK(r[5]==8);}
             else if(s->action==RESULT_ALIAS)CHECK(r[reg]==ff7_party_game_alias_word((uint8_t)g));
+            else if(s->action==PORTRAIT_EXTENT){CHECK(r[2]==0x9f000200u && r[3]==r[2]+4);CHECK(r[reg]==g);}
             else CHECK(r[reg]==9);
         }
         psx_mod_write_word(s->pc-4,0xdeadbeefu);uint32_t r[32]={0};ff7_test_results_hook(s->pc,r);CHECK(rejected==i+1);
+    }
+    for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i)if(s_sites[i].action==PORTRAIT_EXTENT){
+        const ResultSite* s=&s_sites[i];for(unsigned j=0;j<13;++j)psx_mod_write_word(s->pc-24+j*4,s->words[j]);
+        portrait_fail=1;uint32_t r[32]={0};r[17]=11;ff7_test_results_hook(s->pc,r);
+        CHECK(r[2]==0x80048fe8u && r[3]==r[2]+4 && r[17]==11);portrait_fail=0;
     }
     CHECK(prepared==16);puts("result record lookup, aliases, strides, portraits and native passthrough passed");return 0;
 }

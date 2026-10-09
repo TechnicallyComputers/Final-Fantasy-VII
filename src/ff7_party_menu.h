@@ -11,5 +11,9 @@ int ff7_party_menu_init(void);
  * atlas index, or -1 when no supported cell/asset is available. Original
  * portrait copy/draw code remains responsible for its destination slot. */
 int ff7_party_menu_prepare_portrait(uint8_t guest);
+/* Original result initialization reads a TIM directly into its stock 4352-byte
+ * stack buffer. Return an owned LBA/rounded-size pair for that actor slot after
+ * asset validation; no GPU writes or guest character identity substitution. */
+uint32_t ff7_party_menu_portrait_extent(uint8_t guest,unsigned slot);
 void ff7_party_menu_restore(void);
 #endif

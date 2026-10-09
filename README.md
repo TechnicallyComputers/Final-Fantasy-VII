@@ -130,11 +130,15 @@ follow their original rules.
 
 The field loader prepares a separate script entity and copies his original
 skeleton and motions from owned-disc field assets without replacing existing
-NPCs. Its model/entity/packet tests pass; live controls, map transitions and
-story coverage remain acceptance work. The current loader rejects fields whose
-added models exceed the native 16-model state capacity. Full death/defend motions,
-custom limits, broader menu coverage and a live card-save playthrough also remain
-unfinished. Keep the feature disabled for ordinary play.
+NPCs. A separate 32-model state arena preserves native entity identities and
+delayed actor initialization. Original-code checks on all three discs cover the
+11 fields that already use 16 models, plus ordinary and delayed-initialization
+fields. Live controls, map transitions and story coverage remain acceptance work.
+Procedural near-death, death and defend motions use Sephiroth's own paired body
+and weapon poses. Original animation decoders, action scripts and Defend command
+checks pass on all three discs; floor contact, grip and clipping still need live
+visual review. Custom limits, broader menu coverage and a live card-save
+playthrough remain unfinished. Keep the feature disabled for ordinary play.
 
 Gameplay saves project extra party handles to a native fallback, preserve native
 character records, rebuild the preview/checksum and append per-slot metadata in

@@ -7,9 +7,10 @@ from pathlib import Path
 from inspect_ff7_party import Disc, ROOT, image_data
 
 SITES=[(0x80015700,'RECORD_SCAN',0),(0x800222d0,'RESULT_ALIAS',1),
-       (0x800245e8,'RESULT_ALIAS',2),(0x80025f20,'PORTRAIT_COPY',16)]
+       (0x800245e8,'RESULT_ALIAS',2),(0x80025f20,'PORTRAIT_COPY',16),
+       (0x80026180,'PORTRAIT_EXTENT',17)]
 FUNCTIONS=[(0x80015668,0x800159b0),(0x80021f58,0x80022b5c),
-           (0x80025ed4,0x8002603c)]
+           (0x80025ed4,0x8002603c),(0x800260dc,0x80026258)]
 def inspect(cue):
     d=Disc(Path(cue))
     try:
@@ -28,6 +29,7 @@ def inspect(cue):
       'record_search':'Original EXP tween searches one independent record; native nine-record search remains unchanged',
       'aliases':'LW/LBU operands point to proxy scratch, retaining logical identity; final strides select independent records',
       'portraits':'Shared profile atlas preparation; original GPU copy uses atlas index and original party destination; draw retains party-slot CLUT/UVs',
+      'result_portrait_load':'Original260DC reads each TIM directly, not through25ED4;26180 redirects only the two extent load bases to CRC-validated profile LBA/4096-byte size. Original CD/TIM upload/palette restore execute. Native IDs untouched; missing assets use bounded native portrait0 fallback.',
       'state':'Original party-slot EXP buffers and guest-owned registry; no new host gameplay state',
       'dependencies':'Resident alias80021EE0 and record strides800225EC/800227A4; each shared plugin address registered once',
       'limits':'Existing limit announcement is memory-safe; custom learning remains separate'}
@@ -36,8 +38,8 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--disc',required=True,type=Path)
     p.add_argument('--write',action='store_true');a=p.parse_args();r=inspect(a.disc)
     if a.write:
-        (ROOT/'mods/preloaded/packages/ff7.expanded-party/results.evidence.json').write_text(json.dumps(r,indent=2)+'\n')
+        (ROOT/'mods/preloaded/packages/ff7.expanded-party/results.evidence.json').write_text(json.dumps(r,indent=2)+'\n',newline='\n')
         (ROOT/'src/ff7_party_results_sites.inc').write_text('/* Generated from original owner-disc resident words. */\n'+'\n'.join(
-            ' {0x%08xu,%s,%d,{%s}},'%(s['address'],s['action'],s['reg'],','.join('0x%08xu'%w for w in s['guard']))for s in r['sites'])+'\n')
+            ' {0x%08xu,%s,%d,{%s}},'%(s['address'],s['action'],s['reg'],','.join('0x%08xu'%w for w in s['guard']))for s in r['sites'])+'\n',newline='\n')
     print(json.dumps({'sites':len(r['sites']),'functions':r['functions']}))
 if __name__=='__main__':main()
