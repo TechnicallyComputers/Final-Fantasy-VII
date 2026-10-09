@@ -1,4 +1,5 @@
 #include "ff7_party_game.h"
+#include "ff7_party_limit.h"
 #include "ff7_party_menu.h"
 #include "ff7_party_battle.h"
 #include "ff7_party_game_save.h"
@@ -23,7 +24,7 @@ static const uint32_t NATIVE_RECORDS = 0x8009c738u, ACTIVE = 0x8009cbdcu;
 static const FF7PartyProfile s_sephiroth = {
     FF7_PARTY_SEPHIROTH, 10, 7, 10, 0, 0, 0,
     "ENEMY6/SEFIROS.LZS", "MENU/PCEFI.TIM", FF7_PARTY_MOTION_SEPHIROTH,
-    "FIELD/NIVL", 3
+    "FIELD/NIVL", 3, FF7_LIMIT_SEPHIROTH
 };
 static const FF7PartyProfile* s_profiles[FF7_PARTY_EXTRA_CAPACITY];
 static unsigned s_profile_count;
@@ -212,6 +213,11 @@ FF7PartyResult ff7_party_game_load(const FF7PartyState* state, const uint8_t fal
         psx_mod_write_word(s_game+H_ALIASES+4*i,FF7_PARTY_GUEST_FIRST+i);
         for (unsigned j = 0; j < FF7_PARTY_RECORD_SIZE; ++j)
             psx_mod_write_byte(record+j,j ? m->record[j] : (uint8_t)(FF7_PARTY_GUEST_FIRST+i));
+        /* Pre-limit extended saves had no first technique. Add only bit0;
+         * keep selected level, gauge, all counters and all other learned bits. */
+        const FF7PartyProfile* profile = find_profile(m->id);
+        if (ff7_party_limit_policy(profile->limit_policy))
+            psx_mod_write_byte(record+0x22,(uint8_t)(m->record[0x22]|1));
     }
     psx_mod_write_word(s_game+H_MAGIC,GAME_MAGIC);
     psx_mod_write_word(s_game+H_VERSION,GAME_VERSION);
@@ -304,8 +310,11 @@ int ff7_party_game_initialize(const uint8_t fallback[3]) {
     for (unsigned i = 0; i < 3; ++i) state.active[i] = ff7_party_game_identity(fallback[i]);
     for (unsigned i = 0; i < s_profile_count; ++i) {
         const FF7PartyProfile* p = s_profiles[i];
+        uint8_t record[FF7_PARTY_RECORD_SIZE];
+        memcpy(record,templates+p->kernel_template_row*FF7_PARTY_RECORD_SIZE,sizeof record);
+        ff7_party_limit_initial(p->limit_policy,record);
         if (ff7_party_add(&state,p->identity,p->presentation,
-                templates+p->kernel_template_row*FF7_PARTY_RECORD_SIZE) != FF7_PARTY_OK) {
+                record) != FF7_PARTY_OK) {
             free(templates); return 0;
         }
     }
@@ -345,7 +354,7 @@ static void party_game_activate(void) {
     s_game = psx_mod_alloc_guest_memory(GAME_BYTES,4);
     if (!s_game || !ff7_party_menu_init() || !ff7_party_battle_init() ||
         !ff7_party_game_save_init() || !ff7_party_field_init() ||
-        !ff7_party_field_loader_init()) {
+        !ff7_party_field_loader_init() || !ff7_party_limit_init()) {
         s_game = 0;
         psx_mod_counter_add("ff7.party_game.alloc_reject",1);
         return;
@@ -361,6 +370,7 @@ static void party_game_restore(void) {
      * records here. A corrupt header remains unavailable to every adapter. */
     ff7_party_menu_restore();
     ff7_party_battle_restore();
+    ff7_party_limit_restore();
     ff7_party_game_save_restore();
     ff7_party_field_restore();
     ff7_party_field_loader_restore();

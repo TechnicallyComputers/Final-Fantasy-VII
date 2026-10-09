@@ -11,6 +11,15 @@ status = "guessed"
 note = "SYSTEM.CNF / EXE entry PC (probe seed)"
 
 # --- Hand-authored / promoted entries -----------------------------------------
+
+[[func]]
+pc = 0x80015248
+name = "SystemMenuGetKernelText"
+emit = false
+hook = true
+status = "confirmed"
+note = "Original kernel text lookup; owned-disc limit menu/name/description oracles and full function hash in limit.evidence.json. Guarded extra-character filter handles reserved mod limit IDs only."
+
 # Entries here are OWNED BY US and survive re-import: tools/import_decomp_symbols.py
 # skips any address this block already claims. Promote an imported name up here
 # when you attach behaviour to it (hook = true) or when you have independently

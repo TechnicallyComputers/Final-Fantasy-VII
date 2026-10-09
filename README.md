@@ -120,7 +120,8 @@ their own stats, equipment, materia and progress. Vincent's record and the
 original flashback aliases remain native.
 
 Guarded original-code adapters cover PHS selection, equipment compatibility and
-inventory transactions, materia exchange, player-controlled battle initialization,
+inventory transactions, materia exchange, Status, Item and Magic menus,
+Wutai materia removal/return, player-controlled battle initialization,
 model loading, active/reserve EXP, AP routing and result writeback/display.
 Original-MIPS checks on all three owned discs exercise Cloud, Vincent and added
 records together. Live diagnostic battles have verified Sephiroth's selected
@@ -135,15 +136,19 @@ delayed actor initialization. Original-code checks on all three discs cover the
 11 fields that already use 16 models, plus ordinary and delayed-initialization
 fields. Live controls, map transitions and story coverage remain acceptance work.
 Procedural near-death, death and defend motions use Sephiroth's own paired body
-and weapon poses. Original animation decoders, action scripts and Defend command
-checks pass on all three discs; floor contact, grip and clipping still need live
-visual review. Custom limits, broader menu coverage and a live card-save
-playthrough remain unfinished. Keep the feature disabled for ordinary play.
+and weapon poses. Live battles verify Defend, low-HP posture, death and Phoenix
+Down revival; floor contact, grip and clipping still need artist review. Seven
+authored limits use his existing strike/sweep choreography, with independent
+learning, gauge and selected level. Original-code checks pass on all three discs;
+live battle-limit acceptance and broader story coverage remain unfinished.
+Keep the feature disabled for ordinary play.
 
 Gameplay saves project extra party handles to a native fallback, preserve native
 character records, rebuild the preview/checksum and append per-slot metadata in
 the same card file. Loading restores the independent roster after the original
-native save load. The versioned payload also stores the field-party backup bank;
+native save load and its checksum comparison. An actual BIOS save, exact standard
+export and extended-card title-to-field reload have passed live checks. The
+versioned payload also stores the field-party backup bank;
 canonical identities survive proxy reordering. Pending writes and roster state
 rewind with guest memory. Synthetic lifecycle tests cover sector writes, exact
 packet/slot binding, two cards, replacements, reload and rewind.

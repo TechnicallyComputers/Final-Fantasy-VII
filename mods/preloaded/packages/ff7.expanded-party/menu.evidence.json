@@ -9,6 +9,77 @@
     "EQIPMENU": {
       "sha256": "433e448de0a5908239df6e50e741fc96e2381a42a0112ce781de9ecf318f8759",
       "bytes": 96140
+    },
+    "STATMENU": {
+      "sha256": "02cf64051b7f6b56b639dabbfcd87c5faaa5848000303dbef9f0849ebebd3c66",
+      "bytes": 24096,
+      "functions": [
+        {
+          "address": 2149387124,
+          "end": 2149387560,
+          "sha256": "65d3340ff03fe23360ae23e02eda58f90288cf519779f4ff934abfc7490d5750"
+        },
+        {
+          "address": 2149387560,
+          "end": 2149388652,
+          "sha256": "a954e48041f40ef57fb4d123f6900a43fc3f9340ad900eee023bd1822e0e9404"
+        },
+        {
+          "address": 2149388652,
+          "end": 2149389536,
+          "sha256": "d408f7668c5f375a6340d0a6929c0c2777213cb1f67fd8ed0a819cd3abe9a0c0"
+        }
+      ],
+      "contract": "Eight pre-load/pre-stride adapters route gear,materia,EXP,next-level EXP,limit level/gauge/status and equipment-derived hit/defense/evasion to independent records; party slot801D1E1C and derived1088-byte-per-slot caches remain native. Callback PC and all GPRs except named source operand preserved."
+    },
+    "ITEMMENU": {
+      "sha256": "0a3635b5c15bb91c23af3c035ecb2e77c8667fcc0ce6c3fd5a713a83adcc0361",
+      "bytes": 16416,
+      "functions": [
+        {
+          "address": 2149387556,
+          "end": 2149387724,
+          "sha256": "978bd2e823c2b57fe5d19fb88fb4ab516818f91c69bafb7e6fd817cf5aaf47d4"
+        },
+        {
+          "address": 2149387904,
+          "end": 2149394796,
+          "sha256": "1fe37de2d6759ae2242c575c49d6518b7574990988307fa98d6850fb4772be63"
+        },
+        {
+          "address": 2149394804,
+          "end": 2149396224,
+          "sha256": "a7fe6437d2d2c2127bdf43ecb41396b2636eca981236b12121c6b5f78eb82fa8"
+        },
+        {
+          "address": 2149396224,
+          "end": 2149396504,
+          "sha256": "ff64e963326025c8fa751226993de197b9811b7c2123e8fc5c232118a63cffbc"
+        },
+        {
+          "address": 2149396504,
+          "end": 2149396792,
+          "sha256": "e3ef19901f0acf0b3bfd65862ad67008ce156e364c4c8dc1dff670eab8014328"
+        },
+        {
+          "address": 2149396792,
+          "end": 2149397032,
+          "sha256": "cf9a33f660afa79e3937067dd4392f1b1c871307051305ff4bb4af5ca109db25"
+        }
+      ],
+      "contract": "Direct target132-byte source strides for status/Source items and single-record gear/materia helpers. Original inventory transactions retained. Stock final-limit manuals retain rejection for extras; message-address operand alone changes to bounded authored text at menu allocation+200. Wutai story modes15/16: nine guarded loop-head/mask/boundary adapters append registered independent records after native0..8 selection/removal and after native8..0 return. Native availability bits,48-ranked selection,exact packed AP-word removal,native inventory fallback and192-byte D180 bank remain original. Extras participate even when reserved; no native slot/availability bit is borrowed. Temporary party/gear/materia helper3018 uses native8009D180 scratch and3138 restores it; mid-transaction save policy belongs to lifecycle owner."
+    },
+    "MGICMENU": {
+      "sha256": "d29856358872b51e2e2256e403d2cba4628523c02e1846e17e3352b10011636d",
+      "bytes": 11008,
+      "functions": [
+        {
+          "address": 2149385368,
+          "end": 2149394728,
+          "sha256": "4c14a014397562f33fe8e638735f0cf7a3061a5a49539f690e8ec834a0fdb98b"
+        }
+      ],
+      "contract": "Six caster alias loads and six132-byte level strides; Cure1/2/3 single/all retain native slot-derived magic attack,target iteration and resident MP/HP routines. Extra guests do not inherit stockID10 free-MP exception. Resident subtraction final offsets258A0/25A28 and addition25968/25AF0 required."
     }
   },
   "sites": [
@@ -2277,8 +2348,1142 @@
         706871328,
         339804079
       ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149387200,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2418147328,
+        8429601,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        1006927882,
+        612681528,
+        201024,
+        4395041,
+        135296,
+        4493345
+      ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149387220,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2230305,
+        2351104000,
+        1006927882,
+        612681528,
+        201024,
+        4395041,
+        135296,
+        4493345,
+        2453930012,
+        10524705,
+        201360544,
+        612630656,
+        646971448
+      ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149388192,
+      "expected": 2351038464,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        19023905,
+        1380480,
+        608640,
+        1006731269,
+        606179792,
+        2230305,
+        2351038464,
+        1006731274,
+        606197844,
+        2689057,
+        2485518336,
+        1006731274,
+        606197846
+      ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149388284,
+      "expected": 540800,
+      "action": "OFFSET",
+      "reg": 8,
+      "guard": [
+        1006731274,
+        606197850,
+        2689057,
+        2486566912,
+        147776,
+        16924705,
+        540800,
+        1006731274,
+        606193492,
+        2623521,
+        2418212864,
+        1006731274,
+        606193493
+      ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149388720,
+      "expected": 2351955968,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2418147328,
+        0,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351955968,
+        0,
+        1052992,
+        5247009,
+        141440,
+        1006731274,
+        606193479
+      ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149388736,
+      "expected": 141440,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351955968,
+        0,
+        1052992,
+        5247009,
+        141440,
+        1006731274,
+        606193479,
+        2426913,
+        2418212864,
+        872546559,
+        341966867
+      ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149388960,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        134694055,
+        397632,
+        873005088,
+        872939600,
+        397632,
+        4591649,
+        135296,
+        1006731274,
+        606193479,
+        2230305,
+        2418212864,
+        0,
+        200960
+      ]
+    },
+    {
+      "menu": "STATMENU",
+      "address": 2149389156,
+      "expected": 1149056,
+      "action": "OFFSET",
+      "reg": 17,
+      "guard": [
+        872873991,
+        872677582,
+        872742939,
+        872873990,
+        1083712,
+        36735009,
+        1149056,
+        1006731274,
+        606193497,
+        3213345,
+        2418409472,
+        872546432,
+        2946629648
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149387656,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        704774154,
+        339804152,
+        37756961,
+        604241407,
+        1184064,
+        5378081,
+        135296,
+        1006731274,
+        606193498,
+        2230305,
+        2485256192,
+        35883044,
+        5312550
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149391568,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2351038464,
+        0,
+        4194312,
+        0,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193495,
+        2361377,
+        2418212864,
+        0,
+        811728928
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149391688,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        339936002,
+        0,
+        134695378,
+        872546305,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193495,
+        2361377,
+        2418212864,
+        0,
+        811728928
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149391880,
+      "expected": 202880,
+      "action": "OFFSET",
+      "reg": 3,
+      "guard": [
+        606158117,
+        3409953,
+        2418147328,
+        0,
+        137536,
+        6428705,
+        202880,
+        1006731274,
+        606193498,
+        2295841,
+        2485256192,
+        0,
+        876741120
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149392172,
+      "expected": 134694832,
+      "action": "ITEM_LIMIT_MESSAGE",
+      "reg": 0,
+      "guard": [
+        608305154,
+        137472,
+        6428705,
+        202816,
+        1006796829,
+        608318048,
+        134694832,
+        6430753,
+        646184889,
+        744620038,
+        272629868,
+        200832,
+        1006731293
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149392232,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2351038464,
+        0,
+        4194312,
+        0,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193472,
+        2361377,
+        2418212864,
+        0,
+        744620287
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149392300,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2361377,
+        2686582784,
+        134694972,
+        0,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193473,
+        2361377,
+        2418212864,
+        0,
+        744620287
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149392368,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2361377,
+        2686582784,
+        134694972,
+        0,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193474,
+        2361377,
+        2418212864,
+        0,
+        744620287
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149392436,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2361377,
+        2686582784,
+        134694972,
+        0,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193475,
+        2361377,
+        2418212864,
+        0,
+        744620287
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149392504,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2361377,
+        2686582784,
+        134694972,
+        0,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193476,
+        2361377,
+        2418212864,
+        0,
+        744620287
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149392572,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2361377,
+        2686582784,
+        134694972,
+        0,
+        266560,
+        4460577,
+        139392,
+        1006731274,
+        606193477,
+        2361377,
+        2418212864,
+        0,
+        744620287
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395168,
+      "expected": 1006796810,
+      "action": "STORY_RETURN_RECORD",
+      "reg": 0,
+      "guard": [
+        634271932,
+        1006796810,
+        608356216,
+        608961600,
+        872940576,
+        608896032,
+        1006796810,
+        2487408522,
+        0,
+        19009543,
+        809631745,
+        272629818,
+        0
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395184,
+      "expected": 809631745,
+      "action": "STORY_RETURN_MASK",
+      "reg": 0,
+      "guard": [
+        872940576,
+        608896032,
+        1006796810,
+        2487408522,
+        0,
+        19009543,
+        809631745,
+        272629818,
+        0,
+        12321,
+        16791585,
+        23078945,
+        2359427072
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395432,
+      "expected": 623509503,
+      "action": "STORY_RETURN_NEXT",
+      "reg": 0,
+      "guard": [
+        616955905,
+        683802632,
+        339804136,
+        614793220,
+        629997436,
+        621346684,
+        623509503,
+        355336124,
+        627834748,
+        872546305,
+        65011720,
+        0,
+        12321
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395480,
+      "expected": 2504130560,
+      "action": "STORY_REMOVE_RECORD",
+      "reg": 6,
+      "guard": [
+        12321,
+        604635135,
+        1007321098,
+        625661834,
+        625537038,
+        625471470,
+        2504130560,
+        0,
+        12718087,
+        809631745,
+        272629783,
+        0,
+        10273
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395492,
+      "expected": 809631745,
+      "action": "STORY_MASK",
+      "reg": 6,
+      "guard": [
+        625661834,
+        625537038,
+        625471470,
+        2504130560,
+        0,
+        12718087,
+        809631745,
+        272629783,
+        0,
+        10273,
+        14686241,
+        2355232768,
+        0
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395604,
+      "expected": 339804128,
+      "action": "STORY_MORE",
+      "reg": 6,
+      "guard": [
+        681705480,
+        339804151,
+        610467844,
+        621281412,
+        616955905,
+        683802633,
+        339804128,
+        619118724,
+        10273,
+        604438527,
+        1006862346,
+        610520672,
+        2355232768
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395908,
+      "expected": 1006796810,
+      "action": "STORY_SCAN_RECORD",
+      "reg": 18,
+      "guard": [
+        608370684,
+        36897,
+        1006796810,
+        608356216,
+        609484832,
+        4233249,
+        1006796810,
+        2487408522,
+        0,
+        37883911,
+        809631745,
+        272629777,
+        0
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149395924,
+      "expected": 809631745,
+      "action": "STORY_MASK",
+      "reg": 18,
+      "guard": [
+        609484832,
+        4233249,
+        1006796810,
+        2487408522,
+        0,
+        37883911,
+        809631745,
+        272629777,
+        0,
+        34849,
+        39878689,
+        201804422,
+        33562657
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396012,
+      "expected": 339804133,
+      "action": "STORY_MORE",
+      "reg": 18,
+      "guard": [
+        706871304,
+        339804155,
+        638582788,
+        647233668,
+        642908161,
+        708968457,
+        339804133,
+        645070980,
+        34849,
+        1007714314,
+        638635616,
+        201804422,
+        33562657
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396260,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2947612692,
+        34849,
+        2947743772,
+        605290495,
+        1184064,
+        5378081,
+        135296,
+        1006862346,
+        610518904,
+        2947547152,
+        4423713,
+        2948530208,
+        2382626816
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396344,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        339804150,
+        638582788,
+        34849,
+        605290495,
+        1184064,
+        5378081,
+        135296,
+        1006862346,
+        610518936,
+        4423713,
+        2382626816,
+        0,
+        278069252
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396412,
+      "expected": 163968,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        640745473,
+        706871304,
+        339804150,
+        638582788,
+        1184064,
+        5378081,
+        163968,
+        1006731274,
+        606193494,
+        3147809,
+        2418278400,
+        872546559,
+        276955144
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396576,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        339804152,
+        610467841,
+        10273,
+        604438527,
+        463168,
+        4657185,
+        135296,
+        1006731274,
+        606193492,
+        2230305,
+        2418212864,
+        1006927882,
+        612683360
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396680,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        339804153,
+        610467844,
+        10273,
+        604569599,
+        463168,
+        4657185,
+        135296,
+        1006927882,
+        612681592,
+        612565024,
+        4403233,
+        4464673,
+        18880545
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396764,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        616955908,
+        681705480,
+        339804149,
+        610467844,
+        463168,
+        4657185,
+        135296,
+        1006731274,
+        606193492,
+        2230305,
+        2686451712,
+        65011720,
+        0
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396872,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        10273,
+        1007124490,
+        619171424,
+        266560,
+        4460577,
+        2432892932,
+        135296,
+        1006731274,
+        606193492,
+        2230305,
+        2686648320,
+        2432892933,
+        16789537
+      ]
+    },
+    {
+      "menu": "ITEMMENU",
+      "address": 2149396956,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        681705475,
+        339804154,
+        619118596,
+        10273,
+        266560,
+        4460577,
+        135296,
+        1006927882,
+        612681592,
+        612565024,
+        4403233,
+        4464673,
+        16783393
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149391268,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2420244480,
+        8593441,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149391284,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848,
+        2361377,
+        2485321728,
+        1006731274,
+        606193465
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149391544,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2420244480,
+        8593441,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149391560,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848,
+        2361377,
+        2485321728,
+        1006731274,
+        606193465
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149391820,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2420244480,
+        8593441,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149391836,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848,
+        2361377,
+        2485321728,
+        1006731274,
+        606193465
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149392644,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2420244480,
+        8593441,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149392660,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848,
+        2361377,
+        2485321728,
+        1006731274,
+        606193465
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149393036,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2420244480,
+        8593441,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149393052,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848,
+        2361377,
+        2485321728,
+        1006731274,
+        606193465
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149393428,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2420244480,
+        8593441,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848
+      ]
+    },
+    {
+      "menu": "MGICMENU",
+      "address": 2149393444,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        270720,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606197848,
+        2361377,
+        2485321728,
+        1006731274,
+        606193465
+      ]
     }
   ],
+  "story_materia": {
+    "modes": {
+      "15": "rank and confiscate at most48 materia",
+      "16": "return to free equipment slots, then inventory"
+    },
+    "resident_calls": [
+      {
+        "address": 2147558368,
+        "target": 2147634892
+      },
+      {
+        "address": 2147558384,
+        "target": 2147634948
+      },
+      {
+        "address": 2147634924,
+        "target": 2149395828
+      },
+      {
+        "address": 2147634980,
+        "target": 2149396100
+      }
+    ],
+    "item_calls": [
+      {
+        "address": 2149395728,
+        "target": 2149395456
+      },
+      {
+        "address": 2149396056,
+        "target": 2149395676
+      },
+      {
+        "address": 2149396152,
+        "target": 2149395132
+      }
+    ],
+    "storage": {
+      "candidate_buffer": 2149400416,
+      "native_saved_bank": 2148127104,
+      "entries": 48,
+      "entry_bytes": 4,
+      "inventory": 2148126304,
+      "inventory_entries": 200
+    },
+    "ordering": "Select/remove native0..8 subject to originalD78A availability, then registered extras, then inventory; return native8..0 first, then registered extras, then original inventory insertion",
+    "guards": "All9 story contexts must match before any story adapter changes a register; loop progress lives only in guest GPRs, no host iterator or allocation",
+    "clobbers": {
+      "STORY_SCAN_RECORD": [
+        "s3",
+        "s4"
+      ],
+      "STORY_REMOVE_RECORD": [
+        "a3",
+        "t0"
+      ],
+      "STORY_MASK": [
+        "v0"
+      ],
+      "STORY_MORE": [
+        "v0"
+      ],
+      "STORY_RETURN_RECORD": [
+        "t0",
+        "t3",
+        "t4"
+      ],
+      "STORY_RETURN_MASK": [
+        "v0"
+      ],
+      "STORY_RETURN_NEXT": [
+        "t1"
+      ]
+    },
+    "policy": "All registered extras participate, including reserve members; no native availability or alias-table slot is reused; packed materia/AP and native bank format unchanged",
+    "label_reference": "https://wiki.ffrtt.ru/index.php/FF7/Field/Script/Opcodes/49_MENU",
+    "basis": "Implementation and addresses independently derived from owner binaries; external opcode label identifies the Wutai story event only"
+  },
   "portrait": {
     "path": "MENU/PCEFI.TIM",
     "bytes": 2848,
@@ -2302,7 +3507,7 @@
       "ff7_party_menu_init returns allocation success before proxy publication",
       "ff7_party_menu_restore preserves rewound guest-backed backups/list"
     ],
-    "record_abi": "Before verified SLL r,r,2, substitute (independent_record-0x8009C738)>>2 for33*extra_guest. Only specified GPR changes; original instruction/delay semantics continue. Alias load base operand redirects to allocated scratch word containing the extra guest; native alias table remains unchanged.",
+    "record_abi": "Before verified SLL destination,source,2, substitute (independent_record-0x8009C738)>>2 for33*extra_guest in the SOURCE register. Only specified GPR changes; original instruction/delay semantics continue. Alias load base operand redirects to allocated scratch word containing the extra guest; native alias table remains unchanged.",
     "persistence": "Menu allocation includes VRAM backup marker/data; full game/card/save ownership belongs to shared bridge.",
     "native_caches": {
       "record_base": "0x801DF6C0",
@@ -2317,7 +3522,11 @@
       "0x80020B68",
       "0x80025668",
       "0x800256DC",
-      "0x800257CC"
+      "0x800257CC",
+      "0x80025800",
+      "0x800258BC",
+      "0x80025988",
+      "0x80025A44"
     ],
     "limits": [
       "PHS reserve grid remains nine cells; overflow counted, future paging required beyond capacity.",

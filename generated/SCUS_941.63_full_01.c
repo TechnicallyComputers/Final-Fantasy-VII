@@ -24643,6 +24643,7 @@ void func_80015248(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80015248u);
+    if (psx_mod_function_entry(cpu, 0x80015248u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80015248, Size: 860 bytes, Blocks: 56 */
 
 block_80015248:
@@ -31853,6 +31854,7 @@ block_80015B34:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xDu);
 #endif
+psx_mod_instruction(cpu, 0x80015B34u, 0x00601021u);
     { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[2] = cpu->gpr[3];  /* move */
     PGXP_ALU(0x00601021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80015B34: 0x00601021 */
 #ifdef PSX_COSIM

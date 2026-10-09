@@ -11,9 +11,12 @@
  * Instruction hooks do not call guest functions: branch/load delay state is
  * still live. Every hook has a thirteen-word original-code context guard.
  */
-enum Menu { MENU_FORMMENU, MENU_EQIPMENU };
+enum Menu { MENU_FORMMENU, MENU_EQIPMENU, MENU_STATMENU, MENU_ITEMMENU, MENU_MGICMENU };
 enum Action { OFFSET, ALIAS, PORTRAIT, PORTRAIT_ALIAS, PHS_READY, PHS_CLOSE,
-              PHS_SWAP, ELIGIBILITY, LIST_BASE, LIST_CLEAR, LIST_FILL, LIST_APPEND };
+              PHS_SWAP, ELIGIBILITY, LIST_BASE, LIST_CLEAR, LIST_FILL, LIST_APPEND,
+              ITEM_LIMIT_MESSAGE, STORY_SCAN_RECORD, STORY_REMOVE_RECORD,
+              STORY_MASK, STORY_MORE, STORY_RETURN_RECORD, STORY_RETURN_MASK,
+              STORY_RETURN_NEXT };
 typedef struct { uint32_t pc; enum Menu menu; enum Action action; unsigned reg;
                  uint32_t words[13]; } MenuSite;
 static const MenuSite s_sites[] = {
@@ -23,6 +26,7 @@ static const MenuSite s_sites[] = {
 enum { EXTRA_CAPACITY = 16, PORTRAIT_CELL = 9, STORAGE_SIZE = 4096,
        FLAG = 0, ALIAS_WORD = 4, PORTRAIT_WORD = 68, EXCHANGE = 144,
        PORTRAIT_EXTENTS = 176,
+       ITEM_NOTICE = 200,
        PALETTE_BACKUP = 256, IMAGE_BACKUP = 768 };
 static const uint32_t NATIVE = 0x8009c738u, ACTIVE = 0x8009cbdcu;
 static const uint32_t ALIAS_TABLE = 0x800491d0u, RESERVE = 0x801d3424u;
@@ -153,7 +157,18 @@ static void append_reserve(void) {
     }
 }
 
+static uint32_t story_record(unsigned extra) {
+    if(extra>=extra_count())return 0;
+    uint32_t p=ff7_party_game_record(ff7_party_game_extra_guest(extra));
+    return (p&3u)?0:p;
+}
 static void apply_site(struct CPUState* cpu, const MenuSite* site) {
+    if(site->action>=STORY_SCAN_RECORD){
+        /* Bounds and pointer routing are one transaction: never extend a
+         * native loop if a neighboring required adapter cannot match. */
+        for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i)
+            if(s_sites[i].action>=STORY_SCAN_RECORD && !matches(&s_sites[i]))return;
+    }
     switch (site->action) {
     case OFFSET:
         /* Before SLL r,r,2, r==33*guest identifies this record arithmetic.
@@ -229,6 +244,49 @@ static void apply_site(struct CPUState* cpu, const MenuSite* site) {
             }
         }
         break;
+    case ITEM_LIMIT_MESSAGE:
+        /* Retail refusal text is indexed by raw native identity. An added
+         * identity cannot index that fixed message table. Keep item rejection
+         * and inventory unchanged, but supply bounded mod-authored text. */
+        if(cpu->gpr[4]<=255 && ff7_party_game_is_extra((uint8_t)cpu->gpr[4]))
+            cpu->gpr[3]=s_storage+ITEM_NOTICE-cpu->gpr[2];
+        break;
+    case STORY_SCAN_RECORD:
+    case STORY_REMOVE_RECORD:{
+        /* Wutai mode15: native0..8 retain availability/order; registered
+         * independent records follow, then the original200-entry inventory.
+         * Rank selection,48-entry storage and exact AP-word removal stay MIPS. */
+        uint32_t p=story_record(cpu->gpr[site->reg]-9u);
+        if(p){
+            unsigned weapon=site->action==STORY_SCAN_RECORD?19:7;
+            unsigned armor=site->action==STORY_SCAN_RECORD?20:8;
+            cpu->gpr[weapon]=p+0x40;cpu->gpr[armor]=p+0x60;
+        }
+        break;}
+    case STORY_MASK:
+        if(cpu->gpr[site->reg]>=9)
+            cpu->gpr[2]=story_record(cpu->gpr[site->reg]-9u)?1:0;
+        break;
+    case STORY_MORE:
+        if(cpu->gpr[site->reg]>=9)
+            cpu->gpr[2]=cpu->gpr[site->reg]<9+extra_count();
+        break;
+    case STORY_RETURN_RECORD:{
+        /* Mode16 still tries native8..0 first. Negative t1 values -2,-3,...
+         * enumerate extras afterward without expanding the native bitmask.
+         * t0 remains the record-relative gear offset, t3/t4 materia pointers. */
+        uint32_t p=story_record(~cpu->gpr[9]-1u);
+        if(p){cpu->gpr[8]=p-NATIVE;cpu->gpr[11]=p+0x40;cpu->gpr[12]=p+0x60;}
+        break;}
+    case STORY_RETURN_MASK:
+        if(cpu->gpr[9]&0x80000000u)cpu->gpr[2]=story_record(~cpu->gpr[9]-1u)?1:0;
+        break;
+    case STORY_RETURN_NEXT:
+        /* Before native t1--/BNE t1,-1. All progress remains in snapshot-owned
+         * guest registers; success can return early without host iterator state. */
+        if(cpu->gpr[9]==0 && extra_count())cpu->gpr[9]=~0u;
+        else if((cpu->gpr[9]&0x80000000u) && ~cpu->gpr[9]==extra_count())cpu->gpr[9]=0;
+        break;
     }
 }
 static void menu_instruction(struct CPUState* cpu,uint32_t address) {
@@ -250,6 +308,9 @@ int ff7_party_menu_init(void) {
     if (!s_storage) return 0;
     psx_mod_write_word(s_storage+FLAG,0);
     for (unsigned i=0;i<32;++i) psx_mod_write_byte(s_storage+EXCHANGE+i,255);
+    static const char notice[]="Cannot use this item.";
+    for(unsigned i=0;i<sizeof notice;++i)
+        psx_mod_write_byte(s_storage+ITEM_NOTICE+i,notice[i]?(uint8_t)(notice[i]-32):255);
     return 1;
 }
 void ff7_party_menu_restore(void) {
@@ -259,7 +320,14 @@ void ff7_party_menu_restore(void) {
     s_portrait_valid=0;
 }
 PSX_MOD_CONSTRUCTOR(register_ff7_party_menu) {
-    for (size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i)
+    for (size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i) {
+        /* Several overlays can share the address and opcode. One dispatcher
+         * registration checks every context; never register it twice. */
+        int registered=0;
+        for(size_t j=0;j<i;++j)
+            if(s_sites[j].pc==s_sites[i].pc && s_sites[j].words[6]==s_sites[i].words[6])registered=1;
+        if(registered)continue;
         (void)psx_mod_register_instruction_plugin("ff7.party-gameplay",s_sites[i].pc,
                                                 s_sites[i].words[6],menu_instruction);
+    }
 }

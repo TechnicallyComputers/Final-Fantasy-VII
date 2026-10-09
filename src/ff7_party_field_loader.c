@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 enum {SCRIPT_BYTES=65536,META_BYTES=260,WORK_BYTES=0x100000,MODEL_BYTES=0x400000,STATE_CAPACITY=32};
-enum LoaderAction {PREPARE,MODELS};
+enum LoaderAction {PREPARE,MODELS,RELOAD};
 typedef struct {uint32_t pc;enum LoaderAction action;uint32_t words[13];} LoaderSite;
 static const LoaderSite s_sites[]={
 #include "ff7_party_field_loader_sites.inc"
@@ -104,17 +104,70 @@ static int prepare(CPUState* cpu){
     write_bytes(s_models,model_output,reserve);
     psx_mod_write_word(s_control+4,psx_mod_read_word(0x8004a62c));
     psx_mod_write_word(s_control+8,field);psx_mod_write_word(s_control+12,(uint32_t)model_bytes);
+    psx_mod_write_word(s_control+16,metadata);psx_mod_write_word(s_control+20,count);
+    psx_mod_write_word(s_control+24,original_models);psx_mod_write_word(s_control+28,(uint32_t)reserve);
     psx_mod_write_word(0x8007e770,s_metadata);psx_mod_write_word(0x8008357c,s_metadata+4);
-    psx_mod_write_word(0x8004a62c,s_workspace);psx_mod_write_word(s_control,1);
+    psx_mod_write_word(0x8004a62c,s_workspace);psx_mod_write_word(s_control,3);
     cpu->gpr[5]=states;cpu->gpr[6]=s_script;ok=1;
 done:
     for(unsigned i=0;i<count;++i)free((void*)sources[i].bsx);
     free(input);free(bsx);free(output);free(model_output);return ok;
 }
+static int reload(void){
+    /* The original DAT reload restores E770/8357C without restarting scripts.
+     * AA930 must see the expanded metadata before ADAA4 allocates descriptors.
+     * AC484 is too late. AC35C also relocates/overwrites its BSX in place, so
+     * never reuse that mutated buffer across model loads. Rebuild privately,
+     * then publish; script cursors, NPC state and party bindings stay intact. */
+    unsigned field=psx_mod_read_byte(0x8009a05c)|((unsigned)psx_mod_read_byte(0x8009a05d)<<8);
+    unsigned count=psx_mod_read_word(s_control+20),old=psx_mod_read_word(s_control+24);
+    uint32_t metadata=psx_mod_read_word(0x8007e770),lba=0,size=0;
+    if(field!=psx_mod_read_word(s_control+8) || field>=sizeof s_field_paths/sizeof s_field_paths[0] ||
+       psx_mod_read_word(0x8009c6dc)!=s_script || !count || count>16 || old+count>STATE_CAPACITY ||
+       (metadata!=s_metadata && metadata!=psx_mod_read_word(s_control+16)) ||
+       psx_mod_read_word(0x8008357c)!=metadata+4 ||
+       !psx_mod_disc_file_extent(s_field_paths[field],&lba,&size) ||
+       lba!=psx_mod_read_word(0x800da5c8+24*field) || size!=psx_mod_read_word(0x800da5cc+24*field))return 0;
+    uint8_t meta[META_BYTES];read_bytes(s_metadata,meta,4+8*(old+count));
+    if(u16(meta)!=4+8*(old+count) || u16(meta+2)!=old+count ||
+       psx_mod_read_byte(s_script+3)!=old+count)return 0;
+    if(metadata!=s_metadata){
+        uint8_t native[META_BYTES];
+        if(!ram(metadata,4+8*old))return 0;
+        read_bytes(metadata,native,4+8*old);
+        if(u16(native)!=4+8*old || u16(native+2)!=old)return 0;
+        memcpy(meta+4,native+4,8*old);
+    }
+    FF7FieldAssetSource sources[16]={{0}};size_t n=0,reserve=0;unsigned used=0;int ok=0;
+    uint8_t* bsx=file(s_field_paths[field],&n);uint8_t* output=malloc(MODEL_BYTES);
+    if(!bsx || !output || n<24 || u32(bsx+4)>n-16 || u32(bsx+u32(bsx+4)+4)!=old)goto done;
+    for(unsigned i=0;i<ff7_party_game_extra_count();++i){
+        const FF7PartyProfile* p=ff7_party_game_profile(ff7_party_game_extra_guest(i));
+        if(!p || !p->field_source)continue;
+        char path[80];uint8_t expected[8];
+        if(used>=count || snprintf(path,sizeof path,"%s.BSX",p->field_source)>=(int)sizeof path)goto done;
+        unsigned at=used++;sources[at].model=p->field_model_index;sources[at].bsx=file(path,&sources[at].size);
+        if(!sources[at].bsx || !ff7_field_asset_metadata(&sources[at],expected))goto done;
+        /* Compact descriptor index4 and visibility5 are runtime values. */
+        for(unsigned j=0;j<8;++j)if(j!=4 && j!=5 && expected[j]!=meta[4+8*(old+at)+j])goto done;
+    }
+    if(used!=count)goto done;
+    size_t bytes=ff7_field_append_models(bsx,n,sources,count,output,MODEL_BYTES,&reserve);
+    if(!bytes || bytes!=psx_mod_read_word(s_control+12) || reserve!=psx_mod_read_word(s_control+28))goto done;
+    write_bytes(s_models,output,reserve);
+    /* ADD70 byte6 is a per-load BCX cache marker, invalid after allocation. */
+    for(unsigned i=0;i<old+count;++i)meta[4+8*i+6]=0;
+    write_bytes(s_metadata,meta,4+8*(old+count));
+    psx_mod_write_word(0x8007e770,s_metadata);psx_mod_write_word(0x8008357c,s_metadata+4);
+    psx_mod_write_word(0x8004a62c,s_workspace);ok=1;
+done:
+    for(unsigned i=0;i<used;++i)free((void*)sources[i].bsx);
+    free(bsx);free(output);return ok;
+}
 static void instruction(CPUState* cpu,uint32_t pc){
     if(!cpu || !s_control || !ff7_party_game_ready())return;
     pc=(pc&0x1fffffffu)|0x80000000u;
-    if(pc!=s_sites[0].pc && pc!=s_sites[1].pc)return;
+    if(pc!=s_sites[0].pc && pc!=s_sites[1].pc && pc!=s_sites[2].pc)return;
     if(pc==s_sites[0].pc){
         /* Retire the preceding field even if this entry's context rejects.
          * Otherwise its active state hooks could redirect an unprepared field. */
@@ -126,11 +179,20 @@ static void instruction(CPUState* cpu,uint32_t pc){
     if(!guards()){psx_mod_counter_add("ff7.party_field_loader.context_reject",1);return;}
     if(pc==s_sites[0].pc){
         psx_mod_counter_add(prepare(cpu)?"ff7.party_field_loader.prepared":"ff7.party_field_loader.prepare_reject",1);
+    }else if(pc==s_sites[2].pc){
+        if(psx_mod_read_word(s_control)){
+            /* One-use raw-model readiness is rewindable too. A rejected load
+             * must never feed an already relocated buffer to AC35C. */
+            psx_mod_write_word(s_control,1);
+            int ok=reload();if(ok)psx_mod_write_word(s_control,3);
+            psx_mod_counter_add(ok?"ff7.party_field_loader.reloaded":"ff7.party_field_loader.reload_reject",1);
+        }
     }else if(psx_mod_read_word(s_control)){
         uint32_t field=psx_mod_read_byte(0x8009a05c)|((unsigned)psx_mod_read_byte(0x8009a05d)<<8);
-        if(field!=psx_mod_read_word(s_control+8) || psx_mod_read_word(0x8007e770)!=s_metadata){
+        if(psx_mod_read_word(s_control)!=3 || field!=psx_mod_read_word(s_control+8) || psx_mod_read_word(0x8007e770)!=s_metadata){
             psx_mod_counter_add("ff7.party_field_loader.model_reject",1);return;
         }
+        psx_mod_write_word(s_control,1);
         cpu->gpr[17]=s_models;psx_mod_counter_add("ff7.party_field_loader.models",1);
     }
 }

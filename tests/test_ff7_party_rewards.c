@@ -5,7 +5,7 @@
 #define CHECK(x) do{if(!(x)){fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,#x);exit(1);}}while(0)
 static uint8_t s_ram[0x200000],s_expansion[0x20000];
 static unsigned s_count=16,s_rejected,s_registered,s_ready=1;
-static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",1,NULL,0};
+static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",1,NULL,0,0};
 static uint8_t* ptr(uint32_t p){p&=0x1fffffffu;if(p<sizeof s_ram)return s_ram+p;
     CHECK(p>=0x1f000000u && p-0x1f000000u<sizeof s_expansion);return s_expansion+p-0x1f000000u;}
 uint8_t psx_mod_read_byte(uint32_t p){return *ptr(p);}

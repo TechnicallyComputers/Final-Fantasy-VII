@@ -284,10 +284,59 @@
       ]
     }
   ],
-  "runtime_status": "Developer loader source/config integration includes400 field-state seams (650 total party sites); production adapter and original-MIPS isolated oracles pass on all3 discs; runtime rebuild and live traversal remain parent acceptance work",
+  "runtime_status": "Integrated AA930 pre-descriptor reload seam. Fresh extended-save field load and normal MD1STIN-to-MD1_1 transition pass live with native actors intact. Live battle return and extra-leader walking remain acceptance.",
   "pending": [
     "Live field appearance, walk/run/follower camera behavior, story scheduling and transitions",
     "Application save-state/rewind validation (isolated guest arena snapshot passes)"
   ],
-  "field_name_validation": "All787 FIELD table IDs independently match owner ISO BSX names/extents on all3 discs; script header labels deliberately ignored because some are truncated"
+  "field_name_validation": "All787 FIELD table IDs independently match owner ISO BSX names/extents on all3 discs; script header labels deliberately ignored because some are truncated",
+  "battle_return_reload": {
+    "status": "passed",
+    "runs": 78,
+    "discs": [
+      1,
+      2,
+      3
+    ],
+    "leader_proxies": [
+      11,
+      26
+    ],
+    "fields": [
+      "MD1STIN",
+      "ASTAGE_A",
+      "BLIN1",
+      "BONEVIL2",
+      "CLSIN2_1",
+      "COLOSS",
+      "COS_BTM",
+      "JUNONR4",
+      "KURO_1",
+      "MOGU_1",
+      "TRNAD_3",
+      "UTTMPIN3",
+      "SEMKIN_3"
+    ],
+    "cases": [
+      "Original A146C..A1484 DAT metadata restoration followed by production AA930 rebind, original ADAA4 descriptor allocation and AC484..AC744 relocation: repeated results identical after poisoning the entire raw BSX arena; retained NPC scripts/cursors/states/entity bindings byte-identical",
+      "Wrong field, foreign script, foreign descriptor pointer and changed disc extent reject without publishing"
+    ],
+    "bounds": "Original descriptor allocator and model relocation, with texture device calls stubbed; complete native CD/BCX loader, renderer and live battle return are not emulated",
+    "transaction": "Guest-owned one-use raw BSX readiness prevents rejected/repeated consumers from reading relocated data; no new allocations; retained scripts/cursors/32 states/native maps and extra entity binding unchanged",
+    "integration": "One new exact-word site800AA930=27BDFFD8, with13-word context; all three owner discs verified"
+  },
+  "control_audit": {
+    "status": "passed-original-code",
+    "discs": 3,
+    "proxies": [
+      11,
+      26
+    ],
+    "cases": [
+      "Original CF60C preserves surviving field-bank order when Order rearranges battle party",
+      "Independent CEB20 entity/model lookup; actual Cloud PC init preserves extra leader",
+      "Original map-entry placement and frame-state routing preserve native states"
+    ],
+    "limits": "Synthetic walkmesh in isolated original-MIPS audit; rendered walking/camera remains live acceptance."
+  }
 }

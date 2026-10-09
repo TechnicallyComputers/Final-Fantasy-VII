@@ -12,16 +12,17 @@ SAVEMENU save/load instructions, native fallback projection and the shared card
 extension transport. Pending writes live in snapshot-owned enhancement memory.
 The earlier `party-save` adapter remains a codec test fixture; it is no longer
 offered in the catalog because the gameplay adapter must own card persistence.
-The exporter currently runs as a standalone command. Original-MIPS checksum and
-preview tests and synthetic card lifecycle tests pass; a live BIOS save-menu
-playthrough, live field-model acceptance and complete animation/limit integration
-remain required before calling the character playable.
+The exporter currently runs as a standalone command. A live BIOS save, exact
+standard-card export and extended-card title-to-field reload have passed. Native
+checksum and preview tests, synthetic card lifecycle tests and independent limit
+progression checks also pass. Live battle-limit acceptance, field-leader walking
+and broader story coverage remain required before calling the character playable.
 
 ## Additional-character architecture
 
 Sephiroth is the first entry in an added-character registry. `FF7PartyProfile`
 separates a persistent 16-bit identity from its asset paths, template, equipment
-compatibility, growth rules and motion policy. Multiple entries can share a
+compatibility, growth rules, motion policy and limit policy. Multiple entries can share a
 stock presentation or rule set while retaining independent character records.
 Future characters add descriptors and the corresponding asset/ability adapters;
 they do not replace Vincent or consume another native character's record.
@@ -53,6 +54,43 @@ cell. Materia exchange has a separate expanded 25-entry list. Reserve overflow
 is counted; future larger rosters need paging and portrait banks. These UI bounds
 are separate from save/storage capacity and must be addressed before enabling
 additional characters beyond what those screens can show.
+
+Limits are profile-selected too. Policy zero retains the native rules; Sephiroth
+uses policy one with seven authored techniques across four levels. His reserved
+attack IDs 96 through 102 use existing strike/sweep action scripts on his own
+body and weapon rig. A future character needs an explicitly registered policy,
+verified unused attack entries and suitable action/asset adapters. Adding a
+descriptor alone does not make an arbitrary model or ability compatible.
+
+## Saved limit progression
+
+Limit progression uses the existing fields inside each extra member's independent
+132-byte record. It does not change the `FF7PARTY` version 3 layout or introduce
+host-only progress. Offsets below are relative to those 132 character bytes,
+not to the containing 136-byte envelope entry.
+
+| Offset | Bytes | Meaning |
+| --- | ---: | --- |
+| `0x0E` | 1 | Selected limit level, 1 through 4 |
+| `0x0F` | 1 | Limit gauge |
+| `0x22` | 2 | Learned-technique bit mask |
+| `0x24` | 2 | Enemy kills |
+| `0x26` | 2 | Level 1 limit uses |
+| `0x28` | 2 | Level 2 limit uses |
+| `0x2A` | 2 | Level 3 limit uses |
+
+New Sephiroth records start at level 1 with an empty gauge, learned mask 1 and
+zero counters. His move bits are 0, 1, 3, 4, 6, 7 and 9. The second moves at
+levels 1, 2 and 3 require 8, 7 and 6 uses respectively; the first moves at
+levels 2 and 3 require 80 and 160 kills. The final move requires the previous
+six techniques and 320 kills. These are provisional mod balance values.
+
+When loading an older expanded-party record for a registered limit policy, the
+bridge adds only its first-technique bit. It preserves the selected level,
+gauge, other learned bits, kill count and use counters. Native characters and
+profiles without a registered policy keep their original bytes. The next
+ordinary game save stores this progression with the rest of the independent
+record; standard export omits the entire added-character record.
 
 Field assets are also profile-selected. The loader appends independent script
 entities and model descriptors, preserving original entity numbers and NPC data.
@@ -384,7 +422,8 @@ through a partial-packet match. Pending state remains retryable across host
 publication failures and rewinds with guest RAM. The original save function's
 return seam clears its pending transaction.
 
-After a successful original load at `0x801D2134`, the adapter checks the exact
+After a successful original load and its caller's checksum comparison at
+`0x801D49B0`, the adapter checks the exact
 filename, allocated slot, full file equality and native checksum before restoring
 that slot's added records and both parties. An ordinary save resets added records
 from immutable kernel templates rather than keeping another game's progress.
@@ -394,10 +433,18 @@ flushing; there is no automatic hash recovery. The new-game-only seam at
 `0x80011DBC` resets added progress after the original kernel and native party reset;
 the shared native reset routine also runs before the title and is unsuitable alone.
 
+The restoration seam is deliberately after the caller compares the original
+Savemap CRC. Restoring extra party handles inside the earlier file-read return
+would change checksum-covered bytes before that comparison and reject a valid
+save. The successful caller branch retains the loaded filename at caller stack
+pointer minus `0x30`; the intervening checksum routine does not overwrite it.
+The adapter changes no registers, return values or stored native checksum.
+
 The framework restores card base/tail bytes and invokes the codec loader to
 rebuild host card caches. The live roster, field bank and pending packet are guest
 snapshot bytes, so no host roster from a later frame is republished on rewind.
-Save-menu BIOS I/O and live rewind during saving still need acceptance testing.
+Save-menu BIOS I/O and a fresh title-to-field reload have passed live checks.
+Live rewind during saving still needs acceptance testing.
 
 ## Developer runtime adapter
 
@@ -469,4 +516,9 @@ rewind, failed preparation and native PC preservation. An original-MIPS oracle
 matches eight checksum inputs and the full preview routine for native Cloud,
 Vincent and an independent proxy on all three discs. C/Python v3 bytes match and
 both readers migrate v2 without inventing its missing bank. These tests do not
-establish live BIOS save-menu acceptance or complete playable-party behavior.
+establish complete playable-party behavior. Separate live checks validate an
+original BIOS save with Sephiroth's own EXP, equipment and materia, a standard
+export identical to the 131,072-byte native base, and a fresh title-to-field load
+of the extended card. The load restores both party banks only after the original
+checksum succeeds; the stored CRC remains unchanged. Live rewind during saving,
+disc switching and whole-game story coverage remain unvalidated.

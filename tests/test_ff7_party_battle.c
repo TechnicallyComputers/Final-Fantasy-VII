@@ -8,7 +8,7 @@ static void(*s_motion_callbacks[2])(CPUState*,uint32_t);
 void register_ff7_party_motion(void);
 static unsigned s_count=1,s_registered,s_rejected,s_alloc_fail,s_asset_fail;
 static uint32_t s_lba=30363,s_bytes=43264;
-static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",FF7_PARTY_MOTION_SEPHIROTH,NULL,0};
+static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",FF7_PARTY_MOTION_SEPHIROTH,NULL,0,0};
 static uint8_t* ptr(uint32_t p){p&=0x1fffffffu;if(p<sizeof s_ram)return s_ram+p;
     CHECK(p>=0x1f000000u && p-0x1f000000u<sizeof s_expansion);return s_expansion+p-0x1f000000u;}
 uint8_t psx_mod_read_byte(uint32_t p){return *ptr(p);}

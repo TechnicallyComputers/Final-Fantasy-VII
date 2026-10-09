@@ -4,7 +4,7 @@ from collections import Counter
 from pathlib import Path
 from inspect_ff7_party import Disc,ROOT
 from inspect_ff7_animations import decompress_lzs
-SITES=[(0x800ba534,'PREPARE'),(0x800ac484,'MODELS')]
+SITES=[(0x800ba534,'PREPARE'),(0x800ac484,'MODELS'),(0x800aa930,'RELOAD')]
 def inspect(cue):
     d=Disc(cue)
     counts=Counter();saturated=[];non_script=[];names={}
@@ -35,8 +35,8 @@ def inspect(cue):
       'field_names':[names[i]for i in range(787)],
       'bsx_extent_table':{'address':table,'stride':24,'basis':'Original AA978 LUI a1,800E plus AA97C signed ADDIU a1,a1,A5C8; original table is used by the oracle, never synthesized'},
       'native_capacity_evidence':{'field_model_counts':{str(k):counts[k]for k in sorted(counts)},'fields_scanned':sum(counts.values()),'non_script_dat':sorted(non_script),'maximum_original_models':max(counts),'runtime_total_model_limit':32,'fields_requiring_expanded_state':sorted(saturated),'reason':'Independent32-record arena,398 guarded direct-address seams and two guarded appended CHAR counter seams; all400 guards validate before publication'},
-      'functions':[{'start':a,'end_exclusive':b,'sha256':hashlib.sha256(raw[a-0x800a0000:b-0x800a0000]).hexdigest()}for a,b in((0x800ac35c,0x800acba0),(0x800ba534,0x800ba65c),(0x800adaa4,0x800adc90))],
-      'contract':['BA534: a1 native132-byte-state base,a2 original script pointer; replace both only after all assets,metadata,script,workspace and400 state guards validate','AC484: s1 raw BSX pointer after read/copy; replace with previously prepared merged BSX','CPU PC, return address and all other registers preserved; logical proxies stay in script PC bindings','Native descriptor/packet generation and shared FIELD.TDB texture handling remain original; owned source with local textures rejected']}
+      'functions':[{'start':a,'end_exclusive':b,'sha256':hashlib.sha256(raw[a-0x800a0000:b-0x800a0000]).hexdigest()}for a,b in((0x800ac35c,0x800acba0),(0x800ba534,0x800ba65c),(0x800adaa4,0x800adc90),(0x800aa930,0x800aab24),(0x800a1368,0x800a1498))],
+      'contract':['BA534: a1 native132-byte-state base,a2 original script pointer; replace both only after all assets,metadata,script,workspace and400 state guards validate','AA930: rebuild pristine merged BSX and rebind model metadata/workspace before native descriptor allocation; same prepared field and retained script required; preserves script cursors, NPC state and entity bindings','A146C..A1484 restores native metadata/descriptor globals after DAT reload without re-running BA534; AC35C caches metadata before AC484 and mutates model data, so late pointer-only repair is insufficient','AC484: s1 raw BSX pointer after read/copy; replace with previously prepared merged BSX','CPU PC, return address and all other registers preserved; logical proxies stay in script PC bindings','Native descriptor/packet generation and shared FIELD.TDB texture handling remain original; owned source with local textures rejected']}
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--disc',type=Path,required=True);p.add_argument('--write',action='store_true');a=p.parse_args();r=inspect(a.disc)
     path=ROOT/'mods/preloaded/packages/ff7.expanded-party/field-loader.evidence.json'

@@ -40,7 +40,7 @@ void ff7_test_results_hook(uint32_t pc,uint32_t* regs){CPUState cpu;memset(&cpu,
     party_resident_instruction(&cpu,pc);
     CHECK(cpu.pc==0x80045678u);memcpy(regs,cpu.gpr,sizeof cpu.gpr);}
 int main(void){
-    register_ff7_party_results();CHECK(registered==5);ff7_test_results_reset();
+    register_ff7_party_results();CHECK(registered==8);ff7_test_results_reset();
     for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i){const ResultSite* s=&s_sites[i];
         for(unsigned j=0;j<13;++j)psx_mod_write_word(s->pc-24+j*4,s->words[j]);
         for(unsigned g=0;g<=26;++g){uint32_t r[32]={0},before[32];
@@ -62,5 +62,5 @@ int main(void){
         portrait_fail=1;uint32_t r[32]={0};r[17]=11;ff7_test_results_hook(s->pc,r);
         CHECK(r[2]==0x80048fe8u && r[3]==r[2]+4 && r[17]==11);portrait_fail=0;
     }
-    CHECK(prepared==16);puts("result record lookup, aliases, strides, portraits and native passthrough passed");return 0;
+    CHECK(prepared==64);puts("result record lookup, aliases, strides, portraits and native passthrough passed");return 0;
 }

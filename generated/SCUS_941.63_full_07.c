@@ -165,6 +165,7 @@ block_80025880:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
+psx_mod_instruction(cpu, 0x800258A0u, 0x00021080u);
     { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
     PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x800258A0: 0x00021080 */
 #ifdef PSX_COSIM
@@ -1254,6 +1255,7 @@ block_80025A08:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
+psx_mod_instruction(cpu, 0x80025A28u, 0x00021080u);
     { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
     PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x80025A28: 0x00021080 */
 #ifdef PSX_COSIM

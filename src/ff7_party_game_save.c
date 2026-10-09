@@ -204,7 +204,13 @@ static void instruction(CPUState* cpu,uint32_t pc){
                 psx_mod_counter_add("ff7.party_game_save.prepare_reject",1);
             }
             break;
-        case LOADED:if(cpu->gpr[2]==0)loaded(cpu->gpr[29]+0x38);break;
+        case LOADED:
+            /* Success-only caller branch, after the original native CRC check.
+             * 1F40's filename was at callee SP+38, caller SP-30. The only
+             * intervening call is the stackless checksum leaf1950. Restore
+             * extras here before the success sound call can reuse that stack.
+             * Restoring at2134 changes CBDC/CAD before CRC and rejects saves. */
+            loaded(cpu->gpr[29]-0x30);break;
         case FINISHED:{
             uint8_t name[20];int card=filename(cpu->gpr[19],name);
             if(card>=0)psx_mod_write_word(pending((unsigned)card)+P_VALID,0);

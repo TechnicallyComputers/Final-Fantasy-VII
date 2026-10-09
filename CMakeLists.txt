@@ -53,6 +53,8 @@ psxrecomp_add_game_runtime(psx-runtime
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_battle.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_motion.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_motion_runtime.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_limit.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_limit_policy.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_projection.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_game_save.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_rewards.c"
@@ -85,7 +87,8 @@ if(BUILD_TESTING)
         "${PSXRECOMP_ROOT}/runtime/include")
     add_test(NAME ff7_party_access COMMAND ff7-party-access-tests)
 
-    add_executable(ff7-party-game-tests tests/test_ff7_party_game.c src/ff7_party.c)
+    add_executable(ff7-party-game-tests tests/test_ff7_party_game.c src/ff7_party.c
+        src/ff7_party_limit_policy.c)
     target_include_directories(ff7-party-game-tests PRIVATE
         "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_game_stubs"
         "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
@@ -112,6 +115,16 @@ if(BUILD_TESTING)
         target_link_libraries(ff7-party-battle-tests PRIVATE m)
     endif()
     add_test(NAME ff7_party_motion COMMAND ff7-party-motion-tests)
+
+    add_executable(ff7-party-limit-tests tests/test_ff7_party_limit.c
+        src/ff7_party_limit_policy.c src/ff7_party_motion.c src/ff7_party_motion_runtime.c)
+    target_include_directories(ff7-party-limit-tests PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/tests/ff7_party_battle_stubs"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src" "${PSXRECOMP_ROOT}/runtime/include")
+    if(UNIX)
+        target_link_libraries(ff7-party-limit-tests PRIVATE m)
+    endif()
+    add_test(NAME ff7_party_limit COMMAND ff7-party-limit-tests)
 
     add_executable(ff7-party-rewards-tests tests/test_ff7_party_rewards.c)
     target_include_directories(ff7-party-rewards-tests PRIVATE

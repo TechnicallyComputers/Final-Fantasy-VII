@@ -60,11 +60,11 @@ def inspect(cue, boot):
         i=(pc-base)//4
         if words[i]!=0x8c430000: raise ValueError('equipment contribution seam changed')
         found[i]=('ALIAS',2)
-    # Full heal recalculates correctly before these separate final record stores.
-    # Original whole-function FIELD oracle proved both writeback paths.
-    for pc in (0x80025968,0x80025af0):
+    # HP/MP add and subtract recalculate before separate final record stores.
+    # Whole original FIELD/menu functions validate these writeback paths.
+    for pc in (0x800258a0,0x80025968,0x80025a28,0x80025af0):
         i=(pc-base)//4
-        if words[i]!=0x00021080:raise ValueError('full-heal writeback seam changed')
+        if words[i]!=0x00021080:raise ValueError('HP/MP writeback seam changed')
         found[i]=('OFFSET',2)
     sites = []
     for i,(action,reg) in sorted(found.items()):
@@ -86,8 +86,8 @@ def main():
         for s in report['sites']:
             out.append('{0x%08xu, %s, %d, {%s}},' % (s['address'],s['action'],s['reg'],
                 ','.join('0x%08xu'%w for w in s['guard'])))
-        (ROOT/'src/ff7_party_resident_sites.inc').write_text('\n'.join(out)+'\n')
-        (ROOT/'mods/preloaded/packages/ff7.expanded-party/resident.evidence.json').write_text(json.dumps(report,indent=2)+'\n')
+        (ROOT/'src/ff7_party_resident_sites.inc').write_text('\n'.join(out)+'\n',newline='\n')
+        (ROOT/'mods/preloaded/packages/ff7.expanded-party/resident.evidence.json').write_text(json.dumps(report,indent=2)+'\n',newline='\n')
     print(json.dumps({'sites':len(report['sites']),
                       'aliases':sum(s['action']=='ALIAS' for s in report['sites']),
                       'boot_sha256':report['boot_sha256']},indent=2))

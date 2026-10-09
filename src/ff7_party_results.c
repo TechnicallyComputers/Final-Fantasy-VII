@@ -4,7 +4,7 @@
 #include "mod_plugins.h"
 #include <stddef.h>
 
-enum ResultAction {RECORD_SCAN,RESULT_ALIAS,PORTRAIT_COPY,PORTRAIT_EXTENT};
+enum ResultAction {RECORD_SCAN,RESULT_ALIAS,PORTRAIT_COPY,PORTRAIT_EXTENT,SAVE_PORTRAIT};
 typedef struct {uint32_t pc;enum ResultAction action;unsigned reg;uint32_t words[13];} ResultSite;
 static const ResultSite s_sites[]={
 #include "ff7_party_results_sites.inc"
@@ -35,6 +35,7 @@ static void result_instruction(CPUState* cpu,uint32_t pc){
                 r[s->reg]=ff7_party_game_alias_word((uint8_t)(off/4u));
             break;}
         case PORTRAIT_COPY:
+        case SAVE_PORTRAIT:
             if(extra(r[s->reg])){
                 int cell=ff7_party_menu_prepare_portrait((uint8_t)r[s->reg]);
                 if(cell>=0)r[s->reg]=(uint32_t)cell;

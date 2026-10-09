@@ -106,6 +106,69 @@
         872743872,
         37761057
       ]
+    },
+    {
+      "address": 2149398388,
+      "action": "SAVE_PORTRAIT",
+      "reg": 3,
+      "expected": 274858013,
+      "guard": [
+        647299078,
+        873660464,
+        46170145,
+        873529366,
+        2449670149,
+        872546559,
+        274858013,
+        744620037,
+        339738627,
+        35659809,
+        134696420,
+        2947743760,
+        2946498576
+      ]
+    },
+    {
+      "address": 2149398428,
+      "action": "SAVE_PORTRAIT",
+      "reg": 7,
+      "expected": 14811161,
+      "guard": [
+        134696420,
+        2947743760,
+        2946498576,
+        2449932293,
+        1006816460,
+        876793037,
+        14811161,
+        44050465,
+        872808496,
+        2947743768,
+        2947743772,
+        16400,
+        530562
+      ]
+    },
+    {
+      "address": 2149398500,
+      "action": "SAVE_PORTRAIT",
+      "reg": 2,
+      "expected": 201356384,
+      "guard": [
+        4657185,
+        135424,
+        2946629652,
+        2449604613,
+        872874032,
+        2946498596,
+        201356384,
+        2946629664,
+        638582785,
+        642908161,
+        708968451,
+        339804124,
+        640745524
+      ]
     }
   ],
   "functions": [
@@ -128,6 +191,11 @@
       "start": 2147639516,
       "end_exclusive": 2147639896,
       "sha256": "f6a034ff3e478142db0db4e352104d0e804f884d69d22203e96d67644db85a8f"
+    },
+    {
+      "start": 2149398284,
+      "end_exclusive": 2149398980,
+      "sha256": "ed4757128afad54ca9f83bed0028cfd4882a0a8b3059a55eb13dafedd4153870"
     }
   ],
   "contract": {
@@ -136,6 +204,7 @@
     "aliases": "LW/LBU operands point to proxy scratch, retaining logical identity; final strides select independent records",
     "portraits": "Shared profile atlas preparation; original GPU copy uses atlas index and original party destination; draw retains party-slot CLUT/UVs",
     "result_portrait_load": "Original260DC reads each TIM directly, not through25ED4;26180 redirects only the two extent load bases to CRC-validated profile LBA/4096-byte size. Original CD/TIM upload/palette restore execute. Native IDs untouched; missing assets use bounded native portrait0 fallback.",
+    "save_preview_portrait": "Original SAVEMENU370C reads three portrait identities from cached preview bytes5..7 independently of the active-party copy. Three register-only seams map registered extras to the shared profile atlas for bank/UV/CLUT selection. Cached preview bytes and serialized save are unchanged. Native identities retain original paths. The CLUT seam runs before JAL37E4 so its delay-slot store sees the updated operand with both native and interpreted load-delay behavior.",
     "state": "Original party-slot EXP buffers and guest-owned registry; no new host gameplay state",
     "dependencies": "Resident alias80021EE0 and record strides800225EC/800227A4; each shared plugin address registered once",
     "limits": "Existing limit announcement is memory-safe; custom learning remains separate"

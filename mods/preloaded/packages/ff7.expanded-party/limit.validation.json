@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "status": "passed-original-code-oracles",
+  "runtime_status": "Integrated: CMake runtime/lifecycle tests,11 entry hooks and736 unique instruction addresses; Release18 CTests pass. Developer feature remains default-off.",
+  "strict_limit_unit": "passed (-std=c11 -Wall -Wextra -Werror)",
+  "game_lifecycle_codec_test": "passed: new-game policy defaults; legacy bit0-only migration; selected level/gauge/kills/all use counters/other bits preserved; native and policy0 records unchanged; canonical codec round-trip and proxy reorder/rewind",
+  "real_framework_header_compile": "passed",
+  "guest_allocation_bytes": 1024,
+  "disc_reports": [
+    {
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "cases": [
+        "Original GetLimit returns twelve policy slots for extras11/12/26; all native0..10 outputs and kernel/records unchanged",
+        "Whole original BATRES learning increments and saturates own kills/uses, learns six moves at policy thresholds, unlocks final mastery at320 kills",
+        "Whole original LIMTMENU cache builder preserves native Cloud/Vincent and copies independent custom attack records for allfour selected levels",
+        "Original menu confirmation block sets allfour levels and clears only extra26 gauge; own attack cache and native Cloud/Vincent records remain independent",
+        "Guarded native string function returns generated encoded names and descriptions for allseven reserved custom IDs",
+        "Whole native Limit command preparer converts own IDs96..102, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback and unknown IDs preserve stock behavior",
+        "Whole original battle attack-data resolver executes allseven limits, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
+        "Whole original physical damage formula accepts powers16..128 and preserves normal physical modifiers: [696, 1359, 2164, 2740, 4336, 5755]",
+        "Whole original BATINI enables independent full gauge,policy divisor and two learned level1 techniques alongside Cloud/Vincent",
+        "Original C7C4C dispatches own strike/sweep actions20/21 to motions26/3; original CD400 decodes every frame of all8 referenced motions (65 body+weapon pairs) identically to independent bitstream decoder"
+      ],
+      "limits": "Original code oracle; live visual acceptance and additional authored choreography remain separate"
+    },
+    {
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "cases": [
+        "Original GetLimit returns twelve policy slots for extras11/12/26; all native0..10 outputs and kernel/records unchanged",
+        "Whole original BATRES learning increments and saturates own kills/uses, learns six moves at policy thresholds, unlocks final mastery at320 kills",
+        "Whole original LIMTMENU cache builder preserves native Cloud/Vincent and copies independent custom attack records for allfour selected levels",
+        "Original menu confirmation block sets allfour levels and clears only extra26 gauge; own attack cache and native Cloud/Vincent records remain independent",
+        "Guarded native string function returns generated encoded names and descriptions for allseven reserved custom IDs",
+        "Whole native Limit command preparer converts own IDs96..102, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback and unknown IDs preserve stock behavior",
+        "Whole original battle attack-data resolver executes allseven limits, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
+        "Whole original physical damage formula accepts powers16..128 and preserves normal physical modifiers: [696, 1359, 2164, 2740, 4336, 5755]",
+        "Whole original BATINI enables independent full gauge,policy divisor and two learned level1 techniques alongside Cloud/Vincent",
+        "Original C7C4C dispatches own strike/sweep actions20/21 to motions26/3; original CD400 decodes every frame of all8 referenced motions (65 body+weapon pairs) identically to independent bitstream decoder"
+      ],
+      "limits": "Original code oracle; live visual acceptance and additional authored choreography remain separate"
+    },
+    {
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "cases": [
+        "Original GetLimit returns twelve policy slots for extras11/12/26; all native0..10 outputs and kernel/records unchanged",
+        "Whole original BATRES learning increments and saturates own kills/uses, learns six moves at policy thresholds, unlocks final mastery at320 kills",
+        "Whole original LIMTMENU cache builder preserves native Cloud/Vincent and copies independent custom attack records for allfour selected levels",
+        "Original menu confirmation block sets allfour levels and clears only extra26 gauge; own attack cache and native Cloud/Vincent records remain independent",
+        "Guarded native string function returns generated encoded names and descriptions for allseven reserved custom IDs",
+        "Whole native Limit command preparer converts own IDs96..102, consumes only actor gauge and increments own use counter; Cloud/Vincent/flashback and unknown IDs preserve stock behavior",
+        "Whole original battle attack-data resolver executes allseven limits, retains actual Limit command20 and maps valid own-rig action20/21; no external limit effect index requested",
+        "Whole original physical damage formula accepts powers16..128 and preserves normal physical modifiers: [696, 1359, 2164, 2740, 4336, 5755]",
+        "Whole original BATINI enables independent full gauge,policy divisor and two learned level1 techniques alongside Cloud/Vincent",
+        "Original C7C4C dispatches own strike/sweep actions20/21 to motions26/3; original CD400 decodes every frame of all8 referenced motions (65 body+weapon pairs) identically to independent bitstream decoder"
+      ],
+      "limits": "Original code oracle; live visual acceptance and additional authored choreography remain separate"
+    }
+  ],
+  "remaining_acceptance": [
+    "Live battle target selection and single/all-target limit completion",
+    "Live final mastery notification and native save/load of chosen limit level",
+    "Provisional balance and artist review; two existing choreographies serve seven techniques"
+  ],
+  "live": {
+    "status_menu": "Own EXP320470, next16402, equipment and limit gauge observed.",
+    "limit_menu": "Masamune name and Powerful sword strike description observed in original LIMTMENU.",
+    "limitations": "Live limit battle execution, mastery notification and chosen-level reload pending; seven moves share two own-rig choreographies."
+  }
+}

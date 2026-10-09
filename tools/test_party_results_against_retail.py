@@ -67,6 +67,7 @@ def main():
     try:
         boot=next(n for n in d.files if n.startswith('SCUS_')and '/'not in n)
         exe=d.read(boot);kernel=kernel_sections(d.read('INIT/KERNEL.BIN'))
+        save=d.read('MENU/SAVEMENU.MNU')
         original_portraits={}
         for native in(0,8):
             lba,size=struct.unpack_from('<II',exe,0x800+0x80048fe8-0x80010000+native*8)
@@ -136,8 +137,27 @@ def main():
         assert copies[4][0][1:3]==(960,408)and copies[5][0][1:3]==(256,495),copies
         assert v.rects[4:]==[(856,448,24,48),(384,9,256,1)],v.rects
         cases.append(f'original portrait copy: proxy{guest}, untouched native destination slot2')
+        for identities in ((0,guest,8),(guest,0,8),(0,8,guest)):
+            v=VM(lib,report,exe,kernel);v.write(0x801d0000,save)
+            preview=bytearray(84);preview[5:8]=bytes(identities)
+            v.write(0x801e3864,preview);native=v.read(0x8009c738,9*132)
+            v.stub(0x80026f44,0x8001d180,0x80026a34,0x80026b70,0x80028e00,
+                   0x8002708c,0x80023788,0x80029114,0x8002382c,
+                   0x8001def0,0x8001de40,0x8001de24,0x8001e040)
+            v.reg(4,0);v.reg(5,29);v.reg(6,0);v.run(0x801d370c)
+            portraits=[(r,stack)for pc,r,stack in v.calls if pc==0x8001d180]
+            assert len(portraits)==3,portraits
+            for slot,identity in enumerate(identities):
+                cell=9 if identity==guest else identity
+                regs,stack=portraits[slot]
+                assert regs==(22+52*slot,35,48,48),(slot,regs)
+                assert struct.unpack('<6I',stack)==(0 if cell<5 else 48,
+                    (cell%5)*48,48,48,cell,0),(slot,stack.hex())
+            assert v.read(0x801e3864,84)==preview
+            assert v.read(0x8009c738,9*132)==native
+            cases.append(f'full original save-preview draw: proxy{guest} in slot{identities.index(guest)}, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged')
     result={'schema':1,'status':'passed','disc':a.disc.name,'cases':cases,
             'limits':'Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted.'}
-    if a.output:a.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+    if a.output:a.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps(result,indent=2))
 if __name__=='__main__':main()

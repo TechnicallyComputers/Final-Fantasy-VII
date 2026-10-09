@@ -35,6 +35,7 @@ class VM:
         s=self.sites[pc];assert self.read(pc-24,52)==struct.pack('<13I',*s['guard'])
         regs=(ctypes.c_uint32*32)(*(self.reg(n) for n in range(32)))
         self.lib.ff7_test_game_save_hook(pc,regs)
+        if pc==0x801d49b0:assert list(regs)==[self.reg(n) for n in range(32)]
         for n in range(1,32):
             if regs[n]!=self.reg(n):self.reg(n,regs[n])
         self.hooks+=1
@@ -77,8 +78,53 @@ def main():
         baseline.run(0x801d224c);expected=bytearray(baseline.read(0x8009c6e8,28));expected[1]=guest
         assert actual==expected,(guest,actual.hex(),expected.hex())
         previews.append(dict(guest=guest,hooks=hooks))
-    result=dict(schema=1,disc=boot,checksum_cases=checksums,preview_cases=previews,
-        scope='Original SAVEMENU checksum and full preview function; synthetic card lifecycle C tests separate; live BIOS save UI pending')
+    loads=[]
+    for mode in ('success','native_success','crc_failure','open_failure','read_error_return','premature_restore_regression'):
+        vm=VM(lib,exe,menu,kernel,evidence['sites'])
+        lib.ff7_test_game_save_load_fixture()
+        if mode=='native_success':lib.ff7_test_game_save_native_card()
+        packet=vm.read(0x801e6f38,8192)
+        if mode=='crc_failure':
+            damaged=bytearray(packet);damaged[512+77]^=1;packet=bytes(damaged)
+        caller_sp=0x801a0000;filename=b'bu00:BASCUS-94163FF7-S01\0'
+        calls=[];ended=[]
+        def io(u,pc,size,data):
+            if pc==0x80042dd8:
+                vm.write(vm.reg(4),filename);vm.reg(2,len(filename)-1)
+            elif pc==0x80042b20:vm.reg(2,0xffffffff if mode=='open_failure' else 3)
+            elif pc==0x80042b30:
+                vm.write(vm.reg(5),packet);vm.reg(2,len(packet))
+            elif pc==0x80042b50:vm.reg(2,0)
+            elif pc==0x801d2134 and mode=='premature_restore_regression':
+                # Reproduce the old hook's native-map mutation, independently
+                # of the fixed production callback's new address.
+                vm.write(0x8009cbde,b'\x0b');return
+            elif pc in (0x801d49b0,0x801d4990,0x801d49dc):
+                ended.append(pc)
+                if pc==0x801d49b0:
+                    assert vm.reg(29)==caller_sp
+                    assert vm.read(caller_sp-0x30,len(filename))==filename
+                u.emu_stop();return
+            else:return
+            calls.append(pc);u.reg_write(UC_MIPS_REG_PC,vm.reg(31))
+        vm.uc.hook_add(UC_HOOK_CODE,io)
+        vm.reg(4,0);vm.reg(2,2 if mode=='read_error_return' else 0)
+        vm.reg(29,caller_sp);vm.reg(31,0x80001000)
+        vm.uc.emu_start(0x801d495c if mode=='read_error_return' else 0x801d4954,0,count=1500000)
+        target=0x801d49b0 if mode in ('success','native_success') else 0x801d4990 if mode in ('crc_failure','premature_restore_regression') else 0x801d49dc
+        assert ended==[target],(mode,ended,hex(vm.uc.reg_read(UC_MIPS_REG_PC)))
+        assert lib.ff7_test_game_save_load_count()==int(mode=='success')
+        assert vm.hooks==int(mode in ('success','native_success'))
+        assert lib.ff7_test_game_save_init_count()==int(mode=='native_success')
+        if mode=='native_success':assert vm.read(0x8009cbdc,3)==bytes([0,7,255])
+        if mode=='success':
+            assert vm.read(0x8009cbdc,3)==bytes([0,7,11])
+            # The original stored CRC stays exactly as read from the card.
+            # Extras are restored after validation, never made valid by rewriting it.
+            assert vm.read(0x8009c6e4,4)==packet[512:516]
+        loads.append(dict(mode=mode,branch=hex(target),restorations=lib.ff7_test_game_save_load_count(),native_initializations=lib.ff7_test_game_save_init_count(),bios_calls=len(calls)))
+    result=dict(schema=1,disc=boot,checksum_cases=checksums,preview_cases=previews,load_transition_cases=loads,
+        scope='Original SAVEMENU checksum, full preview, full native file-to-map copy and caller CRC success/error routes with production load callback; filename-stack contract checked; BIOS I/O stubbed; live title-to-field transition requires separate acceptance')
     if a.output:a.output.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result,indent=2))
 if __name__=='__main__':main()

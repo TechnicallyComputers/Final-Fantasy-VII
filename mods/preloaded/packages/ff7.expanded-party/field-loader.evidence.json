@@ -44,6 +44,27 @@
         0,
         40009761
       ]
+    },
+    {
+      "address": 2148182320,
+      "expected": 666763224,
+      "action": "RELOAD",
+      "context_start": 2148182296,
+      "context_words": [
+        2410807320,
+        2410741780,
+        2410676240,
+        666697768,
+        65011720,
+        0,
+        666763224,
+        1006796818,
+        1006927880,
+        2357520240,
+        1006993413,
+        2359666220,
+        876773376
+      ]
     }
   ],
   "field_names": [
@@ -978,10 +999,22 @@
       "start": 2148194980,
       "end_exclusive": 2148195472,
       "sha256": "7e2f5258156d469cf76f7a7dafc3b10c3e7e9555d3926f930b4dc64c4db66aec"
+    },
+    {
+      "start": 2148182320,
+      "end_exclusive": 2148182820,
+      "sha256": "957cb1f9a981ea757be29b24805f1c90697411577f1684090c5d6d0db7056714"
+    },
+    {
+      "start": 2148143976,
+      "end_exclusive": 2148144280,
+      "sha256": "eac025d603130ae167806f35a0cf37f1db2dff6d19b6fc00b669ac21914f5f08"
     }
   ],
   "contract": [
     "BA534: a1 native132-byte-state base,a2 original script pointer; replace both only after all assets,metadata,script,workspace and400 state guards validate",
+    "AA930: rebuild pristine merged BSX and rebind model metadata/workspace before native descriptor allocation; same prepared field and retained script required; preserves script cursors, NPC state and entity bindings",
+    "A146C..A1484 restores native metadata/descriptor globals after DAT reload without re-running BA534; AC35C caches metadata before AC484 and mutates model data, so late pointer-only repair is insufficient",
     "AC484: s1 raw BSX pointer after read/copy; replace with previously prepared merged BSX",
     "CPU PC, return address and all other registers preserved; logical proxies stay in script PC bindings",
     "Native descriptor/packet generation and shared FIELD.TDB texture handling remain original; owned source with local textures rejected"

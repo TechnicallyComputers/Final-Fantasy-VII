@@ -17,6 +17,11 @@
 #define func_80011C1C main  /* alias */
 /* hook=true — listed in game.toml mod_function_entry_funcs */
 
+/* confirmed: Original kernel text lookup; owned-disc limit menu/name/description oracles and full function hash in limit.evidence.json. Guarded extra-character filter handles reserved mod limit IDs only. */
+#define PSX_FN_SystemMenuGetKernelText 0x80015248u
+#define func_80015248 SystemMenuGetKernelText  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
+
 /* contextual: decompression entry; fires on asset unpack [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_Unzip 0x80017108u
 #define func_80017108 Unzip  /* alias */
@@ -2348,9 +2353,10 @@
  *       psx_mod_register_function_entry_plugin("id", addr, cb);
  *   PSX_FN_HOOK_LIST(REG)
  */
-#define PSX_FN_HOOK_COUNT 10
+#define PSX_FN_HOOK_COUNT 11
 #define PSX_FN_HOOK_LIST(X) \
     X(main, 0x80011C1Cu) \
+    X(SystemMenuGetKernelText, 0x80015248u) \
     X(Unzip, 0x80017108u) \
     X(SetupGamepad, 0x8001C434u) \
     X(SnapshotPartyLevels, 0x80025040u) \

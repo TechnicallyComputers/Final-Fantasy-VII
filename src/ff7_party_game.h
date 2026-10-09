@@ -26,6 +26,7 @@ typedef struct FF7PartyProfile {
     uint8_t motion_policy; /* Asset-format adapter; independent of identity. */
     const char* field_source; /* Optional original DAT/BSX stem, e.g. FIELD/NIVL. */
     uint8_t field_model_index; /* Asset index only; never a script entity ID. */
+    uint8_t limit_policy; /* Independent move/progression policy; zero unchanged. */
 } FF7PartyProfile;
 
 int ff7_party_game_register_profile(const FF7PartyProfile* profile);

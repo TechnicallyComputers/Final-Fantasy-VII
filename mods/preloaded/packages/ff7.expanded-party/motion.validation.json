@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "status": "passed-original-code-oracles",
-  "runtime_status": "Source adapter prepared; main-agent CMake/site integration and live review pending",
+  "runtime_status": "Integrated in Release runtime and battle tests; native config regenerated with 653 guarded sites; all 17 CTests passed. Fresh live boot/NewGame initialization passed; motion visual review pending.",
   "strict_codec_unit": "passed",
   "strict_battle_adapter_unit": "passed",
   "real_framework_header_compile": "passed",
@@ -86,5 +86,15 @@
     ],
     "unix_link": "Link libm for math functions when required by toolchain",
     "lifecycle": "ff7_party_battle_init/restore own motion module; immutable shared profile.motion_policy selects descriptor; no game API/header changes needed"
+  },
+  "live": {
+    "checkpoint": "6bd77f4",
+    "passed": [
+      "Actual Defend flag selects paired brace",
+      "Low HP selects own leaning idle",
+      "Enemy hit kills mortal extra; paired floor collapse holds",
+      "Cloud Phoenix Down consumes inventory and revives extra"
+    ],
+    "limitations": "Procedural rigid pose synthesis; artist review for grip/clipping/floor contact remains. No cloth simulation or bespoke limit effects."
   }
 }

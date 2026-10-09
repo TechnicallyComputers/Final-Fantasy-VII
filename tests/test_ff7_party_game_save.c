@@ -7,6 +7,7 @@
 #define CHECK(x) do{if(!(x)){fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,#x);exit(1);}}while(0)
 static uint8_t ram[0x200000],expansion[0x10000],cards[2][FF7_PARTY_CARD_BYTES];
 static FF7PartyState live;
+static uint8_t fixture_packet[8192];
 static uint8_t fallback[3]={0,7,255};
 static unsigned load_count,init_count,registered;
 static int allow_snapshot=1;
@@ -33,7 +34,10 @@ uint32_t ff7_party_game_record_offset(uint8_t guest){return guest==11?0x80140000
 int ff7_party_game_fallback(uint8_t out[3]){memcpy(out,fallback,3);return 1;}
 FF7PartyResult ff7_party_game_snapshot(FF7PartyState* out){if(!allow_snapshot)return FF7_PARTY_INVALID;*out=live;return FF7_PARTY_OK;}
 FF7PartyResult ff7_party_game_load(const FF7PartyState* state,const uint8_t native[3]){
-    CHECK(native[0]==0 && native[1]==7 && native[2]==255);live=*state;++load_count;return FF7_PARTY_OK;
+    CHECK(native[0]==0 && native[1]==7 && native[2]==255);live=*state;++load_count;
+    for(unsigned i=0;i<3;++i)psx_mod_write_byte(0x8009cbdc+i,
+        state->active[i]==0x100?11:(uint8_t)state->active[i]);
+    return FF7_PARTY_OK;
 }
 int ff7_party_game_initialize(const uint8_t native[3]){CHECK(native[0]==0);++init_count;return 1;}
 static void frame(uint8_t* p){uint8_t x=0;for(unsigned i=0;i<127;++i)x^=p[i];p[127]=x;}
@@ -43,7 +47,7 @@ static void directory(uint8_t* base,unsigned slot,const char* name){
     memcpy(p+10,name,strlen(name));frame(p);
 }
 static void fixture(void){
-    memset(ram,0,sizeof ram);memset(expansion,0,sizeof expansion);blank(cards[0]);blank(cards[1]);
+    memset(ram,0,sizeof ram);memset(expansion,0,sizeof expansion);blank(cards[0]);blank(cards[1]);load_count=init_count=0;
     ff7_party_init(&live);uint8_t record[132];memset(record,0x5a,sizeof record);
     CHECK(ff7_party_add_sephiroth(&live,record)==FF7_PARTY_OK);
     const uint16_t active[3]={0,7,0x100};CHECK(ff7_party_select(&live,active)==FF7_PARTY_OK);
@@ -58,6 +62,7 @@ static void fixture(void){
     map[0x54+1]=8;memcpy(map+0x54+16,"CLOUD",6);
     uint16_t crc=ff7_native_save_checksum(map);map[0]=(uint8_t)crc;map[1]=(uint8_t)(crc>>8);
     memcpy(ptr(0x8009cbdc),(uint8_t[]){0,7,255},3);
+    memcpy(fixture_packet,packet,sizeof fixture_packet);
 }
 static void seed(uint32_t pc){for(unsigned i=0;i<sizeof s_sites/sizeof s_sites[0];++i)
     if(s_sites[i].pc==pc)for(unsigned j=0;j<13;++j)psx_mod_write_word(pc-24+j*4,s_sites[i].words[j]);}
@@ -67,6 +72,17 @@ uint8_t* ff7_test_game_save_expansion(void){return expansion;}
 void ff7_test_game_save_reset(void){fixture();}
 void ff7_test_game_save_hook(uint32_t pc,uint32_t* regs){CPUState cpu;memset(&cpu,0,sizeof cpu);
     cpu.pc=pc;memcpy(cpu.gpr,regs,sizeof cpu.gpr);instruction(&cpu,pc);memcpy(regs,cpu.gpr,sizeof cpu.gpr);}
+unsigned ff7_test_game_save_load_count(void){return load_count;}
+unsigned ff7_test_game_save_init_count(void){return init_count;}
+void ff7_test_game_save_native_card(void){CHECK(loader(0,cards[0],NULL,0)==0);}
+void ff7_test_game_save_load_fixture(void){
+    memcpy(ptr(0x801e6f38),fixture_packet,sizeof fixture_packet);
+    CHECK(prepare(0x80100000));
+    directory(cards[0],2,"BASCUS-94163FF7-S01");
+    memcpy(cards[0]+2*8192,ptr(0x801e6f38),8192);
+    uint8_t tail[FF7_PARTY_CARD_EXTENSION_MAX];int n=writer(0,cards[0],tail,sizeof tail);
+    CHECK(n>0);CHECK(loader(0,cards[0],tail,(unsigned)n)==0);
+}
 int main(void){
     /* Story aliases 9/10 and their native rows share storage; projection must
      * not insert the same underlying member twice when replacing an extra. */
@@ -106,9 +122,11 @@ int main(void){
     cards[0][2*128+10]^=1;frame(cards[0]+2*128);CHECK(writer(0,cards[0],tail,sizeof tail)==0);
     directory(cards[0],2,"BASCUS-94163FF7-S01");int bytes=writer(0,cards[0],tail,sizeof tail);CHECK(bytes>0);
     CHECK(loader(0,cards[0],tail,(unsigned)bytes)==0);
-    memcpy(ptr(0x80190038),ptr(0x80100000),26);cpu.gpr[29]=0x80190000;cpu.gpr[2]=0;
-    hook(0x801d2134,&cpu);CHECK(load_count==1);
-    CHECK(loader(0,cards[0],NULL,0)==0);hook(0x801d2134,&cpu);CHECK(init_count==1);
+    memcpy(ptr(0x80190038),ptr(0x80100000),26);cpu.gpr[29]=0x80190068;cpu.gpr[2]=1;
+    uint32_t preserved[32];memcpy(preserved,cpu.gpr,sizeof preserved);
+    hook(0x801d2134,&cpu);CHECK(load_count==0); /* Removed premature callback. */
+    hook(0x801d49b0,&cpu);CHECK(load_count==1);CHECK(!memcmp(preserved,cpu.gpr,sizeof preserved));
+    CHECK(loader(0,cards[0],NULL,0)==0);hook(0x801d49b0,&cpu);CHECK(init_count==1);
     /* Rewind an in-flight packet, then reapply it against matching card bytes. */
     static uint8_t backup[sizeof expansion];memcpy(backup,expansion,sizeof backup);
     hook(0x801d2a14,&cpu);CHECK(psx_mod_read_word(s_pending)==0);

@@ -42,6 +42,8 @@ int psx_mod_game_started(void) { return 1; }
 int ff7_party_menu_init(void) { return 1; }
 void ff7_party_menu_restore(void) { ++restores; }
 int ff7_party_battle_init(void) { return 1; }
+int ff7_party_limit_init(void) { return 1; }
+void ff7_party_limit_restore(void) { }
 void ff7_party_battle_restore(void) { }
 int ff7_party_game_save_init(void) { return 1; }
 void ff7_party_game_save_restore(void) { }
@@ -91,7 +93,7 @@ static void synthetic_kernel(void) {
 }
 
 static void lifecycle(void) {
-    static const FF7PartyProfile second={0x101,10,7,10,0,0,0,"test/model","test/portrait",0,NULL,0};
+    static const FF7PartyProfile second={0x101,10,7,10,0,0,0,"test/model","test/portrait",0,NULL,0,0};
     register_ff7_party_game();
     CHECK(ff7_party_game_register_profile(&second));
     CHECK(!ff7_party_game_register_profile(&second));
@@ -120,6 +122,12 @@ static void lifecycle(void) {
     uint8_t fallback[3]; CHECK(ff7_party_game_fallback(fallback));
     CHECK(fallback[0]==0 && fallback[1]==7 && fallback[2]==255);
     uint32_t a=ff7_party_game_record(11),b=ff7_party_game_record(12);
+    CHECK(psx_mod_read_half(a+0x22)==1 && psx_mod_read_byte(a+14)==1);
+    CHECK(psx_mod_read_half(b+0x22)==0); /* Profile without a limit policy. */
+    psx_mod_write_byte(a+14,3); psx_mod_write_byte(a+15,179);
+    psx_mod_write_half(a+0x22,0xda); /* Legacy record missing first-technique bit. */
+    psx_mod_write_half(a+0x24,319); psx_mod_write_half(a+0x26,8);
+    psx_mod_write_half(a+0x28,7); psx_mod_write_half(a+0x2a,6);
     psx_mod_write_word(a+0x40,0x12345678); /* Distinct materia/AP. */
     psx_mod_write_word(b+0x40,0xabcdef01);
     psx_mod_write_byte(a+0x1c,127); psx_mod_write_byte(b+0x1c,1);
@@ -129,6 +137,16 @@ static void lifecycle(void) {
     CHECK(ff7_party_game_snapshot(&state)==FF7_PARTY_OK);
     CHECK(state.stored_known && state.stored[0]==0x100 && state.stored[1]==7 && state.stored_hint[1]==10);
     CHECK(state.active[1]==0x101 && state.active[2]==0x100);
+    CHECK(memcmp(original,address(NATIVE_RECORDS),sizeof original)==0);
+    uint8_t payload[4096],digest[32]={0}; size_t payload_bytes=0; FF7PartyState decoded;
+    CHECK(ff7_party_encode(&state,digest,payload,sizeof payload,&payload_bytes)==FF7_PARTY_OK);
+    CHECK(ff7_party_decode(&decoded,digest,payload,payload_bytes)==FF7_PARTY_OK);
+    CHECK(!memcmp(decoded.extra[0].record,state.extra[0].record,132));
+    CHECK(ff7_party_game_load(&decoded,fallback)==FF7_PARTY_OK);
+    CHECK(psx_mod_read_half(a+0x22)==0xdb);
+    for(unsigned j=1;j<132;++j)CHECK(psx_mod_read_byte(a+j)==
+        (j==0x22 ? (uint8_t)(state.extra[0].record[j]|1) : state.extra[0].record[j]));
+    CHECK(!memcmp(address(b)+1,state.extra[1].record+1,131));
     CHECK(memcmp(original,address(NATIVE_RECORDS),sizeof original)==0);
     /* Two physical stores make one active-active PHS swap transaction. */
     psx_mod_write_byte(ACTIVE+1,11); psx_mod_write_byte(ACTIVE+2,12);

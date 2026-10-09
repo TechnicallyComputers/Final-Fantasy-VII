@@ -4,13 +4,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../src/ff7_party_menu.c"
+#define OFFSET RESIDENT_OFFSET
+#define ALIAS RESIDENT_ALIAS
+#define s_sites resident_sites
+#include "../src/ff7_party_resident.c"
+#undef s_sites
+#undef ALIAS
+#undef OFFSET
 #define CHECK(x) do { if (!(x)) { fprintf(stderr,"%s:%d: %s\n",__FILE__,__LINE__,#x); exit(1); } } while(0)
 static uint8_t s_ram[0x200000],s_expansion[0x20000];
 static uint16_t s_vram[1024*512];
 static unsigned s_count=1,s_registered,s_observed,s_rejected,s_alloc_fail;
 static unsigned s_gpu_phase,s_gpu_x,s_gpu_y,s_gpu_w,s_gpu_h,s_gpu_pixel;
 static unsigned s_extent_fail,s_extent_size=2848;
-static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",0,NULL,0};
+static FF7PartyProfile s_profile={0x100,10,7,10,0,0,0,"ENEMY6/SEFIROS.LZS","MENU/PCEFI.TIM",0,NULL,0,0};
 static uint8_t* ptr(uint32_t address) {
     uint32_t p=address&0x1fffffffu;
     if(p<sizeof s_ram) return s_ram+p;
@@ -32,9 +39,12 @@ int psx_mod_register_instruction_plugin(const char* p,uint32_t a,uint32_t w,void
     CHECK(!strcmp(p,"ff7.party-gameplay")&&a&&w&&f);++s_registered;return 1;
 }
 unsigned ff7_party_game_extra_count(void){return s_count;}
+int ff7_party_game_ready(void){return 1;}
 uint8_t ff7_party_game_extra_guest(unsigned i){return i<s_count?(uint8_t)(11+i):255;}
 int ff7_party_game_is_extra(uint8_t g){return g>=11&&g<11+s_count;}
 uint32_t ff7_party_game_record(uint8_t g){return ff7_party_game_is_extra(g)?0x9f010000u+(g-11)*132u:0;}
+uint32_t ff7_party_game_record_offset(uint8_t g){return ff7_party_game_record(g)-NATIVE;}
+uint32_t ff7_party_game_alias_word(uint8_t g){uint32_t p=s_storage+ALIAS_WORD+4u*(g-11);psx_mod_write_word(p,g);return p;}
 uint8_t ff7_party_game_presentation(uint8_t g){return g==11?10:0;}
 const FF7PartyProfile* ff7_party_game_profile(uint8_t g){return g==11?&s_profile:NULL;}
 void ff7_party_game_observe_active(void){++s_observed;}
@@ -64,7 +74,9 @@ void ff7_test_menu_reset(unsigned extras){
     memset(s_portrait,0xa5,sizeof s_portrait);s_portrait_valid=1;
 }
 void ff7_test_menu_hook(uint32_t pc,uint32_t* regs){CPUState cpu;memset(&cpu,0,sizeof cpu);
-    memcpy(cpu.gpr,regs,sizeof cpu.gpr);menu_instruction(&cpu,pc);memcpy(regs,cpu.gpr,sizeof cpu.gpr);}
+    cpu.pc=0x81234560;memcpy(cpu.gpr,regs,sizeof cpu.gpr);
+    if(pc<0x801d0000)party_resident_instruction(&cpu,pc);else menu_instruction(&cpu,pc);
+    CHECK(cpu.pc==0x81234560);memcpy(regs,cpu.gpr,sizeof cpu.gpr);}
 static void seed(const MenuSite* s){for(unsigned i=0;i<13;++i)psx_mod_write_word(s->pc-24+4*i,s->words[i]);}
 static const MenuSite* find(enum Action a,enum Menu m){
     for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i) {
@@ -73,8 +85,25 @@ static const MenuSite* find(enum Action a,enum Menu m){
     return NULL;
 }
 int main(void){
-    register_ff7_party_menu();CHECK(s_registered==sizeof s_sites/sizeof s_sites[0]);
+    unsigned unique=0;for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i){int seen=0;
+        for(size_t j=0;j<i;++j)if(s_sites[j].pc==s_sites[i].pc&&s_sites[j].words[6]==s_sites[i].words[6])seen=1;
+        if(!seen)++unique;}
+    register_ff7_party_menu();CHECK(s_registered==unique);
     ff7_test_menu_reset(16);
+    for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i)
+        if(s_sites[i].action>=STORY_SCAN_RECORD)seed(&s_sites[i]);
+    {
+        uint32_t r[32]={0};r[18]=24;ff7_test_menu_hook(0x801d2dc4,r);
+        CHECK(r[19]==ff7_party_game_record(26)+0x40 && r[20]==ff7_party_game_record(26)+0x60);
+        r[2]=0;ff7_test_menu_hook(0x801d2dd4,r);CHECK(r[2]==1);
+        r[9]=0;ff7_test_menu_hook(0x801d2be8,r);CHECK(r[9]==0xffffffffu);
+        r[9]=0xffffffefu;ff7_test_menu_hook(0x801d2ae0,r);
+        CHECK(r[11]==ff7_party_game_record(26)+0x40 && r[12]==ff7_party_game_record(26)+0x60);
+        ff7_test_menu_hook(0x801d2be8,r);CHECK(r[9]==0);
+        /* Losing any required pointer guard must also disable bound expansion. */
+        psx_mod_write_word(0x801d2ae0,0);r[18]=9;r[2]=0;
+        ff7_test_menu_hook(0x801d2e2c,r);CHECK(r[2]==0);
+    }
     for(size_t i=0;i<sizeof s_sites/sizeof s_sites[0];++i){
         const MenuSite* s=&s_sites[i];seed(s);
         if(s->action!=OFFSET)continue;
