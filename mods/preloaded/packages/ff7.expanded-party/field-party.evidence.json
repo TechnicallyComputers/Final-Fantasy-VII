@@ -1,0 +1,374 @@
+{
+  "schema": 1,
+  "basis": "Independent original-disc MIPS inspection and execution",
+  "images": {
+    "RETAIL": {
+      "base": 2147549184,
+      "bytes": 395264,
+      "sha256": "7c2e9bacbb914200e7dfaa1972886aebeb258ab8db4c24548d18b319b849d7c8"
+    },
+    "FIELD": {
+      "base": 2148139008,
+      "bytes": 264008,
+      "sha256": "2962d813743a1904faf0843f4a32d1cfece8de12233f9afb8b552556c56000dd"
+    }
+  },
+  "sites": [
+    {
+      "image": "RETAIL",
+      "address": 2147556796,
+      "expected": 201344749,
+      "role": "selected_new_game_after_native_reset",
+      "guard": [
+        201347661,
+        0,
+        201365654,
+        0,
+        201379492,
+        0,
+        201344749,
+        0,
+        201365540,
+        638910404,
+        2463105024,
+        201380092,
+        839909631
+      ]
+    },
+    {
+      "image": "RETAIL",
+      "address": 2147695464,
+      "expected": 65011720,
+      "role": "native_party_reset_complete",
+      "guard": [
+        1006731274,
+        2753604688,
+        1006731274,
+        2686495789,
+        1006731271,
+        2686459444,
+        65011720,
+        0,
+        666763240,
+        2948530192,
+        201389812,
+        0,
+        272695293
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148332960,
+      "expected": 666763216,
+      "role": "bank_to_active_entry",
+      "guard": [
+        612630529,
+        8982570,
+        339804142,
+        0,
+        65011720,
+        0,
+        666763216,
+        2947547168,
+        1007714314,
+        638634972,
+        33562657,
+        637863861,
+        2947612708
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148333044,
+      "expected": 2411659304,
+      "role": "bank_to_active_complete",
+      "guard": [
+        33562657,
+        201538992,
+        665124880,
+        872546305,
+        1006731271,
+        2686590516,
+        2411659304,
+        2410741796,
+        2410676256,
+        666697776,
+        65011720,
+        0,
+        666763216
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148333068,
+      "expected": 666763216,
+      "role": "active_to_bank_entry",
+      "guard": [
+        2411659304,
+        2410741796,
+        2410676256,
+        666697776,
+        65011720,
+        0,
+        666763216,
+        2947547168,
+        1007714314,
+        638636945,
+        33562657,
+        637925451,
+        2947612708
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148333140,
+      "expected": 2411659304,
+      "role": "active_to_bank_complete",
+      "guard": [
+        33562657,
+        201538971,
+        35661857,
+        33562657,
+        201538992,
+        665124880,
+        2411659304,
+        2410741796,
+        2410676256,
+        666697776,
+        65011720,
+        0,
+        14369
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148332664,
+      "expected": 2686582784,
+      "role": "party_replace_bank_store",
+      "guard": [
+        2693201920,
+        2424438784,
+        0,
+        1006731274,
+        606196625,
+        2426913,
+        2686582784,
+        2424438784,
+        0,
+        273088518,
+        614793217,
+        2424438784,
+        2495807488
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148250096,
+      "expected": 2418147328,
+      "role": "party_model_map_read",
+      "guard": [
+        0,
+        272957468,
+        0,
+        1006731274,
+        606186800,
+        2230305,
+        2418147328,
+        0,
+        272957461,
+        0,
+        1006731272,
+        606202776,
+        2230305
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148330304,
+      "expected": 2418278400,
+      "role": "leader_model_map_read",
+      "guard": [
+        872612095,
+        272826391,
+        0,
+        1006731274,
+        606186800,
+        2230305,
+        2418278400,
+        0,
+        277020688,
+        0,
+        1006731272,
+        606202776,
+        2361377
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148349168,
+      "expected": 2353201152,
+      "role": "restore_party_alias_read",
+      "guard": [
+        2418147328,
+        0,
+        273809423,
+        638582785,
+        135296,
+        5312545,
+        2353201152,
+        0,
+        677511177,
+        272629769,
+        704774147,
+        201024,
+        4395041
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148349176,
+      "expected": 677511177,
+      "role": "restore_party_native_range",
+      "guard": [
+        273809423,
+        638582785,
+        135296,
+        5312545,
+        2353201152,
+        0,
+        677511177,
+        272629769,
+        704774147,
+        201024,
+        4395041,
+        135296,
+        1006731274
+      ]
+    },
+    {
+      "image": "FIELD",
+      "address": 2148349196,
+      "expected": 135296,
+      "role": "restore_party_record_stride",
+      "guard": [
+        0,
+        677511177,
+        272629769,
+        704774147,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193495,
+        2230305,
+        2686451712,
+        704774147,
+        339804132
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "image": "RETAIL",
+      "start": 2147695248,
+      "end_exclusive": 2147695472,
+      "sha256": "3d8be6cd552c55f8eaf4135a8d6e58baf8db7644e9d45976915c5d84c19501e7"
+    },
+    {
+      "image": "RETAIL",
+      "start": 2147556276,
+      "end_exclusive": 2147556380,
+      "sha256": "4f84e647d3f5f10b37cb67b30d677cc64f8bbe721afb22fe5147145a3c605405"
+    },
+    {
+      "image": "RETAIL",
+      "start": 2147567924,
+      "end_exclusive": 2147568000,
+      "sha256": "1a87b1b0ab2af0fbc7eee5feb0ba56aec3e49dd1ef82c024a7cf956c9ea8b62b"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148332392,
+      "end_exclusive": 2148332748,
+      "sha256": "1a1d34168aee46e91df9d32d539bc01b3af68fc91acfcb837d35bdc22bc5283a"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148332748,
+      "end_exclusive": 2148332960,
+      "sha256": "8f538e9dfbafc61d45341870c2a9a0bd0d9c255bbd6344c496075ad73204b9f0"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148332960,
+      "end_exclusive": 2148333068,
+      "sha256": "dcbbf3323debe1e5dc5694417842a44e78449a1520335b642e0ce3d29d794a9b"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148333068,
+      "end_exclusive": 2148333164,
+      "sha256": "595860804a732072546ff3e5f937db6948e3b6015cff2e85692a68aa0f936ef1"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148333164,
+      "end_exclusive": 2148333248,
+      "sha256": "be98c831cab59d3e7a2b782dc216548358a4e081683ccf641e26bd3721b75362"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148333248,
+      "end_exclusive": 2148333336,
+      "sha256": "35810418905ec558accefc808c378de4d4a0f5a19370f737dbc3c647c85068bd"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148250036,
+      "end_exclusive": 2148250536,
+      "sha256": "be98dcd28fc79b50b84a2850bca01fac5a48ca2ab107a534a2ec96a7824fd64b"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148330272,
+      "end_exclusive": 2148330388,
+      "sha256": "b0be74836f91e47d4185b66334848d5447ff536b9716a05946832d2c03138107"
+    },
+    {
+      "image": "FIELD",
+      "start": 2148349068,
+      "end_exclusive": 2148349256,
+      "sha256": "7c0de9afa5b8e6d4c61a324d5e1afd1a13153736b206888a0d1d5f6cbe123a96"
+    }
+  ],
+  "observations": {
+    "stored_bank": {
+      "ram": 2148127633,
+      "bytes": 3,
+      "offset_from_8009c6e4": 3245,
+      "writes": [
+        "CF60C copies current party through generic remove/add helpers",
+        "CF368 merges requested party then writes bank atCF478",
+        "Field script member-add/remove operations also mutate this bank"
+      ],
+      "policy": "Canonicalize this exact bank in save metadata; do not rewrite unrelated save-map variables"
+    },
+    "new_game": {
+      "seam": 2147556796,
+      "basis": "After menu result1, kernel section3 reload14934, settings26258 and party/story reset33A90; before initial map defaults11BB4",
+      "caution": "33A90 also runs before title menu at11D8C, so its return alone is not a new-game-only notification"
+    },
+    "remaining_field": [
+      "8009AD30 is a native character-to-field-entity map: BB1F0 enables party models; CEB40 selects leader entity",
+      "Battle presentation10 is not a field entity index or portable field model. Per-field assets/entity policy remain unresolved",
+      "D348C full-heal path calls already adapted resident heal functions but additionally aliases ID atD34F0, native<9 guardD34F8 and132-byte strideD350C to clear record status+1F",
+      "More field script operations read bank IDs and map through8009AD30; do not globally substitute native ID10",
+      "Community0xBAB offset was not established as a party bank by this inspection; only CAD is verified here"
+    ]
+  },
+  "execution_tests": [
+    "Both complete original field bank transfers preserve Cloud/Vincent/proxy11 or26 without native aliasing",
+    "Complete native reset clears story-variable bank, selects Cloud alone in both party banks and availability bit0",
+    "Original title-result branch executes11DBC only for result1; resets party and starts map0x74, skips for0/2"
+  ]
+}

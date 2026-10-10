@@ -1,0 +1,22 @@
+format_version = 6
+id = "ff7.enhancement.texture-filter"
+version = "1.0.0"
+name = "Final Fantasy VII 3D Texture Filter"
+author = "Final Fantasy VII Recompiled project"
+description = "Smooths distant 3D textures so they shimmer less at high resolution."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "texture-filter"
+name = "3D Texture Filter"
+channel = "experimental"
+description = "Smooths far-away textures on 3D models so they shimmer less, most visible with Internal Resolution. Menus, text and prerendered backgrounds keep their original pixels. OpenGL uses a palette-aware filter; other backends use bilinear."
+group = "Graphics"
+default_enabled = true
+
+[[plugin]]
+feature = "texture-filter"
+id = "ff7.texture-filter"

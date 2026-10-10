@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "status": "menu-paths-tested; resident/battle/field integration separate",
+  "menus": {
+    "FORMMENU": {
+      "sha256": "6412f26cbb4ad5df677caf7d29716d62b2b184fcb266bdb2cf05ad73c555a074",
+      "bytes": 60020
+    },
+    "EQIPMENU": {
+      "sha256": "433e448de0a5908239df6e50e741fc96e2381a42a0112ce781de9ecf318f8759",
+      "bytes": 96140
+    },
+    "STATMENU": {
+      "sha256": "02cf64051b7f6b56b639dabbfcd87c5faaa5848000303dbef9f0849ebebd3c66",
+      "bytes": 24096,
+      "functions": [
+        {
+          "address": 2149387124,
+          "end": 2149387560,
+          "sha256": "65d3340ff03fe23360ae23e02eda58f90288cf519779f4ff934abfc7490d5750"
+        },
+        {
+          "address": 2149387560,
+          "end": 2149388652,
+          "sha256": "a954e48041f40ef57fb4d123f6900a43fc3f9340ad900eee023bd1822e0e9404"
+        },
+        {
+          "address": 2149388652,
+          "end": 2149389536,
+          "sha256": "d408f7668c5f375a6340d0a6929c0c2777213cb1f67fd8ed0a819cd3abe9a0c0"
+        }
+      ],
+      "contract": "Eight pre-load/pre-stride adapters route gear,materia,EXP,next-level EXP,limit level/gauge/status and equipment-derived hit/defense/evasion to independent records; party slot801D1E1C and derived1088-byte-per-slot caches remain native. Callback PC and all GPRs except named source operand preserved."
+    },
+    "ITEMMENU": {
+      "sha256": "0a3635b5c15bb91c23af3c035ecb2e77c8667fcc0ce6c3fd5a713a83adcc0361",
+      "bytes": 16416,
+      "functions": [
+        {
+          "address": 2149387556,
+          "end": 2149387724,
+          "sha256": "978bd2e823c2b57fe5d19fb88fb4ab516818f91c69bafb7e6fd817cf5aaf47d4"
+        },
+        {
+          "address": 2149387904,
+          "end": 2149394796,
+          "sha256": "1fe37de2d6759ae2242c575c49d6518b7574990988307fa98d6850fb4772be63"
+        },
+        {
+          "address": 2149394804,
+          "end": 2149396224,
+          "sha256": "a7fe6437d2d2c2127bdf43ecb41396b2636eca981236b12121c6b5f78eb82fa8"
+        },
+        {
+          "address": 2149396224,
+          "end": 2149396504,
+          "sha256": "ff64e963326025c8fa751226993de197b9811b7c2123e8fc5c232118a63cffbc"
+        },
+        {
+          "address": 2149396504,
+          "end": 2149396792,
+          "sha256": "e3ef19901f0acf0b3bfd65862ad67008ce156e364c4c8dc1dff670eab8014328"
+        },
+        {
+          "address": 2149396792,
+          "end": 2149397032,
+          "sha256": "cf9a33f660afa79e3937067dd4392f1b1c871307051305ff4bb4af5ca109db25"
+        }
+      ],
+      "contract": "Direct target132-byte source strides for status/Source items and single-record gear/materia helpers. Original inventory transactions retained. Stock final-limit manuals retain rejection for extras; message-address operand alone changes to bounded authored text at menu allocation+200. Wutai story modes15/16: nine guarded loop-head/mask/boundary adapters append registered independent records after native0..8 selection/removal and after native8..0 return. Native availability bits,48-ranked selection,exact packed AP-word removal,native inventory fallback and192-byte D180 bank remain original. Extras participate even when reserved; no native slot/availability bit is borrowed. Temporary party/gear/materia helper3018 uses native8009D180 scratch and3138 restores it; mid-transaction save policy belongs to lifecycle owner."
+    },
+    "MGICMENU": {
+      "sha256": "d29856358872b51e2e2256e403d2cba4628523c02e1846e17e3352b10011636d",
+      "bytes": 11008,
+      "functions": [
+        {
+          "address": 2149385368,
+          "end": 2149394728,
+          "sha256": "4c14a014397562f33fe8e638735f0cf7a3061a5a49539f690e8ec834a0fdb98b"
+        }
+      ],
+      "contract": "Six caster alias loads and six132-byte level strides; Cure1/2/3 single/all retain native slot-derived magic attack,target iteration and resident MP/HP routines. Extra guests do not inherit stockID10 free-MP exception. Resident subtraction final offsets258A0/25A28 and addition25968/25AF0 required."
+    }
+  },
+  "guard_sites": 151,
+  "passed": [
+    "PHS native availability enumeration + independent added row",
+    "PHS real two-click swap: Cloud/Vincent/Sephiroth coexist",
+    "PHS original lock-bit rejection",
+    "Original materia-exchange initializer:10/25 rows, adjacent globals intact",
+    "15 original inventory-list eligibility cases, native/flashback masks intact",
+    "8 original weapon/accessory commit transactions preserve independent/native records and inventory",
+    "20 original cross-character weapon/armor materia swaps preserve full AP words and all other records",
+    "48 whole original STAT gear/EXP/limit/status/derived-stat drawing paths: nativeVincent,flashback10,extra11/26 across3 slots and4 gauge/status branches; own equipment/materia/EXP agree with equivalent native records, all records and derived caches unchanged",
+    "48 original ITEM confirm+dispatch paths execute Potion/Hi-Potion/Ether/Turbo Ether,Hyper/Tranquilizer and all6 Sources with real resident HP/MP writes and native inventory consumption; only selected native/extra record changes",
+    "24 original MGIC Cure/Cure2/Cure3 single/all branches use own level+derived magic attack,spend own MP and write healed HP through real resident adapters; native flashback10 free-MP exception preserved",
+    "Original ITEM single-record unequip returns all16 materia/AP words and accessory to native inventories; paired party/equipment/materia backup+restore round-trips native0/7 and extras11/26 without altering other records",
+    "18 original Wutai mode15/16 whole theft+return transactions:0/1/16 extras,native availability masks,under/over48 candidates,rank cutoff,exact packed-AP duplicates; materia multiset conserved and unavailable native records untouched",
+    "All8 stock final-limit manuals reject extra11/26 without consuming inventory or modifying learned bits; bounded authored refusal replaces unsafe raw-proxy-indexed native message"
+  ],
+  "validated_owner_discs": [
+    1,
+    2,
+    3
+  ],
+  "c_validation": "C11 Wall Wextra Werror standalone and real-runtime-header compile passed; all16 proxy offsets, guarded passthrough, roster bounds, VRAM backup/restore; menu oracle invokes actual67-site resident callbacks for HP/MP mutations. Nine new story guards tested as one transaction; proxy26 loop-end/record routing verified.",
+  "runtime_status": "Integrated151 menu sites in736 native instruction addresses. Live Status/Limit/PHS three-member party and own portrait/reserve swaps pass. ITEM/MGIC and Wutai full transactions pass original-code oracles across all3 discs; live story coverage remains acceptance.",
+  "remaining": "Wutai theft/return now includes registered extras and preserves original48-ranked policy,AP,bank and inventory counts; story traversal and gameplay/save across Wutai remain live acceptance. Paired party backup helper3018/3138 retains original8009D180 scratch contract; no blanket scratch or save rewrite.",
+  "story_validation": {
+    "transactions": 54,
+    "extras": [
+      0,
+      1,
+      16
+    ],
+    "native_masks": [
+      0,
+      129,
+      511
+    ],
+    "candidate_loads": [
+      12,
+      72
+    ],
+    "checks": [
+      "Ranked selection capped48",
+      "Exact packed/AP duplicates conserved across equipped slots,inventory and stolen bank",
+      "Highest available native row receives return first; extras precede inventory fallback",
+      "Proxy26 selection/removal/return; unavailable native rows untouched",
+      "No extras equals unmodified original-MIPS transaction byte-for-byte",
+      "All9 story contexts required before any loop extension"
+    ],
+    "evidence": "menu.evidence.json story_materia includes resident mode15/16 callers, native buffers, policy and register clobbers"
+  }
+}

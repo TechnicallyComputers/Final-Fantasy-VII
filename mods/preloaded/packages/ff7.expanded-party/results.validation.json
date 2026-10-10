@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "oracles": [
+    {
+      "schema": 1,
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "cases": [
+        "original result initializer and TIM parser: proxy11 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
+        "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy11, untouched native destination slot2",
+        "full original save-preview draw: proxy11 in slot1, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy11 in slot0, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy11 in slot2, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "original result initializer and TIM parser: proxy26 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
+        "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy26, untouched native destination slot2",
+        "full original save-preview draw: proxy26 in slot1, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy26 in slot0, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy26 in slot2, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged"
+      ],
+      "limits": "Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted."
+    },
+    {
+      "schema": 1,
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "cases": [
+        "original result initializer and TIM parser: proxy11 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
+        "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy11, untouched native destination slot2",
+        "full original save-preview draw: proxy11 in slot1, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy11 in slot0, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy11 in slot2, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "original result initializer and TIM parser: proxy26 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
+        "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy26, untouched native destination slot2",
+        "full original save-preview draw: proxy26 in slot1, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy26 in slot0, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy26 in slot2, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged"
+      ],
+      "limits": "Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted."
+    },
+    {
+      "schema": 1,
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "cases": [
+        "original result initializer and TIM parser: proxy11 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
+        "full original EXP tween: proxy11, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy11, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy11 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy11, untouched native destination slot2",
+        "full original save-preview draw: proxy11 in slot1, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy11 in slot0, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy11 in slot2, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "original result initializer and TIM parser: proxy26 requests profile file and uploads exact owned Sephiroth image/palette to slot1; native slots/records unchanged",
+        "full original EXP tween: proxy26, phase0, all3 party-slot buffers match native row7",
+        "full original EXP tween: proxy26, phase1, all3 party-slot buffers match native row7",
+        "full original result draw: proxy26 own name and all3 rows, native party-slot CLUT15",
+        "original portrait copy: proxy26, untouched native destination slot2",
+        "full original save-preview draw: proxy26 in slot1, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy26 in slot0, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged",
+        "full original save-preview draw: proxy26 in slot2, bank/UV/CLUT use profile cell9; native portraits/preview bytes/records unchanged"
+      ],
+      "limits": "Drawing/GPU and BIOS calls recorded; live result-screen acceptance separate. No assets emitted."
+    }
+  ],
+  "live": {
+    "checkpoint": "6bd77f4",
+    "exp_level_progress": "Native Cloud and independent Sephiroth victory rows observed: Sephiroth level51, saved own EXP320470 after native+32 reward; native AP+4 continues.",
+    "portrait": "Correct profile-selected Sephiroth portrait observed after actual260DC extent adapter.",
+    "save_preview": "Live original BIOS save with active Sephiroth/Cloud/Barret displays all three correct cached portraits and own Sephiroth name/level. Native base CRC and exact standard export validate; extended fresh reload restores both distinct roster banks. Three register-only bank/UV/CLUT seams also pass original-code tests on all3 discs."
+  },
+  "limitations": "Drawing/GPU and BIOS reads isolated in oracles. Original TIM parser/upload inputs execute; full story/save acceptance separate."
+}

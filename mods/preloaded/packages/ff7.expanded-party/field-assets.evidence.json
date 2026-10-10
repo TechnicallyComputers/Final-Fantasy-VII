@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "basis": "Owner-disc bytes; reviewed primary format notes; original loader offset arithmetic",
+  "references": [
+    "https://wiki.ffrtt.ru/index.php/FF7/Field/BSX",
+    "https://wiki.ffrtt.ru/index.php/FF7/Field/Field_Script",
+    "https://wiki.ffrtt.ru/index.php/FF7/Field/Script/Opcodes/A1_CHAR"
+  ],
+  "native_bcx": [
+    "FIELD/BALLET.BCX",
+    "FIELD/CID.BCX",
+    "FIELD/CLOUD.BCX",
+    "FIELD/EARITH.BCX",
+    "FIELD/KETCY.BCX",
+    "FIELD/RED.BCX",
+    "FIELD/TIFA.BCX",
+    "FIELD/VINCENT.BCX",
+    "FIELD/YUFI.BCX"
+  ],
+  "candidates": [
+    {
+      "entity_name": "cefiros",
+      "entity_index": 8,
+      "model_index": 3,
+      "script_entry": 2628,
+      "dat_model_metadata_offset": 33096,
+      "bsx_descriptor_offset": 77848,
+      "skeleton_offset": 79084,
+      "bones": 24,
+      "parts": 16,
+      "vertices": [
+        10,
+        40,
+        96,
+        10,
+        16,
+        16,
+        8,
+        16,
+        16,
+        8,
+        18,
+        20,
+        10,
+        18,
+        20,
+        10
+      ],
+      "motions": [
+        {
+          "frames": 2,
+          "bones": 24,
+          "channels_offset": 63220
+        },
+        {
+          "frames": 30,
+          "bones": 24,
+          "channels_offset": 63420
+        },
+        {
+          "frames": 20,
+          "bones": 24,
+          "channels_offset": 64400
+        },
+        {
+          "frames": 50,
+          "bones": 24,
+          "channels_offset": 65540
+        },
+        {
+          "frames": 150,
+          "bones": 24,
+          "channels_offset": 66692
+        },
+        {
+          "frames": 15,
+          "bones": 24,
+          "channels_offset": 71544
+        },
+        {
+          "frames": 15,
+          "bones": 24,
+          "channels_offset": 72420
+        }
+      ],
+      "texture_section_offset": 82980,
+      "all_models_buffer_size": 204216,
+      "dat_sha256": "25ca6d4f84843be2e072ebcb4037c466881f5d40179d2d1dbb866bd27e2e88e1",
+      "bsx_sha256": "5efd4759067ae2ddfd7bb77bbd6b6c89d703236fe35c9079bd708414889e728c",
+      "field": "NIVL"
+    },
+    {
+      "entity_name": "cefirth",
+      "entity_index": 7,
+      "model_index": 1,
+      "script_entry": 2207,
+      "dat_model_metadata_offset": 24040,
+      "bsx_descriptor_offset": 61008,
+      "skeleton_offset": 61344,
+      "bones": 24,
+      "parts": 16,
+      "vertices": [
+        10,
+        40,
+        96,
+        10,
+        16,
+        16,
+        8,
+        16,
+        16,
+        8,
+        18,
+        20,
+        10,
+        18,
+        20,
+        10
+      ],
+      "motions": [
+        {
+          "frames": 2,
+          "bones": 24,
+          "channels_offset": 50580
+        },
+        {
+          "frames": 40,
+          "bones": 24,
+          "channels_offset": 50780
+        },
+        {
+          "frames": 20,
+          "bones": 24,
+          "channels_offset": 53096
+        }
+      ],
+      "texture_section_offset": 64640,
+      "all_models_buffer_size": 141824,
+      "dat_sha256": "7b745848f10e97e4f91b94d89aa4074ac3bbbb84360bab7b565279a3da28dfcc",
+      "bsx_sha256": "7c3c8bb8d42226ebb74e9846ceb80837df787fdeb3d191558179efea265dde0e",
+      "field": "NIVL_B1"
+    },
+    {
+      "entity_name": "cefirth",
+      "entity_index": 4,
+      "model_index": 1,
+      "script_entry": 996,
+      "dat_model_metadata_offset": 32292,
+      "bsx_descriptor_offset": 69348,
+      "skeleton_offset": 69700,
+      "bones": 24,
+      "parts": 16,
+      "vertices": [
+        10,
+        40,
+        96,
+        10,
+        16,
+        16,
+        8,
+        16,
+        16,
+        32,
+        18,
+        20,
+        10,
+        18,
+        20,
+        10
+      ],
+      "motions": [
+        {
+          "frames": 2,
+          "bones": 24,
+          "channels_offset": 53620
+        },
+        {
+          "frames": 40,
+          "bones": 24,
+          "channels_offset": 53820
+        },
+        {
+          "frames": 20,
+          "bones": 24,
+          "channels_offset": 56136
+        },
+        {
+          "frames": 50,
+          "bones": 24,
+          "channels_offset": 57276
+        },
+        {
+          "frames": 50,
+          "bones": 24,
+          "channels_offset": 60024
+        }
+      ],
+      "texture_section_offset": 73548,
+      "all_models_buffer_size": 155648,
+      "dat_sha256": "60bbd68ed84a9eb57c5bde10fe65e52543e53d260f93e62ccde8fbb5cc5d2348",
+      "bsx_sha256": "59d93c2d353c299000a3981f2c05e08bec7ac093925b5c684b832a1f76edb655",
+      "field": "NIVL_B2"
+    }
+  ],
+  "pending": [
+    "No standalone Sephiroth BCX exists on these discs",
+    "Model descriptor must become a new mod-owned model/entity; never reuse the existing scripted NPC",
+    "Portable asset needs texture ownership/VRAM allocation, relative-pointer relocation, animation role mapping and per-field buffer growth",
+    "Native script entities have a64-entry mapping; added script rows/initialization and follower/leader controls require separate integration",
+    "Static hierarchy/stream bounds are validated; poses, motion roles and rendered appearance are not yet validated"
+  ]
+}

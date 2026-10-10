@@ -7,7 +7,7 @@
     {
       "index": 1,
       "cue_name": "Final Fantasy VII (USA) (Disc 1).cue",
-      "cue_path": "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 1)/Final Fantasy VII (USA) (Disc 1).cue",
+      "cue_path": "disc/Final Fantasy VII (USA) (Disc 1).cue",
       "serial": "SCUS-94163",
       "boot_exe": "SCUS_941.63",
       "entry_pc": "0x800110C0",
@@ -17,7 +17,7 @@
     {
       "index": 2,
       "cue_name": "Final Fantasy VII (USA) (Disc 2).cue",
-      "cue_path": "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 2)/Final Fantasy VII (USA) (Disc 2).cue",
+      "cue_path": "disc/Final Fantasy VII (USA) (Disc 2).cue",
       "serial": "SCUS-94164",
       "boot_exe": "SCUS_941.64",
       "entry_pc": "0x800110C0",
@@ -27,7 +27,7 @@
     {
       "index": 3,
       "cue_name": "Final Fantasy VII (USA) (Disc 3).cue",
-      "cue_path": "/mnt/crucial4tb/Emulation/roms/ps/Final Fantasy VII (USA) (Disc 3)/Final Fantasy VII (USA) (Disc 3).cue",
+      "cue_path": "disc/Final Fantasy VII (USA) (Disc 3).cue",
       "serial": "SCUS-94165",
       "boot_exe": "SCUS_941.65",
       "entry_pc": "0x800110C0",

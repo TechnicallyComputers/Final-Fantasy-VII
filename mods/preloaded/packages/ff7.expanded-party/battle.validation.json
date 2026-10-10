@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "scope": "Original MIPS routines with production C adapter in isolated Unicorn; not an end-to-end gameplay claim",
+  "strict_c_adapter_tests": "passed",
+  "production_header_compile": "passed",
+  "disc_reports": [
+    {
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "cases": [
+        "whole BATINI init/refresh and normal Attack/Magic/Summon/Item command list: extra11 + Cloud/Vincent",
+        "whole BATINI init/refresh and normal Attack/Magic/Summon/Item command list: extra26 + Cloud/Vincent",
+        "256 whole original personal-AI dispatch calls return without original Sephiroth scripts or out-of-range table reads",
+        "whole model sorter: Cloud/Vincent + added member, two extras sharing presentation, native variant paths preserved",
+        "all3 original asynchronous model load paths request the profile asset extent and unchanged stage buffer",
+        "original arena continuation HP/MP writeback reaches independent extra record and only selected native records",
+        "whole original body/weapon load: exact fallback pointers/damage bytes plus six generated-motion pointers/two action bytes; original allocation/skeleton/textures/nativeSeph intact",
+        "124 original animation-step calls decode all cover/item fallback frames identically to own source motion, body and weapon paired",
+        "whole-body CRC mismatch leaves every asset byte untouched"
+      ],
+      "limitations": [
+        "Limit moves/policy; BATINI skips limit setup for IDs>=9 and resident80015AFC safely returns127",
+        "Procedural motion visual validation and full battle/reward/field lifecycle",
+        "Personal AI intentionally absent; native characters retain their original scripts"
+      ]
+    },
+    {
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "cases": [
+        "whole BATINI init/refresh and normal Attack/Magic/Summon/Item command list: extra11 + Cloud/Vincent",
+        "whole BATINI init/refresh and normal Attack/Magic/Summon/Item command list: extra26 + Cloud/Vincent",
+        "256 whole original personal-AI dispatch calls return without original Sephiroth scripts or out-of-range table reads",
+        "whole model sorter: Cloud/Vincent + added member, two extras sharing presentation, native variant paths preserved",
+        "all3 original asynchronous model load paths request the profile asset extent and unchanged stage buffer",
+        "original arena continuation HP/MP writeback reaches independent extra record and only selected native records",
+        "whole original body/weapon load: exact fallback pointers/damage bytes plus six generated-motion pointers/two action bytes; original allocation/skeleton/textures/nativeSeph intact",
+        "124 original animation-step calls decode all cover/item fallback frames identically to own source motion, body and weapon paired",
+        "whole-body CRC mismatch leaves every asset byte untouched"
+      ],
+      "limitations": [
+        "Limit moves/policy; BATINI skips limit setup for IDs>=9 and resident80015AFC safely returns127",
+        "Procedural motion visual validation and full battle/reward/field lifecycle",
+        "Personal AI intentionally absent; native characters retain their original scripts"
+      ]
+    },
+    {
+      "status": "passed",
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "cases": [
+        "whole BATINI init/refresh and normal Attack/Magic/Summon/Item command list: extra11 + Cloud/Vincent",
+        "whole BATINI init/refresh and normal Attack/Magic/Summon/Item command list: extra26 + Cloud/Vincent",
+        "256 whole original personal-AI dispatch calls return without original Sephiroth scripts or out-of-range table reads",
+        "whole model sorter: Cloud/Vincent + added member, two extras sharing presentation, native variant paths preserved",
+        "all3 original asynchronous model load paths request the profile asset extent and unchanged stage buffer",
+        "original arena continuation HP/MP writeback reaches independent extra record and only selected native records",
+        "whole original body/weapon load: exact fallback pointers/damage bytes plus six generated-motion pointers/two action bytes; original allocation/skeleton/textures/nativeSeph intact",
+        "124 original animation-step calls decode all cover/item fallback frames identically to own source motion, body and weapon paired",
+        "whole-body CRC mismatch leaves every asset byte untouched"
+      ],
+      "limitations": [
+        "Limit moves/policy; BATINI skips limit setup for IDs>=9 and resident80015AFC safely returns127",
+        "Procedural motion visual validation and full battle/reward/field lifecycle",
+        "Personal AI intentionally absent; native characters retain their original scripts"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,899 @@
+{
+  "schema": 1,
+  "basis": "Original owner-disc bytes; independent MIPS operand analysis",
+  "overlays": {
+    "BATINI": {
+      "base": 2149253120,
+      "bytes": 10164,
+      "sha256": "0731ada119bf4e505cd0ff3a82ab35b772db6b2d88b8ee1606d16d4843a0d087"
+    },
+    "BATTLE": {
+      "base": 2148139008,
+      "bytes": 342188,
+      "sha256": "94a0c251c98197a6b902068082180ce244a8b4ecd93792298816a486880a2e7b"
+    }
+  },
+  "sites": [
+    {
+      "overlay": "BATINI",
+      "address": 2149255620,
+      "expected": 19109921,
+      "action": "INITIAL_RECORD",
+      "reg": 0,
+      "guard": [
+        610518840,
+        1006796822,
+        2487367530,
+        0,
+        809631808,
+        272629779,
+        19109921,
+        1007124502,
+        619149624,
+        39858209,
+        644350080,
+        2361524224,
+        2361589764
+      ]
+    },
+    {
+      "overlay": "BATINI",
+      "address": 2149257120,
+      "expected": 2451701760,
+      "action": "REFRESH_RECORD",
+      "reg": 0,
+      "guard": [
+        0,
+        8225,
+        6177,
+        1006796810,
+        608356152,
+        6457377,
+        2451701760,
+        0,
+        340197445,
+        612630529,
+        2451701761,
+        0,
+        2697068553
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148153080,
+      "expected": 1006731274,
+      "action": "ARENA_RECORD",
+      "reg": 0,
+      "guard": [
+        12321,
+        1006731274,
+        2426913,
+        2418527196,
+        8225,
+        6177,
+        1006731274,
+        2295841,
+        2418198328,
+        0,
+        340197391,
+        0,
+        1006731280
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148163740,
+      "expected": 2418244184,
+      "action": "AI_ALIAS",
+      "reg": 0,
+      "guard": [
+        2150839992,
+        604176383,
+        308412424,
+        872546559,
+        1006731278,
+        3344417,
+        2418244184,
+        0,
+        274857986,
+        0,
+        6330401,
+        1006927880,
+        612640900
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148163768,
+      "expected": 39856161,
+      "action": "AI_HEADER",
+      "reg": 0,
+      "guard": [
+        0,
+        274857986,
+        0,
+        6330401,
+        1006927880,
+        612640900,
+        39856161,
+        201496556,
+        14692385,
+        4229153,
+        304087097,
+        32801,
+        665059344
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148219708,
+      "expected": 2355363840,
+      "action": "EXTENT",
+      "reg": 1,
+      "guard": [
+        279052303,
+        338112,
+        1006796815,
+        608338024,
+        10623009,
+        4526113,
+        2355363840,
+        2353332228,
+        1007124491,
+        619133828,
+        201379741,
+        1007058971,
+        201514989
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148219912,
+      "expected": 2355363840,
+      "action": "EXTENT",
+      "reg": 2,
+      "guard": [
+        279052303,
+        338112,
+        1006796815,
+        608338024,
+        10623009,
+        4526113,
+        2355363840,
+        2353332228,
+        1007124491,
+        619134032,
+        201379741,
+        1007058971,
+        201514989
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148220168,
+      "expected": 2357460992,
+      "action": "EXTENT",
+      "reg": 0,
+      "guard": [
+        2218961348,
+        1006862351,
+        610500712,
+        135360,
+        4399137,
+        6428705,
+        2357460992,
+        2355429380,
+        1007124491,
+        619133624,
+        201379741,
+        1007058971,
+        201514989
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148228200,
+      "expected": 201364962,
+      "action": "MOTIONS",
+      "reg": 0,
+      "guard": [
+        135296,
+        1006731291,
+        4261921,
+        2351366080,
+        201355507,
+        1006993435,
+        201364962,
+        33562657,
+        1057280,
+        9445409,
+        270464,
+        9445411,
+        270464
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148294620,
+      "expected": 1006731280,
+      "action": "MODEL",
+      "reg": 0,
+      "guard": [
+        134420475,
+        0,
+        2453798912,
+        0,
+        136704,
+        136707,
+        1006731280,
+        606185924,
+        3147809,
+        2753691648,
+        1006731280,
+        606185926,
+        3147809
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148390456,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2418147328,
+        0,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        0,
+        201024,
+        4395041,
+        135296,
+        1006862346,
+        610518856
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148390472,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        0,
+        201024,
+        4395041,
+        135296,
+        1006862346,
+        610518856,
+        4395041,
+        1006731279,
+        2887931348,
+        2946498576
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148410412,
+      "expected": 2353201152,
+      "action": "ALIAS",
+      "reg": 2,
+      "guard": [
+        606194652,
+        3278881,
+        2418147328,
+        0,
+        135296,
+        6164513,
+        2353201152,
+        0,
+        201024,
+        4395041,
+        135296,
+        1055744,
+        214019
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148410428,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        135296,
+        6164513,
+        2353201152,
+        0,
+        201024,
+        4395041,
+        135296,
+        1055744,
+        214019,
+        1006862346,
+        610518856,
+        4395041,
+        4722721
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148410740,
+      "expected": 2353135616,
+      "action": "ALIAS",
+      "reg": 2,
+      "guard": [
+        135296,
+        6164513,
+        473283,
+        820445185,
+        753336321,
+        473123,
+        2353135616,
+        820445191,
+        143680,
+        12726305,
+        405632,
+        1006796810,
+        608356168
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148410756,
+      "expected": 405632,
+      "action": "OFFSET",
+      "reg": 6,
+      "guard": [
+        753336321,
+        473123,
+        2353135616,
+        820445191,
+        143680,
+        12726305,
+        405632,
+        1006796810,
+        608356168,
+        134449532,
+        12726305,
+        1317888,
+        203779
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148410816,
+      "expected": 2353266688,
+      "action": "ALIAS",
+      "reg": 2,
+      "guard": [
+        2295841,
+        2418147328,
+        203008,
+        610598920,
+        135296,
+        6164513,
+        2353266688,
+        1006862346,
+        610518856,
+        266560,
+        4460577,
+        135296,
+        4403233
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148410836,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        6164513,
+        2353266688,
+        1006862346,
+        610518856,
+        266560,
+        4460577,
+        135296,
+        4403233,
+        44044321,
+        272629762,
+        872873986,
+        872873991,
+        872677390
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148414700,
+      "expected": 2351104000,
+      "action": "ALIAS",
+      "reg": 1,
+      "guard": [
+        2418147328,
+        872677436,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        872742914,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193478
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148414716,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        872742914,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193478,
+        2230305,
+        2418147328,
+        872874000,
+        1006731279
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148418596,
+      "expected": 2353201152,
+      "action": "ALIAS",
+      "reg": 2,
+      "guard": [
+        5247009,
+        1006731286,
+        606156484,
+        2426913,
+        2485387264,
+        614793224,
+        2353201152,
+        948174849,
+        201024,
+        4395041,
+        135296,
+        1006862346,
+        610518856
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148418612,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2485387264,
+        614793224,
+        2353201152,
+        948174849,
+        201024,
+        4395041,
+        135296,
+        1006862346,
+        610518856,
+        813957121,
+        276824066,
+        4403233,
+        872873991
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148425780,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2947743772,
+        10524705,
+        2947678232,
+        605224959,
+        266560,
+        4460577,
+        135296,
+        1006927882,
+        612681592,
+        612565024,
+        2947809312,
+        4431905,
+        2947547152
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426444,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2230305,
+        2686451712,
+        134453583,
+        1118528,
+        1118528,
+        5312545,
+        135296,
+        872612095,
+        1006731274,
+        606193494,
+        2230305,
+        2686648320,
+        134453583
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426484,
+      "expected": 202880,
+      "action": "OFFSET",
+      "reg": 3,
+      "guard": [
+        2230305,
+        2686648320,
+        134453583,
+        1118528,
+        1120576,
+        7411745,
+        202880,
+        1006731274,
+        606193470,
+        2295841,
+        2418147328,
+        0,
+        135234
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426564,
+      "expected": 270464,
+      "action": "OFFSET",
+      "reg": 4,
+      "guard": [
+        608359012,
+        2353266688,
+        201362914,
+        0,
+        1122624,
+        9510945,
+        270464,
+        137472,
+        6428707,
+        1006731274,
+        606193508,
+        2361377,
+        2485256192
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426632,
+      "expected": 202880,
+      "action": "OFFSET",
+      "reg": 3,
+      "guard": [
+        2361377,
+        2753691648,
+        134453583,
+        1118528,
+        1120576,
+        7411745,
+        202880,
+        1006731274,
+        606193465,
+        2295841,
+        2418147328,
+        0,
+        608370683
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426692,
+      "expected": 202880,
+      "action": "OFFSET",
+      "reg": 3,
+      "guard": [
+        2295841,
+        2686582784,
+        134453583,
+        1118528,
+        1120576,
+        7411745,
+        202880,
+        1006731274,
+        606193465,
+        2295841,
+        2418147328,
+        0,
+        608370678
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426752,
+      "expected": 202880,
+      "action": "OFFSET",
+      "reg": 3,
+      "guard": [
+        2295841,
+        2686582784,
+        134453583,
+        1118528,
+        1120576,
+        7411745,
+        202880,
+        1006731274,
+        606193510,
+        2295841,
+        2485256192,
+        0,
+        135234
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426812,
+      "expected": 202880,
+      "action": "OFFSET",
+      "reg": 3,
+      "guard": [
+        2295841,
+        2753691648,
+        134453583,
+        1118528,
+        1120576,
+        7411745,
+        202880,
+        1006731274,
+        606193514,
+        2295841,
+        2485256192,
+        0,
+        135234
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426872,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2295841,
+        2753691648,
+        134453583,
+        1118528,
+        1118528,
+        5312545,
+        135296,
+        1006731274,
+        606193510,
+        2230305,
+        2485321728,
+        1006731274,
+        606193514
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148426964,
+      "expected": 135296,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        2230305,
+        2753822720,
+        134453583,
+        1118528,
+        1118528,
+        5312545,
+        135296,
+        1006731274,
+        606193512,
+        2230305,
+        2753560576,
+        134453583,
+        1118528
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148427072,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        0,
+        876740616,
+        1006731280,
+        2686623136,
+        1118528,
+        5312545,
+        139392,
+        1006731274,
+        606193465,
+        2361377,
+        2418212864,
+        0,
+        744620133
+      ]
+    },
+    {
+      "overlay": "BATTLE",
+      "address": 2148427144,
+      "expected": 139392,
+      "action": "OFFSET",
+      "reg": 2,
+      "guard": [
+        1006731274,
+        606193465,
+        2361377,
+        2686582784,
+        1118528,
+        5312545,
+        139392,
+        1006731274,
+        606193508,
+        2361377,
+        2485321728,
+        0,
+        744630032
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "overlay": "BATINI",
+      "start": 2149255360,
+      "end_exclusive": 2149256968,
+      "sha256": "03c694faff8a0bc8050dd4a45f81012cb3395178e8047ebfe5e269f02fca8f4a"
+    },
+    {
+      "overlay": "BATINI",
+      "start": 2149256968,
+      "end_exclusive": 2149257504,
+      "sha256": "4b5565824c419d787a657b3eecb6dbbb6828b2d285006189eae1674dfbcd3e7c"
+    },
+    {
+      "overlay": "BATINI",
+      "start": 2149257660,
+      "end_exclusive": 2149258108,
+      "sha256": "99509fa0f6fe00c01960c5295231fb32fcbe9a440405572e85e43fbfa231d1e6"
+    },
+    {
+      "overlay": "BATTLE",
+      "start": 2148163504,
+      "end_exclusive": 2148163584,
+      "sha256": "5a06d93d07a05391a30192b7a39491e7d930074740d3562b2137c5995fa22b95"
+    },
+    {
+      "overlay": "BATTLE",
+      "start": 2148163584,
+      "end_exclusive": 2148164052,
+      "sha256": "b48f4b798e2b2c327ba418709a2442c8921f1deb40b3fe48b8536d9ccca3e50a"
+    },
+    {
+      "overlay": "BATTLE",
+      "start": 2148294292,
+      "end_exclusive": 2148294900,
+      "sha256": "10c1724ebe96d1a30df707388441020d5e3599aa913a5e7ef711b48851039d6e"
+    },
+    {
+      "overlay": "BATTLE",
+      "start": 2148219576,
+      "end_exclusive": 2148219780,
+      "sha256": "0bfe205f8c4e371555cf9ef50d030e9dc8487e12f8b0eeb4d9d63b6fdd3c5b29"
+    },
+    {
+      "overlay": "BATTLE",
+      "start": 2148219780,
+      "end_exclusive": 2148219984,
+      "sha256": "3e2c7c9ed765553fcd587aca0f10082a01a7424a777b3d15614c1b6b4dbaeee4"
+    },
+    {
+      "overlay": "BATTLE",
+      "start": 2148220112,
+      "end_exclusive": 2148220216,
+      "sha256": "43cf1a78462ee95490ae36e1271d1150df3b1aa51b13a5a078b6a035287b43ad"
+    },
+    {
+      "overlay": "BATTLE",
+      "start": 2148228124,
+      "end_exclusive": 2148228308,
+      "sha256": "b59ed8973f91c15e9a9bd982764edebedcdcede1dbad33c86a0caf49398c7d03"
+    }
+  ],
+  "motion_preparation": {
+    "source_sha256": "7e3a94d9b338c5038c947c77669699ddf19d6f0466008a9bfabd158cc819b785",
+    "body_bytes": 51420,
+    "body_crc32": 3003884080,
+    "model_slot_capacity": 61440,
+    "pointer_aliases": [
+      {
+        "offset": 44,
+        "before": 44452,
+        "after": 42140
+      },
+      {
+        "offset": 48,
+        "before": 44456,
+        "after": 44468
+      },
+      {
+        "offset": 52,
+        "before": 44460,
+        "after": 44468
+      },
+      {
+        "offset": 252,
+        "before": 50852,
+        "after": 50636
+      },
+      {
+        "offset": 256,
+        "before": 50856,
+        "after": 50868
+      },
+      {
+        "offset": 260,
+        "before": 50860,
+        "after": 50868
+      }
+    ],
+    "damage_bytes": [
+      35428,
+      35432,
+      35433,
+      35440
+    ],
+    "policy": "profile.motion_policy==FF7_PARTY_MOTION_SEPHIROTH; new actor instance only",
+    "generated_policy": "motion.evidence.json: separate guest-owned paired low-HP/death/defend motions derived from own poses; original decoder/rotation/command oracles",
+    "limitations": "Procedural posture,floor contact and weapon grip require visual review; custom limits pending"
+  },
+  "integration": {
+    "plugin": "ff7.party-gameplay, developer default-off; shared activation owns lifecycle",
+    "lifecycle": [
+      "ff7_party_battle_init allocates guest-owned AI/extent scratch and three independent motion arenas",
+      "ff7_party_battle_restore retains guest-backed bytes; no host character state"
+    ],
+    "abi": {
+      "INITIAL_RECORD": "v1=record(fp)-t1; original ADDU executes, including branch delay slot",
+      "REFRESH_RECORD": "s1=record(a3) before original byte load",
+      "ARENA_RECORD": "v1=record(a3)-0x8009C738 before native nine-record search and HP/MP writeback",
+      "AI_ALIAS": "at points to FF byte through existing signed offset; s3 proxy unchanged",
+      "AI_HEADER": "a0 points to27 FF halfwords, proxy s3 unchanged; original dispatcher returns no personal script",
+      "MODEL": "v0=profile.presentation only when actor at s2 is extra, preserving native weapon variants11..15",
+      "EXTENT": "first: a0,v1; others: v0,v1 point to extent selected through sorted actor-slot pair",
+      "ALIAS": "specified load base points to scratch word containing proxy, native alias table untouched",
+      "OFFSET": "specified source GPR becomes(record-0x8009C738)>>2 before original SLL by2",
+      "MOTIONS": "s0 actor slot selects newly copied body; exact CRC and decoder guards; fallback pointers/damage bytes plus paired generated-motion pointers/low-HP/death scripts; no GPR changes"
+    },
+    "pending": [
+      "Limit moves/policy; BATINI skips limit setup for IDs>=9 and resident80015AFC safely returns127",
+      "Procedural motion visual validation and full battle/reward/field lifecycle",
+      "Personal AI intentionally absent; native characters retain their original scripts"
+    ]
+  }
+}

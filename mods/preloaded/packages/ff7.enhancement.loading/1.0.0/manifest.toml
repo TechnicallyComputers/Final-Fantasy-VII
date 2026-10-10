@@ -1,0 +1,22 @@
+format_version = 6
+id = "ff7.enhancement.loading"
+version = "1.0.0"
+name = "Final Fantasy VII Fast Loading"
+author = "Final Fantasy VII Recompiled project"
+description = "Host LZS decoding with native CD timing."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "fast-loading"
+name = "Fast Loading"
+channel = "experimental"
+description = "Replace FFVII's LZS decoder with a verified host implementation. Unsupported inputs fall back to the original decoder. Load pacing, streaming movies and XA audio keep their original timing."
+group = "Quality of Life"
+default_enabled = false
+
+[[plugin]]
+feature = "fast-loading"
+id = "ff7.loading"

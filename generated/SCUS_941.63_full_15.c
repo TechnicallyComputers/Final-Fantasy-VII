@@ -209,11 +209,12 @@ block_8003EF30:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x8003EF6C: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003EF6C: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003EF6Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003EF70u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -259,7 +260,8 @@ block_8003EF78:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[19] & 0x00FF;  /* 0x8003EF78: 0x326200FF */
+    { uint32_t _pgx1 = cpu->gpr[19]; cpu->gpr[2] = cpu->gpr[19] & 0x00FF;
+    PGXP_ALU(0x326200FFu, cpu->gpr[2], _pgx1, 0x00FFu); }  /* 0x8003EF78: 0x326200FF */
 #ifdef PSX_COSIM
     cosim_instr(0x8003EF78u);
 #endif
@@ -322,7 +324,7 @@ block_8003EF78:
 #ifdef PSX_COSIM
     cosim_instr(0x8003EF94u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003EFA0u;  /* jal link before delay slot */
@@ -356,7 +358,8 @@ block_8003EFA0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[19] & 0x00FF;  /* 0x8003EFA0: 0x326200FF */
+    { uint32_t _pgx1 = cpu->gpr[19]; cpu->gpr[2] = cpu->gpr[19] & 0x00FF;
+    PGXP_ALU(0x326200FFu, cpu->gpr[2], _pgx1, 0x00FFu); }  /* 0x8003EFA0: 0x326200FF */
 #ifdef PSX_COSIM
     cosim_instr(0x8003EFA0u);
 #endif
@@ -407,7 +410,7 @@ block_8003EFA0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003EFB8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003EFBC = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -447,7 +450,7 @@ block_8003EFC4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003EFC4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003EFC4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -512,7 +515,7 @@ block_8003EFCC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003EFD4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_8003EFD8 = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -600,7 +603,7 @@ block_8003EFE0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003EFF4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F000u;  /* jal link before delay slot */
@@ -628,7 +631,7 @@ block_8003F000:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F000u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F000u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -659,7 +662,7 @@ block_8003F008:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F008u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F008u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -697,7 +700,8 @@ block_8003F010:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80008u);
 #endif
-    cpu->gpr[3] = cpu->gpr[19] & 0x00FF;  /* 0x8003F010: 0x326300FF */
+    { uint32_t _pgx1 = cpu->gpr[19]; cpu->gpr[3] = cpu->gpr[19] & 0x00FF;
+    PGXP_ALU(0x326300FFu, cpu->gpr[3], _pgx1, 0x00FFu); }  /* 0x8003F010: 0x326300FF */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F010u);
 #endif
@@ -709,7 +713,7 @@ block_8003F010:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F014u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_8003F018 = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -833,11 +837,12 @@ block_8003F024:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[4] < 4) ? 1 : 0;  /* 0x8003F040: 0x28820004 */
+    { uint32_t _pgx1 = cpu->gpr[4]; cpu->gpr[2] = ((int32_t)cpu->gpr[4] < 4) ? 1 : 0;
+    PGXP_ALU(0x28820004u, cpu->gpr[2], _pgx1, 0x0004u); }  /* 0x8003F040: 0x28820004 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F040u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F044 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -907,7 +912,8 @@ block_8003F04C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[19] & 0x00FF;  /* 0x8003F058: 0x326200FF */
+    { uint32_t _pgx1 = cpu->gpr[19]; cpu->gpr[2] = cpu->gpr[19] & 0x00FF;
+    PGXP_ALU(0x326200FFu, cpu->gpr[2], _pgx1, 0x00FFu); }  /* 0x8003F058: 0x326200FF */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F058u);
 #endif
@@ -970,7 +976,7 @@ block_8003F04C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F074u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F078 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -1102,7 +1108,7 @@ block_8003F088:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F0A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_8003F0A8 = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -1229,11 +1235,12 @@ block_8003F0B8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[4] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x8003F0D4: 0x0082102A */
+    { uint32_t _pgx1 = cpu->gpr[4]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[4] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0082102Au, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8003F0D4: 0x0082102A */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F0D4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F0D8 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -1312,7 +1319,7 @@ block_8003F0E0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F0F0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10001u);
 #endif
     int _bc_8003F0F4 = (cpu->gpr[16] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -1349,7 +1356,7 @@ block_8003F0FC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F0FCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F0FCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -1489,7 +1496,7 @@ block_8003F104:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F130u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_8003F134 = (cpu->gpr[3] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -1575,7 +1582,7 @@ block_8003F14C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F14Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F14Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -1639,11 +1646,12 @@ block_8003F154:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x8003F160: 0x0062182A */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0062182Au, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x8003F160: 0x0062182A */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F160u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_8003F164 = (cpu->gpr[3] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -1743,11 +1751,12 @@ block_8003F16C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < (int32_t)cpu->gpr[3]) ? 1 : 0;  /* 0x8003F188: 0x0043102A */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < (int32_t)cpu->gpr[3]) ? 1 : 0;
+    PGXP_ALU(0x0043102Au, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8003F188: 0x0043102A */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F188u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F18C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -1805,7 +1814,7 @@ block_8003F194:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F198u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F1A4u;  /* jal link before delay slot */
@@ -1993,7 +2002,7 @@ block_8003F1A4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F1F0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F1FCu;  /* jal link before delay slot */
@@ -2021,7 +2030,7 @@ block_8003F1FC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F1FCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F1FCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2055,7 +2064,7 @@ block_8003F204:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F204u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F204u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2109,7 +2118,7 @@ block_8003F210:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F210u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F210u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2149,7 +2158,7 @@ block_8003F218:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F218u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F218u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2180,7 +2189,7 @@ block_8003F220:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F220u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F220u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2260,7 +2269,8 @@ block_8003F228:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20004u);
 #endif
-    cpu->gpr[17] = cpu->gpr[2] & 0x0003;  /* 0x8003F23C: 0x30510003 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[17] = cpu->gpr[2] & 0x0003;
+    PGXP_ALU(0x30510003u, cpu->gpr[17], _pgx1, 0x0003u); }  /* 0x8003F23C: 0x30510003 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F23Cu);
 #endif
@@ -2276,7 +2286,7 @@ block_8003F240:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F240u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F240u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2318,7 +2328,7 @@ block_8003F248:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F248u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10001u);
 #endif
     int _bc_8003F24C = (cpu->gpr[16] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -2329,7 +2339,8 @@ block_8003F248:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0004;  /* 0x8003F250: 0x32020004 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0004;
+    PGXP_ALU(0x32020004u, cpu->gpr[2], _pgx1, 0x0004u); }  /* 0x8003F250: 0x32020004 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F250u);
 #endif
@@ -2357,7 +2368,7 @@ block_8003F254:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F254u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F254u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2368,7 +2379,8 @@ block_8003F254:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0002;  /* 0x8003F258: 0x32020002 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0002;
+    PGXP_ALU(0x32020002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003F258: 0x32020002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F258u);
 #endif
@@ -2422,7 +2434,7 @@ block_8003F25C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F264u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F268 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -2482,7 +2494,7 @@ block_8003F270:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F278u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000004u);
 #endif
     uint32_t _jt_8003F27C = cpu->gpr[2];  /* latch indirect target before delay slot */
@@ -2520,7 +2532,8 @@ block_8003F284:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0002;  /* 0x8003F284: 0x32020002 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0002;
+    PGXP_ALU(0x32020002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003F284: 0x32020002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F284u);
 #endif
@@ -2536,7 +2549,7 @@ block_8003F288:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F288u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F288u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2598,7 +2611,7 @@ block_8003F290:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F298u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F29C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -2661,7 +2674,7 @@ block_8003F2A4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F2ACu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F2B0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2693,7 +2706,7 @@ block_8003F2B8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F2B8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F2B8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -2781,7 +2794,7 @@ block_8003F2D0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F2D4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F2D8 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -2855,11 +2868,12 @@ block_8003F2E0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x00FF;  /* 0x8003F2F0: 0x304200FF */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x00FF;
+    PGXP_ALU(0x304200FFu, cpu->gpr[2], _pgx1, 0x00FFu); }  /* 0x8003F2F0: 0x304200FF */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F2F0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_8003F2F4 = (cpu->gpr[2] != cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -2902,7 +2916,8 @@ block_8003F2FC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80008u);
 #endif
-    cpu->gpr[3] = cpu->gpr[19] & 0x00FF;  /* 0x8003F2FC: 0x326300FF */
+    { uint32_t _pgx1 = cpu->gpr[19]; cpu->gpr[3] = cpu->gpr[19] & 0x00FF;
+    PGXP_ALU(0x326300FFu, cpu->gpr[3], _pgx1, 0x00FFu); }  /* 0x8003F2FC: 0x326300FF */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F2FCu);
 #endif
@@ -2917,7 +2932,7 @@ block_8003F2FC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F300u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_8003F304 = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -3021,7 +3036,7 @@ block_8003F31C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F320u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x41u);
 #endif
     int _bc_8003F324 = (cpu->gpr[6] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -3126,7 +3141,7 @@ block_8003F334:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F340u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x28u);
 #endif
     int _bc_8003F344 = (cpu->gpr[3] != cpu->gpr[5]);  /* save branch cond before delay slot */
@@ -3200,7 +3215,8 @@ block_8003F34C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] ^ 0x0005;  /* 0x8003F35C: 0x38420005 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] ^ 0x0005;
+    PGXP_ALU(0x38420005u, cpu->gpr[2], _pgx1, 0x0005u); }  /* 0x8003F35C: 0x38420005 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F35Cu);
 #endif
@@ -3210,7 +3226,8 @@ block_8003F34C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)1) ? 1 : 0;  /* 0x8003F360: 0x2C420001 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)1) ? 1 : 0;
+    PGXP_ALU(0x2C420001u, cpu->gpr[2], _pgx1, 0x0001u); }  /* 0x8003F360: 0x2C420001 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F360u);
 #endif
@@ -3296,7 +3313,7 @@ block_8003F368:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F38Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F390u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -3584,7 +3601,7 @@ block_8003F398:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F414u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003F418 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -3706,11 +3723,12 @@ block_8003F420:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0007;  /* 0x8003F444: 0x30420007 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0007;
+    PGXP_ALU(0x30420007u, cpu->gpr[2], _pgx1, 0x0007u); }  /* 0x8003F444: 0x30420007 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F444u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F448 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -3904,11 +3922,12 @@ block_8003F454:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0007;  /* 0x8003F498: 0x30420007 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0007;
+    PGXP_ALU(0x30420007u, cpu->gpr[2], _pgx1, 0x0007u); }  /* 0x8003F498: 0x30420007 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F498u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F49C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -4120,7 +4139,7 @@ block_8003F4A4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F4F4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003F4F8 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -4207,7 +4226,7 @@ block_8003F500:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F510u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F514 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -4262,7 +4281,7 @@ block_8003F51C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F520u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F524 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -4709,7 +4728,7 @@ block_8003F540:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F5E8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003F5EC = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -4848,7 +4867,7 @@ block_8003F5F4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F618u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F624u;  /* jal link before delay slot */
@@ -4898,7 +4917,7 @@ block_8003F624:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F628u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F634u;  /* jal link before delay slot */
@@ -4946,7 +4965,7 @@ block_8003F634:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F638u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003F63C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -5048,7 +5067,7 @@ block_8003F644:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F650u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F65Cu;  /* jal link before delay slot */
@@ -5114,7 +5133,7 @@ block_8003F65C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F668u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F674u;  /* jal link before delay slot */
@@ -5253,7 +5272,7 @@ block_8003F674:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F6A0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F6ACu;  /* jal link before delay slot */
@@ -5303,7 +5322,7 @@ block_8003F6AC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F6B0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F6BCu;  /* jal link before delay slot */
@@ -5408,11 +5427,12 @@ block_8003F6BC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0007;  /* 0x8003F6E0: 0x30420007 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0007;
+    PGXP_ALU(0x30420007u, cpu->gpr[2], _pgx1, 0x0007u); }  /* 0x8003F6E0: 0x30420007 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F6E0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F6E4 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -5606,11 +5626,12 @@ block_8003F6F0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0007;  /* 0x8003F734: 0x30420007 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0007;
+    PGXP_ALU(0x30420007u, cpu->gpr[2], _pgx1, 0x0007u); }  /* 0x8003F734: 0x30420007 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F734u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F738 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -5844,7 +5865,7 @@ block_8003F740:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F79Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F7A0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -5904,11 +5925,12 @@ block_8003F7A8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0010;  /* 0x8003F7B4: 0x30420010 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0010;
+    PGXP_ALU(0x30420010u, cpu->gpr[2], _pgx1, 0x0010u); }  /* 0x8003F7B4: 0x30420010 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F7B4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F7B8 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -5964,7 +5986,7 @@ block_8003F7C0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F7C4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F7D0u;  /* jal link before delay slot */
@@ -6020,7 +6042,7 @@ block_8003F7D0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F7D8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F7E4u;  /* jal link before delay slot */
@@ -6052,7 +6074,7 @@ block_8003F7E4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F7E4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F7E4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -6122,7 +6144,7 @@ block_8003F7EC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F7F4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F800u;  /* jal link before delay slot */
@@ -6151,7 +6173,7 @@ block_8003F800:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F800u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F800u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -6202,7 +6224,7 @@ block_8003F808:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F808u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F814u;  /* jal link before delay slot */
@@ -6240,14 +6262,16 @@ block_8003F814:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] ^ 0x0002;  /* 0x8003F814: 0x38420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] ^ 0x0002;
+    PGXP_ALU(0x38420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003F814: 0x38420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F814u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[0] < cpu->gpr[2]) ? 1 : 0;  /* 0x8003F818: 0x0002102B */
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[0] < cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0002102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8003F818: 0x0002102B */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F818u);
 #endif
@@ -6287,7 +6311,7 @@ block_8003F820:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F824u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003F828 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -6407,7 +6431,7 @@ block_8003F830:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F848u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003F854u;  /* jal link before delay slot */
@@ -6583,7 +6607,7 @@ block_8003F890:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F890u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F890u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -6644,11 +6668,12 @@ block_8003F898:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x8003F8A4: 0x0062182A */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0062182Au, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x8003F8A4: 0x0062182A */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F8A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_8003F8A8 = (cpu->gpr[3] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -6745,11 +6770,12 @@ block_8003F8B0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < (int32_t)cpu->gpr[3]) ? 1 : 0;  /* 0x8003F8CC: 0x0043102A */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < (int32_t)cpu->gpr[3]) ? 1 : 0;
+    PGXP_ALU(0x0043102Au, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8003F8CC: 0x0043102A */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F8CCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F8D0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -6807,7 +6833,7 @@ block_8003F8D8:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F8DCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F8E0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -6976,7 +7002,7 @@ block_8003F8E8:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F92Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F930u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -7007,7 +7033,7 @@ block_8003F938:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F938u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F938u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -7038,7 +7064,7 @@ block_8003F940:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F940u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F940u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -7092,7 +7118,7 @@ block_8003F94C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F94Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F94Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -7177,11 +7203,12 @@ block_8003F954:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];  /* 0x8003F968: 0x00431024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];
+    PGXP_ALU(0x00431024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8003F968: 0x00431024 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003F968u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003F96C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -7221,7 +7248,7 @@ block_8003F974:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003F974u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003F974u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -7303,7 +7330,7 @@ block_8003F97C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003F990u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003F994 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -7665,11 +7692,12 @@ block_8003FA24:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0040;  /* 0x8003FA30: 0x30420040 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0040;
+    PGXP_ALU(0x30420040u, cpu->gpr[2], _pgx1, 0x0040u); }  /* 0x8003FA30: 0x30420040 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FA30u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FA34 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -7782,11 +7810,12 @@ block_8003FA3C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];  /* 0x8003FA60: 0x00431024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];
+    PGXP_ALU(0x00431024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8003FA60: 0x00431024 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FA60u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FA64 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -7864,11 +7893,12 @@ block_8003FA70:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[4];  /* 0x8003FA78: 0x00441024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[4];
+    PGXP_ALU(0x00441024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8003FA78: 0x00441024 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FA78u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FA7C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -7942,7 +7972,7 @@ block_8003FA84:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FA90u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003FA94 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -8004,7 +8034,7 @@ block_8003FA9C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FAA0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003FAA4 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -8149,7 +8179,8 @@ block_8003FAAC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20004u);
 #endif
-    cpu->gpr[17] = cpu->gpr[2] & 0x0003;  /* 0x8003FAD4: 0x30510003 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[17] = cpu->gpr[2] & 0x0003;
+    PGXP_ALU(0x30510003u, cpu->gpr[17], _pgx1, 0x0003u); }  /* 0x8003FAD4: 0x30510003 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FAD4u);
 #endif
@@ -8165,7 +8196,7 @@ block_8003FAD8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FAD8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FAD8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8207,7 +8238,7 @@ block_8003FAE0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FAE0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10001u);
 #endif
     int _bc_8003FAE4 = (cpu->gpr[16] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -8215,7 +8246,8 @@ block_8003FAE0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0004;  /* 0x8003FAE8: 0x32020004 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0004;
+    PGXP_ALU(0x32020004u, cpu->gpr[2], _pgx1, 0x0004u); }  /* 0x8003FAE8: 0x32020004 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FAE8u);
 #endif
@@ -8243,7 +8275,7 @@ block_8003FAEC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FAECu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FAECu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8257,7 +8289,8 @@ block_8003FAEC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0002;  /* 0x8003FAF0: 0x32020002 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0002;
+    PGXP_ALU(0x32020002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003FAF0: 0x32020002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FAF0u);
 #endif
@@ -8308,7 +8341,7 @@ block_8003FAF4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FAFCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FB00u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8374,7 +8407,7 @@ block_8003FB08:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FB10u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000004u);
 #endif
     uint32_t _jt_8003FB14 = cpu->gpr[2];  /* latch indirect target before delay slot */
@@ -8409,7 +8442,8 @@ block_8003FB1C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0002;  /* 0x8003FB1C: 0x32020002 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0002;
+    PGXP_ALU(0x32020002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003FB1C: 0x32020002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FB1Cu);
 #endif
@@ -8425,7 +8459,7 @@ block_8003FB20:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FB20u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FB20u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8490,7 +8524,7 @@ block_8003FB28:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FB30u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_8003FB34 = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -8569,7 +8603,7 @@ block_8003FB3C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FB4Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FB50u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8601,7 +8635,7 @@ block_8003FB58:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FB58u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FB58u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8696,7 +8730,7 @@ block_8003FB60:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FB80u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003FB84 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -8895,7 +8929,7 @@ block_8003FB8C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FBBCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FBC0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8935,7 +8969,7 @@ block_8003FBC8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FBC8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FBC8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -8966,7 +9000,7 @@ block_8003FBD0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FBD0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FBD0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -9079,7 +9113,7 @@ block_8003FBEC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FBF0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_8003FBF4 = (cpu->gpr[3] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -9116,7 +9150,7 @@ block_8003FBFC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FBFCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FBFCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -9150,7 +9184,7 @@ block_8003FC04:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FC04u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FC04u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -9249,7 +9283,7 @@ block_8003FC1C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC20u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x100004u);
 #endif
     int _bc_8003FC24 = (cpu->gpr[2] == cpu->gpr[20]);  /* save branch cond before delay slot */
@@ -9327,7 +9361,7 @@ block_8003FC34:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC34u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FC38 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -9335,7 +9369,8 @@ block_8003FC34:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;  /* 0x8003FC3C: 0x2A420008 */
+    { uint32_t _pgx1 = cpu->gpr[18]; cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;
+    PGXP_ALU(0x2A420008u, cpu->gpr[2], _pgx1, 0x0008u); }  /* 0x8003FC3C: 0x2A420008 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC3Cu);
 #endif
@@ -9402,7 +9437,7 @@ block_8003FC40:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC50u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_8003FC54 = (cpu->gpr[2] != cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -9469,7 +9504,7 @@ block_8003FC60:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC60u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FC64 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -9477,7 +9512,8 @@ block_8003FC60:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;  /* 0x8003FC68: 0x2A420008 */
+    { uint32_t _pgx1 = cpu->gpr[18]; cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;
+    PGXP_ALU(0x2A420008u, cpu->gpr[2], _pgx1, 0x0008u); }  /* 0x8003FC68: 0x2A420008 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC68u);
 #endif
@@ -9527,7 +9563,7 @@ block_8003FC6C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC70u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FC7Cu;  /* jal link before delay slot */
@@ -9578,7 +9614,7 @@ block_8003FC7C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC80u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
     int _bc_8003FC84 = (cpu->gpr[4] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -9631,11 +9667,12 @@ block_8003FC8C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;  /* 0x8003FC90: 0x2A420008 */
+    { uint32_t _pgx1 = cpu->gpr[18]; cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;
+    PGXP_ALU(0x2A420008u, cpu->gpr[2], _pgx1, 0x0008u); }  /* 0x8003FC90: 0x2A420008 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC90u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FC94 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -9677,7 +9714,8 @@ block_8003FC9C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;  /* 0x8003FC9C: 0x2A420008 */
+    { uint32_t _pgx1 = cpu->gpr[18]; cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 8) ? 1 : 0;
+    PGXP_ALU(0x2A420008u, cpu->gpr[2], _pgx1, 0x0008u); }  /* 0x8003FC9C: 0x2A420008 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FC9Cu);
 #endif
@@ -9693,7 +9731,7 @@ block_8003FCA0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FCA0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FCA0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -9758,7 +9796,7 @@ block_8003FCA8:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FCB0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_8003FCB4 = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -9817,7 +9855,7 @@ block_8003FCBC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FCC0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FCCCu;  /* jal link before delay slot */
@@ -9846,7 +9884,7 @@ block_8003FCCC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FCCCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FCCCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -9895,7 +9933,7 @@ block_8003FCD4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FCD8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FCDC = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -9957,7 +9995,7 @@ block_8003FCE4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FCECu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FCF0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -10016,7 +10054,7 @@ block_8003FCF8:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FCFCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FD00u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -10046,7 +10084,7 @@ block_8003FD08:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FD08u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FD08u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -10078,7 +10116,7 @@ block_8003FD10:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FD10u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FD10u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -10143,7 +10181,7 @@ block_8003FD18:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FD20u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_8003FD24 = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -10202,7 +10240,7 @@ block_8003FD2C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FD30u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FD3Cu;  /* jal link before delay slot */
@@ -10230,7 +10268,7 @@ block_8003FD3C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FD3Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FD3Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -10293,11 +10331,12 @@ block_8003FD44:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x8003FD50: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003FD50: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FD50u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FD54 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -10356,7 +10395,7 @@ block_8003FD5C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FD60u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FD6Cu;  /* jal link before delay slot */
@@ -10485,7 +10524,7 @@ block_8003FD80:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FD90u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FD94 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -10522,7 +10561,7 @@ block_8003FD9C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FD9Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FD9Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -10557,7 +10596,7 @@ block_8003FDA4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FDA4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FDA4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -10625,11 +10664,12 @@ block_8003FDAC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x8003FDB8: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003FDB8: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FDB8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FDBC = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -10687,7 +10727,7 @@ block_8003FDC4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FDC8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FDD4u;  /* jal link before delay slot */
@@ -10809,7 +10849,7 @@ block_8003FDD4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FE00u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -10870,11 +10910,12 @@ block_8003FE0C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 64) ? 1 : 0;  /* 0x8003FE18: 0x2A420040 */
+    { uint32_t _pgx1 = cpu->gpr[18]; cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 64) ? 1 : 0;
+    PGXP_ALU(0x2A420040u, cpu->gpr[2], _pgx1, 0x0040u); }  /* 0x8003FE18: 0x2A420040 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FE18u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FE1C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -10937,7 +10978,7 @@ block_8003FE24:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FE2Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FE30u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11008,7 +11049,7 @@ block_8003FE40:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FE40u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FE40u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11114,7 +11155,7 @@ block_8003FE4C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FE68u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8003FE6C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -11182,7 +11223,7 @@ block_8003FE74:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FE78u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FE84u;  /* jal link before delay slot */
@@ -11220,7 +11261,8 @@ block_8003FE84:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)1) ? 1 : 0;  /* 0x8003FE84: 0x2C420001 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)1) ? 1 : 0;
+    PGXP_ALU(0x2C420001u, cpu->gpr[2], _pgx1, 0x0001u); }  /* 0x8003FE84: 0x2C420001 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FE84u);
 #endif
@@ -11237,7 +11279,7 @@ block_8003FE84:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FE8Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FE90u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11411,7 +11453,7 @@ block_8003FE98:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FEC4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FED0u;  /* jal link before delay slot */
@@ -11459,7 +11501,7 @@ block_8003FED0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FED4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20004u);
 #endif
     int _bc_8003FED8 = (cpu->gpr[17] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -11519,7 +11561,7 @@ block_8003FEE0:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FEE8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_8003FEEC = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -11578,7 +11620,7 @@ block_8003FEF4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FEF8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FF04u;  /* jal link before delay slot */
@@ -11609,7 +11651,7 @@ block_8003FF04:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FF04u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FF04u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11662,7 +11704,7 @@ block_8003FF0C:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FF10u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FF1Cu;  /* jal link before delay slot */
@@ -11691,7 +11733,7 @@ block_8003FF1C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FF1Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FF1Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11756,7 +11798,7 @@ block_8003FF24:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FF2Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FF30u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11815,7 +11857,7 @@ block_8003FF38:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FF3Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FF40u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11846,7 +11888,7 @@ block_8003FF48:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FF48u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FF48u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -11948,7 +11990,7 @@ block_8003FF50:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FF70u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FF7Cu;  /* jal link before delay slot */
@@ -11977,7 +12019,7 @@ block_8003FF7C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FF7Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FF7Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -12042,7 +12084,7 @@ block_8003FF84:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FF8Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FF90u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -12109,7 +12151,7 @@ block_8003FF98:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FFA0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FFACu;  /* jal link before delay slot */
@@ -12137,7 +12179,7 @@ block_8003FFAC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8003FFACu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FFACu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -12200,11 +12242,12 @@ block_8003FFB4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x8003FFC0: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8003FFC0: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x8003FFC0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FFC4 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -12263,7 +12306,7 @@ block_8003FFCC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FFD0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8003FFDCu;  /* jal link before delay slot */
@@ -12302,7 +12345,7 @@ block_8003FFDC:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FFDCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8003FFE0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -12413,7 +12456,7 @@ block_8003FFF4:
 #ifdef PSX_COSIM
     cosim_instr(0x8003FFF8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8003FFFC = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -12891,7 +12934,7 @@ block_80040034:
 #ifdef PSX_COSIM
     cosim_instr(0x8004005Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040060u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -12975,7 +13018,8 @@ block_80040068:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[3] & 0x0001;  /* 0x80040080: 0x30620001 */
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] & 0x0001;
+    PGXP_ALU(0x30620001u, cpu->gpr[2], _pgx1, 0x0001u); }  /* 0x80040080: 0x30620001 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040080u);
 #endif
@@ -13021,11 +13065,12 @@ block_80040068:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x80040098: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x80040098: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040098u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004009C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -13180,7 +13225,7 @@ block_800400A4:
 #ifdef PSX_COSIM
     cosim_instr(0x800400D8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800400E4u;  /* jal link before delay slot */
@@ -13226,11 +13271,12 @@ block_800400E4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x84u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[7] < 128) ? 1 : 0;  /* 0x800400E8: 0x28E20080 */
+    { uint32_t _pgx1 = cpu->gpr[7]; cpu->gpr[2] = ((int32_t)cpu->gpr[7] < 128) ? 1 : 0;
+    PGXP_ALU(0x28E20080u, cpu->gpr[2], _pgx1, 0x0080u); }  /* 0x800400E8: 0x28E20080 */
 #ifdef PSX_COSIM
     cosim_instr(0x800400E8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800400EC = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -13291,11 +13337,12 @@ block_800400F4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20004u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[17] < cpu->gpr[2]) ? 1 : 0;  /* 0x800400FC: 0x0222102B */
+    { uint32_t _pgx1 = cpu->gpr[17]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[17] < cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0222102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800400FC: 0x0222102B */
 #ifdef PSX_COSIM
     cosim_instr(0x800400FCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040100u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -13360,11 +13407,12 @@ block_80040108:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x84u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[7] < 128) ? 1 : 0;  /* 0x80040108: 0x28E20080 */
+    { uint32_t _pgx1 = cpu->gpr[7]; cpu->gpr[2] = ((int32_t)cpu->gpr[7] < 128) ? 1 : 0;
+    PGXP_ALU(0x28E20080u, cpu->gpr[2], _pgx1, 0x0080u); }  /* 0x80040108: 0x28E20080 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040108u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004010C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -13549,11 +13597,12 @@ block_80040134:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x80040144: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x80040144: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040144u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040148 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -13609,7 +13658,7 @@ block_80040150:
 #ifdef PSX_COSIM
     cosim_instr(0x80040154u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040160u;  /* jal link before delay slot */
@@ -13727,7 +13776,7 @@ block_80040164:
 #ifdef PSX_COSIM
     cosim_instr(0x80040180u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80040184 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -13951,7 +14000,7 @@ block_800401C0:
 #ifdef PSX_COSIM
     cosim_instr(0x800401D0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800401D4 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -13987,7 +14036,7 @@ block_800401DC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800401DCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800401DCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -14030,7 +14079,7 @@ block_800401E4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800401E4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800401E4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -14062,7 +14111,7 @@ block_800401EC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800401ECu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800401ECu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -14105,7 +14154,7 @@ block_800401F4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800401F4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800401F4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -14173,11 +14222,12 @@ block_80040200:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 128) ? 1 : 0;  /* 0x80040204: 0x2A020080 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 128) ? 1 : 0;
+    PGXP_ALU(0x2A020080u, cpu->gpr[2], _pgx1, 0x0080u); }  /* 0x80040204: 0x2A020080 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040204u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040208 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -14281,7 +14331,7 @@ block_80040214:
 #ifdef PSX_COSIM
     cosim_instr(0x8004022Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040230u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -14454,7 +14504,7 @@ block_80040238:
 #ifdef PSX_COSIM
     cosim_instr(0x80040260u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x400004u);
 #endif
     int _bc_80040264 = (cpu->gpr[22] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -14596,7 +14646,7 @@ block_8004026C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040298u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800402A4u;  /* jal link before delay slot */
@@ -14639,7 +14689,7 @@ block_800402A4:
 #ifdef PSX_COSIM
     cosim_instr(0x800402A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_800402A8 = (cpu->gpr[2] == cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -14698,7 +14748,7 @@ block_800402B0:
 #ifdef PSX_COSIM
     cosim_instr(0x800402B8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_800402BC = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -14757,7 +14807,7 @@ block_800402C4:
 #ifdef PSX_COSIM
     cosim_instr(0x800402C8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800402D4u;  /* jal link before delay slot */
@@ -14788,7 +14838,7 @@ block_800402D4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800402D4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800402D4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -14848,11 +14898,12 @@ block_800402DC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x800402E8: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x800402E8: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x800402E8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800402EC = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -14911,7 +14962,7 @@ block_800402F4:
 #ifdef PSX_COSIM
     cosim_instr(0x800402F8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040304u;  /* jal link before delay slot */
@@ -14953,7 +15004,7 @@ block_80040304:
 #ifdef PSX_COSIM
     cosim_instr(0x80040304u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040308 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -15062,7 +15113,7 @@ block_80040324:
 #ifdef PSX_COSIM
     cosim_instr(0x80040328u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004032C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -15145,7 +15196,7 @@ block_80040334:
 #ifdef PSX_COSIM
     cosim_instr(0x80040348u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040354u;  /* jal link before delay slot */
@@ -15232,7 +15283,7 @@ block_80040354:
 #ifdef PSX_COSIM
     cosim_instr(0x8004036Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040370u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -15272,7 +15323,7 @@ block_80040378:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040378u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040378u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -15312,7 +15363,7 @@ block_80040380:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040380u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040380u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -15358,7 +15409,7 @@ block_80040388:
 #ifdef PSX_COSIM
     cosim_instr(0x8004038Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040390u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -15437,7 +15488,7 @@ block_80040398:
 #ifdef PSX_COSIM
     cosim_instr(0x800403ACu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800403B0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -15475,7 +15526,7 @@ block_800403B8:
 #ifdef PSX_COSIM
     cosim_instr(0x800403B8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800403C4u;  /* jal link before delay slot */
@@ -15582,11 +15633,12 @@ block_800403D4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x800403E0: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x800403E0: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x800403E0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800403E4 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -15781,7 +15833,7 @@ block_800403EC:
 #ifdef PSX_COSIM
     cosim_instr(0x80040434u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040440u;  /* jal link before delay slot */
@@ -15848,11 +15900,12 @@ block_80040440:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 64) ? 1 : 0;  /* 0x80040450: 0x2A420040 */
+    { uint32_t _pgx1 = cpu->gpr[18]; cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 64) ? 1 : 0;
+    PGXP_ALU(0x2A420040u, cpu->gpr[2], _pgx1, 0x0040u); }  /* 0x80040450: 0x2A420040 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040450u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040454 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -15914,11 +15967,12 @@ block_8004045C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[16] < cpu->gpr[2]) ? 1 : 0;  /* 0x80040464: 0x0202102B */
+    { uint32_t _pgx1 = cpu->gpr[16]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[16] < cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0202102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040464: 0x0202102B */
 #ifdef PSX_COSIM
     cosim_instr(0x80040464u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040468 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -15976,11 +16030,12 @@ block_80040470:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 64) ? 1 : 0;  /* 0x80040478: 0x2A420040 */
+    { uint32_t _pgx1 = cpu->gpr[18]; cpu->gpr[2] = ((int32_t)cpu->gpr[18] < 64) ? 1 : 0;
+    PGXP_ALU(0x2A420040u, cpu->gpr[2], _pgx1, 0x0040u); }  /* 0x80040478: 0x2A420040 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040478u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004047C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -16115,11 +16170,12 @@ block_8004049C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;  /* 0x800404A8: 0x28420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < 2) ? 1 : 0;
+    PGXP_ALU(0x28420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x800404A8: 0x28420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x800404A8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800404AC = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -16178,7 +16234,7 @@ block_800404B4:
 #ifdef PSX_COSIM
     cosim_instr(0x800404B8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800404C4u;  /* jal link before delay slot */
@@ -16290,7 +16346,7 @@ block_800404C8:
 #ifdef PSX_COSIM
     cosim_instr(0x800404E8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_800404EC = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -16404,7 +16460,7 @@ block_800404F4:
 #ifdef PSX_COSIM
     cosim_instr(0x8004050Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040510u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -16455,7 +16511,7 @@ block_80040518:
 #ifdef PSX_COSIM
     cosim_instr(0x8004051Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040520u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -16506,7 +16562,7 @@ block_80040528:
 #ifdef PSX_COSIM
     cosim_instr(0x8004052Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040530u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -16549,7 +16605,7 @@ block_80040538:
 #ifdef PSX_COSIM
     cosim_instr(0x80040538u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040544u;  /* jal link before delay slot */
@@ -16587,7 +16643,8 @@ block_80040544:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)1) ? 1 : 0;  /* 0x80040544: 0x2C420001 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)1) ? 1 : 0;
+    PGXP_ALU(0x2C420001u, cpu->gpr[2], _pgx1, 0x0001u); }  /* 0x80040544: 0x2C420001 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040544u);
 #endif
@@ -16617,7 +16674,7 @@ block_80040544:
 #ifdef PSX_COSIM
     cosim_instr(0x80040554u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80040558 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -16676,7 +16733,7 @@ block_80040560:
 #ifdef PSX_COSIM
     cosim_instr(0x80040560u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x41u);
 #endif
     int _bc_80040564 = (cpu->gpr[6] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -16768,7 +16825,7 @@ block_80040570:
 #ifdef PSX_COSIM
     cosim_instr(0x8004057Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040580u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -16819,7 +16876,7 @@ block_80040588:
 #ifdef PSX_COSIM
     cosim_instr(0x80040588u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8004058C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -16937,7 +16994,7 @@ block_80040594:
 #ifdef PSX_COSIM
     cosim_instr(0x800405ACu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800405B0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -16975,11 +17032,12 @@ block_800405B8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0100;  /* 0x800405B8: 0x32020100 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0100;
+    PGXP_ALU(0x32020100u, cpu->gpr[2], _pgx1, 0x0100u); }  /* 0x800405B8: 0x32020100 */
 #ifdef PSX_COSIM
     cosim_instr(0x800405B8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800405BC = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -16990,7 +17048,8 @@ block_800405B8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[16] & 0x0020;  /* 0x800405C0: 0x32020020 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = cpu->gpr[16] & 0x0020;
+    PGXP_ALU(0x32020020u, cpu->gpr[2], _pgx1, 0x0020u); }  /* 0x800405C0: 0x32020020 */
 #ifdef PSX_COSIM
     cosim_instr(0x800405C0u);
 #endif
@@ -17018,7 +17077,7 @@ block_800405C4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800405C4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800405C4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -17080,7 +17139,7 @@ block_800405CC:
 #ifdef PSX_COSIM
     cosim_instr(0x800405D0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -17160,7 +17219,7 @@ block_800405E4:
 #ifdef PSX_COSIM
     cosim_instr(0x800405E8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800405F4u;  /* jal link before delay slot */
@@ -17210,7 +17269,7 @@ block_800405F4:
 #ifdef PSX_COSIM
     cosim_instr(0x800405F8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040604u;  /* jal link before delay slot */
@@ -17260,7 +17319,7 @@ block_80040604:
 #ifdef PSX_COSIM
     cosim_instr(0x80040608u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040614u;  /* jal link before delay slot */
@@ -17313,7 +17372,7 @@ block_80040614:
 #ifdef PSX_COSIM
     cosim_instr(0x8004061Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040620u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -17381,7 +17440,7 @@ block_80040628:
 #ifdef PSX_COSIM
     cosim_instr(0x8004062Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040630u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -17428,7 +17487,7 @@ block_80040638:
 #ifdef PSX_COSIM
     cosim_instr(0x8004063Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040640u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -17560,7 +17619,7 @@ block_80040648:
 #ifdef PSX_COSIM
     cosim_instr(0x80040660u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8004066Cu;  /* jal link before delay slot */
@@ -17610,11 +17669,12 @@ block_8004066C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0010;  /* 0x80040674: 0x30420010 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0010;
+    PGXP_ALU(0x30420010u, cpu->gpr[2], _pgx1, 0x0010u); }  /* 0x80040674: 0x30420010 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040674u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040678 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -17670,7 +17730,7 @@ block_80040680:
 #ifdef PSX_COSIM
     cosim_instr(0x80040684u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040690u;  /* jal link before delay slot */
@@ -17718,7 +17778,7 @@ block_80040690:
 #ifdef PSX_COSIM
     cosim_instr(0x80040694u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
     int _bc_80040698 = (cpu->gpr[16] != cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -17771,7 +17831,7 @@ block_800406A0:
 #ifdef PSX_COSIM
     cosim_instr(0x800406A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x18u);
 #endif
     int _bc_800406A8 = (cpu->gpr[4] != cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -17808,7 +17868,7 @@ block_800406B0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800406B0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800406B0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -17847,7 +17907,7 @@ block_800406B8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800406B8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800406B8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -17919,11 +17979,12 @@ block_800406C4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0002;  /* 0x800406CC: 0x30420002 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0002;
+    PGXP_ALU(0x30420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x800406CC: 0x30420002 */
 #ifdef PSX_COSIM
     cosim_instr(0x800406CCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800406D0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -17977,7 +18038,7 @@ block_800406D8:
 #ifdef PSX_COSIM
     cosim_instr(0x800406DCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800406E0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18016,7 +18077,7 @@ block_800406E8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800406E8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800406E8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18056,7 +18117,7 @@ block_800406F0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800406F0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800406F0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18107,7 +18168,7 @@ block_800406F8:
 #ifdef PSX_COSIM
     cosim_instr(0x800406FCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040700u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18154,7 +18215,7 @@ block_80040708:
 #ifdef PSX_COSIM
     cosim_instr(0x8004070Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040710u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18194,7 +18255,7 @@ block_80040718:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040718u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040718u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18234,7 +18295,7 @@ block_80040720:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040720u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040720u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18264,7 +18325,7 @@ block_80040728:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040728u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040728u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18315,7 +18376,7 @@ block_80040730:
 #ifdef PSX_COSIM
     cosim_instr(0x80040734u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040740u;  /* jal link before delay slot */
@@ -18366,11 +18427,12 @@ block_80040740:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 10) ? 1 : 0;  /* 0x80040748: 0x2A02000A */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 10) ? 1 : 0;
+    PGXP_ALU(0x2A02000Au, cpu->gpr[2], _pgx1, 0x000Au); }  /* 0x80040748: 0x2A02000A */
 #ifdef PSX_COSIM
     cosim_instr(0x80040748u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004074C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -18439,7 +18501,7 @@ block_80040754:
 #ifdef PSX_COSIM
     cosim_instr(0x80040760u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80040764 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -18577,7 +18639,7 @@ block_8004076C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040788u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040794u;  /* jal link before delay slot */
@@ -18627,11 +18689,12 @@ block_80040794:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0010;  /* 0x8004079C: 0x30420010 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0010;
+    PGXP_ALU(0x30420010u, cpu->gpr[2], _pgx1, 0x0010u); }  /* 0x8004079C: 0x30420010 */
 #ifdef PSX_COSIM
     cosim_instr(0x8004079Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800407A0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18682,7 +18745,7 @@ block_800407A8:
 #ifdef PSX_COSIM
     cosim_instr(0x800407A8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800407B4u;  /* jal link before delay slot */
@@ -18733,7 +18796,7 @@ block_800407B4:
 #ifdef PSX_COSIM
     cosim_instr(0x800407B8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800407C4u;  /* jal link before delay slot */
@@ -18784,7 +18847,7 @@ block_800407C4:
 #ifdef PSX_COSIM
     cosim_instr(0x800407C8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800407D4u;  /* jal link before delay slot */
@@ -18855,7 +18918,7 @@ block_800407E0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800407E0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800407E0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -18898,7 +18961,7 @@ block_800407E8:
 #ifdef PSX_COSIM
     cosim_instr(0x800407E8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20008u);
 #endif
     int _bc_800407EC = (cpu->gpr[3] == cpu->gpr[17]);  /* save branch cond before delay slot */
@@ -18944,11 +19007,12 @@ block_800407F4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10004u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 10) ? 1 : 0;  /* 0x800407F4: 0x2A02000A */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 10) ? 1 : 0;
+    PGXP_ALU(0x2A02000Au, cpu->gpr[2], _pgx1, 0x000Au); }  /* 0x800407F4: 0x2A02000A */
 #ifdef PSX_COSIM
     cosim_instr(0x800407F4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800407F8 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -18996,7 +19060,7 @@ block_80040800:
 #ifdef PSX_COSIM
     cosim_instr(0x80040800u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8004080Cu;  /* jal link before delay slot */
@@ -19025,7 +19089,7 @@ block_8004080C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8004080Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8004080Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19070,7 +19134,7 @@ block_80040814:
 #ifdef PSX_COSIM
     cosim_instr(0x80040814u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_80040818 = (cpu->gpr[3] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -19125,11 +19189,12 @@ block_80040820:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[3] & 0x0010;  /* 0x80040828: 0x30620010 */
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] & 0x0010;
+    PGXP_ALU(0x30620010u, cpu->gpr[2], _pgx1, 0x0010u); }  /* 0x80040828: 0x30620010 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040828u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004082C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -19140,7 +19205,8 @@ block_80040820:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[3] & 0x0002;  /* 0x80040830: 0x30620002 */
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] & 0x0002;
+    PGXP_ALU(0x30620002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x80040830: 0x30620002 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040830u);
 #endif
@@ -19168,7 +19234,7 @@ block_80040834:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040834u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040834u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19199,7 +19265,7 @@ block_8004083C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8004083Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8004083Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19212,7 +19278,8 @@ block_8004083C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[0] < cpu->gpr[2]) ? 1 : 0;  /* 0x80040840: 0x0002102B */
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[0] < cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0002102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040840: 0x0002102B */
 #ifdef PSX_COSIM
     cosim_instr(0x80040840u);
 #endif
@@ -19243,7 +19310,7 @@ block_80040844:
 #ifdef PSX_COSIM
     cosim_instr(0x80040844u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040850u;  /* jal link before delay slot */
@@ -19283,7 +19350,7 @@ block_80040850:
 #ifdef PSX_COSIM
     cosim_instr(0x80040850u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8004085Cu;  /* jal link before delay slot */
@@ -19342,7 +19409,7 @@ block_8004085C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040864u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040870u;  /* jal link before delay slot */
@@ -19382,7 +19449,7 @@ block_80040870:
 #ifdef PSX_COSIM
     cosim_instr(0x80040870u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_80040874 = (cpu->gpr[3] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -19468,7 +19535,7 @@ block_80040880:
 #ifdef PSX_COSIM
     cosim_instr(0x8004088Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040890u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19622,7 +19689,7 @@ block_80040898:
 #ifdef PSX_COSIM
     cosim_instr(0x800408C4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800408D0u;  /* jal link before delay slot */
@@ -19718,7 +19785,7 @@ block_800408D0:
 #ifdef PSX_COSIM
     cosim_instr(0x800408ECu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800408F0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19789,7 +19856,7 @@ block_800408F8:
 #ifdef PSX_COSIM
     cosim_instr(0x800408FCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040900u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19820,7 +19887,7 @@ block_80040908:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040908u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040908u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19852,7 +19919,7 @@ block_80040910:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040910u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040910u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -19949,7 +20016,7 @@ block_80040918:
 #ifdef PSX_COSIM
     cosim_instr(0x80040934u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040940u;  /* jal link before delay slot */
@@ -19993,7 +20060,7 @@ block_80040940:
 #ifdef PSX_COSIM
     cosim_instr(0x80040944u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80040948 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -20247,7 +20314,7 @@ block_80040950:
 #ifdef PSX_COSIM
     cosim_instr(0x800409B4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x11u);
 #endif
     int _bc_800409B8 = (cpu->gpr[4] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -20283,7 +20350,7 @@ block_800409C0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800409C0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800409C0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -20350,7 +20417,7 @@ block_800409C8:
 #ifdef PSX_COSIM
     cosim_instr(0x800409D4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_800409D8 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -20443,7 +20510,7 @@ block_800409E0:
 #ifdef PSX_COSIM
     cosim_instr(0x800409F0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800409F4 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -20502,7 +20569,7 @@ block_800409FC:
 #ifdef PSX_COSIM
     cosim_instr(0x80040A00u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040A0Cu;  /* jal link before delay slot */
@@ -20541,7 +20608,7 @@ block_80040A0C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040A0Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040A10u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -20589,7 +20656,7 @@ block_80040A18:
 #ifdef PSX_COSIM
     cosim_instr(0x80040A1Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040A20u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -20666,7 +20733,7 @@ block_80040A2C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040A34u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80040A38 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -20779,7 +20846,7 @@ block_80040A40:
 #ifdef PSX_COSIM
     cosim_instr(0x80040A5Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040A60u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -20817,7 +20884,8 @@ block_80040A68:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10000u);
 #endif
-    cpu->gpr[16] = cpu->gpr[16] & 0x0001;  /* 0x80040A68: 0x32100001 */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[16] = cpu->gpr[16] & 0x0001;
+    PGXP_ALU(0x32100001u, cpu->gpr[16], _pgx1, 0x0001u); }  /* 0x80040A68: 0x32100001 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040A68u);
 #endif
@@ -20992,7 +21060,7 @@ block_80040A68:
 #ifdef PSX_COSIM
     cosim_instr(0x80040ABCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040AC0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -21226,7 +21294,7 @@ block_80040AC8:
 #ifdef PSX_COSIM
     cosim_instr(0x80040B18u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x18u);
 #endif
     int _bc_80040B1C = (cpu->gpr[3] == cpu->gpr[4]);  /* save branch cond before delay slot */
@@ -21266,7 +21334,7 @@ block_80040B24:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040B24u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040B24u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -21319,7 +21387,7 @@ block_80040B2C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040B30u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_80040B34 = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -21444,11 +21512,12 @@ block_80040B44:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x54u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[4] < (int32_t)cpu->gpr[6]) ? 1 : 0;  /* 0x80040B5C: 0x0086102A */
+    { uint32_t _pgx1 = cpu->gpr[4]; uint32_t _pgx2 = cpu->gpr[6]; cpu->gpr[2] = ((int32_t)cpu->gpr[4] < (int32_t)cpu->gpr[6]) ? 1 : 0;
+    PGXP_ALU(0x0086102Au, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040B5C: 0x0086102A */
 #ifdef PSX_COSIM
     cosim_instr(0x80040B5Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040B60u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -21549,7 +21618,7 @@ block_80040B78:
 #ifdef PSX_COSIM
     cosim_instr(0x80040B78u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80040B7C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -21610,7 +21679,7 @@ block_80040B84:
 #ifdef PSX_COSIM
     cosim_instr(0x80040B84u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x21u);
 #endif
     int _bc_80040B88 = (cpu->gpr[5] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -21709,11 +21778,12 @@ block_80040B90:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x64u);
 #endif
-    cpu->gpr[2] = (cpu->gpr[6] < cpu->gpr[5]) ? 1 : 0;  /* 0x80040BAC: 0x00C5102B */
+    { uint32_t _pgx1 = cpu->gpr[6]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[2] = (cpu->gpr[6] < cpu->gpr[5]) ? 1 : 0;
+    PGXP_ALU(0x00C5102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040BAC: 0x00C5102B */
 #ifdef PSX_COSIM
     cosim_instr(0x80040BACu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040BB0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -21763,7 +21833,7 @@ block_80040BB8:
 #ifdef PSX_COSIM
     cosim_instr(0x80040BB8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80040BBC = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -21892,11 +21962,12 @@ block_80040BC4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;  /* 0x80040BE8: 0x3042FFFF */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;
+    PGXP_ALU(0x3042FFFFu, cpu->gpr[2], _pgx1, 0xFFFFu); }  /* 0x80040BE8: 0x3042FFFF */
 #ifdef PSX_COSIM
     cosim_instr(0x80040BE8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_80040BEC = (cpu->gpr[2] != cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -21971,7 +22042,7 @@ block_80040BF4:
 #ifdef PSX_COSIM
     cosim_instr(0x80040C00u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040C04 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -22112,11 +22183,12 @@ block_80040C28:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;  /* 0x80040C30: 0x3042FFFF */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;
+    PGXP_ALU(0x3042FFFFu, cpu->gpr[2], _pgx1, 0xFFFFu); }  /* 0x80040C30: 0x3042FFFF */
 #ifdef PSX_COSIM
     cosim_instr(0x80040C30u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_80040C34 = (cpu->gpr[2] != cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -22307,7 +22379,7 @@ block_80040C80:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040C80u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040C80u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -22403,7 +22475,7 @@ block_80040C88:
 #ifdef PSX_COSIM
     cosim_instr(0x80040C9Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040CA0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -22516,7 +22588,7 @@ block_80040CA8:
 #ifdef PSX_COSIM
     cosim_instr(0x80040CB4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
     int _bc_80040CB8 = (cpu->gpr[2] == cpu->gpr[4]);  /* save branch cond before delay slot */
@@ -22576,7 +22648,7 @@ block_80040CC0:
 #ifdef PSX_COSIM
     cosim_instr(0x80040CC8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040CCC = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -22657,11 +22729,12 @@ block_80040CD4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];  /* 0x80040CE8: 0x00431024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];
+    PGXP_ALU(0x00431024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040CE8: 0x00431024 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040CE8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040CEC = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -22735,7 +22808,7 @@ block_80040CF4:
 #ifdef PSX_COSIM
     cosim_instr(0x80040D00u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040D04 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -22855,7 +22928,7 @@ block_80040D24:
 #ifdef PSX_COSIM
     cosim_instr(0x80040D28u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -22885,7 +22958,7 @@ block_80040D34:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040D34u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040D34u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -22928,7 +23001,7 @@ block_80040D3C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040D3Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040D40u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -23017,11 +23090,12 @@ block_80040D48:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0004;  /* 0x80040D60: 0x30420004 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0004;
+    PGXP_ALU(0x30420004u, cpu->gpr[2], _pgx1, 0x0004u); }  /* 0x80040D60: 0x30420004 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040D60u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040D64 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -23080,7 +23154,7 @@ block_80040D6C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040D70u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -23189,7 +23263,7 @@ block_80040D7C:
 #ifdef PSX_COSIM
     cosim_instr(0x80040DA0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040DA4 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -23251,7 +23325,7 @@ block_80040DAC:
 #ifdef PSX_COSIM
     cosim_instr(0x80040DB4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040DB8 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -23380,7 +23454,7 @@ block_80040DDC:
 #ifdef PSX_COSIM
     cosim_instr(0x80040DE0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -23623,7 +23697,7 @@ block_80040DEC:
 #ifdef PSX_COSIM
     cosim_instr(0x80040E54u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040E58 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -23750,11 +23824,12 @@ block_80040E68:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x1Cu);
 #endif
-    cpu->gpr[2] = (cpu->gpr[3] < cpu->gpr[4]) ? 1 : 0;  /* 0x80040E84: 0x0064102B */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = (cpu->gpr[3] < cpu->gpr[4]) ? 1 : 0;
+    PGXP_ALU(0x0064102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040E84: 0x0064102B */
 #ifdef PSX_COSIM
     cosim_instr(0x80040E84u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040E88 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -23855,11 +23930,12 @@ block_80040E9C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = (cpu->gpr[3] < (uint32_t)8) ? 1 : 0;  /* 0x80040EA8: 0x2C620008 */
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = (cpu->gpr[3] < (uint32_t)8) ? 1 : 0;
+    PGXP_ALU(0x2C620008u, cpu->gpr[2], _pgx1, 0x0008u); }  /* 0x80040EA8: 0x2C620008 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040EA8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040EAC = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -23921,7 +23997,7 @@ block_80040EB4:
 #ifdef PSX_COSIM
     cosim_instr(0x80040EBCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040EC0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -24020,7 +24096,7 @@ block_80040EC8:
 #ifdef PSX_COSIM
     cosim_instr(0x80040EE0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80040EECu;  /* jal link before delay slot */
@@ -24049,7 +24125,7 @@ block_80040EEC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80040EECu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040EECu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -24141,7 +24217,7 @@ block_80040EF4:
 #ifdef PSX_COSIM
     cosim_instr(0x80040F0Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040F10u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -24215,11 +24291,12 @@ block_80040F18:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];  /* 0x80040F2C: 0x00431024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];
+    PGXP_ALU(0x00431024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040F2C: 0x00431024 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040F2Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040F30u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -24303,11 +24380,12 @@ block_80040F3C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[4];  /* 0x80040F44: 0x00441024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[4];
+    PGXP_ALU(0x00441024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80040F44: 0x00441024 */
 #ifdef PSX_COSIM
     cosim_instr(0x80040F44u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040F48 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -24491,7 +24569,7 @@ block_80040F50:
 #ifdef PSX_COSIM
     cosim_instr(0x80040F98u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_80040F9C = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -24553,7 +24631,7 @@ block_80040FA4:
 #ifdef PSX_COSIM
     cosim_instr(0x80040FACu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80040FB0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -24630,7 +24708,7 @@ block_80040FB8:
 #ifdef PSX_COSIM
     cosim_instr(0x80040FC8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
     int _bc_80040FCC = (cpu->gpr[4] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -24703,7 +24781,7 @@ block_80040FD4:
 #ifdef PSX_COSIM
     cosim_instr(0x80040FE0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80040FE4 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -24876,7 +24954,7 @@ block_80041004:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041004u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041004u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -25067,11 +25145,12 @@ block_80041014:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;  /* 0x80041028: 0x3042FFFF */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;
+    PGXP_ALU(0x3042FFFFu, cpu->gpr[2], _pgx1, 0xFFFFu); }  /* 0x80041028: 0x3042FFFF */
 #ifdef PSX_COSIM
     cosim_instr(0x80041028u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_8004102C = (cpu->gpr[2] != cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -25145,11 +25224,12 @@ block_80041034:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x001F;  /* 0x80041044: 0x3042001F */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x001F;
+    PGXP_ALU(0x3042001Fu, cpu->gpr[2], _pgx1, 0x001Fu); }  /* 0x80041044: 0x3042001F */
 #ifdef PSX_COSIM
     cosim_instr(0x80041044u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_80041048 = (cpu->gpr[2] == cpu->gpr[3]);  /* save branch cond before delay slot */
@@ -25208,7 +25288,7 @@ block_80041050:
 #ifdef PSX_COSIM
     cosim_instr(0x80041058u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004105C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -25266,7 +25346,7 @@ block_80041064:
 #ifdef PSX_COSIM
     cosim_instr(0x80041068u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -25367,7 +25447,7 @@ block_80041078:
 #ifdef PSX_COSIM
     cosim_instr(0x8004108Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041090u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -25428,7 +25508,7 @@ block_80041098:
 #ifdef PSX_COSIM
     cosim_instr(0x800410A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_800410A8 = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -25487,7 +25567,7 @@ block_800410B0:
 #ifdef PSX_COSIM
     cosim_instr(0x800410B8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_800410BC = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -25541,7 +25621,7 @@ block_800410C4:
 #ifdef PSX_COSIM
     cosim_instr(0x800410C8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_800410CC = (cpu->gpr[3] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -25647,7 +25727,7 @@ block_800410D4:
 #ifdef PSX_COSIM
     cosim_instr(0x800410F0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800410FCu;  /* jal link before delay slot */
@@ -25758,7 +25838,7 @@ block_800410FC:
 #ifdef PSX_COSIM
     cosim_instr(0x80041120u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80041124 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -25887,7 +25967,7 @@ block_80041148:
 #ifdef PSX_COSIM
     cosim_instr(0x8004114Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041150u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -25955,7 +26035,7 @@ block_80041158:
 #ifdef PSX_COSIM
     cosim_instr(0x80041168u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004116C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -26038,7 +26118,8 @@ block_80041174:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;  /* 0x80041188: 0x3042FFFF */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0xFFFF;
+    PGXP_ALU(0x3042FFFFu, cpu->gpr[2], _pgx1, 0xFFFFu); }  /* 0x80041188: 0x3042FFFF */
 #ifdef PSX_COSIM
     cosim_instr(0x80041188u);
 #endif
@@ -26061,7 +26142,7 @@ block_80041174:
 #ifdef PSX_COSIM
     cosim_instr(0x80041190u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_80041194 = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -26069,7 +26150,8 @@ block_80041174:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = (cpu->gpr[2] < cpu->gpr[3]) ? 1 : 0;  /* 0x80041198: 0x0043102B */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = (cpu->gpr[2] < cpu->gpr[3]) ? 1 : 0;
+    PGXP_ALU(0x0043102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80041198: 0x0043102B */
 #ifdef PSX_COSIM
     cosim_instr(0x80041198u);
 #endif
@@ -26097,7 +26179,7 @@ block_8004119C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8004119Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8004119Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -26206,7 +26288,7 @@ block_800411A4:
 #ifdef PSX_COSIM
     cosim_instr(0x800411C0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800411CCu;  /* jal link before delay slot */
@@ -26334,7 +26416,7 @@ block_800411CC:
 #ifdef PSX_COSIM
     cosim_instr(0x800411F8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_800411FC = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -26373,7 +26455,7 @@ block_80041204:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041204u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041204u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -26431,7 +26513,7 @@ block_8004120C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041214u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80041218 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -26560,7 +26642,7 @@ block_8004123C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041240u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -26662,11 +26744,12 @@ block_8004124C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = (cpu->gpr[2] < cpu->gpr[3]) ? 1 : 0;  /* 0x80041270: 0x0043102B */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = (cpu->gpr[2] < cpu->gpr[3]) ? 1 : 0;
+    PGXP_ALU(0x0043102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80041270: 0x0043102B */
 #ifdef PSX_COSIM
     cosim_instr(0x80041270u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80041274 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -26728,7 +26811,7 @@ block_8004127C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041284u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80041288 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -26816,7 +26899,7 @@ block_80041290:
 #ifdef PSX_COSIM
     cosim_instr(0x800412A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_800412A8 = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -26852,7 +26935,7 @@ block_800412B0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800412B0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800412B0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -26910,7 +26993,7 @@ block_800412B8:
 #ifdef PSX_COSIM
     cosim_instr(0x800412C0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800412C4 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -27039,7 +27122,7 @@ block_800412E8:
 #ifdef PSX_COSIM
     cosim_instr(0x800412ECu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800412F0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -27107,7 +27190,7 @@ block_800412F8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041308u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004130C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -27181,7 +27264,7 @@ block_80041314:
 #ifdef PSX_COSIM
     cosim_instr(0x80041320u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80041324 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -27310,7 +27393,7 @@ block_80041348:
 #ifdef PSX_COSIM
     cosim_instr(0x8004134Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041350u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -27457,11 +27540,12 @@ block_80041378:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = (cpu->gpr[3] < (uint32_t)8) ? 1 : 0;  /* 0x80041388: 0x2C620008 */
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = (cpu->gpr[3] < (uint32_t)8) ? 1 : 0;
+    PGXP_ALU(0x2C620008u, cpu->gpr[2], _pgx1, 0x0008u); }  /* 0x80041388: 0x2C620008 */
 #ifdef PSX_COSIM
     cosim_instr(0x80041388u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004138C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -27804,7 +27888,7 @@ block_800413C0:
 #ifdef PSX_COSIM
     cosim_instr(0x80041418u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x11u);
 #endif
     int _bc_8004141C = (cpu->gpr[4] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -27919,7 +28003,7 @@ block_80041424:
 #ifdef PSX_COSIM
     cosim_instr(0x80041444u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -28064,7 +28148,7 @@ block_8004146C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041480u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_80041484 = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -28136,7 +28220,7 @@ block_8004148C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041498u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004149C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -28232,7 +28316,7 @@ block_800414A4:
 #ifdef PSX_COSIM
     cosim_instr(0x800414BCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800414C0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -28314,7 +28398,7 @@ block_800414C8:
 #ifdef PSX_COSIM
     cosim_instr(0x800414DCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800414E0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -28406,7 +28490,7 @@ block_800414E8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041500u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8004150Cu;  /* jal link before delay slot */
@@ -28505,7 +28589,7 @@ block_8004150C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041528u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -28558,7 +28642,7 @@ block_80041534:
 #ifdef PSX_COSIM
     cosim_instr(0x8004153Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041540u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -28657,7 +28741,7 @@ block_80041548:
 #ifdef PSX_COSIM
     cosim_instr(0x80041560u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8004156Cu;  /* jal link before delay slot */
@@ -28739,7 +28823,7 @@ block_8004156C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041580u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -28828,7 +28912,7 @@ block_8004158C:
 #ifdef PSX_COSIM
     cosim_instr(0x800415A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800415B0u;  /* jal link before delay slot */
@@ -28977,7 +29061,7 @@ block_800415B0:
 #ifdef PSX_COSIM
     cosim_instr(0x800415E8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_800415EC = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -29039,7 +29123,7 @@ block_800415F4:
 #ifdef PSX_COSIM
     cosim_instr(0x800415FCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041600u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -29078,7 +29162,7 @@ block_80041608:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041608u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041608u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -29136,7 +29220,7 @@ block_80041610:
 #ifdef PSX_COSIM
     cosim_instr(0x80041614u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041618 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -29194,7 +29278,7 @@ block_80041620:
 #ifdef PSX_COSIM
     cosim_instr(0x80041620u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x41u);
 #endif
     int _bc_80041624 = (cpu->gpr[6] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -29269,11 +29353,12 @@ block_8004162C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4Cu);
 #endif
-    cpu->gpr[2] = (cpu->gpr[3] < cpu->gpr[6]) ? 1 : 0;  /* 0x8004163C: 0x0066102B */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[6]; cpu->gpr[2] = (cpu->gpr[3] < cpu->gpr[6]) ? 1 : 0;
+    PGXP_ALU(0x0066102Bu, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8004163C: 0x0066102B */
 #ifdef PSX_COSIM
     cosim_instr(0x8004163Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041640u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -29324,7 +29409,7 @@ block_80041648:
 #ifdef PSX_COSIM
     cosim_instr(0x80041648u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8004164C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -29556,11 +29641,12 @@ block_80041654:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = cpu->gpr[3] & cpu->gpr[2];  /* 0x800416A4: 0x00621824 */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] & cpu->gpr[2];
+    PGXP_ALU(0x00621824u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x800416A4: 0x00621824 */
 #ifdef PSX_COSIM
     cosim_instr(0x800416A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_800416A8 = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -29568,7 +29654,8 @@ block_80041654:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[17] & 0x00FF;  /* 0x800416AC: 0x322200FF */
+    { uint32_t _pgx1 = cpu->gpr[17]; cpu->gpr[2] = cpu->gpr[17] & 0x00FF;
+    PGXP_ALU(0x322200FFu, cpu->gpr[2], _pgx1, 0x00FFu); }  /* 0x800416AC: 0x322200FF */
 #ifdef PSX_COSIM
     cosim_instr(0x800416ACu);
 #endif
@@ -29627,7 +29714,7 @@ block_800416B8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800416B8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800416B8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -29703,11 +29790,12 @@ block_800416C0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];  /* 0x800416D0: 0x00431024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];
+    PGXP_ALU(0x00431024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800416D0: 0x00431024 */
 #ifdef PSX_COSIM
     cosim_instr(0x800416D0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800416D4 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -29750,7 +29838,8 @@ block_800416DC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[17] & 0x00FF;  /* 0x800416DC: 0x322200FF */
+    { uint32_t _pgx1 = cpu->gpr[17]; cpu->gpr[2] = cpu->gpr[17] & 0x00FF;
+    PGXP_ALU(0x322200FFu, cpu->gpr[2], _pgx1, 0x00FFu); }  /* 0x800416DC: 0x322200FF */
 #ifdef PSX_COSIM
     cosim_instr(0x800416DCu);
 #endif
@@ -29777,7 +29866,7 @@ block_800416E0:
 #ifdef PSX_COSIM
     cosim_instr(0x800416E0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x24u);
 #endif
     int _bc_800416E4 = (cpu->gpr[2] != cpu->gpr[5]);  /* save branch cond before delay slot */
@@ -29845,7 +29934,7 @@ block_800416EC:
 #ifdef PSX_COSIM
     cosim_instr(0x800416F8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -29919,7 +30008,7 @@ block_80041704:
 #ifdef PSX_COSIM
     cosim_instr(0x80041714u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041720u;  /* jal link before delay slot */
@@ -29947,7 +30036,7 @@ block_80041720:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041720u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041720u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -29957,7 +30046,8 @@ block_80041720:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x20004u);
 #endif
-    cpu->gpr[2] = cpu->gpr[17] & 0x00FF;  /* 0x80041724: 0x322200FF */
+    { uint32_t _pgx1 = cpu->gpr[17]; cpu->gpr[2] = cpu->gpr[17] & 0x00FF;
+    PGXP_ALU(0x322200FFu, cpu->gpr[2], _pgx1, 0x00FFu); }  /* 0x80041724: 0x322200FF */
 #ifdef PSX_COSIM
     cosim_instr(0x80041724u);
 #endif
@@ -30011,14 +30101,16 @@ block_80041728:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
-    cpu->gpr[2] = ~cpu->gpr[2];  /* not */  /* 0x80041738: 0x00021027 */
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = ~cpu->gpr[2];  /* not */
+    PGXP_ALU(0x00021027u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80041738: 0x00021027 */
 #ifdef PSX_COSIM
     cosim_instr(0x80041738u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x14u);
 #endif
-    cpu->gpr[4] = cpu->gpr[4] & cpu->gpr[2];  /* 0x8004173C: 0x00822024 */
+    { uint32_t _pgx1 = cpu->gpr[4]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[4] = cpu->gpr[4] & cpu->gpr[2];
+    PGXP_ALU(0x00822024u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x8004173C: 0x00822024 */
 #ifdef PSX_COSIM
     cosim_instr(0x8004173Cu);
 #endif
@@ -30279,11 +30371,12 @@ block_80041740:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0040;  /* 0x800417B8: 0x30420040 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0040;
+    PGXP_ALU(0x30420040u, cpu->gpr[2], _pgx1, 0x0040u); }  /* 0x800417B8: 0x30420040 */
 #ifdef PSX_COSIM
     cosim_instr(0x800417B8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800417BC = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -30341,11 +30434,12 @@ block_800417C4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0040;  /* 0x800417CC: 0x30420040 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0040;
+    PGXP_ALU(0x30420040u, cpu->gpr[2], _pgx1, 0x0040u); }  /* 0x800417CC: 0x30420040 */
 #ifdef PSX_COSIM
     cosim_instr(0x800417CCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800417D0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -30467,7 +30561,7 @@ block_800417D8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041804u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041808 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -30608,7 +30702,7 @@ block_80041810:
 #ifdef PSX_COSIM
     cosim_instr(0x80041838u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_8004183C = ((int32_t)cpu->gpr[2] >= 0);  /* save branch cond before delay slot */
@@ -30658,7 +30752,7 @@ block_80041844:
 #ifdef PSX_COSIM
     cosim_instr(0x80041844u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40u);
 #endif
     int _bc_80041848 = ((int32_t)cpu->gpr[6] < 0);  /* save branch cond before delay slot */
@@ -30762,7 +30856,7 @@ block_80041860:
 #ifdef PSX_COSIM
     cosim_instr(0x80041868u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x84u);
 #endif
     int _bc_8004186C = (cpu->gpr[2] == cpu->gpr[7]);  /* save branch cond before delay slot */
@@ -30812,7 +30906,7 @@ block_80041874:
 #ifdef PSX_COSIM
     cosim_instr(0x80041874u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40u);
 #endif
     int _bc_80041878 = ((int32_t)cpu->gpr[6] >= 0);  /* save branch cond before delay slot */
@@ -30873,7 +30967,7 @@ block_80041880:
 #ifdef PSX_COSIM
     cosim_instr(0x80041888u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -30950,7 +31044,7 @@ block_80041894:
 #ifdef PSX_COSIM
     cosim_instr(0x800418A8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_800418AC = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -31046,7 +31140,7 @@ block_800418C4:
 #ifdef PSX_COSIM
     cosim_instr(0x800418C4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x40u);
 #endif
     int _bc_800418C8 = ((int32_t)cpu->gpr[6] >= 0);  /* save branch cond before delay slot */
@@ -31083,7 +31177,7 @@ block_800418D0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800418D0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800418D0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -31191,7 +31285,8 @@ block_800418D8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10u);
 #endif
-    cpu->gpr[4] = cpu->gpr[4] & 0x00FF;  /* 0x800418E4: 0x308400FF */
+    { uint32_t _pgx1 = cpu->gpr[4]; cpu->gpr[4] = cpu->gpr[4] & 0x00FF;
+    PGXP_ALU(0x308400FFu, cpu->gpr[4], _pgx1, 0x00FFu); }  /* 0x800418E4: 0x308400FF */
 #ifdef PSX_COSIM
     cosim_instr(0x800418E4u);
 #endif
@@ -31211,7 +31306,7 @@ block_800418D8:
 #ifdef PSX_COSIM
     cosim_instr(0x800418ECu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800418F0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -31285,7 +31380,7 @@ block_800418F8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041904u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_80041908 = ((int32_t)cpu->gpr[2] <= 0);  /* save branch cond before delay slot */
@@ -31345,7 +31440,7 @@ block_80041910:
 #ifdef PSX_COSIM
     cosim_instr(0x80041918u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_8004191C = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -31385,7 +31480,7 @@ block_80041924:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041924u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041924u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -31417,7 +31512,7 @@ block_8004192C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x8004192Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x8004192Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -31475,7 +31570,7 @@ block_80041934:
 #ifdef PSX_COSIM
     cosim_instr(0x8004193Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041940u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -31533,7 +31628,7 @@ block_80041948:
 #ifdef PSX_COSIM
     cosim_instr(0x8004194Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041950u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -31635,7 +31730,7 @@ block_80041960:
 #ifdef PSX_COSIM
     cosim_instr(0x80041970u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8004197Cu;  /* jal link before delay slot */
@@ -31840,7 +31935,7 @@ block_8004197C:
 #ifdef PSX_COSIM
     cosim_instr(0x800419D0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -31917,7 +32012,7 @@ block_800419EC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800419ECu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800419ECu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32002,7 +32097,7 @@ block_800419F4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041A08u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
     int _bc_80041A0C = ((int32_t)cpu->gpr[2] >= 0);  /* save branch cond before delay slot */
@@ -32041,7 +32136,7 @@ block_80041A14:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041A14u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041A14u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32073,7 +32168,7 @@ block_80041A1C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041A1Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041A1Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32145,11 +32240,12 @@ block_80041A24:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x80041A34: 0x0062182A */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0062182Au, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80041A34: 0x0062182A */
 #ifdef PSX_COSIM
     cosim_instr(0x80041A34u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_80041A38 = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -32243,7 +32339,7 @@ block_80041A48:
 #ifdef PSX_COSIM
     cosim_instr(0x80041A50u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80041A54 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -32279,7 +32375,7 @@ block_80041A5C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041A5Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041A5Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32351,11 +32447,12 @@ block_80041A64:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x80041A74: 0x0062182A */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0062182Au, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80041A74: 0x0062182A */
 #ifdef PSX_COSIM
     cosim_instr(0x80041A74u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_80041A78 = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -32407,7 +32504,7 @@ block_80041A80:
 #ifdef PSX_COSIM
     cosim_instr(0x80041A84u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041A90u;  /* jal link before delay slot */
@@ -32451,7 +32548,7 @@ block_80041A90:
 #ifdef PSX_COSIM
     cosim_instr(0x80041A94u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041AA0u;  /* jal link before delay slot */
@@ -32498,7 +32595,7 @@ block_80041AA0:
 #ifdef PSX_COSIM
     cosim_instr(0x80041AA4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041AB0u;  /* jal link before delay slot */
@@ -32550,7 +32647,7 @@ block_80041AB0:
 #ifdef PSX_COSIM
     cosim_instr(0x80041AB8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_80041ABC = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -32612,7 +32709,7 @@ block_80041AC4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041ACCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041AD0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32675,7 +32772,7 @@ block_80041ADC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041ADCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041ADCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32740,7 +32837,7 @@ block_80041AE4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041AF0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041AF4 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -32863,7 +32960,7 @@ block_80041AFC:
 #ifdef PSX_COSIM
     cosim_instr(0x80041B0Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B10u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32895,7 +32992,7 @@ block_80041B18:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041B18u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B18u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32927,7 +33024,7 @@ block_80041B20:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041B20u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B20u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -32964,11 +33061,12 @@ block_80041B28:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x0010;  /* 0x80041B28: 0x30420010 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x0010;
+    PGXP_ALU(0x30420010u, cpu->gpr[2], _pgx1, 0x0010u); }  /* 0x80041B28: 0x30420010 */
 #ifdef PSX_COSIM
     cosim_instr(0x80041B28u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_80041B2C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -33007,7 +33105,7 @@ block_80041B34:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041B34u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B34u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33045,11 +33143,12 @@ block_80041B3C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x003F;  /* 0x80041B3C: 0x3042003F */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x003F;
+    PGXP_ALU(0x3042003Fu, cpu->gpr[2], _pgx1, 0x003Fu); }  /* 0x80041B3C: 0x3042003F */
 #ifdef PSX_COSIM
     cosim_instr(0x80041B3Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B40u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33108,7 +33207,7 @@ block_80041B48:
 #ifdef PSX_COSIM
     cosim_instr(0x80041B4Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B50u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33162,7 +33261,7 @@ block_80041B5C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041B5Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B5Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33197,7 +33296,7 @@ block_80041B64:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041B64u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B64u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33286,7 +33385,7 @@ block_80041B6C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041B80u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -33313,7 +33412,7 @@ block_80041B8C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041B8Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041B8Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33374,7 +33473,7 @@ block_80041B94:
 #ifdef PSX_COSIM
     cosim_instr(0x80041B98u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041BA4u;  /* jal link before delay slot */
@@ -33424,7 +33523,7 @@ block_80041BA4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041BA8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041BB4u;  /* jal link before delay slot */
@@ -33456,7 +33555,7 @@ block_80041BB4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041BB4u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041BB4u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33509,7 +33608,7 @@ block_80041BBC:
 #ifdef PSX_COSIM
     cosim_instr(0x80041BC0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041BCCu;  /* jal link before delay slot */
@@ -33538,7 +33637,7 @@ block_80041BCC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041BCCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041BCCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33616,7 +33715,7 @@ block_80041BD4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041BE0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -33643,7 +33742,7 @@ block_80041BEC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041BECu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041BECu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33719,7 +33818,7 @@ block_80041BF4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041C04u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041C10u;  /* jal link before delay slot */
@@ -33727,7 +33826,8 @@ block_80041BF4:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x10000u);
 #endif
-    cpu->gpr[16] = cpu->gpr[16] & 0x00FF;  /* 0x80041C0C: 0x321000FF */
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[16] = cpu->gpr[16] & 0x00FF;
+    PGXP_ALU(0x321000FFu, cpu->gpr[16], _pgx1, 0x00FFu); }  /* 0x80041C0C: 0x321000FF */
 #ifdef PSX_COSIM
     cosim_instr(0x80041C0Cu);
 #endif
@@ -33747,7 +33847,7 @@ block_80041C10:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041C10u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041C10u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33787,7 +33887,7 @@ block_80041C18:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041C18u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041C18u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33837,7 +33937,7 @@ block_80041C20:
 #ifdef PSX_COSIM
     cosim_instr(0x80041C20u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041C2Cu;  /* jal link before delay slot */
@@ -33866,7 +33966,7 @@ block_80041C2C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041C2Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041C2Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33928,7 +34028,7 @@ block_80041C34:
 #ifdef PSX_COSIM
     cosim_instr(0x80041C38u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -33958,7 +34058,7 @@ block_80041C44:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041C44u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041C44u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -33989,7 +34089,7 @@ block_80041C4C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041C4Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041C4Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -34070,7 +34170,7 @@ block_80041C54:
 #ifdef PSX_COSIM
     cosim_instr(0x80041C64u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041C70u;  /* jal link before delay slot */
@@ -34149,7 +34249,7 @@ block_80041C70:
 #ifdef PSX_COSIM
     cosim_instr(0x80041C84u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041C90u;  /* jal link before delay slot */
@@ -34220,7 +34320,7 @@ block_80041C90:
 #ifdef PSX_COSIM
     cosim_instr(0x80041CA0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041CACu;  /* jal link before delay slot */
@@ -34339,7 +34439,7 @@ block_80041CBC:
 #ifdef PSX_COSIM
     cosim_instr(0x80041CC8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041CCC = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -34449,7 +34549,7 @@ block_80041CD4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041CECu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041CF0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -34496,7 +34596,7 @@ block_80041CF8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041CFCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041D00u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -34546,7 +34646,7 @@ block_80041D08:
 #ifdef PSX_COSIM
     cosim_instr(0x80041D0Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041D10u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -34594,7 +34694,7 @@ block_80041D18:
 #ifdef PSX_COSIM
     cosim_instr(0x80041D1Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041D20u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -34719,11 +34819,12 @@ block_80041D28:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = cpu->gpr[2] & 0x0030;  /* 0x80041D44: 0x30430030 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[2] & 0x0030;
+    PGXP_ALU(0x30430030u, cpu->gpr[3], _pgx1, 0x0030u); }  /* 0x80041D44: 0x30430030 */
 #ifdef PSX_COSIM
     cosim_instr(0x80041D44u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x9u);
 #endif
     int _bc_80041D48 = (cpu->gpr[3] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -34771,7 +34872,7 @@ block_80041D50:
 #ifdef PSX_COSIM
     cosim_instr(0x80041D50u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
     int _bc_80041D54 = (cpu->gpr[3] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -34808,7 +34909,7 @@ block_80041D5C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041D5Cu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041D5Cu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -34869,7 +34970,7 @@ block_80041D64:
 #ifdef PSX_COSIM
     cosim_instr(0x80041D6Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041D70u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -34918,7 +35019,7 @@ block_80041D78:
 #ifdef PSX_COSIM
     cosim_instr(0x80041D7Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041D80u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35076,7 +35177,7 @@ block_80041D94:
 #ifdef PSX_COSIM
     cosim_instr(0x80041DB8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041DC4u;  /* jal link before delay slot */
@@ -35134,7 +35235,7 @@ block_80041DC4:
 #ifdef PSX_COSIM
     cosim_instr(0x80041DCCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041DD0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35195,7 +35296,7 @@ block_80041DD8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041DE0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041DECu;  /* jal link before delay slot */
@@ -35245,7 +35346,7 @@ block_80041DEC:
 #ifdef PSX_COSIM
     cosim_instr(0x80041DF0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041DFCu;  /* jal link before delay slot */
@@ -35279,11 +35380,12 @@ block_80041DFC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x4u);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & 0x00E0;  /* 0x80041DFC: 0x304200E0 */
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] & 0x00E0;
+    PGXP_ALU(0x304200E0u, cpu->gpr[2], _pgx1, 0x00E0u); }  /* 0x80041DFC: 0x304200E0 */
 #ifdef PSX_COSIM
     cosim_instr(0x80041DFCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041E00u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35334,7 +35436,7 @@ block_80041E08:
 #ifdef PSX_COSIM
     cosim_instr(0x80041E08u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80041E14u;  /* jal link before delay slot */
@@ -35366,7 +35468,7 @@ block_80041E14:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041E14u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041E14u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35404,7 +35506,8 @@ block_80041E1C:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
-    cpu->gpr[2] = ((int32_t)cpu->gpr[0] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x80041E1C: 0x0002102A */
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = ((int32_t)cpu->gpr[0] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0002102Au, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80041E1C: 0x0002102A */
 #ifdef PSX_COSIM
     cosim_instr(0x80041E1Cu);
 #endif
@@ -35424,7 +35527,7 @@ block_80041E1C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041E24u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041E28 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -35582,7 +35685,7 @@ block_80041E58:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041E58u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041E58u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35640,11 +35743,12 @@ block_80041E60:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x80041E6C: 0x0062182A */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0062182Au, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80041E6C: 0x0062182A */
 #ifdef PSX_COSIM
     cosim_instr(0x80041E6Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041E70u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35699,7 +35803,7 @@ block_80041E78:
 #ifdef PSX_COSIM
     cosim_instr(0x80041E7Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041E80u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35738,7 +35842,7 @@ block_80041E88:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041E88u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041E88u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35796,11 +35900,12 @@ block_80041E90:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;  /* 0x80041E9C: 0x0062182A */
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = ((int32_t)cpu->gpr[3] < (int32_t)cpu->gpr[2]) ? 1 : 0;
+    PGXP_ALU(0x0062182Au, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80041E9C: 0x0062182A */
 #ifdef PSX_COSIM
     cosim_instr(0x80041E9Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041EA0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35839,7 +35944,7 @@ block_80041EA8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041EA8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041EA8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35879,7 +35984,7 @@ block_80041EB0:
 #ifdef PSX_COSIM
     cosim_instr(0x80041EB0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -35926,7 +36031,7 @@ block_80041EC0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041EC0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041EC0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -35966,7 +36071,7 @@ block_80041EC8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041EC8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041EC8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -36005,7 +36110,7 @@ block_80041ED0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041ED0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041ED0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -36087,7 +36192,7 @@ block_80041ED8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041EF0u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041EF4 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -36161,7 +36266,7 @@ block_80041EFC:
 #ifdef PSX_COSIM
     cosim_instr(0x80041F08u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041F0C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -36239,7 +36344,7 @@ block_80041F14:
 #ifdef PSX_COSIM
     cosim_instr(0x80041F1Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041F20u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -36279,7 +36384,7 @@ block_80041F28:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041F28u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041F28u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -36310,7 +36415,7 @@ block_80041F30:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041F30u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041F30u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -36366,7 +36471,7 @@ block_80041F38:
 #ifdef PSX_COSIM
     cosim_instr(0x80041F40u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80041F44 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -36507,7 +36612,7 @@ block_80041F60:
 #ifdef PSX_COSIM
     cosim_instr(0x80041F6Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041F70u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -36640,7 +36745,7 @@ block_80041F8C:
 #ifdef PSX_COSIM
     cosim_instr(0x80041F98u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x88u);
 #endif
     int _bc_80041F9C = (cpu->gpr[3] != cpu->gpr[7]);  /* save branch cond before delay slot */
@@ -36773,7 +36878,7 @@ block_80041FB8:
 #ifdef PSX_COSIM
     cosim_instr(0x80041FC4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x88u);
 #endif
     int _bc_80041FC8 = (cpu->gpr[3] != cpu->gpr[7]);  /* save branch cond before delay slot */
@@ -36810,7 +36915,7 @@ block_80041FD0:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041FD0u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041FD0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -36986,7 +37091,7 @@ block_80041FFC:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80041FFCu, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80041FFCu);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -37143,7 +37248,7 @@ block_80042018:
 #ifdef PSX_COSIM
     cosim_instr(0x80042024u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x88u);
 #endif
     int _bc_80042028 = (cpu->gpr[3] != cpu->gpr[7]);  /* save branch cond before delay slot */
@@ -37180,7 +37285,7 @@ block_80042030:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80042030u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042030u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -37231,7 +37336,7 @@ block_80042038:
 #ifdef PSX_COSIM
     cosim_instr(0x80042038u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8004203C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -37300,11 +37405,12 @@ block_80042044:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x24u);
 #endif
-    cpu->gpr[2] = cpu->gpr[5] & 0x0001;  /* 0x80042048: 0x30A20001 */
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[2] = cpu->gpr[5] & 0x0001;
+    PGXP_ALU(0x30A20001u, cpu->gpr[2], _pgx1, 0x0001u); }  /* 0x80042048: 0x30A20001 */
 #ifdef PSX_COSIM
     cosim_instr(0x80042048u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004204C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -37368,7 +37474,7 @@ block_80042054:
 #ifdef PSX_COSIM
     cosim_instr(0x8004205Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042060u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -37378,7 +37484,8 @@ block_80042054:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];  /* 0x80042064: 0x00431024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];
+    PGXP_ALU(0x00431024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80042064: 0x00431024 */
 #ifdef PSX_COSIM
     cosim_instr(0x80042064u);
 #endif
@@ -37451,11 +37558,12 @@ block_80042074:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x24u);
 #endif
-    cpu->gpr[2] = cpu->gpr[5] & 0x0002;  /* 0x80042078: 0x30A20002 */
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[2] = cpu->gpr[5] & 0x0002;
+    PGXP_ALU(0x30A20002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x80042078: 0x30A20002 */
 #ifdef PSX_COSIM
     cosim_instr(0x80042078u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x5u);
 #endif
     int _bc_8004207C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
@@ -37503,7 +37611,7 @@ block_80042084:
 #ifdef PSX_COSIM
     cosim_instr(0x80042084u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x0u);
 #endif
     /* delay slot (always executes) */
@@ -37558,7 +37666,8 @@ block_80042090:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0xCu);
 #endif
-    cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];  /* 0x8004209C: 0x00431024 */
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] & cpu->gpr[3];
+    PGXP_ALU(0x00431024u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8004209C: 0x00431024 */
 #ifdef PSX_COSIM
     cosim_instr(0x8004209Cu);
 #endif
@@ -37590,7 +37699,7 @@ block_800420A0:
 #ifdef PSX_COSIM
     cosim_instr(0x800420A4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800420B0u;  /* jal link before delay slot */
@@ -37634,7 +37743,7 @@ block_800420B0:
 #ifdef PSX_COSIM
     cosim_instr(0x800420B4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_800420B8 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -37699,7 +37808,7 @@ block_800420C0:
 #ifdef PSX_COSIM
     cosim_instr(0x800420C4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800420D0u;  /* jal link before delay slot */
@@ -37743,7 +37852,7 @@ block_800420D0:
 #ifdef PSX_COSIM
     cosim_instr(0x800420D4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_800420D8 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -37808,7 +37917,7 @@ block_800420E0:
 #ifdef PSX_COSIM
     cosim_instr(0x800420E4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x800420F0u;  /* jal link before delay slot */
@@ -37852,7 +37961,7 @@ block_800420F0:
 #ifdef PSX_COSIM
     cosim_instr(0x800420F4u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_800420F8 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -37917,7 +38026,7 @@ block_80042100:
 #ifdef PSX_COSIM
     cosim_instr(0x80042104u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80042110u;  /* jal link before delay slot */
@@ -37961,7 +38070,7 @@ block_80042110:
 #ifdef PSX_COSIM
     cosim_instr(0x80042114u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80042118 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -38034,7 +38143,7 @@ block_80042120:
 #ifdef PSX_COSIM
     cosim_instr(0x80042128u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80042134u;  /* jal link before delay slot */
@@ -38082,7 +38191,7 @@ block_80042134:
 #ifdef PSX_COSIM
     cosim_instr(0x80042138u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8004213C = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -38158,7 +38267,7 @@ block_80042144:
 #ifdef PSX_COSIM
     cosim_instr(0x8004214Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042150u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38206,7 +38315,7 @@ block_80042158:
 #ifdef PSX_COSIM
     cosim_instr(0x8004215Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042160u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38282,7 +38391,7 @@ block_80042168:
 #ifdef PSX_COSIM
     cosim_instr(0x8004216Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042170u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38333,7 +38442,7 @@ block_80042178:
 #ifdef PSX_COSIM
     cosim_instr(0x80042178u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x24u);
 #endif
     int _bc_8004217C = (cpu->gpr[5] == cpu->gpr[2]);  /* save branch cond before delay slot */
@@ -38373,7 +38482,7 @@ block_80042184:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80042184u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042184u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38542,7 +38651,7 @@ block_8004218C:
 #ifdef PSX_COSIM
     cosim_instr(0x800421CCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800421D0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38592,7 +38701,7 @@ block_800421D8:
 #ifdef PSX_COSIM
     cosim_instr(0x800421DCu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800421E0u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38624,7 +38733,7 @@ block_800421E8:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x800421E8u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x800421E8u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38807,7 +38916,7 @@ block_800421F0:
 #ifdef PSX_COSIM
     cosim_instr(0x8004223Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042240u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38856,7 +38965,7 @@ block_80042248:
 #ifdef PSX_COSIM
     cosim_instr(0x8004224Cu);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042250u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38887,7 +38996,7 @@ block_80042258:
 #ifdef PSX_ENABLE_BLOCK_CYCLES
     if (psx_slice_block(cpu, 0x80042258u, 2u, 0)) return;
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_icache_fetch(cpu, 0x80042258u);
 #endif
 #ifdef PSX_ENABLE_BLOCK_CYCLES
@@ -38934,7 +39043,7 @@ block_80042260:
 #ifdef PSX_COSIM
     cosim_instr(0x80042264u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_80042268 = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -39026,7 +39135,7 @@ block_80042270:
 #ifdef PSX_COSIM
     cosim_instr(0x80042280u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x8004228Cu;  /* jal link before delay slot */
@@ -39273,7 +39382,7 @@ block_8004228C:
 #ifdef PSX_COSIM
     cosim_instr(0x800422F8u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_800422FC = cpu->gpr[31];  /* latch indirect target before delay slot */
@@ -39368,7 +39477,7 @@ block_80042304:
 #ifdef PSX_COSIM
     cosim_instr(0x80042314u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000000u);
 #endif
     cpu->gpr[31] = 0x80042320u;  /* jal link before delay slot */
@@ -39606,7 +39715,7 @@ block_80042320:
 #ifdef PSX_COSIM
     cosim_instr(0x80042388u);
 #endif
-#ifdef PSX_ENABLE_BLOCK_CYCLES
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
     psx_cyc_step(cpu, 0x80000001u);
 #endif
     uint32_t _jt_8004238C = cpu->gpr[31];  /* latch indirect target before delay slot */

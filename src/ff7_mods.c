@@ -1,11 +1,7 @@
-/* ff7_mods.c — game-owned trusted mod plugins for Final Fantasy VII.
+/* ff7_mods.c — developer hook tracing for Final Fantasy VII.
  *
- * Widescreen is MOD-OWNED on PSX: the runtime hardcodes ws_offered = false and
- * clamps the display aspect to 4:3 after every config source, so neither
- * game.toml nor a stale settings.toml can engage it. The only thing that can
- * is a trusted activation callback, which runs after the launcher's final
- * mod-plan commit and before renderer/window initialization — exactly the
- * window in which a display aspect can still be chosen.
+ * The retired widescreen activation now lives in the replacement enhanced
+ * renderer package, implemented by src/ff7_renderer.c.
  *
  * See psxrecomp/docs/MOD_PACKAGES.md ("Trusted static plugins") and
  * runtime/include/mod_plugins.h.
@@ -26,34 +22,6 @@
  * psx_mod_option_value() resolves by id because registration is by plugin id
  * alone and the callback carries no package/feature context. */
 #define FF7_MOD_PACKAGE "ff7.enhancements"
-#define FF7_MOD_WIDESCREEN_FEATURE "widescreen"
-
-static void ff7_enable_widescreen(void) {
-    char mode[32];
-    /* A 0 return means the plan is not committed or the ids did not resolve.
-     * Treat that as "use the manifest default" rather than reading an empty
-     * string as a selection. */
-    if (!psx_mod_option_value(FF7_MOD_PACKAGE, FF7_MOD_WIDESCREEN_FEATURE,
-                              "mode", mode, (uint32_t)sizeof(mode))) {
-        mode[0] = '\0';
-    }
-
-    /* Select the fixed aspect FIRST in both modes. It is what shapes the
-     * initial game window, and adaptive only takes over once that window
-     * exists and the player resizes it — so skipping this step would open
-     * adaptive at 4:3 and snap wide on the first resize. Note the ordering
-     * also matters internally: psx_mod_set_fixed_display_aspect() clears the
-     * adaptive flag, so it cannot come second. */
-    (void)psx_mod_set_fixed_display_aspect(16, 9);
-
-    if (strcmp(mode, "adaptive") == 0) {
-        /* Live ratio is clamped to 4:3 on the narrow side and to this maximum
-         * on the wide side. 16:9 rather than 21:9 is deliberate — see the
-         * manifest description; nothing about FF7's backgrounds has been shown
-         * to hold up past 16:9 yet. */
-        (void)psx_mod_set_adaptive_display_aspect(16, 9);
-    }
-}
 
 /* ---------------------------------------------------------------------------
  * Hook trace — the instrument that turns a "contextual" name into a confirmed
@@ -149,9 +117,6 @@ static void ff7_hook_trace_entry(struct CPUState* cpu, uint32_t address) {
 }
 
 PSX_MOD_CONSTRUCTOR(register_ff7_mods) {
-    (void)psx_mod_register_activation_plugin("ff7.widescreen",
-                                             ff7_enable_widescreen);
-
     (void)psx_mod_register_activation_plugin("ff7.hook-trace",
                                              ff7_hook_trace_activate);
     /* One callback serves every hook; it dispatches on the address the runtime

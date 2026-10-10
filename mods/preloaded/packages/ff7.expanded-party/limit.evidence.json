@@ -1,0 +1,817 @@
+{
+  "schema": 1,
+  "basis": "Original owner-disc bytes; independently analyzed instruction operands",
+  "images": {
+    "EXE": {
+      "base": 2147549184,
+      "bytes": 395264,
+      "sha256": "7c2e9bacbb914200e7dfaa1972886aebeb258ab8db4c24548d18b319b849d7c8"
+    },
+    "BATINI": {
+      "base": 2149253120,
+      "bytes": 10164,
+      "sha256": "0731ada119bf4e505cd0ff3a82ab35b772db6b2d88b8ee1606d16d4843a0d087"
+    },
+    "BATRES": {
+      "base": 2149253120,
+      "bytes": 6460,
+      "sha256": "138b71b4c6843eb77a7909263f12166aea597ab8a694dc8ef10a39afe58cc35e"
+    },
+    "BATTLE": {
+      "base": 2148139008,
+      "bytes": 342188,
+      "sha256": "94a0c251c98197a6b902068082180ce244a8b4ecd93792298816a486880a2e7b"
+    },
+    "LIMTMENU": {
+      "base": 2149384192,
+      "bytes": 9236,
+      "sha256": "31483a299e28c7298a44541e18ac43a6395e4e17786b70a67f78d66f41771138"
+    }
+  },
+  "sites": [
+    {
+      "image": "EXE",
+      "address": 2147572532,
+      "action": "GET",
+      "reg": 0,
+      "expected": 6295585,
+      "guard": [
+        610476660,
+        4395041,
+        10620961,
+        2420244480,
+        0,
+        608436096,
+        6295585,
+        666697776,
+        65011720,
+        0,
+        2944663788,
+        65011720,
+        0
+      ]
+    },
+    {
+      "image": "BATINI",
+      "address": 2149256344,
+      "action": "INIT_ENABLE",
+      "reg": 0,
+      "expected": 272629796,
+      "guard": [
+        2785017884,
+        2785017886,
+        2785017882,
+        2718040096,
+        873201919,
+        734134281,
+        272629796,
+        2727084037,
+        2455896078,
+        0,
+        608436223,
+        744620036,
+        272629788
+      ]
+    },
+    {
+      "image": "BATINI",
+      "address": 2149256416,
+      "action": "DIVISOR",
+      "reg": 0,
+      "expected": 4460577,
+      "guard": [
+        202880,
+        2793537544,
+        2793537546,
+        1970368,
+        6164515,
+        135360,
+        4460577,
+        6428705,
+        2525102088,
+        2355298304,
+        135680,
+        2927820828,
+        2785148954
+      ]
+    },
+    {
+      "image": "BATRES",
+      "address": 2149259268,
+      "action": "LEARN_ENABLE",
+      "reg": 0,
+      "expected": 272629784,
+      "guard": [
+        872611839,
+        4919338,
+        272629762,
+        14706721,
+        873201663,
+        690094089,
+        272629784,
+        594112,
+        872742920,
+        16417,
+        873267199,
+        4788259,
+        135360
+      ]
+    },
+    {
+      "image": "BATRES",
+      "address": 2149259304,
+      "action": "KILLS_TABLE",
+      "reg": 0,
+      "expected": 4397089,
+      "guard": [
+        16417,
+        873267199,
+        4788259,
+        135360,
+        1006862344,
+        610476672,
+        4397089,
+        15011876,
+        339738632,
+        0,
+        2489450496,
+        0,
+        273416196
+      ]
+    },
+    {
+      "image": "BATRES",
+      "address": 2149259412,
+      "action": "LEARN_ENABLE",
+      "reg": 0,
+      "expected": 272629792,
+      "guard": [
+        872611839,
+        17186849,
+        4722730,
+        272629762,
+        690094089,
+        873005055,
+        272629792,
+        594112,
+        872808450,
+        10273,
+        4788259,
+        135360,
+        1006862344
+      ]
+    },
+    {
+      "image": "BATRES",
+      "address": 2149259444,
+      "action": "USES_TABLE",
+      "reg": 0,
+      "expected": 4395041,
+      "guard": [
+        872808450,
+        10273,
+        4788259,
+        135360,
+        1006862344,
+        610476676,
+        4395041,
+        661632,
+        289406982,
+        4397089,
+        614793217,
+        11145258,
+        339804157
+      ]
+    },
+    {
+      "image": "BATRES",
+      "address": 2149259544,
+      "action": "MASTERY",
+      "reg": 0,
+      "expected": 659520,
+      "guard": [
+        15087653,
+        405568,
+        614793217,
+        681705474,
+        339804146,
+        610467842,
+        659520,
+        4460577,
+        2756182054,
+        27725862,
+        809697279,
+        2760572964,
+        2760310818
+      ]
+    },
+    {
+      "image": "BATTLE",
+      "address": 2148169676,
+      "action": "COMMAND",
+      "reg": 0,
+      "expected": 272629787,
+      "guard": [
+        872677413,
+        134389263,
+        0,
+        2357395472,
+        0,
+        677511264,
+        272629787,
+        2894266412,
+        610402432,
+        2894200876,
+        331840,
+        4526113,
+        135296
+      ]
+    },
+    {
+      "image": "BATTLE",
+      "address": 2148170592,
+      "action": "ACTION",
+      "reg": 0,
+      "expected": 2892103712,
+      "guard": [
+        46145569,
+        45326369,
+        1006862342,
+        2355310612,
+        639762492,
+        134389469,
+        2892103712,
+        645070876,
+        681705475,
+        339804130,
+        612630529,
+        310378669,
+        872546306
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149384692,
+      "action": "ALIAS",
+      "reg": 1,
+      "expected": 2418343936,
+      "guard": [
+        2418147328,
+        0,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2418343936,
+        0,
+        332096,
+        4526113,
+        139392,
+        1006731274,
+        606193479
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149384708,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 139392,
+      "guard": [
+        606179792,
+        2230305,
+        2418343936,
+        0,
+        332096,
+        4526113,
+        139392,
+        1006731274,
+        606193479,
+        2361377,
+        2418212864,
+        872546559,
+        341966866
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149384928,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 135296,
+      "guard": [
+        134693047,
+        332096,
+        873005088,
+        872939600,
+        332096,
+        4526113,
+        135296,
+        1006731274,
+        606193479,
+        2230305,
+        2418212864,
+        0,
+        200960
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149385104,
+      "action": "ALIAS",
+      "reg": 1,
+      "expected": 2351104000,
+      "guard": [
+        2418147328,
+        872677626,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        872742928,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193478
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149385120,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 135296,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        872742928,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193478,
+        2230305,
+        2418409472,
+        872873985,
+        201368448
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149385388,
+      "action": "ALIAS",
+      "reg": 2,
+      "expected": 2353201152,
+      "guard": [
+        0,
+        4853793,
+        2420244480,
+        0,
+        135296,
+        4788257,
+        2353201152,
+        0,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193498
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149385404,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 135296,
+      "guard": [
+        135296,
+        4788257,
+        2353201152,
+        0,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193498,
+        2230305,
+        2485256192,
+        13637665,
+        6426631
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149386068,
+      "action": "ALIAS",
+      "reg": 1,
+      "expected": 2351169536,
+      "guard": [
+        2418147328,
+        10889249,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351169536,
+        200768,
+        4395041,
+        135232,
+        1006862365,
+        2153980829,
+        10627105
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149386620,
+      "action": "ALIAS",
+      "reg": 2,
+      "expected": 2353266688,
+      "guard": [
+        2230305,
+        2418147328,
+        1007386629,
+        627806672,
+        135296,
+        4919329,
+        2353266688,
+        2410348624,
+        266560,
+        4460577,
+        135296,
+        1006731274,
+        606193498
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149386636,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 135296,
+      "guard": [
+        135296,
+        4919329,
+        2353266688,
+        2410348624,
+        266560,
+        4460577,
+        135296,
+        1006731274,
+        606193498,
+        2230305,
+        2485256192,
+        24193057,
+        10620935
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149387748,
+      "action": "ALIAS",
+      "reg": 1,
+      "expected": 2351104000,
+      "guard": [
+        2418147328,
+        32801,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        16417,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193498
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149387764,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 135296,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        16417,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193498,
+        2230305,
+        2485321728,
+        266304,
+        4460577
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388156,
+      "action": "ALIAS",
+      "reg": 1,
+      "expected": 2351104000,
+      "guard": [
+        2418147328,
+        649461768,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351104000,
+        32801,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193479
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388172,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 135296,
+      "guard": [
+        606179792,
+        2230305,
+        2351104000,
+        32801,
+        201024,
+        4395041,
+        135296,
+        1006731274,
+        606193479,
+        2230305,
+        2686451712,
+        1006796829,
+        2353144848
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388232,
+      "action": "ALIAS",
+      "reg": 2,
+      "expected": 2353266688,
+      "guard": [
+        5509153,
+        403520,
+        2420244480,
+        10889249,
+        135296,
+        5443617,
+        2353266688,
+        200768,
+        4395041,
+        135232,
+        10627105,
+        201348799,
+        11610145
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388336,
+      "action": "ALIAS",
+      "reg": 2,
+      "expected": 2353266688,
+      "guard": [
+        5509153,
+        403520,
+        2420244480,
+        10889249,
+        135296,
+        5443617,
+        2353266688,
+        200768,
+        4395041,
+        135232,
+        10627105,
+        201348799,
+        11610145
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388420,
+      "action": "MENU_ATTACK",
+      "reg": 0,
+      "expected": 2355232768,
+      "guard": [
+        9838625,
+        33824801,
+        137408,
+        6428707,
+        202880,
+        7018529,
+        2355232768,
+        2355429380,
+        2355494920,
+        2355560460,
+        2894200832,
+        2894397444,
+        2894462984
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388548,
+      "action": "ALIAS",
+      "reg": 1,
+      "expected": 2351038464,
+      "guard": [
+        1006862365,
+        2153980775,
+        135296,
+        1006731269,
+        606179792,
+        2230305,
+        2351038464,
+        202816,
+        143680,
+        12726305,
+        1006796829,
+        2420253542,
+        405632
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388572,
+      "action": "OFFSET",
+      "reg": 6,
+      "expected": 405632,
+      "guard": [
+        2351038464,
+        202816,
+        143680,
+        12726305,
+        1006796829,
+        2420253542,
+        405632,
+        4395041,
+        608305153,
+        1006731274,
+        606193478,
+        2492449,
+        2686582784
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388820,
+      "action": "ALIAS",
+      "reg": 2,
+      "expected": 2354249728,
+      "guard": [
+        274858038,
+        200832,
+        34849,
+        1007058949,
+        616993232,
+        4591649,
+        2354249728,
+        48279585,
+        1249600,
+        5443617,
+        135296,
+        1006731274,
+        606193478
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388836,
+      "action": "OFFSET",
+      "reg": 2,
+      "expected": 135296,
+      "guard": [
+        616993232,
+        4591649,
+        2354249728,
+        48279585,
+        1249600,
+        5443617,
+        135296,
+        1006731274,
+        606193478,
+        2230305,
+        2418212864,
+        62951457,
+        610533375
+      ]
+    },
+    {
+      "image": "LIMTMENU",
+      "address": 2149388944,
+      "action": "MENU_ATTACK",
+      "reg": 0,
+      "expected": 2355232768,
+      "guard": [
+        137408,
+        6428707,
+        202880,
+        1007058973,
+        616960804,
+        6690849,
+        2355232768,
+        2355363844,
+        2355429384,
+        2355494924,
+        2923560960,
+        2923692036,
+        2923757576
+      ]
+    }
+  ],
+  "name_filter": {
+    "address": 2147570248,
+    "words": [
+      666762960,
+      10491937,
+      2947547416,
+      12615713,
+      1007190022,
+      621292880,
+      872546308,
+      2948530472,
+      2947744036,
+      2947678496,
+      344064014,
+      2947612956,
+      10273
+    ],
+    "end": 2147571108,
+    "sha256": "a43d1ce193e49993ea8a5cfa076c99062ddfc38bd624a5f68aa22b66863f008b"
+  },
+  "reserved_ids": {
+    "first": 96,
+    "count": 7,
+    "original_28byte_entries": "all FF; native nine-character GetLimit maps never reference these IDs"
+  },
+  "runtime_contract": {
+    "plugin": "ff7.party-gameplay; developer default-off; all 32 instruction sites plus function filter80015248 required",
+    "allocation": "1024 bytes aligned16 via psx_mod_alloc_guest_memory; guest-owned immutable tables/strings participate in whole RAM snapshots; no host progression state",
+    "profile": "Trailing FF7PartyProfile.limit_policy:0 unchanged,1 Sephiroth. Only registered extra identities use custom progression; native0..10 and global alias table unchanged. Current policy registry implements one sword policy; future policy IDs require their own verified attack-ID reservations and table allocation.",
+    "registers": {
+      "GET": "a0=guest,a1=learned bit; changes v1 before native move v0,v1",
+      "INIT_ENABLE": "fp=guest,s3=record,s0=derived; changes v0 and builds derived limit cache",
+      "DIVISOR": "fp=guest,a0=native growth-divisor base; changes v0 so following addition addresses guest table",
+      "LEARN_ENABLE": "t1=guest; changes v0 only",
+      "KILLS_TABLE/USES_TABLE": "t1=guest,v1=native table base; changes v0 before addition",
+      "MASTERY": "a0=record,a3=learned mask,t3=accumulated kills; OR final bit into a3 only when the policy defines a bit9 technique, after all six prerequisite bits and its kill threshold (none in the release preset)",
+      "COMMAND": "a1=actor slot,v1=raw limit ID; changes v0 only for matching profile move",
+      "ACTION": "s6=guest,s2=limit ID; changes v0 to valid own action20/21",
+      "MENU_ATTACK": "v1=embedded attack entry pointer; redirects v1 for own active guest and reserved ID",
+      "ALIAS/OFFSET": "changes only the explicitly listed register at the pre-load/pre-final-stride instruction",
+      "name_filter": "a0=3,a1=reserved limit ID,a2=0(description) or8(name); handled call changes v0 only, framework returns to existing ra; no stack or native record writes"
+    },
+    "pc": "Instruction callbacks preserve incoming CPU.pc; callback address is authoritative. They never synthesize a link return. Name filter uses framework handled-call return.",
+    "record_persistence": "Uses existing independent132-byte record: selected level0E,gauge0F,learned mask22,kills24,level1/2/3 use counts26/28/2A. Existing canonical save codec carries all bytes; no new save-format version. New game initializes level1,empty gauge,bit0 and zero counters. Canonical load for a known policy ORs bit0 (pre-limit saves), drops learned bits the policy does not define, and returns a selected level without a learned technique to level1 with an empty gauge (diagnostic prototype saves); all kill/use counters are preserved.",
+    "progression": "Release preset: Crescent Arc (bit1) requires eight level1 uses. Thresholds are published only for techniques the policy defines; every other kill/use entry stays 0xFFFF, which the original learner treats as unavailable, so levels2-4 and mastery never unlock. Native counter saturation retained. Native menu confirmation changes level and clears gauge.",
+    "visual_scope": "Two mod-authored sword techniques reuse existing own-rig actions20 (Masamune) and21 (Crescent Arc). Every referenced body/weapon motion is present. Not bespoke choreography, Octaslash, Supernova, or an imported limit effect. Fine balance is deferred.",
+    "attacks": "Release IDs96 (bit0, power48, single target0x13) and97 (bit1, power32, all targets0x17) in native /16 physical formula; reserved IDs98..102 stay original FF entries for future techniques. No MP cost, element/status/additional effect. Damage formula0x11, external effectFF, default cameraFFFF. Names/descriptions and attack records authored in code; no owned asset bytes committed."
+  },
+  "functions": {
+    "0x80015afc": {
+      "image": "EXE",
+      "end": 2147572548,
+      "sha256": "b3a576f1168c4b55fc39c607cf6b59b75552357268e7214cdd0b661dc22d509c"
+    },
+    "0x801b17cc": {
+      "image": "BATRES",
+      "end": 2149259580,
+      "sha256": "4087a5b955029b1462b6a85acb9afab72b3cbdd453af88dbdfa3bfc6da6f2557"
+    },
+    "0x801d11a8": {
+      "image": "LIMTMENU",
+      "end": 2149389088,
+      "sha256": "3cae8a41e9f31c5e828be0d326dbcddd93a561b27cb4abb1705eb93952056e87"
+    },
+    "0x801b08c0": {
+      "image": "BATINI",
+      "end": 2149256968,
+      "sha256": "03c694faff8a0bc8050dd4a45f81012cb3395178e8047ebfe5e269f02fca8f4a"
+    },
+    "0x800a778c": {
+      "image": "BATTLE",
+      "end": 2148169804,
+      "sha256": "58a70b4e6fa548968ab33adcab13487ba3e73e332aaf869e002727265699e641"
+    },
+    "0x800a79cc": {
+      "image": "BATTLE",
+      "end": 2148171996,
+      "sha256": "cec08c671f69a1a455dc2c58bd8f486ae948904e55f2d0d589a5f10259fe5450"
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "oracles": [
+    {
+      "schema": 1,
+      "disc": "SCUS_941.63",
+      "checksum_cases": [
+        19741,
+        19092,
+        39078,
+        34062,
+        19398,
+        11896,
+        34135,
+        61654
+      ],
+      "preview_cases": [
+        {
+          "guest": 0,
+          "hooks": 1
+        },
+        {
+          "guest": 7,
+          "hooks": 1
+        },
+        {
+          "guest": 11,
+          "hooks": 1
+        }
+      ],
+      "load_transition_cases": [
+        {
+          "mode": "success",
+          "branch": "0x801d49b0",
+          "restorations": 1,
+          "native_initializations": 0,
+          "bios_calls": 4
+        },
+        {
+          "mode": "native_success",
+          "branch": "0x801d49b0",
+          "restorations": 0,
+          "native_initializations": 1,
+          "bios_calls": 4
+        },
+        {
+          "mode": "crc_failure",
+          "branch": "0x801d4990",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 4
+        },
+        {
+          "mode": "open_failure",
+          "branch": "0x801d49dc",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 2
+        },
+        {
+          "mode": "read_error_return",
+          "branch": "0x801d49dc",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 0
+        },
+        {
+          "mode": "premature_restore_regression",
+          "branch": "0x801d4990",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 4
+        }
+      ],
+      "scope": "Original SAVEMENU checksum, full preview, full native file-to-map copy and caller CRC success/error routes with production load callback; filename-stack contract checked; BIOS I/O stubbed; live title-to-field transition requires separate acceptance"
+    },
+    {
+      "schema": 1,
+      "disc": "SCUS_941.64",
+      "checksum_cases": [
+        19741,
+        19092,
+        39078,
+        34062,
+        19398,
+        11896,
+        34135,
+        61654
+      ],
+      "preview_cases": [
+        {
+          "guest": 0,
+          "hooks": 1
+        },
+        {
+          "guest": 7,
+          "hooks": 1
+        },
+        {
+          "guest": 11,
+          "hooks": 1
+        }
+      ],
+      "load_transition_cases": [
+        {
+          "mode": "success",
+          "branch": "0x801d49b0",
+          "restorations": 1,
+          "native_initializations": 0,
+          "bios_calls": 4
+        },
+        {
+          "mode": "native_success",
+          "branch": "0x801d49b0",
+          "restorations": 0,
+          "native_initializations": 1,
+          "bios_calls": 4
+        },
+        {
+          "mode": "crc_failure",
+          "branch": "0x801d4990",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 4
+        },
+        {
+          "mode": "open_failure",
+          "branch": "0x801d49dc",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 2
+        },
+        {
+          "mode": "read_error_return",
+          "branch": "0x801d49dc",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 0
+        },
+        {
+          "mode": "premature_restore_regression",
+          "branch": "0x801d4990",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 4
+        }
+      ],
+      "scope": "Original SAVEMENU checksum, full preview, full native file-to-map copy and caller CRC success/error routes with production load callback; filename-stack contract checked; BIOS I/O stubbed; live title-to-field transition requires separate acceptance"
+    },
+    {
+      "schema": 1,
+      "disc": "SCUS_941.65",
+      "checksum_cases": [
+        19741,
+        19092,
+        39078,
+        34062,
+        19398,
+        11896,
+        34135,
+        61654
+      ],
+      "preview_cases": [
+        {
+          "guest": 0,
+          "hooks": 1
+        },
+        {
+          "guest": 7,
+          "hooks": 1
+        },
+        {
+          "guest": 11,
+          "hooks": 1
+        }
+      ],
+      "load_transition_cases": [
+        {
+          "mode": "success",
+          "branch": "0x801d49b0",
+          "restorations": 1,
+          "native_initializations": 0,
+          "bios_calls": 4
+        },
+        {
+          "mode": "native_success",
+          "branch": "0x801d49b0",
+          "restorations": 0,
+          "native_initializations": 1,
+          "bios_calls": 4
+        },
+        {
+          "mode": "crc_failure",
+          "branch": "0x801d4990",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 4
+        },
+        {
+          "mode": "open_failure",
+          "branch": "0x801d49dc",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 2
+        },
+        {
+          "mode": "read_error_return",
+          "branch": "0x801d49dc",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 0
+        },
+        {
+          "mode": "premature_restore_regression",
+          "branch": "0x801d4990",
+          "restorations": 0,
+          "native_initializations": 0,
+          "bios_calls": 4
+        }
+      ],
+      "scope": "Original SAVEMENU checksum, full preview, full native file-to-map copy and caller CRC success/error routes with production load callback; filename-stack contract checked; BIOS I/O stubbed; live title-to-field transition requires separate acceptance"
+    }
+  ],
+  "limits": "Original-MIPS execution and isolated C tests; live gameplay/card/story acceptance is documented separately. No game assets or saves are distributed.",
+  "load_fix": {
+    "cause": "Old2134 callback changed native active/stored party bytes before caller4978 checksum/4988 comparison, sending valid extended saves to the native checksum error branch",
+    "seam": "801D49B0=0C074AD6; success only, after native checksum equality and before next call",
+    "filename": "callerSP-0x30:1F40 frame0x68 plus local0x38; only intervening checksum leaf1950 uses no stack",
+    "validation": "Three owner discs: extended success, standard success, corrupt checksum, BIOS open error, native file-read error return, and old premature-mutation regression; all GPRs preserved; stored native CRC unchanged; BIOS device I/O is stubbed",
+    "runtime_status": "Integrated in native generation and Release runtime. Fresh live extended-card title-to-field load restores own level51/EXP320470, HP814/3315, MP460/531, equipment/materia and active/stored parties after native CRC success."
+  },
+  "live": {
+    "native_bios_save": "Original SAVEMENU completed; 131072-byte base plus288-byte extension; native slot checksum validates.",
+    "standard_export": "Explicit standalone export equals native base byte-for-byte; exported card also loads through title into field.",
+    "extended_reload": "Fresh runtime title-to-field load passes after moving restoration to checksum-success branch49B0.",
+    "limitations": "Diagnostic PHS/save permissions in opening scene; live rewind during saving, later story and disc switching remain acceptance."
+  },
+  "preview_read": "SAVEMENU 1D40 seam 0x801D1F1C (identical SAVEMENU on discs 1-3): after the original header copy, a slot with bound expanded metadata restores only the list-cache party positions held by registered extras to their guest handles; native positions, the card and native slots are unchanged. Unit-tested (card mismatch, unbound name, restore) and live: fresh-boot title LOAD list shows Cloud/Vincent/Sephiroth for the extended slot."
+}

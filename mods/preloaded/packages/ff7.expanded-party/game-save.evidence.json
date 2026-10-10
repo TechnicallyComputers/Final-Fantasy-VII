@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "basis": "owner NTSC-U original SAVEMENU bytes",
+  "sha256": "c27f3e4655629f29be2678d7c49f3daeed9a82021dbce379dd7ce8cecf3de04a",
+  "base": 2149384192,
+  "sites": [
+    {
+      "address": 2149392156,
+      "action": "PREVIEW_READ",
+      "expected": 4129,
+      "guard": [
+        619118608,
+        2294415363,
+        2562850816,
+        0,
+        2833383427,
+        3101818880,
+        4129,
+        2411659368,
+        2410872932,
+        2410807392,
+        2410741852,
+        2410676312,
+        666697840
+      ]
+    },
+    {
+      "address": 2149393100,
+      "action": "PREVIEW_OFFSET",
+      "expected": 1081472,
+      "guard": [
+        2295841,
+        2418343936,
+        872546559,
+        279052331,
+        360768,
+        33914913,
+        1081472,
+        612696156,
+        201803900,
+        33892385,
+        1006731274,
+        606193465,
+        3147809
+      ]
+    },
+    {
+      "address": 2149394688,
+      "action": "PREPARE",
+      "expected": 1006731270,
+      "guard": [
+        619118608,
+        2294415363,
+        2562850816,
+        0,
+        2833383427,
+        3101818880,
+        1006731270,
+        2686463385,
+        34849,
+        605224959,
+        39854113,
+        201394888,
+        872742913
+      ]
+    },
+    {
+      "address": 2149394964,
+      "action": "FINISHED",
+      "expected": 2411659808,
+      "guard": [
+        33562657,
+        134695557,
+        872546307,
+        201394900,
+        33562657,
+        4129,
+        2411659808,
+        2410873372,
+        2410807832,
+        2410742292,
+        2410676752,
+        666698280,
+        65011720
+      ]
+    },
+    {
+      "address": 2149403056,
+      "action": "LOADED",
+      "expected": 201804502,
+      "guard": [
+        201804502,
+        872677379,
+        1006927902,
+        612643160,
+        134697598,
+        10273,
+        201804502,
+        872677584,
+        1006927882,
+        2491733950,
+        872546306,
+        1006731294,
+        2887925076
+      ]
+    },
+    {
+      "address": 2147556796,
+      "action": "NEW_GAME",
+      "expected": 201344749,
+      "guard": [
+        201347661,
+        0,
+        201365654,
+        0,
+        201379492,
+        0,
+        201344749,
+        0,
+        201365540,
+        638910404,
+        2463105024,
+        201380092,
+        839909631
+      ]
+    }
+  ],
+  "load_function_hashes": [
+    {
+      "start": 2149392192,
+      "end_exclusive": 2149392720,
+      "sha256": "c77a9857d5c1a65abd46af64ceb73e18d5ff8c35050bee6edeb66da844942260"
+    },
+    {
+      "start": 2149390672,
+      "end_exclusive": 2149390788,
+      "sha256": "036611c63ae8331858740efbcdeb1e719068be74894cfe31eccd80d00061ceaa"
+    },
+    {
+      "start": 2149399216,
+      "end_exclusive": 2149403704,
+      "sha256": "76e66f8d81aade342772b60741f5c3a82d632772161df1d1e3a8f7d9530c971f"
+    }
+  ],
+  "new_game": {
+    "address": 2147556796,
+    "boot": "SCUS_941.63",
+    "sha256": "5ea17f96e634a408151cdaa4c5c9c338a329971ca9ad479e22f14218cb79baa5",
+    "basis": "Title result1 only, after native kernel/settings/party reset; field-party.evidence.json"
+  },
+  "checksum": {
+    "start": 2149390672,
+    "end_exclusive": 2149390788,
+    "bytes": 4336,
+    "polynomial": "0x1021",
+    "initial": "0xFFFF",
+    "complement": true
+  },
+  "lifecycle": {
+    "outgoing_file": "0x801E6F38",
+    "native_map": "0x8009C6E4",
+    "file_bytes": 8192,
+    "map_bytes": 4340,
+    "map_offset": 512,
+    "identity": "exact bu00/bu10 filename and one-block allocated directory",
+    "publish": "full packet equality; never attach metadata to a partial packet",
+    "load_success": {
+      "address": 2149403056,
+      "expected": 201804502,
+      "filename": "caller SP-0x30",
+      "basis": "1F40 frame0x68, filename+0x38;1950 checksum is stackless;4988 native CRC equality branches to49B0; error/file failures do not reach this seam; restore before2B58 can overwrite old frame"
+    },
+    "rewind": "pending packet and payload in snapshot-owned Enhancement1"
+  },
+  "preview_read": {
+    "address": 2149392156,
+    "function": 2149391680,
+    "cache": "0x801E3864+84*(s2&15)",
+    "filename": "SP+0x38",
+    "basis": "1D40 opens bu00/bu10 file s2, copies its 0x54-byte header to the list cache and reaches1F1C only on success; party preview bytes5..7 hold the native fallback for an extended slot"
+  }
+}

@@ -17,6 +17,11 @@
 #define func_80011C1C main  /* alias */
 /* hook=true — listed in game.toml mod_function_entry_funcs */
 
+/* confirmed: Original kernel text lookup; owned-disc limit menu/name/description oracles and full function hash in limit.evidence.json. Guarded extra-character filter handles reserved mod limit IDs only. */
+#define PSX_FN_SystemMenuGetKernelText 0x80015248u
+#define func_80015248 SystemMenuGetKernelText  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
+
 /* contextual: decompression entry; fires on asset unpack [ff7-decomp 24a46a990dcc] */
 #define PSX_FN_Unzip 0x80017108u
 #define func_80017108 Unzip  /* alias */
@@ -36,15 +41,17 @@
 #define func_80025040 SnapshotPartyLevels  /* alias */
 /* hook=true — listed in game.toml mod_function_entry_funcs */
 
-/* contextual: ff7-decomp 24a46a990dcc (main) */
+/* confirmed: Original 29-word leaf independently executed in Unicorn; stock a0 is party-slot0..2, result armor-table+36*armorID. Full-body guard in ff7_party_access.c. */
 #define PSX_FN_GetPartySlotArmorMateriaSlots 0x80025668u
 #define func_80025668 GetPartySlotArmorMateriaSlots  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
-/* contextual: ff7-decomp 24a46a990dcc (main) */
+/* confirmed: Original 31-word leaf independently executed in Unicorn; stock a0 is party-slot0..2, result weapon-table+44*weaponID. Full-body guard in ff7_party_access.c. */
 #define PSX_FN_GetPartySlotWeaponMateriaSlots 0x800256DCu
 #define func_800256DC GetPartySlotWeaponMateriaSlots  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
-/* contextual: character name lookup; fires from menus [ff7-decomp 24a46a990dcc] */
+/* confirmed: Original 13-word leaf independently executed in Unicorn, every GPR and return PC verified. Native ID10 aliases Vincent storage. See access.evidence.json. */
 #define PSX_FN_GetCharacterName 0x800257CCu
 #define func_800257CC GetCharacterName  /* alias */
 /* hook=true — listed in game.toml mod_function_entry_funcs */
@@ -223,9 +230,10 @@
 #define PSX_FN_SystemCdromReadChain 0x80034B44u
 #define func_80034B44 SystemCdromReadChain  /* alias */
 
-/* contextual: ff7-decomp 24a46a990dcc (main) */
+/* confirmed: Original NTSC-U MIPS independently executed in Unicorn: 600 streams match host decoder output and every GPR; code word hash 176b8b96. */
 #define PSX_FN_SystemLzsDecompress 0x80034BB0u
 #define func_80034BB0 SystemLzsDecompress  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: ff7-decomp 24a46a990dcc (main) */
 #define PSX_FN_ChangeClearSIO 0x80034CE8u
@@ -2345,12 +2353,16 @@
  *       psx_mod_register_function_entry_plugin("id", addr, cb);
  *   PSX_FN_HOOK_LIST(REG)
  */
-#define PSX_FN_HOOK_COUNT 7
+#define PSX_FN_HOOK_COUNT 11
 #define PSX_FN_HOOK_LIST(X) \
     X(main, 0x80011C1Cu) \
+    X(SystemMenuGetKernelText, 0x80015248u) \
     X(Unzip, 0x80017108u) \
     X(SetupGamepad, 0x8001C434u) \
     X(SnapshotPartyLevels, 0x80025040u) \
+    X(GetPartySlotArmorMateriaSlots, 0x80025668u) \
+    X(GetPartySlotWeaponMateriaSlots, 0x800256DCu) \
     X(GetCharacterName, 0x800257CCu) \
     X(SystemMenuRemovePartyGold, 0x80025B10u) \
-    X(SystemMenuAddPartyGold, 0x80025B48u)
+    X(SystemMenuAddPartyGold, 0x80025B48u) \
+    X(SystemLzsDecompress, 0x80034BB0u)

@@ -1,0 +1,326 @@
+{
+  "schema": "ff7 expanded party research v1",
+  "runtime_gameplay_enabled": false,
+  "program_identity": "a95e8b16b97071203b953bb81a33980509262f30",
+  "disc_coverage": "All three NTSC-U discs have byte-identical inspected executable/menu/battle images.",
+  "verified_storage": {
+    "alias_table_address": "0x800491D0",
+    "alias_records": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      6,
+      7
+    ],
+    "name_lookup_address": "0x800257CC",
+    "name_lookup_words": [
+      "0x00042080",
+      "0x3C018005",
+      "0x242191D0",
+      "0x00240821",
+      "0x8C230000",
+      "0x00000000",
+      "0x00031140",
+      "0x00431021",
+      "0x00021080",
+      "0x3C03800A",
+      "0x2463C748",
+      "0x03E00008",
+      "0x00431021"
+    ],
+    "name_formula": "0x8009C748 + 132 * alias[guest_character_id]",
+    "sephiroth_and_vincent_share_native_record": true,
+    "portrait_file_exists": true,
+    "kernel_initial_record_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      9,
+      10,
+      8
+    ],
+    "kernel_initial_data_sha256": "7da3e70d823380ca8578bc464047bd24bdcea5b7dc4b0e3ddb5c6e842f60a98e",
+    "sephiroth_template_offset_in_initial_data": 924,
+    "sephiroth_template_sha256": "8bff25bd7f346f5a1dda74526960e7f29856d784c9e9186890c9d1fd3288db99",
+    "kernel_character_ai_table_offset": "0x061C",
+    "sephiroth_ai_header_offset": "0x0ACE",
+    "sephiroth_ai_script_offsets": [
+      32,
+      73,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535,
+      65535
+    ],
+    "battle_model_file": "ENEMY6/SEFIROS.LZS",
+    "battle_model_sha256": "7e3a94d9b338c5038c947c77669699ddf19d6f0466008a9bfabd158cc819b785"
+  },
+  "images": {
+    "SCUS_941.63": {
+      "sha256": "5ea17f96e634a408151cdaa4c5c9c338a329971ca9ad479e22f14218cb79baa5",
+      "decoded_sha256": "7c2e9bacbb914200e7dfaa1972886aebeb258ab8db4c24548d18b319b849d7c8",
+      "load_base": "0x80010000"
+    },
+    "MENU/FORMMENU.MNU": {
+      "sha256": "6412f26cbb4ad5df677caf7d29716d62b2b184fcb266bdb2cf05ad73c555a074",
+      "decoded_sha256": "6412f26cbb4ad5df677caf7d29716d62b2b184fcb266bdb2cf05ad73c555a074",
+      "load_base": "0x801D0000"
+    },
+    "MENU/EQIPMENU.MNU": {
+      "sha256": "433e448de0a5908239df6e50e741fc96e2381a42a0112ce781de9ecf318f8759",
+      "decoded_sha256": "433e448de0a5908239df6e50e741fc96e2381a42a0112ce781de9ecf318f8759",
+      "load_base": "0x801D0000"
+    },
+    "MENU/MGICMENU.MNU": {
+      "sha256": "d29856358872b51e2e2256e403d2cba4628523c02e1846e17e3352b10011636d",
+      "decoded_sha256": "d29856358872b51e2e2256e403d2cba4628523c02e1846e17e3352b10011636d",
+      "load_base": "0x801D0000"
+    },
+    "BATTLE/BATTLE.X": {
+      "sha256": "0ac8e4297dd83226e18ebeffc20d1c372fd8ca7838c1edb7ec48138858f08e88",
+      "decoded_sha256": "94a0c251c98197a6b902068082180ce244a8b4ecd93792298816a486880a2e7b",
+      "load_base": "0x800A0000"
+    }
+  },
+  "sites": [
+    {
+      "file": "SCUS_941.63",
+      "pc": "0x800257CC",
+      "words": [
+        "0x00042080",
+        "0x3C018005",
+        "0x242191D0",
+        "0x00240821",
+        "0x8C230000",
+        "0x00000000",
+        "0x00031140",
+        "0x00431021",
+        "0x00021080",
+        "0x3C03800A",
+        "0x2463C748",
+        "0x03E00008",
+        "0x00431021"
+      ],
+      "observation": "Name resolver: v0 = 0x8009C748 + 132 * alias[a0]. Function filter can return expanded record + 0x10 for an explicitly bound host Sephiroth. Guest ID10 alone cannot distinguish the original flashback.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "SCUS_941.63",
+      "pc": "0x800256B4",
+      "words": [
+        "0x90230000"
+      ],
+      "observation": "Armor ID load at native record + 0x1D. a0 still carries active party slot; guarded final effective address redirection can use independent record.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "SCUS_941.63",
+      "pc": "0x80025728",
+      "words": [
+        "0x90230000"
+      ],
+      "observation": "Weapon ID load at native record + 0x1C. a0 still carries active party slot.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "SCUS_941.63",
+      "pc": "0x800258B0",
+      "words": [
+        "0xA4230000"
+      ],
+      "observation": "Native record + 0x2C write after current-HP operation. Must redirect writes as well as name/equipment reads.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/FORMMENU.MNU",
+      "pc": "0x801D0C5C",
+      "words": [
+        "0x2A020009"
+      ],
+      "observation": "PHS initialization recalculates nine stock character IDs through temporary active slot0. Increasing this loop alone is unsafe.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/FORMMENU.MNU",
+      "pc": "0x801D0DFC",
+      "words": [
+        "0x2A020009"
+      ],
+      "observation": "PHS reserve enumeration limit9. Reserve grid at0x801D3424 has9 bytes, enough for one extra member if stock active party has three.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/FORMMENU.MNU",
+      "pc": "0x801D0E08",
+      "words": [
+        "0x8FBF004C"
+      ],
+      "observation": "Post reserve enumeration seam. Candidate point to append presentation ID10 into a free reserve cell after native visibility filtering, provided host member is unlocked and absent from active party.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/FORMMENU.MNU",
+      "pc": "0x801D18D8",
+      "words": [
+        "0x3C018005",
+        "0x242191D0",
+        "0x00220821",
+        "0x8C300000"
+      ],
+      "observation": "Alias-derived index is used for portrait tile arithmetic, proving alias table is NOT exclusively a character-record storage map.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/EQIPMENU.MNU",
+      "pc": "0x801D6CD0",
+      "words": [
+        "0xAC22F6C4",
+        "0x3C01800A",
+        "0x2421CBDC",
+        "0x00240821",
+        "0x90220000",
+        "0x3C048006",
+        "0x8C842F58",
+        "0x00021080",
+        "0x3C018005",
+        "0x242191D0",
+        "0x00220821",
+        "0x8C230000",
+        "0x3C02800A",
+        "0x2442C738",
+        "0x3C01801E",
+        "0xAC22F6C0",
+        "0x3C01801E",
+        "0xAC238B0C"
+      ],
+      "observation": "Selected-slot setup sets global record base0x801EF6C0 and aliased index0x801E8B0C; active-slot selector lives at0x801EF6B0.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/EQIPMENU.MNU",
+      "pc": "0x801D6D0C",
+      "words": [
+        "0xAC22F6C0"
+      ],
+      "observation": "Candidate pre-store redirect: when selected host member is Sephiroth, set v0=expanded_record_address-132*v1. Cached record index remains unchanged. Does not cover other hardcoded record accesses.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/EQIPMENU.MNU",
+      "pc": "0x801D0740",
+      "words": [
+        "0x90230000"
+      ],
+      "observation": "Hardcoded weapon read still bypasses cached record base; requires independent redirection based on selected member.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/EQIPMENU.MNU",
+      "pc": "0x801D0778",
+      "words": [
+        "0x90230000"
+      ],
+      "observation": "Hardcoded armor read still bypasses cached record base; requires independent redirection based on selected member.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/EQIPMENU.MNU",
+      "pc": "0x801D7770",
+      "words": [
+        "0x146201DA"
+      ],
+      "observation": "Explicit branch on active guest ID10; behavior must be traced before changing. Do not remove every comparison to10: some are command/item IDs.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/MGICMENU.MNU",
+      "pc": "0x801D1BD4",
+      "words": [
+        "0x90220000"
+      ],
+      "observation": "Hardcoded record + 1 level read used by menu healing path. Final effective address adapter required.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "MENU/MGICMENU.MNU",
+      "pc": "0x801D1C6C",
+      "words": [
+        "0x10620007"
+      ],
+      "observation": "Explicit guest ID10 branch around MP adjustment; stock Sephiroth behavior differs from normal party members.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "BATTLE/BATTLE.X",
+      "pc": "0x800DD654",
+      "words": [
+        "0x00431021",
+        "0x3C01800F",
+        "0xAC2255D4"
+      ],
+      "observation": "Builds a native character-name pointer and stores it into0x800F55D4. a1 identifies the active party slot earlier in the straight-line block.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    },
+    {
+      "file": "BATTLE/BATTLE.X",
+      "pc": "0x800E350C",
+      "words": [
+        "0x90220000"
+      ],
+      "observation": "Reads native record+0x0E through a hardcoded base after party-ID alias lookup. Final effective address adapter required.",
+      "validation": "original-disc static instruction analysis; not gameplay validated"
+    }
+  ],
+  "unimplemented": [
+    "Live host-to-guest actor binding distinct from stock flashback Sephiroth",
+    "PHS selection and portrait load/draw adapters",
+    "All native character-record reads/writes including derived battle stats and rewards",
+    "Battle AI suppression scoped to added actor, leaving scripted flashback intact",
+    "Equipment compatibility masks and materia inventory transfer/recalculation",
+    "Character growth/limit selection independent of Vincent",
+    "Full model/animation command compatibility, custom missing animations and moves",
+    "Gameplay save-slot population, native fallback projection and savestate/rewind reconciliation (appended card transport/codec/export now implemented)",
+    "Story forced-party transitions and three-disc gameplay validation"
+  ],
+  "references": [
+    {
+      "url": "https://forums.qhimm.com/index.php?topic=12179.0",
+      "use": "Original mod author reports removing Sephiroth character AI makes him controllable and mortal; lead requiring independent runtime validation."
+    },
+    {
+      "url": "https://ff7-mods.github.io/ff7-flat-wiki/FF7/Battle_and_growth_data.html",
+      "use": "Kernel section3 structural AI-table offsets; checked against original disc."
+    },
+    {
+      "url": "https://ff7-mods.github.io/ff7-flat-wiki/FF7/Savemap.html",
+      "use": "Character-record and save field offsets; alias arithmetic independently checked in executable."
+    },
+    {
+      "url": "https://github.com/Akari1982/q-gears_reverse",
+      "use": "Located as reverse-engineering resource. No license visible at repository root; code not read or imported."
+    },
+    {
+      "url": "https://github.com/Drahsid/ffvii",
+      "use": "Located archived matching decomp repository; code not read or imported."
+    }
+  ]
+}

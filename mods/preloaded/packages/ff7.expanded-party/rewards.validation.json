@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "scope": "Original owner-disc MIPS with production C adapter, isolated oracle; not live gameplay acceptance",
+  "strict_c_adapter_tests": "passed",
+  "production_header_compile": "passed",
+  "disc_reports": [
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "cases": [
+        "30 complete original growth differentials: rows0/7/8, proxies11/26, XP0..999999999, caps99/9999/999",
+        "6 original active-award phases: Cloud/Vincent/extra, award exactly once, death/petrify exclusion, kills, AP argument routing",
+        "complete reserve half-XP loop for1/16 extras; active extra excluded, native unavailable records untouched",
+        "whole HP/MP/status/limit-meter writeback and flagged132-byte backup restore for proxies11/26 alongside Cloud/Vincent"
+      ],
+      "status": "passed",
+      "limits": "Isolated original-MIPS oracle; AP implementation covered by resident module; live results UI and gameplay acceptance pending"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "cases": [
+        "30 complete original growth differentials: rows0/7/8, proxies11/26, XP0..999999999, caps99/9999/999",
+        "6 original active-award phases: Cloud/Vincent/extra, award exactly once, death/petrify exclusion, kills, AP argument routing",
+        "complete reserve half-XP loop for1/16 extras; active extra excluded, native unavailable records untouched",
+        "whole HP/MP/status/limit-meter writeback and flagged132-byte backup restore for proxies11/26 alongside Cloud/Vincent"
+      ],
+      "status": "passed",
+      "limits": "Isolated original-MIPS oracle; AP implementation covered by resident module; live results UI and gameplay acceptance pending"
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "cases": [
+        "30 complete original growth differentials: rows0/7/8, proxies11/26, XP0..999999999, caps99/9999/999",
+        "6 original active-award phases: Cloud/Vincent/extra, award exactly once, death/petrify exclusion, kills, AP argument routing",
+        "complete reserve half-XP loop for1/16 extras; active extra excluded, native unavailable records untouched",
+        "whole HP/MP/status/limit-meter writeback and flagged132-byte backup restore for proxies11/26 alongside Cloud/Vincent"
+      ],
+      "status": "passed",
+      "limits": "Isolated original-MIPS oracle; AP implementation covered by resident module; live results UI and gameplay acceptance pending"
+    }
+  ]
+}

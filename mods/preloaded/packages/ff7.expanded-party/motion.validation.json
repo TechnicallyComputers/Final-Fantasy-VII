@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "status": "passed-original-code-oracles",
+  "runtime_status": "Integrated in Release runtime and battle tests; native config regenerated with 653 guarded sites; all 17 CTests passed. Fresh live boot/NewGame initialization passed; motion visual review pending.",
+  "strict_codec_unit": "passed",
+  "strict_battle_adapter_unit": "passed",
+  "real_framework_header_compile": "passed",
+  "disc_reports": [
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 1).cue",
+      "status": "passed",
+      "cases": [
+        "180 generated root matrices match original resident RotMatrix8003BF8C under common body/weapon world roll; maximum coefficient error 8.362/4096",
+        "270 whole CD400 calls/540 paired decoded frames across all3 battle slots: generated low-HP,death,guard poses match every original decoder position/rotation; independent source staging unchanged",
+        "Whole original queue800A3D4C sets Defend0x13 flag and clears it for next Attack; two guarded decoder seams select paired guard and reset both cursors on return to idle",
+        "Whole original action interpreterC7C4C selects generated motion1 for low-HP action1 and generated motion15 for death action2; all30 frames execute and F1 holds final death pose",
+        "Original idle-action interpreter plus actual queued Defend selects the new guard for20 paired frames without assigning a fictitious defend action",
+        "Native flashback identity10 remains byte-for-byte original",
+        "Generated guest bytes/cursors/selected role restore with RAM snapshot; corrupt source or decoder guard leaves original model and trailing allocation canary unchanged"
+      ],
+      "limits": [
+        "Procedural root roll and paired own-pose synthesis require live visual review for floor contact,weapon grip and cloth",
+        "No authored kneeling,ragdoll,cloth simulation or custom limit effects claimed"
+      ]
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 2).cue",
+      "status": "passed",
+      "cases": [
+        "180 generated root matrices match original resident RotMatrix8003BF8C under common body/weapon world roll; maximum coefficient error 8.362/4096",
+        "270 whole CD400 calls/540 paired decoded frames across all3 battle slots: generated low-HP,death,guard poses match every original decoder position/rotation; independent source staging unchanged",
+        "Whole original queue800A3D4C sets Defend0x13 flag and clears it for next Attack; two guarded decoder seams select paired guard and reset both cursors on return to idle",
+        "Whole original action interpreterC7C4C selects generated motion1 for low-HP action1 and generated motion15 for death action2; all30 frames execute and F1 holds final death pose",
+        "Original idle-action interpreter plus actual queued Defend selects the new guard for20 paired frames without assigning a fictitious defend action",
+        "Native flashback identity10 remains byte-for-byte original",
+        "Generated guest bytes/cursors/selected role restore with RAM snapshot; corrupt source or decoder guard leaves original model and trailing allocation canary unchanged"
+      ],
+      "limits": [
+        "Procedural root roll and paired own-pose synthesis require live visual review for floor contact,weapon grip and cloth",
+        "No authored kneeling,ragdoll,cloth simulation or custom limit effects claimed"
+      ]
+    },
+    {
+      "disc": "Final Fantasy VII (USA) (Disc 3).cue",
+      "status": "passed",
+      "cases": [
+        "180 generated root matrices match original resident RotMatrix8003BF8C under common body/weapon world roll; maximum coefficient error 8.362/4096",
+        "270 whole CD400 calls/540 paired decoded frames across all3 battle slots: generated low-HP,death,guard poses match every original decoder position/rotation; independent source staging unchanged",
+        "Whole original queue800A3D4C sets Defend0x13 flag and clears it for next Attack; two guarded decoder seams select paired guard and reset both cursors on return to idle",
+        "Whole original action interpreterC7C4C selects generated motion1 for low-HP action1 and generated motion15 for death action2; all30 frames execute and F1 holds final death pose",
+        "Original idle-action interpreter plus actual queued Defend selects the new guard for20 paired frames without assigning a fictitious defend action",
+        "Native flashback identity10 remains byte-for-byte original",
+        "Generated guest bytes/cursors/selected role restore with RAM snapshot; corrupt source or decoder guard leaves original model and trailing allocation canary unchanged"
+      ],
+      "limits": [
+        "Procedural root roll and paired own-pose synthesis require live visual review for floor contact,weapon grip and cloth",
+        "No authored kneeling,ragdoll,cloth simulation or custom limit effects claimed"
+      ]
+    }
+  ],
+  "synthesis": {
+    "owner_asset": "ENEMY6/SEFIROS.LZS; generated only at runtime from CRC-verified owned model",
+    "low_hp": "30-frame slight whole-body lean and breathing from own idle frame0",
+    "death": "30-frame smooth rigid sideways collapse from own idle frame0; final pose held by original F1",
+    "defend": "30-frame breathing brace from own evade motion5/frame4; selected only for actual Defend flag while idle",
+    "pairing": "Identical world transform of each original body/weapon root, original Rx*Ry*Rz rotation convention independently tested",
+    "storage": "Three8192-byte generated-motion arenas plus16-byte guest control per slot; total24624 bytes from framework allocator; original0xF000 model allocations unchanged",
+    "artist_review": "First procedural motions, not authored character acting. Review floor contact,body posture,Masamune grip and clipping; no cloth simulation,ragdoll or limit choreography."
+  },
+  "integration": {
+    "runtime_sources": [
+      "src/ff7_party_motion.c",
+      "src/ff7_party_motion_runtime.c"
+    ],
+    "unit_sources": [
+      "tests/test_ff7_party_motion.c",
+      "src/ff7_party_motion.c"
+    ],
+    "battle_unit_additional_sources": [
+      "src/ff7_party_motion.c",
+      "src/ff7_party_motion_runtime.c"
+    ],
+    "extra_instruction_sites": [
+      "0x800CD458",
+      "0x800CD4CC"
+    ],
+    "unix_link": "Link libm for math functions when required by toolchain",
+    "lifecycle": "ff7_party_battle_init/restore own motion module; immutable shared profile.motion_policy selects descriptor; no game API/header changes needed"
+  },
+  "live": {
+    "checkpoint": "6bd77f4",
+    "passed": [
+      "Actual Defend flag selects paired brace",
+      "Low HP selects own leaning idle",
+      "Enemy hit kills mortal extra; paired floor collapse holds",
+      "Cloud Phoenix Down consumes inventory and revives extra"
+    ],
+    "limitations": "Procedural rigid pose synthesis; artist review for grip/clipping/floor contact remains. No cloth simulation or bespoke limit effects."
+  }
+}

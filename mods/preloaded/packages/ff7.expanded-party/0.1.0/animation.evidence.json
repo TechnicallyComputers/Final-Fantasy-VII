@@ -1,0 +1,654 @@
+{
+  "schema": 1,
+  "status": "developer-only-static-evidence",
+  "sources": [
+    "https://wiki.ffrtt.ru/index.php/FF7/Playstation_Battle_Model_Format",
+    "https://forums.qhimm.com/index.php?topic=14200.0",
+    "https://ff7-mods.github.io/ff7-flat-wiki/FF7/Battle/Battle_Animation/Animation_Script.html",
+    "https://wiki.ffrtt.ru/index.php/FF7/Battle/Battle_Animation_(PC)",
+    "https://forums.qhimm.com/index.php?topic=19266.0"
+  ],
+  "verified_discs": [
+    1,
+    2,
+    3
+  ],
+  "body_bank_slots": 52,
+  "models": {
+    "cloud": {
+      "disc_path": "ENEMY6/CLOUD.LZS",
+      "sha256": "862938c8b47bcd9d9a38a681f9771afe7b47cea956a3a8c91dfb3cc16857fd7d",
+      "decoded_sha256": "7d061faa03d3da87d1cf45af3accdebc1495a3d8a6c31704935a583ffa62af47",
+      "compressed_bytes": 66694,
+      "decoded_bytes": 98364,
+      "section_count": 113,
+      "skeleton_bones": 23,
+      "skeleton_sha256": "b289e6a08a1993d653c98921f722eab3e6225ce4453db710686e23e14a65abaa",
+      "settings_bytes": 1080,
+      "texture_section": 96,
+      "weapon_model_sections": 16,
+      "body_motion_count": 40,
+      "body_placeholders": [
+        11,
+        23,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "motion_validation_errors": [],
+      "body_weapon_frame_mismatches": [],
+      "real_body_motion_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "unavailable_action_ids": [],
+      "unresolved_static_actions": {
+        "60": [
+          44,
+          45,
+          46,
+          47
+        ],
+        "61": [
+          44,
+          45,
+          46,
+          47
+        ],
+        "62": [
+          44
+        ],
+        "63": [
+          44,
+          45,
+          46
+        ],
+        "64": [
+          44
+        ],
+        "65": [
+          44
+        ],
+        "66": [
+          44,
+          45,
+          46
+        ],
+        "68": [
+          45
+        ],
+        "69": [
+          44,
+          45,
+          46,
+          47
+        ]
+      },
+      "full_bitstream_validation": true
+    },
+    "vincent": {
+      "disc_path": "ENEMY6/VINSENT.LZS",
+      "sha256": "cf398c7aeaf910cab10ef296624f1e6c8fedccf854a9736adecdee4677b92a97",
+      "decoded_sha256": "efa55e736f9199dfd707c1119435be9f6a799ff4f3e7795f3f71ab572df4b5ed",
+      "compressed_bytes": 68735,
+      "decoded_bytes": 102336,
+      "section_count": 112,
+      "skeleton_bones": 47,
+      "skeleton_sha256": "2188af8fb88787087421a39180ace69d7da3ff2cb38e67d2d6afe6a8e799ee0f",
+      "settings_bytes": 956,
+      "texture_section": 95,
+      "weapon_model_sections": 16,
+      "body_motion_count": 40,
+      "body_placeholders": [
+        11,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "motion_validation_errors": [],
+      "body_weapon_frame_mismatches": [],
+      "real_body_motion_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "unavailable_action_ids": [],
+      "unresolved_static_actions": {},
+      "full_bitstream_validation": true
+    },
+    "sephiroth": {
+      "disc_path": "ENEMY6/SEFIROS.LZS",
+      "sha256": "7e3a94d9b338c5038c947c77669699ddf19d6f0466008a9bfabd158cc819b785",
+      "decoded_sha256": "fd3bf6ae5825f615ceafa29c3735f4bc6612b77ee30bb672073e14882c652dca",
+      "compressed_bytes": 43264,
+      "decoded_bytes": 98044,
+      "section_count": 102,
+      "skeleton_bones": 47,
+      "skeleton_sha256": "17fdfc1daad64ea36361a22f9cd62347f8aa9bee128afdbe93a90a1a21b2be55",
+      "settings_bytes": 896,
+      "texture_section": 85,
+      "weapon_model_sections": 16,
+      "body_motion_count": 17,
+      "body_placeholders": [
+        1,
+        8,
+        9,
+        10,
+        11,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "motion_validation_errors": [],
+      "body_weapon_frame_mismatches": [],
+      "real_body_motion_ids": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        12,
+        13,
+        14,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "unavailable_action_ids": [
+        51,
+        52,
+        61,
+        62,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73
+      ],
+      "unresolved_static_actions": {
+        "9": [
+          8
+        ],
+        "17": [
+          11
+        ],
+        "18": [
+          11
+        ],
+        "19": [
+          11
+        ],
+        "32": [
+          9
+        ],
+        "33": [
+          10
+        ],
+        "50": [
+          44
+        ],
+        "60": [
+          44
+        ]
+      },
+      "full_bitstream_validation": true
+    }
+  },
+  "sephiroth_roles": {
+    "idle": [
+      {
+        "action_id": 0,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      }
+    ],
+    "near_death": [
+      {
+        "action_id": 1,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      }
+    ],
+    "death": [
+      {
+        "action_id": 2,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      }
+    ],
+    "damage_reactions": [
+      {
+        "action_id": 5,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      },
+      {
+        "action_id": 6,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      },
+      {
+        "action_id": 7,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      }
+    ],
+    "evade": [
+      {
+        "action_id": 8,
+        "motion_ids": [
+          5
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "cover": [
+      {
+        "action_id": 9,
+        "motion_ids": [
+          8
+        ],
+        "unresolved_body_motion_ids": [
+          8
+        ],
+        "idle_only": false
+      }
+    ],
+    "victory": [
+      {
+        "action_id": 12,
+        "motion_ids": [
+          2
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "run": [
+      {
+        "action_id": 13,
+        "motion_ids": [
+          7
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      },
+      {
+        "action_id": 14,
+        "motion_ids": [
+          7
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "attack": [
+      {
+        "action_id": 20,
+        "motion_ids": [
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "slash_all": [
+      {
+        "action_id": 21,
+        "motion_ids": [
+          0,
+          3,
+          4
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "double_cut": [
+      {
+        "action_id": 22,
+        "motion_ids": [
+          26,
+          27,
+          30
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      },
+      {
+        "action_id": 23,
+        "motion_ids": [
+          0,
+          29
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "four_cut": [
+      {
+        "action_id": 24,
+        "motion_ids": [
+          26,
+          27,
+          30
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      },
+      {
+        "action_id": 25,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      },
+      {
+        "action_id": 26,
+        "motion_ids": [
+          0
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": true
+      },
+      {
+        "action_id": 27,
+        "motion_ids": [
+          28,
+          29,
+          30
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "flash": [
+      {
+        "action_id": 28,
+        "motion_ids": [
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "magic": [
+      {
+        "action_id": 29,
+        "motion_ids": [
+          3,
+          4,
+          6,
+          12,
+          13,
+          14
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "enemy_skill": [
+      {
+        "action_id": 30,
+        "motion_ids": [
+          3,
+          4,
+          6,
+          12,
+          13,
+          14
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "summon": [
+      {
+        "action_id": 31,
+        "motion_ids": [
+          3,
+          4,
+          6,
+          12,
+          13,
+          14
+        ],
+        "unresolved_body_motion_ids": [],
+        "idle_only": false
+      }
+    ],
+    "item_variants": [
+      {
+        "action_id": 32,
+        "motion_ids": [
+          3,
+          4,
+          9
+        ],
+        "unresolved_body_motion_ids": [
+          9
+        ],
+        "idle_only": false
+      },
+      {
+        "action_id": 33,
+        "motion_ids": [
+          3,
+          4,
+          10
+        ],
+        "unresolved_body_motion_ids": [
+          10
+        ],
+        "idle_only": false
+      }
+    ]
+  },
+  "candidate_preparation": {
+    "status": "developer-only-needs-visual-and-runtime-review",
+    "source_sha256": "7e3a94d9b338c5038c947c77669699ddf19d6f0466008a9bfabd158cc819b785",
+    "candidate_sha256": "c22e4b149f2bd46b40759e21a8226fe8f0d97b35a899b20ca868adcfb4658444",
+    "source_bytes": 43264,
+    "candidate_bytes": 114952,
+    "body_motion_substitutions": {
+      "8": 5,
+      "9": 12,
+      "10": 12
+    },
+    "weapon_motion_substitutions": {
+      "8": 5,
+      "9": 12,
+      "10": 12
+    },
+    "damage_actions": [
+      5,
+      6,
+      7
+    ],
+    "settings_bytes_changed": [
+      444,
+      448,
+      449,
+      456
+    ],
+    "skeleton_preserved": true,
+    "body_motion_count": 20,
+    "limitations": [
+      "Existing evade gesture substitutes for cover and damage; existing casting gesture substitutes for items.",
+      "No new artistic animation is claimed. Death, near-death, defend, limits and multihit completeness remain unresolved.",
+      "Frame/bitstream validation does not prove animation timing, position, collision, or visual quality in battle.",
+      "Literal LZS is larger than the source. Guest loader allocation limits must be checked before integration.",
+      "Do not replace the stock model globally: the flashback actor must retain its original behavior.",
+      "This candidate is not installed, enabled, or shipped by the mod."
+    ]
+  },
+  "limitations": [
+    "Static scripts do not prove command dispatch or visual correctness.",
+    "Some limit motions are supplied dynamically; a placeholder is not proof a limit is broken.",
+    "Defend dispatch and limit effect/model replacement still require binary tracing.",
+    "Equal bone counts do not establish compatible hierarchy, bind pose, or skinning.",
+    "No animations, scripts, game assets, or guest memory are modified.",
+    "No full controllable-party animation set has been implemented or validated."
+  ],
+  "reproduce": {
+    "inventory": "python tools/inspect_ff7_animations.py \"disc/Final Fantasy VII (USA) (Disc 1).cue\" --output analysis/animations-disc1.json",
+    "candidate": "python tools/inspect_ff7_animations.py \"disc/Final Fantasy VII (USA) (Disc 1).cue\" --output analysis/animations-disc1.json --prepare-fallbacks analysis/sephiroth-animation-candidate",
+    "tests": "Set FF7_TEST_CUE to an owner disc cue, then python -m unittest discover -s tests -p test_ff7_animations.py -v"
+  }
+}
