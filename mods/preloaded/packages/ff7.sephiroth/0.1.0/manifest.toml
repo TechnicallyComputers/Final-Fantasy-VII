@@ -1,0 +1,24 @@
+format_version = 6
+id = "ff7.sephiroth"
+version = "0.1.0"
+name = "Sephiroth"
+author = "Final Fantasy VII Recompiled project"
+description = "Adds Sephiroth as a playable party member with his own stats, equipment, materia and progress."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+# Runs on the shared expanded-party adapters (src/ff7_party*.c). Its
+# developer-only audit and query instruments stay in ff7.expanded-party.
+[[feature]]
+id = "sephiroth"
+name = "Sephiroth"
+channel = "experimental"
+description = "Sephiroth joins as an independent party member: PHS, equipment, materia, menus, battle and EXP/AP work like the original cast. Vincent stays unchanged. Field animations, limits and some story scenes are still in progress. Requires a fresh launch; keep a backup of your memory card."
+group = "Characters"
+default_enabled = false
+
+[[plugin]]
+feature = "sephiroth"
+id = "ff7.party-gameplay"

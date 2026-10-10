@@ -3,7 +3,7 @@ id = "ff7.expanded-party"
 version = "0.1.0"
 name = "Final Fantasy VII Expanded Party Research"
 author = "Final Fantasy VII Recompiled project"
-description = "Experimental independent-character registry with guarded PHS, equipment, materia, battle, progression and extended-save adapters. Full field assets, animations, limits and live gameplay acceptance remain unfinished."
+description = "Developer instruments for the expanded-party adapters. The playable addition is the Sephiroth package (ff7.sephiroth)."
 save_compatibility = "shared"
 
 [[target]]
@@ -32,15 +32,3 @@ default_enabled = false
 [[plugin]]
 feature = "party-access"
 id = "ff7.party-access"
-
-[[feature]]
-id = "party-gameplay"
-name = "Added-character gameplay integration (developer)"
-channel = "developer"
-description = "Experimental guest-owned roster, PHS, equipment/materia, battle, progression and save adapters. Separate records and stable saved identities support future additions. Field assets, complete motions/limits and live gameplay/save acceptance remain under development. Requires a fresh launch; leave disabled for ordinary play."
-group = "Developer"
-default_enabled = false
-
-[[plugin]]
-feature = "party-gameplay"
-id = "ff7.party-gameplay"

@@ -6,8 +6,8 @@ The first 131,072 bytes retain the standard card representation. Exporting a
 standard card copies those bytes exactly and removes the extension.
 
 This document specifies `FF7MCEXT` version 1 and its nested `FF7PARTY` version 3
-payloads. Version 2 full-card payloads remain readable. The developer-only
-`party-gameplay` feature now integrates the guest roster with guarded original
+payloads. Version 2 full-card payloads remain readable. The experimental
+Sephiroth mod (`ff7.sephiroth`, plugin `ff7.party-gameplay`) now integrates the guest roster with guarded original
 SAVEMENU save/load instructions, native fallback projection and the shared card
 extension transport. Pending writes live in snapshot-owned enhancement memory.
 The earlier `party-save` adapter remains a codec test fixture; it is no longer

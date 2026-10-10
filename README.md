@@ -119,9 +119,9 @@ generated streams, two retail assets, and seven streaming-overlap/segment-alias
 cases. The mod has no options. Load pacing and native CD timing are retained:
 accelerated sector bursts produced incomplete actors in the first battle.
 
-**Expanded Party Research** (`ff7.expanded-party`) has an experimental,
-default-off **Added-character gameplay integration** feature (`party-gameplay`).
-Sephiroth is its first registered addition. Stable saved identities and separate
+**Sephiroth** (`ff7.sephiroth`) is an experimental, default-off mod that adds
+Sephiroth as a playable party member. Its developer instruments (storage audit,
+record queries) live in `ff7.expanded-party` and appear only in local builds. Stable saved identities and separate
 guest character records let future additions share assets or rules while owning
 their own stats, equipment, materia and progress. Vincent's record and the
 original flashback aliases remain native.
