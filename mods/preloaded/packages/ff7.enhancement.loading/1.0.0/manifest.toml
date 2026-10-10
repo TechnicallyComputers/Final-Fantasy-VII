@@ -1,0 +1,53 @@
+format_version = 6
+id = "ff7.enhancement.loading"
+version = "1.0.0"
+name = "Final Fantasy VII Fast Loading"
+author = "Final Fantasy VII Recompiled project"
+description = "Host LZS decoding and data-load acceleration with native CD timing."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "fast-loading"
+name = "Fast Loading"
+channel = "experimental"
+description = "Replace FFVII's LZS decoder with a host implementation, and optionally speed up data-loading frames. Streaming movies and XA audio keep their original timing. Other loader and decompression paths still run the game code."
+group = "Quality of Life"
+default_enabled = false
+
+[[option]]
+feature = "fast-loading"
+id = "lzs_hle"
+label = "Host LZS decoder"
+description = "Replace the independently verified retail LZS routine. Overlapping guest buffers retain the original input-read behavior; unsupported inputs retain the original decoder."
+group = "Quality of Life"
+type = "boolean"
+default = "true"
+
+[[option]]
+feature = "fast-loading"
+id = "load_speed"
+label = "Load speed-up"
+description = "Run data-loading frames faster than real time. Off keeps authentic pacing. When on, transitions such as battle entry play visibly faster and their sound is muted until the load ends."
+group = "Quality of Life"
+type = "choice"
+default = "off"
+
+[[option.choice]]
+value = "off"
+label = "Off"
+[[option.choice]]
+value = "2"
+label = "2x"
+[[option.choice]]
+value = "4"
+label = "4x"
+[[option.choice]]
+value = "uncapped"
+label = "Uncapped"
+
+[[plugin]]
+feature = "fast-loading"
+id = "ff7.loading"

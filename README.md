@@ -81,6 +81,41 @@ by us**. The default-off *Hook Trace (developer)* feature in the Mods list is
 how you promote one: arm it, do the thing the name claims to describe, and see
 whether the call fires.
 
+## Enhancement mods
+
+Enhancements are independent packages in the Mods screen. All default to off.
+
+**Enhanced Renderer** (`ff7.enhancement.renderer`) replaces the retired
+widescreen feature. It uses psxrecomp's hardware native-wide renderer shared
+with Tomba, rather than changing the guest's projection. Options: adaptive
+window aspect or fixed 16:9/21:9/32:9, PGXP geometry/texture precision, and
+stable texture minification, plus a 1080p (default) through 4K internal
+resolution. The primary executable includes PGXP propagation;
+activating the mod requests it without changing guest backface decisions.
+The world map fills the wide view: its terrain screen cull and sky quad are
+widened through `[widescreen.cull]` and `[[widescreen.signed_x_bound]]` in
+`game.toml`. Prerendered fields and battles keep 4:3 (fields until a verified
+background tile/camera adapter exists; battle ground meshes end inside the
+wide margins). FMVs and full-screen 2D use the framework's native policy.
+
+**Fast Loading** (`ff7.enhancement.loading`) adds a guarded host implementation
+of the original LZS decompressor. It checks the routine's instruction hash,
+decodes into scratch space, and publishes RAM through the runtime's
+executable-write tracking. Unsupported input runs the original code. The oracle
+compares output and all 32 GPRs against the original MIPS routine on 600
+generated streams, two retail assets, and seven streaming-overlap/segment-alias
+cases. An optional load speed-up (off by default; 2x, 4x or uncapped) runs
+data-loading frames faster and mutes their sound. Native CD timing is retained:
+accelerated sector bursts produced incomplete actors in the first battle.
+
+To reproduce the LZS oracle, install Unicorn and build `src/ff7_lzs.c` as a
+shared library, then run:
+
+```sh
+python tools/test_lzs_against_retail.py --library <shared-library> \
+  --disc "disc/Final Fantasy VII (USA) (Disc 1).cue"
+```
+
 ## Legal
 
 You must own the original game. Disc images under `disc/` are gitignored and

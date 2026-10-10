@@ -18,6 +18,9 @@ set(PSX_SETUP_WIZARD ON CACHE BOOL
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")
 
 psxrecomp_add_game_runtime(psx-runtime
+    # Compile precision propagation into the primary binary. The renderer mod
+    # decides whether it runs; disabling the mod retains the original math.
+    PGXP
     # ENABLE_NETPLAY_IF_PRESENT
     # NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
     ENABLE_SETUP_WIZARD
@@ -36,9 +39,11 @@ psxrecomp_add_game_runtime(psx-runtime
     GEN_FULL_GLOB "generated/SCUS_941.63_full_*.c"
     CODEGEN_SETUP_SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
-        # Game-owned trusted mod plugins (widescreen). Registered by a
-        # constructor, selected by mods/preloaded/packages/ff7.enhancements.
+        # Trusted implementations selected independently by the mod catalog.
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_mods.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_lzs.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_loading.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_renderer.c"
 )
 
 # Stage runtime configs next to the exe for direct build/ launches. Only copy

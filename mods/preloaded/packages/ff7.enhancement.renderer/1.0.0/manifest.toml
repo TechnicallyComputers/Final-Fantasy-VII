@@ -1,0 +1,88 @@
+format_version = 6
+id = "ff7.enhancement.renderer"
+version = "1.0.0"
+name = "Final Fantasy VII Enhanced Renderer"
+author = "Final Fantasy VII Recompiled project"
+description = "The psxrecomp enhanced native-wide renderer used by Tomba, with FFVII scene handling and a mod-owned resolution profile. Supersedes the original FFVII widescreen feature."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "enhanced-renderer"
+name = "Enhanced Renderer"
+channel = "experimental"
+description = "Render 3D gameplay into a wider surface at 1080p or above. Adaptive follows the window with a 4:3 minimum. Prerendered fields, battles and FMVs retain their authored aspect; the world map fills the wide view. OpenGL is required for the full hardware path."
+group = "Graphics"
+default_enabled = false
+
+[[option]]
+feature = "enhanced-renderer"
+id = "aspect"
+label = "Aspect"
+group = "Graphics"
+type = "choice"
+default = "Fit"
+
+[[option.choice]]
+value = "Fit"
+label = "Adaptive (fit window)"
+[[option.choice]]
+value = "16:9"
+label = "16:9"
+[[option.choice]]
+value = "21:9"
+label = "21:9"
+[[option.choice]]
+value = "32:9"
+label = "32:9"
+
+[[option]]
+feature = "enhanced-renderer"
+id = "resolution"
+label = "Internal resolution"
+description = "The renderer rounds up to an integer raster scale and resolves to the output. 1080p uses 5x for FFVII's 240-line scenes. The choice applies only while this mod is active."
+group = "Graphics"
+type = "choice"
+default = "1080"
+
+[[option.choice]]
+value = "720"
+label = "720p"
+[[option.choice]]
+value = "1080"
+label = "1080p"
+[[option.choice]]
+value = "1440"
+label = "1440p"
+[[option.choice]]
+value = "2160"
+label = "4K"
+
+[[option]]
+feature = "enhanced-renderer"
+id = "precision"
+label = "Geometry and texture precision"
+description = "Use PGXP subpixel geometry and perspective-correct textures with CPU propagation. Guest math and backface decisions stay unchanged. The primary runtime includes precision propagation."
+group = "Graphics"
+type = "boolean"
+default = "true"
+
+[[option]]
+feature = "enhanced-renderer"
+id = "filter"
+label = "3D texture filter"
+group = "Graphics"
+type = "choice"
+default = "nearest"
+[[option.choice]]
+value = "nearest"
+label = "Original texels"
+[[option.choice]]
+value = "stable"
+label = "Stable minification (3D)"
+
+[[plugin]]
+feature = "enhanced-renderer"
+id = "ff7.renderer"
