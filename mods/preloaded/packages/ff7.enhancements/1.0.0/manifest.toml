@@ -6,7 +6,7 @@ id = "ff7.enhancements"
 version = "1.0.0"
 name = "Final Fantasy VII Enhancements"
 author = "Final Fantasy VII Recompiled project"
-description = "FFVII developer hook tracing. The former widescreen mod is superseded by the Enhanced Renderer package."
+description = "FFVII developer hook tracing. The former widescreen mod is superseded by the Widescreen package."
 save_compatibility = "shared"
 
 # Hook tracing stays developer-only. Rendering and loading now have independent

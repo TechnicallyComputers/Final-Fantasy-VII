@@ -35,6 +35,8 @@ psxrecomp_add_game_runtime(psx-runtime
     # does not know this keyword, so after a multi-value keyword it would be
     # swallowed into that list instead of forwarded.
     PRELOADED_MODS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded"
+    # Smooth 3D (ff7.enhancement.smooth-3d) is the FFVII-tuned PGXP mod.
+    EXCLUDE_BUILTIN_MODS psx.enhancement.pgxp
     GEN_MARKER "generated/SCUS_941.63_dispatch.c"
     GEN_FULL_GLOB "generated/SCUS_941.63_full_*.c"
     CODEGEN_SETUP_SOURCES
@@ -45,6 +47,8 @@ psxrecomp_add_game_runtime(psx-runtime
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_loading.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_renderer.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_resolution.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_smooth_3d.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_texture_filter.c"
 )
 
 # Stage runtime configs next to the exe for direct build/ launches. Only copy

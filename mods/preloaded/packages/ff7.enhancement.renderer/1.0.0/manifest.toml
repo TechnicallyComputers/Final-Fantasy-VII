@@ -1,9 +1,9 @@
 format_version = 6
 id = "ff7.enhancement.renderer"
 version = "1.0.0"
-name = "Final Fantasy VII Enhanced Renderer"
+name = "Final Fantasy VII Widescreen"
 author = "Final Fantasy VII Recompiled project"
-description = "The psxrecomp enhanced native-wide renderer used by Tomba, with FFVII scene handling. Supersedes the original FFVII widescreen feature."
+description = "Widens 3D gameplay to fill the screen, using the psxrecomp native-wide renderer shared with Tomba."
 save_compatibility = "shared"
 
 [[target]]
@@ -11,9 +11,9 @@ game_id = "SCUS-94163"
 
 [[feature]]
 id = "enhanced-renderer"
-name = "Enhanced Renderer"
+name = "Widescreen"
 channel = "experimental"
-description = "Render 3D gameplay into a wider surface. Pair with Internal Resolution for HD output. Adaptive follows the window with a 4:3 minimum. Prerendered fields, battles and FMVs retain their authored aspect; the world map fills the wide view. OpenGL is required for the full hardware path."
+description = "Render 3D gameplay into a wider surface. Adaptive follows the window shape with a 4:3 minimum. Prerendered fields, battles and FMVs retain their authored aspect; the world map fills the wide view. OpenGL is required for the full hardware path."
 group = "Graphics"
 default_enabled = false
 
@@ -37,29 +37,6 @@ label = "21:9"
 [[option.choice]]
 value = "32:9"
 label = "32:9"
-
-[[option]]
-feature = "enhanced-renderer"
-id = "precision"
-label = "Geometry and texture precision"
-description = "Use PGXP subpixel geometry and perspective-correct textures with CPU propagation. Guest math and backface decisions stay unchanged. The primary runtime includes precision propagation."
-group = "Graphics"
-type = "boolean"
-default = "true"
-
-[[option]]
-feature = "enhanced-renderer"
-id = "filter"
-label = "3D texture filter"
-group = "Graphics"
-type = "choice"
-default = "nearest"
-[[option.choice]]
-value = "nearest"
-label = "Original texels"
-[[option.choice]]
-value = "stable"
-label = "Stable minification (3D)"
 
 [[plugin]]
 feature = "enhanced-renderer"

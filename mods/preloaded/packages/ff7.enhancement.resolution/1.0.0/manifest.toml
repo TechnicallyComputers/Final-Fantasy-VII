@@ -3,7 +3,7 @@ id = "ff7.enhancement.resolution"
 version = "1.0.0"
 name = "Final Fantasy VII Internal Resolution"
 author = "Final Fantasy VII Recompiled project"
-description = "Render the original game at HD internal resolution. Works with or without the Enhanced Renderer."
+description = "Render the original game at HD internal resolution. Works with or without Widescreen."
 save_compatibility = "shared"
 
 [[target]]
