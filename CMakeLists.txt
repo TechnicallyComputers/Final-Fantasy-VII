@@ -44,6 +44,7 @@ psxrecomp_add_game_runtime(psx-runtime
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_lzs.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_loading.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_renderer.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_resolution.c"
 )
 
 # Stage runtime configs next to the exe for direct build/ launches. Only copy

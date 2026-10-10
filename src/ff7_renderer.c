@@ -2,7 +2,6 @@
 #include "gpu.h"
 #include "pgxp.h"
 
-#include <stdlib.h>
 #include <string.h>
 
 #define PACKAGE "ff7.enhancement.renderer"
@@ -58,10 +57,8 @@ static void ff7_renderer_activate(void) {
         pgxp_mod_request(1, 1, 0);
     if (psx_mod_option_value(PACKAGE, FEATURE, "filter", option, sizeof option))
         psx_mod_set_texture_filter(strcmp(option, "stable") == 0 ? 2 : 0);
-
-    if (!psx_mod_option_value(PACKAGE, FEATURE, "resolution", option, sizeof option))
-        strcpy(option, "1080");
-    (void)psx_mod_set_internal_resolution((uint32_t)strtoul(option, NULL, 10));
+    /* Internal resolution is its own package (src/ff7_resolution.c) so it
+     * applies to the original 4:3 presentation as well. */
 }
 
 PSX_MOD_CONSTRUCTOR(ff7_register_enhanced_renderer) {

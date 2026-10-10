@@ -85,12 +85,17 @@ whether the call fires.
 
 Enhancements are independent packages in the Mods screen. All default to off.
 
+**Internal Resolution** (`ff7.enhancement.resolution`) renders polygons at
+720p, 1080p (default), 1440p or 4K. It is an integer raster scale (1080p is 5x
+at 240 lines), works at the original 4:3 aspect, and does not change saved
+renderer settings. `PSX_INTERNAL_RESOLUTION` still overrides it. Prerendered
+field backgrounds and FMVs are original-resolution images.
+
 **Enhanced Renderer** (`ff7.enhancement.renderer`) replaces the retired
 widescreen feature. It uses psxrecomp's hardware native-wide renderer shared
 with Tomba, rather than changing the guest's projection. Options: adaptive
 window aspect or fixed 16:9/21:9/32:9, PGXP geometry/texture precision, and
-stable texture minification, plus a 1080p (default) through 4K internal
-resolution. The primary executable includes PGXP propagation;
+stable texture minification. The primary executable includes PGXP propagation;
 activating the mod requests it without changing guest backface decisions.
 The world map fills the wide view: its terrain screen cull and sky quad are
 widened through `[widescreen.cull]` and `[[widescreen.signed_x_bound]]` in

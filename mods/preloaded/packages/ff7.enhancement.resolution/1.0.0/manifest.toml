@@ -1,0 +1,44 @@
+format_version = 6
+id = "ff7.enhancement.resolution"
+version = "1.0.0"
+name = "Final Fantasy VII Internal Resolution"
+author = "Final Fantasy VII Recompiled project"
+description = "Render the original game at HD internal resolution. Works with or without the Enhanced Renderer."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "internal-resolution"
+name = "Internal Resolution"
+channel = "experimental"
+description = "Rasterize polygons at a higher internal resolution and resolve to the window. 1080p uses a 5x scale for FFVII's 240-line scenes. Prerendered field backgrounds and FMVs are original-resolution images and stay as authored. OpenGL is required; other backends keep their own limits."
+group = "Graphics"
+default_enabled = false
+
+[[option]]
+feature = "internal-resolution"
+id = "resolution"
+label = "Internal resolution"
+description = "The renderer rounds up to an integer raster scale. The choice applies only while this mod is active; your saved renderer settings are not changed."
+group = "Graphics"
+type = "choice"
+default = "1080"
+
+[[option.choice]]
+value = "720"
+label = "720p"
+[[option.choice]]
+value = "1080"
+label = "1080p"
+[[option.choice]]
+value = "1440"
+label = "1440p"
+[[option.choice]]
+value = "2160"
+label = "4K"
+
+[[plugin]]
+feature = "internal-resolution"
+id = "ff7.resolution"
