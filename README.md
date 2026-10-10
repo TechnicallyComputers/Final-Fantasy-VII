@@ -109,8 +109,7 @@ decodes into scratch space, and publishes RAM through the runtime's
 executable-write tracking. Unsupported input runs the original code. The oracle
 compares output and all 32 GPRs against the original MIPS routine on 600
 generated streams, two retail assets, and seven streaming-overlap/segment-alias
-cases. An optional load speed-up (off by default; 2x, 4x or uncapped) runs
-data-loading frames faster and mutes their sound. Native CD timing is retained:
+cases. The mod has no options. Load pacing and native CD timing are retained:
 accelerated sector bursts produced incomplete actors in the first battle.
 
 To reproduce the LZS oracle, install Unicorn and build `src/ff7_lzs.c` as a

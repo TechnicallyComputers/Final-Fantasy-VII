@@ -6,9 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define PACKAGE "ff7.enhancement.loading"
-#define FEATURE "fast-loading"
-
 static uint8_t *source_buffer, *output_buffer;
 static uint32_t source_capacity, output_capacity;
 static int decoder_enabled;
@@ -75,23 +72,11 @@ fallback:
 }
 
 static void ff7_loading_activate(void) {
-    char hle[16], speed[16];
-    /* Host load pacing is opt-in. psx_mod_set_load_acceleration(0, ...) means
-     * UNCAPPED, not off: calling it unconditionally ran every load (battle
-     * entry included) at full host speed with the accelerated music audible.
-     * Not calling it keeps authentic pacing. When chosen, acceleration ends
-     * on the first nonloading frame and the runtime discards the accelerated
-     * audio; XA and FMV streaming retain their original timing. */
-    if (psx_mod_option_value(PACKAGE, FEATURE, "load_speed", speed, sizeof speed) &&
-        strcmp(speed, "off") != 0)
-        (void)psx_mod_set_load_acceleration(
-            strcmp(speed, "uncapped") == 0 ? 0u : (uint32_t)strtoul(speed, NULL, 10), 0u);
-    decoder_enabled = !psx_mod_option_value(PACKAGE, FEATURE, "lzs_hle",
-                                            hle, sizeof hle) ||
-                      strcmp(hle, "true") == 0;
-    /* Keep the native CD cadence. Burst delivery produced incomplete battle
-     * actors in the opening fight. Host pacing and pure CPU HLE are separate
-     * from an eventual verified game-specific asynchronous file-read adapter. */
+    /* Activation is the only switch: the host decoder always runs while the
+     * mod is on. Load pacing is never accelerated, so psx_mod_set_load_acceleration
+     * is not called. Keep the native CD cadence too: burst delivery produced
+     * incomplete battle actors in the opening fight. */
+    decoder_enabled = 1;
 }
 
 PSX_MOD_CONSTRUCTOR(ff7_register_loading) {
