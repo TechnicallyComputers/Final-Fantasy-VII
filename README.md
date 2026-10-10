@@ -90,34 +90,35 @@ Loading and visuals take priority; Sephiroth integration follows them.
 The [Claude Code handoff](docs/CLAUDE_CODE_HANDOFF.md) contains the owner's
 requested continuation for focused validation and the Sephiroth MVP.
 
-Enhancements are independently selectable packages in the Mods screen and
-default to off. The original widescreen feature has been retired in favor of
-**Enhanced Renderer** (`ff7.enhancement.renderer`). It uses psxrecomp's hardware
-native-wide renderer shared with Tomba, rather than changing the guest's
-projection. Options include adaptive window aspect, fixed 16:9/21:9/32:9,
-1080p (default) through 4K, PGXP geometry/texture precision, and stable texture
-minification. The primary executable includes PGXP propagation; activating the
-mod requests it without changing guest backface decisions or saved settings.
-Resolution is an integer raster scale (1080p requests 5x at 240 lines), subject
-to the backend and the player's dynamic-resolution policy.
+Enhancements are independent packages in the Mods screen. All default to off.
 
-This renderer package is experimental. Prerendered fields retain 4:3 until a
-verified background tile/camera adapter is available. FMVs and full-screen 2D
-use the framework's native presentation policy. Battle/world geometry outside
-the original frame still needs coverage and culling validation.
+**Internal Resolution** (`ff7.enhancement.resolution`) renders polygons at
+720p, 1080p (default), 1440p or 4K. It is an integer raster scale (1080p is 5x
+at 240 lines), works at the original 4:3 aspect, and does not change saved
+renderer settings. `PSX_INTERNAL_RESOLUTION` still overrides it. Prerendered
+field backgrounds and FMVs are original-resolution images.
+
+**Enhanced Renderer** (`ff7.enhancement.renderer`) replaces the retired
+widescreen feature. It uses psxrecomp's hardware native-wide renderer shared
+with Tomba, rather than changing the guest's projection. Options: adaptive
+window aspect or fixed 16:9/21:9/32:9, PGXP geometry/texture precision, and
+stable texture minification. The primary executable includes PGXP propagation;
+activating the mod requests it without changing guest backface decisions.
+The world map fills the wide view: its terrain screen cull and sky quad are
+widened through `[widescreen.cull]` and `[[widescreen.signed_x_bound]]` in
+`game.toml`. Prerendered fields and battles keep 4:3 (fields until a verified
+background tile/camera adapter exists; battle ground meshes end inside the
+wide margins). FMVs and full-screen 2D use the framework's native policy.
 
 **Fast Loading** (`ff7.enhancement.loading`) adds a guarded host implementation
-of the original LZS decompressor and accelerates host pacing during CD loads.
-It checks the complete routine's instruction hash, decodes into scratch space,
-and publishes RAM through the runtime's executable-write tracking. Unsupported
-input retains the original code. The oracle compares output and all 32 GPRs
-against the original MIPS routine on 600 generated streams, two retail assets,
-and seven streaming-overlap/segment-alias cases, including the observed startup
-call. Overlapping guest input reads observe previous output stores, matching
-the original routine even when it overwrites unread compressed bytes.
-Native CD timing is retained: accelerated sector bursts produced incomplete
-actors in the first battle. Gzip overlays and other loaders still execute their original
-code; eliminating all loading is an ongoing task.
+of the original LZS decompressor. It checks the routine's instruction hash,
+decodes into scratch space, and publishes RAM through the runtime's
+executable-write tracking. Unsupported input runs the original code. The oracle
+compares output and all 32 GPRs against the original MIPS routine on 600
+generated streams, two retail assets, and seven streaming-overlap/segment-alias
+cases. An optional load speed-up (off by default; 2x, 4x or uncapped) runs
+data-loading frames faster and mutes their sound. Native CD timing is retained:
+accelerated sector bursts produced incomplete actors in the first battle.
 
 **Expanded Party Research** (`ff7.expanded-party`) has an experimental,
 default-off **Added-character gameplay integration** feature (`party-gameplay`).

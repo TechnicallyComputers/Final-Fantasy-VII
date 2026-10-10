@@ -63,6 +63,7 @@ psxrecomp_add_game_runtime(psx-runtime
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_field_assets.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_field_loader.c"
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_party_field_state.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_resolution.c"
 )
 target_compile_definitions(psx-runtime PRIVATE FF7_PARTY_WITH_RUNTIME=1)
 if(UNIX)
