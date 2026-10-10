@@ -68,6 +68,11 @@ static void synthetic_kernel(void) {
         r[0]=ids[i]; r[1]=(uint8_t)(10+i); r[0x2e]=100;
         r[0x10]=(uint8_t)('A'+i); r[0x11]=255;
     }
+    /* Flashback Sephiroth row: max HP/MP are 0xFFFF placeholders. */
+    uint8_t* seph=records+7*FF7_PARTY_RECORD_SIZE;
+    seph[0x2c]=0x00; seph[0x2d]=0x0f; seph[0x2e]=0x00; seph[0x2f]=0x0f; /* 3840/3840 */
+    seph[0x30]=0xcc; seph[0x31]=0x01; seph[0x32]=0xc8; seph[0x33]=0x01; /* 460 cur, 456 base */
+    seph[0x38]=seph[0x39]=seph[0x3a]=seph[0x3b]=0xff;
     kernel_size=0;
     for (unsigned i=0;i<4;++i) {
         uint8_t zipped[2048], empty=0;
@@ -124,6 +129,10 @@ static void lifecycle(void) {
     uint32_t a=ff7_party_game_record(11),b=ff7_party_game_record(12);
     CHECK(psx_mod_read_half(a+0x22)==1 && psx_mod_read_byte(a+14)==1);
     CHECK(psx_mod_read_half(b+0x22)==0); /* Profile without a limit policy. */
+    /* Placeholder maxima settle to base; current values clamp to them. */
+    CHECK(psx_mod_read_half(a+0x38)==3840 && psx_mod_read_half(a+0x2c)==3840);
+    CHECK(psx_mod_read_half(a+0x3a)==456 && psx_mod_read_half(a+0x30)==456);
+    CHECK(!memcmp(address(NATIVE_RECORDS),original,sizeof original));
     psx_mod_write_byte(a+14,3); psx_mod_write_byte(a+15,179);
     psx_mod_write_half(a+0x22,0xda); /* Legacy record missing first-technique bit. */
     psx_mod_write_half(a+0x24,319); psx_mod_write_half(a+0x26,8);

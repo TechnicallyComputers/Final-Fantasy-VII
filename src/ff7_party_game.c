@@ -304,6 +304,22 @@ done:
     free(decoded); free(raw); return ok;
 }
 
+/* Kernel templates for scene-only rows (flashback Sephiroth) hold 0xFFFF
+ * max HP/MP placeholders until the native recalculation runs on party entry.
+ * A fresh added member can sit in the PHS reserve first, where the stock
+ * screens draw those maxima (garbage readout and an overlong gauge). Settle
+ * placeholders to the base stats; party entry recalculates as usual. */
+static void settle_template(uint8_t* r) {
+    for (unsigned o = 0x2c; o <= 0x30; o += 4) {
+        unsigned cur = r[o] | r[o+1]<<8, base = r[o+2] | r[o+3]<<8;
+        unsigned max_at = o == 0x2c ? 0x38 : 0x3a, max = r[max_at] | r[max_at+1]<<8;
+        if (max != 0xffffu) continue;
+        max = base;
+        r[max_at] = (uint8_t)max; r[max_at+1] = (uint8_t)(max>>8);
+        if (cur > max) { r[o] = (uint8_t)max; r[o+1] = (uint8_t)(max>>8); }
+    }
+}
+
 int ff7_party_game_initialize(const uint8_t fallback[3]) {
     if(!s_game || !valid_fallback(fallback))return 0;
     uint8_t* templates = NULL;
@@ -318,6 +334,7 @@ int ff7_party_game_initialize(const uint8_t fallback[3]) {
         const FF7PartyProfile* p = s_profiles[i];
         uint8_t record[FF7_PARTY_RECORD_SIZE];
         memcpy(record,templates+p->kernel_template_row*FF7_PARTY_RECORD_SIZE,sizeof record);
+        settle_template(record);
         ff7_party_limit_initial(p->limit_policy,record);
         if (ff7_party_add(&state,p->identity,p->presentation,
                 record) != FF7_PARTY_OK) {
