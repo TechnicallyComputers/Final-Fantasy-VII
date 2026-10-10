@@ -7,7 +7,7 @@ from pathlib import Path
 from inspect_ff7_party import Disc, ROOT, image_data
 
 SITES=((0x801d22cc,'PREVIEW_OFFSET'),(0x801d2900,'PREPARE'),
-       (0x801d49b0,'LOADED'),(0x801d2a14,'FINISHED'))
+       (0x801d49b0,'LOADED'),(0x801d2a14,'FINISHED'),(0x801d1f1c,'PREVIEW_READ'))
 
 def inspect(cue):
     disc=Disc(Path(cue))
@@ -39,7 +39,9 @@ def inspect(cue):
                     publish='full packet equality; never attach metadata to a partial packet',
                     load_success=dict(address=0x801d49b0,expected=0x0c074ad6,filename='caller SP-0x30',
                         basis='1F40 frame0x68, filename+0x38;1950 checksum is stackless;4988 native CRC equality branches to49B0; error/file failures do not reach this seam; restore before2B58 can overwrite old frame'),
-                    rewind='pending packet and payload in snapshot-owned Enhancement1'))
+                    rewind='pending packet and payload in snapshot-owned Enhancement1'),
+                preview_read=dict(address=0x801d1f1c,function=0x801d1d40,cache='0x801E3864+84*(s2&15)',filename='SP+0x38',
+                    basis='1D40 opens bu00/bu10 file s2, copies its 0x54-byte header to the list cache and reaches1F1C only on success; party preview bytes5..7 hold the native fallback for an extended slot'))
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('cue',type=Path)

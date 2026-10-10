@@ -30,6 +30,7 @@ void memcard_set_extension_codec(MemcardExtensionLoad load,MemcardExtensionSave 
 int memcard_export_raw(int card,uint8_t* out){if(card<0||card>=2)return -1;memcpy(out,cards[card],sizeof cards[card]);return 0;}
 int ff7_party_game_ready(void){return 1;}
 int ff7_party_game_is_extra(uint8_t guest){return guest==11;}
+uint8_t ff7_party_game_guest_id(uint16_t id){return id==0x100?11:id<9?(uint8_t)id:255;}
 uint32_t ff7_party_game_record_offset(uint8_t guest){return guest==11?0x80140000u-0x8009c738u:0;}
 int ff7_party_game_fallback(uint8_t out[3]){memcpy(out,fallback,3);return 1;}
 FF7PartyResult ff7_party_game_snapshot(FF7PartyState* out){if(!allow_snapshot)return FF7_PARTY_INVALID;*out=live;return FF7_PARTY_OK;}
@@ -94,7 +95,7 @@ int main(void){
     CHECK(!memcmp(projected+FF7_NATIVE_STORED_OFFSET,(uint8_t[]){10,6,255},3));
     CHECK(ff7_native_save_valid(projected,sizeof projected));
     CHECK(!ff7_native_save_project(projected,sizeof projected,(uint8_t[]){7,10,255}));
-    register_ff7_party_game_save();CHECK(registered==5);fixture();
+    register_ff7_party_game_save();CHECK(registered==6);fixture();
     uint8_t original_map[FF7_NATIVE_SAVE_BYTES];memcpy(original_map,ptr(0x801e7138),sizeof original_map);
     CPUState cpu;memset(&cpu,0,sizeof cpu);cpu.gpr[19]=0x80100000;
     hook(0x801d2900,&cpu);CHECK(cpu.gpr[19]==0x80100000 && psx_mod_read_word(s_pending)==1);
@@ -122,6 +123,17 @@ int main(void){
     cards[0][2*128+10]^=1;frame(cards[0]+2*128);CHECK(writer(0,cards[0],tail,sizeof tail)==0);
     directory(cards[0],2,"BASCUS-94163FF7-S01");int bytes=writer(0,cards[0],tail,sizeof tail);CHECK(bytes>0);
     CHECK(loader(0,cards[0],tail,(unsigned)bytes)==0);
+    /* File-list header cache: the bound extended slot restores only the
+     * extra's position; card mismatch, unbound names and native slots don't. */
+    {CPUState list;memset(&list,0,sizeof list);list.gpr[29]=0x80180000;list.gpr[18]=1;
+     memcpy(ptr(0x80180038),"bu00:BASCUS-94163FF7-S01",25);
+     uint8_t* entry=ptr(0x801e3864+84+5);memcpy(entry,(uint8_t[]){0,7,2},3);
+     list.gpr[18]=0x11;hook(0x801d1f1c,&list);CHECK(!memcmp(entry,(uint8_t[]){0,7,2},3));
+     memcpy(ptr(0x80180038),"bu00:BASCUS-94163FF7-S02",25);list.gpr[18]=1;
+     hook(0x801d1f1c,&list);CHECK(!memcmp(entry,(uint8_t[]){0,7,2},3));
+     memcpy(ptr(0x80180038),"bu00:BASCUS-94163FF7-S01",25);
+     hook(0x801d1f1c,&list);CHECK(!memcmp(entry,(uint8_t[]){0,7,11},3));
+     CHECK(list.gpr[18]==1 && list.gpr[29]==0x80180000);}
     memcpy(ptr(0x80190038),ptr(0x80100000),26);cpu.gpr[29]=0x80190068;cpu.gpr[2]=1;
     uint32_t preserved[32];memcpy(preserved,cpu.gpr,sizeof preserved);
     hook(0x801d2134,&cpu);CHECK(load_count==0); /* Removed premature callback. */

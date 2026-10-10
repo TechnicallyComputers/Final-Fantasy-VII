@@ -19,7 +19,8 @@
 enum { CARDS=2, P_VALID=0, P_SIZE=4, P_NAME=8, P_PACKET=32,
        P_PAYLOAD=P_PACKET+FF7_NATIVE_FILE_BYTES,
        P_BYTES=P_PAYLOAD+FF7_PARTY_PAYLOAD_MAX };
-enum Action { PREVIEW_OFFSET, PREPARE, LOADED, FINISHED, NEW_GAME };
+enum Action { PREVIEW_OFFSET, PREPARE, LOADED, FINISHED, NEW_GAME, PREVIEW_READ };
+enum { PREVIEW_CACHE=0x801e3864u, PREVIEW_BYTES=84, PREVIEW_PARTY=5 };
 typedef struct {uint32_t pc;enum Action action;uint32_t words[13];} SaveSite;
 static const SaveSite s_sites[]={
 #include "ff7_party_game_save_sites.inc"
@@ -180,6 +181,38 @@ static void loaded(uint32_t path){
      * Unknown installed profiles also retain the safe native fallback. */
     if(ff7_party_game_initialize(fallback))psx_mod_counter_add("ff7.party_game_save.native_load",1);
 }
+/* The file list caches each save's native header, whose party bytes hold the
+ * standard-card fallback for an extended slot. Restore only the positions the
+ * bound metadata assigns to registered extras; the original portrait seams
+ * draw their guest handles. Native positions and the card stay untouched. */
+static void preview_read(uint32_t path,unsigned selector){
+    uint8_t name[20];
+    int card=filename(path,name);
+    if(card<0||(unsigned)card!=((selector>>4)&1u)||!s_ready[card])return;
+    uint8_t base[FF7_PARTY_CARD_BYTES];
+    if(memcard_export_raw(card,base)!=0)return;
+    unsigned slot=find_slot(base,name);
+    if(!slot||memcmp(s_directories[card][slot-1],base+slot*128,32))return;
+    for(unsigned i=0;i<s_cards[card].count;++i){
+        if(s_cards[card].slots[i].directory_slot!=slot)continue;
+        const FF7PartyState* party=&s_cards[card].slots[i].party;
+        uint8_t guest[3];
+        int extra=0;
+        for(unsigned j=0;j<3;++j){
+            uint16_t id=party->active[j];
+            guest[j]=255;
+            if(id<FF7_PARTY_EXTRA_FIRST||id==FF7_PARTY_EMPTY)continue;
+            guest[j]=ff7_party_game_guest_id(id);
+            if(guest[j]==FF7_PARTY_GUEST_EMPTY)return; /* Profile unavailable: keep native. */
+            extra=1;
+        }
+        if(!extra)return;
+        uint32_t entry=PREVIEW_CACHE+(selector&15u)*PREVIEW_BYTES+PREVIEW_PARTY;
+        for(unsigned j=0;j<3;++j)if(guest[j]!=255)psx_mod_write_byte(entry+j,guest[j]);
+        psx_mod_counter_add("ff7.party_game_save.preview_party",1);
+        return;
+    }
+}
 static void instruction(CPUState* cpu,uint32_t pc){
     if(!cpu||!s_pending||!ff7_party_game_ready())return;
     pc=(pc&0x1fffffffu)|0x80000000u;
@@ -215,6 +248,9 @@ static void instruction(CPUState* cpu,uint32_t pc){
             uint8_t name[20];int card=filename(cpu->gpr[19],name);
             if(card>=0)psx_mod_write_word(pending((unsigned)card)+P_VALID,0);
             break;}
+        case PREVIEW_READ:
+            /* 1D40 frame: filename at SP+0x38, selector in s2. */
+            preview_read(cpu->gpr[29]+0x38,cpu->gpr[18]);break;
         case NEW_GAME:{
             uint8_t native[3];read_guest(0x8009cbdcu,native,3);
             if(ff7_party_game_initialize(native))

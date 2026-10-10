@@ -235,5 +235,6 @@
     "standard_export": "Explicit standalone export equals native base byte-for-byte; exported card also loads through title into field.",
     "extended_reload": "Fresh runtime title-to-field load passes after moving restoration to checksum-success branch49B0.",
     "limitations": "Diagnostic PHS/save permissions in opening scene; live rewind during saving, later story and disc switching remain acceptance."
-  }
+  },
+  "preview_read": "SAVEMENU 1D40 seam 0x801D1F1C (identical SAVEMENU on discs 1-3): after the original header copy, a slot with bound expanded metadata restores only the list-cache party positions held by registered extras to their guest handles; native positions, the card and native slots are unchanged. Unit-tested (card mismatch, unbound name, restore) and live: fresh-boot title LOAD list shows Cloud/Vincent/Sephiroth for the extended slot."
 }

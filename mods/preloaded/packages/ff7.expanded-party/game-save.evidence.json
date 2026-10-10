@@ -5,6 +5,26 @@
   "base": 2149384192,
   "sites": [
     {
+      "address": 2149392156,
+      "action": "PREVIEW_READ",
+      "expected": 4129,
+      "guard": [
+        619118608,
+        2294415363,
+        2562850816,
+        0,
+        2833383427,
+        3101818880,
+        4129,
+        2411659368,
+        2410872932,
+        2410807392,
+        2410741852,
+        2410676312,
+        666697840
+      ]
+    },
+    {
       "address": 2149393100,
       "action": "PREVIEW_OFFSET",
       "expected": 1081472,
@@ -151,5 +171,12 @@
       "basis": "1F40 frame0x68, filename+0x38;1950 checksum is stackless;4988 native CRC equality branches to49B0; error/file failures do not reach this seam; restore before2B58 can overwrite old frame"
     },
     "rewind": "pending packet and payload in snapshot-owned Enhancement1"
+  },
+  "preview_read": {
+    "address": 2149392156,
+    "function": 2149391680,
+    "cache": "0x801E3864+84*(s2&15)",
+    "filename": "SP+0x38",
+    "basis": "1D40 opens bu00/bu10 file s2, copies its 0x54-byte header to the list cache and reaches1F1C only on success; party preview bytes5..7 hold the native fallback for an extended slot"
   }
 }
