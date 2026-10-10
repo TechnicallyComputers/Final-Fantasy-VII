@@ -60,9 +60,7 @@
     }
   ],
   "remaining_acceptance": [
-    "Live Crescent Arc learning after eight level1 uses and native save/load of the two-move progression and gauge",
-    "Live load of a diagnostic higher-level record returns to level1 (canonical load)",
-    "Review the two existing own-rig release choreographies; see docs/RELEASE_BURNDOWN.md"
+    "Review of the two existing own-rig choreographies by the owner"
   ],
   "deferred_acceptance": [
     "Five additional prototype techniques, selected levels2..4 and final mastery",
@@ -73,7 +71,8 @@
     "limit_menu": "Masamune name and Powerful sword strike description observed in original LIMTMENU.",
     "battle": "Live original first battle: Masamune single target completes and leaves one enemy; rewind restores gauge/state; Crescent Arc confirms multiple targets, defeats both enemies and reaches native victory. Own gauge clears and use/kill counters update; native EXP+32/AP+4 continue.",
     "save_reload": "Actual native save and fresh title-to-field reload preserve exact own chosenlevel1, gauge255 and diagnostic learnedmask02DB; no mastery is granted by production initialization.",
-    "limitations": "Earlier live checks ran the seven-move prototype; the release preset now defines two moves. Masamune/Crescent Arc battle playback paths (actions20/21, IDs96/97) are unchanged."
+    "limitations": "Choreography reuses own-rig actions20/21; no bespoke effects.",
+    "release_preset": "2026-10-09 build 265a128, owner card disc 1: Crescent Arc learned at the eighth level-1 use (mask 0x0003); Limit menu lists level 1 Masamune/Crescent Arc with levels 2-4 empty; Masamune and Crescent Arc execute, clear gauge and reach victory; native save stores mask 0x0003/uses 8; reload restores both moves."
   },
   "release_preset": "Masamune (ID96, bit0) and Crescent Arc (ID97, bit1, eight level1 uses) only. Kill/use thresholds are published only for defined techniques; all others stay 0xFFFF so the original learner never unlocks levels2-4; mastery requires a bit9 technique. Name filter declines reserved IDs98..102; their attack entries stay original FF."
 }

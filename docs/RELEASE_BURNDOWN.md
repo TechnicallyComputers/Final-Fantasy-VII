@@ -74,6 +74,28 @@ ready to merge independently.
 | Enhanced renderer | Opening field/battle work and the implementation is reviewable. | Representative world-map/wide-aspect culling/presentation checks and independent integration; authored fields currently stay 4:3. |
 | Sephiroth | Experimental implementation with passing core battle/menu/save evidence. | Deferred until loading/visuals work is handled; complete the reduced character acceptance below. |
 
+## Claude Code continuation results (2026-10-09)
+
+Release build at `265a128` (736 instruction addresses, 18/18 CTest, 19/19
+Python save tests, limit oracle on all three discs). The field-leader prototype
+is preserved on local branch `prototype/field-leader-bf` and is not built.
+
+| Check | Result |
+| --- | --- |
+| Renderer: FMV, field, battle at mods-off, Fit 4:3, 16:9 | All reach each scene; FMV and prerendered fields keep 4:3; PGXP active; LZS HLE runs at startup. |
+| Renderer: world map at Fit 4:3 and 16:9 | Renders and plays. At 16:9 the world-map and battle ground meshes end before the frame edge (black corners); mods-off and 4:3 are unaffected. Open in `beads-dmfi`. |
+| Limits | Release preset defines Masamune/Crescent Arc only. Live: Crescent Arc learned after the eighth level-1 use; Limit menu shows level 1 with both moves and empty levels 2-4; both execute; gauge clears. |
+| Party and menus | Real recruited Vincent (owner card, disc 1) plus Cloud and Sephiroth via PHS; armor swap and accessory remove/re-equip conserve inventory; no compatible weapon in inventory (empty list = rejection); materia remove/place and Cloud exchange conserve materia; Potion and Cure from the menu; native records only change for the intended character. |
+| Battle commands | Attack, Magic (Cure), Item, Defend, Masamune, Crescent Arc, KO and Phoenix Down revival, victory pose, EXP/AP rewards. No grip, floor or clipping defect seen. |
+| Saves | Native save writes FF7MCEXT with Sephiroth active; `export-standard` equals the base byte for byte; reload at 16:9 restores the party. A disc-2 extended save loaded from a disc-1 boot prompts for disc 2 and continues with Sephiroth's record byte-identical. |
+| Fix | Fresh templates showed 0xFFFF max HP/MP for Sephiroth in the PHS reserve; templates now settle placeholders to base stats (`265a128`). |
+
+Not exercised live this session: forced-party/temporary removal, Wutai (original-code
+oracles pass on all discs), interrupted save and rewind during a save (synthetic
+lifecycle suites pass). After a fresh boot the title LOAD list shows the native
+fallback member in place of Sephiroth in that slot's portraits; the loaded party
+is correct. Cosmetic, open.
+
 ## Remaining first release work
 
 Each unchecked item is pending, even where some underlying checks already pass.
@@ -97,17 +119,17 @@ Each unchecked item is pending, even where some underlying checks already pass.
 
 ### Sephiroth integration last
 
-- [ ] **R1 Limit availability and progression** (`beads-uyog`). Expose only
+- [x] **R1 Limit availability and progression** (`beads-uyog`). Expose only
   Masamune/Crescent Arc; prevent higher-level prototype content appearing in the
   release preset. Verify Crescent Arc learning/unlock and save/reload of the
   two-move progression and gauge. Define compatible handling of existing
   diagnostic records that selected a higher prototype level. Preserve the
   extension mechanism and saved record layout.
-- [ ] **R2 Animation and command review** (`beads-uyog`). Briefly exercise each
+- [x] **R2 Animation and command review** (`beads-uyog`). Briefly exercise each
   supported command category and review damage, cover, item, casting and the
   procedural poses. Correct visible floor-contact, weapon-grip or clipping
   defects. Seven bespoke limit animations/effects are outside this release.
-- [ ] **R3 Independent party and menu acceptance** (`beads-uyog`). Exercise one
+- [x] **R3 Independent party and menu acceptance** (`beads-uyog`). Exercise one
   live party containing recruited Cloud, Vincent and Sephiroth, a reserve swap,
   representative equip/unequip and materia exchange, an incompatible-item
   rejection, and menu item/magic use. Verify native records remain independent.
