@@ -1,6 +1,5 @@
 #include "mod_plugins.h"
 #include "gpu.h"
-#include "pgxp.h"
 
 #include <string.h>
 
@@ -50,15 +49,9 @@ static void ff7_renderer_activate(void) {
     gpu_ws_set_native_scene_predicate(ff7_authored_43_scene);
     psx_mod_set_native_wide_projection_correction(1);
 
-    /* Use the existing hardware renderer and validated PGXP transport, shared
-     * with Tomba. No depth sorting changes or guessed widescreen field art. */
-    if (!psx_mod_option_value(PACKAGE, FEATURE, "precision", option, sizeof option) ||
-        strcmp(option, "true") == 0)
-        pgxp_mod_request(1, 1, 0);
-    if (psx_mod_option_value(PACKAGE, FEATURE, "filter", option, sizeof option))
-        psx_mod_set_texture_filter(strcmp(option, "stable") == 0 ? 2 : 0);
-    /* Internal resolution is its own package (src/ff7_resolution.c) so it
-     * applies to the original 4:3 presentation as well. */
+    /* Precision (src/ff7_smooth_3d.c), texture filtering
+     * (src/ff7_texture_filter.c) and internal resolution (src/ff7_resolution.c)
+     * are their own packages so each applies to the original 4:3 presentation. */
 }
 
 PSX_MOD_CONSTRUCTOR(ff7_register_enhanced_renderer) {

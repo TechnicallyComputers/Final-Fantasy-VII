@@ -829,7 +829,7 @@ memcard_dir = "saves"
 renderer = "opengl"
 aspect_ratio = "4:3"
 
-# The Enhanced Renderer mod selects the aspect and resolution. These dormant
+# The Widescreen mod selects the aspect (Internal Resolution the scale). These dormant
 # settings select psxrecomp's enhanced native-wide compositor (the Tomba path),
 # rather than the original projection-squash widescreen implementation.
 [widescreen]
