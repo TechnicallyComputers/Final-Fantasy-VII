@@ -75,10 +75,17 @@ fallback:
 }
 
 static void ff7_loading_activate(void) {
-    char hle[16];
-    /* Host acceleration ends on the first nonloading frame. XA and FMV
-     * streaming retain the runtime's original timing and pacing guards. */
-    (void)psx_mod_set_load_acceleration(0u, 0u);
+    char hle[16], speed[16];
+    /* Host load pacing is opt-in. psx_mod_set_load_acceleration(0, ...) means
+     * UNCAPPED, not off: calling it unconditionally ran every load (battle
+     * entry included) at full host speed with the accelerated music audible.
+     * Not calling it keeps authentic pacing. When chosen, acceleration ends
+     * on the first nonloading frame and the runtime discards the accelerated
+     * audio; XA and FMV streaming retain their original timing. */
+    if (psx_mod_option_value(PACKAGE, FEATURE, "load_speed", speed, sizeof speed) &&
+        strcmp(speed, "off") != 0)
+        (void)psx_mod_set_load_acceleration(
+            strcmp(speed, "uncapped") == 0 ? 0u : (uint32_t)strtoul(speed, NULL, 10), 0u);
     decoder_enabled = !psx_mod_option_value(PACKAGE, FEATURE, "lzs_hle",
                                             hle, sizeof hle) ||
                       strcmp(hle, "true") == 0;

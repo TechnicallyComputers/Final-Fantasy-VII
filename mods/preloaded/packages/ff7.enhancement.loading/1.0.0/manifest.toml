@@ -13,7 +13,7 @@ game_id = "SCUS-94163"
 id = "fast-loading"
 name = "Fast Loading"
 channel = "experimental"
-description = "Accelerate data-loading frames and replace FFVII's LZS decoder with a host implementation. Streaming movies and XA audio keep their original timing. Other loader and decompression paths still run the game code."
+description = "Replace FFVII's LZS decoder with a host implementation, and optionally speed up data-loading frames. Streaming movies and XA audio keep their original timing. Other loader and decompression paths still run the game code."
 group = "Quality of Life"
 default_enabled = false
 
@@ -25,6 +25,28 @@ description = "Replace the independently verified retail LZS routine. Overlappin
 group = "Quality of Life"
 type = "boolean"
 default = "true"
+
+[[option]]
+feature = "fast-loading"
+id = "load_speed"
+label = "Load speed-up"
+description = "Run data-loading frames faster than real time. Off keeps authentic pacing. When on, transitions such as battle entry play visibly faster and their sound is muted until the load ends."
+group = "Quality of Life"
+type = "choice"
+default = "off"
+
+[[option.choice]]
+value = "off"
+label = "Off"
+[[option.choice]]
+value = "2"
+label = "2x"
+[[option.choice]]
+value = "4"
+label = "4x"
+[[option.choice]]
+value = "uncapped"
+label = "Uncapped"
 
 [[plugin]]
 feature = "fast-loading"
