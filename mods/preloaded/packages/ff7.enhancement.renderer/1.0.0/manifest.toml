@@ -13,7 +13,7 @@ game_id = "SCUS-94163"
 id = "enhanced-renderer"
 name = "Enhanced Renderer"
 channel = "experimental"
-description = "Render 3D gameplay into a wider surface at 1080p or above. Adaptive follows the window with a 4:3 minimum. Prerendered fields and FMVs retain their authored aspect; field-background expansion and off-screen geometry coverage still need game-specific adapters and validation. OpenGL is required for the full hardware path."
+description = "Render 3D gameplay into a wider surface at 1080p or above. Adaptive follows the window with a 4:3 minimum. Prerendered fields, battles and FMVs retain their authored aspect; the world map fills the wide view. OpenGL is required for the full hardware path."
 group = "Graphics"
 default_enabled = false
 

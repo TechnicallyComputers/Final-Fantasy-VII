@@ -83,7 +83,7 @@ is preserved on local branch `prototype/field-leader-bf` and is not built.
 | Check | Result |
 | --- | --- |
 | Renderer: FMV, field, battle at mods-off, Fit 4:3, 16:9 | All reach each scene; FMV and prerendered fields keep 4:3; PGXP active; LZS HLE runs at startup. |
-| Renderer: world map at Fit 4:3 and 16:9 | Renders and plays. At 16:9 the world-map and battle ground meshes end before the frame edge (black corners); mods-off and 4:3 are unaffected. Open in `beads-dmfi`. |
+| Renderer: world map at Fit 4:3 and 16:9 | Full 16:9 coverage: terrain screen cull widened (`auto_screen_x`, height immediate 0xF0) and the sky quad's fixed half-width moved by the margin (`signed_x_bound`); 4:3 unchanged. Battles present at 4:3 like fields: their authored ground meshes end inside the 16:9 margins (no cull exists to widen). |
 | Limits | Release preset defines Masamune/Crescent Arc only. Live: Crescent Arc learned after the eighth level-1 use; Limit menu shows level 1 with both moves and empty levels 2-4; both execute; gauge clears. |
 | Party and menus | Real recruited Vincent (owner card, disc 1) plus Cloud and Sephiroth via PHS; armor swap and accessory remove/re-equip conserve inventory; no compatible weapon in inventory (empty list = rejection); materia remove/place and Cloud exchange conserve materia; Potion and Cure from the menu; native records only change for the intended character. |
 | Battle commands | Attack, Magic (Cure), Item, Defend, Masamune, Crescent Arc, KO and Phoenix Down revival, victory pose, EXP/AP rewards. No grip, floor or clipping defect seen. |
@@ -92,9 +92,9 @@ is preserved on local branch `prototype/field-leader-bf` and is not built.
 
 Not exercised live this session: forced-party/temporary removal, Wutai (original-code
 oracles pass on all discs), interrupted save and rewind during a save (synthetic
-lifecycle suites pass). After a fresh boot the title LOAD list shows the native
-fallback member in place of Sephiroth in that slot's portraits; the loaded party
-is correct. Cosmetic, open.
+lifecycle suites pass). The title LOAD list now shows the extended party after a
+fresh boot. An intermittent host stall on one 16:9 world-map to battle transition
+did not reproduce (`beads-tl5d`).
 
 ## Remaining first release work
 
