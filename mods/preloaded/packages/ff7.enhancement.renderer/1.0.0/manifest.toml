@@ -1,0 +1,43 @@
+format_version = 6
+id = "ff7.enhancement.renderer"
+version = "1.0.0"
+name = "Final Fantasy VII Widescreen"
+author = "Final Fantasy VII Recompiled project"
+description = "Widens 3D gameplay to fill the screen, using the psxrecomp native-wide renderer shared with Tomba."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "enhanced-renderer"
+name = "Widescreen"
+channel = "experimental"
+description = "Render 3D gameplay into a wider surface. Adaptive follows the window shape with a 4:3 minimum. Prerendered fields, battles and FMVs retain their authored aspect; the world map fills the wide view. OpenGL is required for the full hardware path."
+group = "Graphics"
+default_enabled = false
+
+[[option]]
+feature = "enhanced-renderer"
+id = "aspect"
+label = "Aspect"
+group = "Graphics"
+type = "choice"
+default = "Fit"
+
+[[option.choice]]
+value = "Fit"
+label = "Adaptive (fit window)"
+[[option.choice]]
+value = "16:9"
+label = "16:9"
+[[option.choice]]
+value = "21:9"
+label = "21:9"
+[[option.choice]]
+value = "32:9"
+label = "32:9"
+
+[[plugin]]
+feature = "enhanced-renderer"
+id = "ff7.renderer"

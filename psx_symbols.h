@@ -223,9 +223,10 @@
 #define PSX_FN_SystemCdromReadChain 0x80034B44u
 #define func_80034B44 SystemCdromReadChain  /* alias */
 
-/* contextual: ff7-decomp 24a46a990dcc (main) */
+/* confirmed: Original NTSC-U MIPS independently executed in Unicorn: 600 streams match host decoder output and every GPR; code word hash 176b8b96. */
 #define PSX_FN_SystemLzsDecompress 0x80034BB0u
 #define func_80034BB0 SystemLzsDecompress  /* alias */
+/* hook=true — listed in game.toml mod_function_entry_funcs */
 
 /* contextual: ff7-decomp 24a46a990dcc (main) */
 #define PSX_FN_ChangeClearSIO 0x80034CE8u
@@ -2345,7 +2346,7 @@
  *       psx_mod_register_function_entry_plugin("id", addr, cb);
  *   PSX_FN_HOOK_LIST(REG)
  */
-#define PSX_FN_HOOK_COUNT 7
+#define PSX_FN_HOOK_COUNT 8
 #define PSX_FN_HOOK_LIST(X) \
     X(main, 0x80011C1Cu) \
     X(Unzip, 0x80017108u) \
@@ -2353,4 +2354,5 @@
     X(SnapshotPartyLevels, 0x80025040u) \
     X(GetCharacterName, 0x800257CCu) \
     X(SystemMenuRemovePartyGold, 0x80025B10u) \
-    X(SystemMenuAddPartyGold, 0x80025B48u)
+    X(SystemMenuAddPartyGold, 0x80025B48u) \
+    X(SystemLzsDecompress, 0x80034BB0u)

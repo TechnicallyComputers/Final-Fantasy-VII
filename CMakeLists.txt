@@ -18,6 +18,9 @@ set(PSX_SETUP_WIZARD ON CACHE BOOL
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")
 
 psxrecomp_add_game_runtime(psx-runtime
+    # Compile precision propagation into the primary binary. The renderer mod
+    # decides whether it runs; disabling the mod retains the original math.
+    PGXP
     # ENABLE_NETPLAY_IF_PRESENT
     # NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
     ENABLE_SETUP_WIZARD
@@ -32,13 +35,20 @@ psxrecomp_add_game_runtime(psx-runtime
     # does not know this keyword, so after a multi-value keyword it would be
     # swallowed into that list instead of forwarded.
     PRELOADED_MODS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded"
+    # Smooth 3D (ff7.enhancement.smooth-3d) is the FFVII-tuned PGXP mod.
+    EXCLUDE_BUILTIN_MODS psx.enhancement.pgxp
     GEN_MARKER "generated/SCUS_941.63_dispatch.c"
     GEN_FULL_GLOB "generated/SCUS_941.63_full_*.c"
     CODEGEN_SETUP_SOURCES
         "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
-        # Game-owned trusted mod plugins (widescreen). Registered by a
-        # constructor, selected by mods/preloaded/packages/ff7.enhancements.
+        # Trusted implementations selected independently by the mod catalog.
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_mods.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_lzs.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_loading.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_renderer.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_resolution.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_smooth_3d.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_texture_filter.c"
 )
 
 # Stage runtime configs next to the exe for direct build/ launches. Only copy

@@ -81,6 +81,50 @@ by us**. The default-off *Hook Trace (developer)* feature in the Mods list is
 how you promote one: arm it, do the thing the name claims to describe, and see
 whether the call fires.
 
+## Enhancement mods
+
+Enhancements are independent packages in the Mods screen. All default to off.
+
+**Internal Resolution** (`ff7.enhancement.resolution`) renders polygons at
+720p, 1080p (default), 1440p or 4K. It is an integer raster scale (1080p is 5x
+at 240 lines), works at the original 4:3 aspect, and does not change saved
+renderer settings. `PSX_INTERNAL_RESOLUTION` still overrides it. Prerendered
+field backgrounds and FMVs are original-resolution images.
+
+**Widescreen** (`ff7.enhancement.renderer`) replaces the retired widescreen
+feature. It uses psxrecomp's hardware native-wide renderer shared with Tomba,
+rather than changing the guest's projection. Its one option is the aspect:
+adaptive (default, follows the window) or fixed 16:9/21:9/32:9.
+The world map fills the wide view: its terrain screen cull and sky quad are
+widened through `[widescreen.cull]` and `[[widescreen.signed_x_bound]]` in
+`game.toml`. Prerendered fields and battles keep 4:3 (fields until a verified
+background tile/camera adapter exists; battle ground meshes end inside the
+wide margins). FMVs and full-screen 2D use the framework's native policy.
+
+**Smooth 3D** (`ff7.enhancement.smooth-3d`, on by default) is PGXP sub-pixel
+geometry and perspective-correct texturing with CPU propagation. It never
+changes guest backface decisions. It replaces the framework's generic
+`psx.enhancement.pgxp`, which this title excludes. **3D Texture Filter**
+(`ff7.enhancement.texture-filter`, on by default) applies stable minification to
+proven 3D polygons; UI stays nearest. Both work with or without Widescreen.
+
+**Fast Loading** (`ff7.enhancement.loading`) adds a guarded host implementation
+of the original LZS decompressor. It checks the routine's instruction hash,
+decodes into scratch space, and publishes RAM through the runtime's
+executable-write tracking. Unsupported input runs the original code. The oracle
+compares output and all 32 GPRs against the original MIPS routine on 600
+generated streams, two retail assets, and seven streaming-overlap/segment-alias
+cases. The mod has no options. Load pacing and native CD timing are retained:
+accelerated sector bursts produced incomplete actors in the first battle.
+
+To reproduce the LZS oracle, install Unicorn and build `src/ff7_lzs.c` as a
+shared library, then run:
+
+```sh
+python tools/test_lzs_against_retail.py --library <shared-library> \
+  --disc "disc/Final Fantasy VII (USA) (Disc 1).cue"
+```
+
 ## Legal
 
 You must own the original game. Disc images under `disc/` are gitignored and

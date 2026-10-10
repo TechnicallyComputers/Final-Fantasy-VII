@@ -426,8 +426,9 @@ note = "ff7-decomp 24a46a990dcc (main)"
 pc = 0x80034BB0
 name = "SystemLzsDecompress"
 emit = false
-status = "contextual"
-note = "ff7-decomp 24a46a990dcc (main)"
+hook = true
+status = "confirmed"
+note = "Original NTSC-U MIPS independently executed in Unicorn: 600 streams match host decoder output and every GPR; code word hash 176b8b96."
 
 [[func]]
 pc = 0x80034CE8

@@ -1,0 +1,22 @@
+format_version = 6
+id = "ff7.enhancement.smooth-3d"
+version = "1.0.0"
+name = "Final Fantasy VII Smooth 3D"
+author = "Final Fantasy VII Recompiled project"
+description = "Stops 3D models from jittering and textures from warping (PGXP), tuned for FFVII."
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCUS-94163"
+
+[[feature]]
+id = "smooth-3d"
+name = "Smooth 3D"
+channel = "experimental"
+description = "Sub-pixel geometry and perspective-correct textures, so 3D models stop jittering and floors and walls stop warping. Includes CPU propagation for FFVII's vertex math. Visual only: the game's own math and culling are unchanged. Most visible with Internal Resolution."
+group = "Graphics"
+default_enabled = true
+
+[[plugin]]
+feature = "smooth-3d"
+id = "ff7.smooth-3d"

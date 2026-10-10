@@ -6,15 +6,11 @@ id = "ff7.enhancements"
 version = "1.0.0"
 name = "Final Fantasy VII Enhancements"
 author = "Final Fantasy VII Recompiled project"
-description = "Optional presentation enhancements, each independently toggleable and off by default."
+description = "FFVII developer hook tracing. The former widescreen mod is superseded by the Widescreen package."
 save_compatibility = "shared"
 
-# Channels are per feature (format 6). This catalog used to carry a
-# package-level channel = "developer", which quarantined BOTH features because
-# one of them was an instrument -- so no FF7 player ever saw either. Widescreen
-# is now experimental (it ships, badged, default off) and hook-trace stays
-# developer (absent from any release build). Nothing had to be split into a
-# second package to say that.
+# Hook tracing stays developer-only. Rendering and loading now have independent
+# packages, options and activation plugins.
 
 # The runtime matches this against game.toml [game] id, which is the BOOT
 # disc's serial and does not change with the selected disc — so one entry
@@ -22,37 +18,7 @@ save_compatibility = "shared"
 [[target]]
 game_id = "SCUS-94163"
 
-[[feature]]
-id = "widescreen"
-name = "Widescreen"
-# Engaged and working, but unvalidated as gameplay on this title: FF7's field
-# screens are pre-rendered 2D backdrops, so a wider view there can only reveal
-# what the backdrop bitmap happens to contain.
-channel = "experimental"
-description = "Renders a wider field of view instead of stretching the 4:3 image. EXPERIMENTAL and unvalidated on this title: FF7's field screens are pre-rendered 2D backdrops, so a wider view there can only reveal what the backdrop bitmap happens to contain. Fully 3D scenes (battles, the world map) are where this is expected to hold up. FMV and the BIOS boot stay 4:3."
-group = "Graphics"
-default_enabled = false
-
-[[option]]
-feature = "widescreen"
-id = "mode"
-label = "Aspect"
-description = "Fixed opens and stays at 16:9. Adaptive follows the window as you resize it, clamped between 4:3 and 16:9; the initial window is 16:9 either way."
-group = "Graphics"
-type = "choice"
-default = "fixed-16-9"
-
-[[option.choice]]
-value = "fixed-16-9"
-label = "16:9"
-
-[[option.choice]]
-value = "adaptive"
-label = "Adaptive (follows the window)"
-
-[[plugin]]
-feature = "widescreen"
-id = "ff7.widescreen"
+# The old widescreen feature is retired. Use ff7.enhancement.renderer.
 
 # Developer instrument, not a presentation change. symbols.toml carries ~580
 # function names imported from the ff7-decomp symbol map, all tagged
