@@ -39,6 +39,7 @@ psxrecomp_add_game_runtime(psx-runtime
         # Game-owned trusted mod plugins (widescreen). Registered by a
         # constructor, selected by mods/preloaded/packages/ff7.enhancements.
         "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_mods.c"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/ff7_auto_disc.c"
 )
 
 # Stage runtime configs next to the exe for direct build/ launches. Only copy
